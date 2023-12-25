@@ -19,7 +19,7 @@ protocol OnboardingPresenterProtocol: AnyObject {
 
 /// PRESENTER -> INTERACTOR
 protocol OnboardingInteractorInputProtocol: AnyObject {
-    var presenter:  OnboardingInteractorOutputProtocol? { get set }
+    var presenter: OnboardingInteractorOutputProtocol? { get set }
 }
 
 /// INTERACTOR -> PRESENTER
