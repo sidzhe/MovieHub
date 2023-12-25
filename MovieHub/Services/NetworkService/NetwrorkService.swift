@@ -10,6 +10,8 @@ import UIKit
 //MARK: - NetworkServiceProtool
 protocol NetworkServiceProtool: AnyObject {
     func searchTitle<T: Decodable>(_ title: String, completion: @escaping (Result<T, RequestError>) -> Void)
+    func searchPerson<T: Decodable>(_ person: String, completion: @escaping (Result<T, RequestError>) -> Void)
+    func loadImage(_ urlString: String?, completion: @escaping (Result<UIImage, RequestError>) -> Void)
 }
 
 
@@ -27,6 +29,15 @@ final class NetworkkService: NetworkServiceProtool {
         }
     }
     
+    //MARK: Search with person
+    func searchPerson<T: Decodable>(_ person: String, completion: @escaping (Result<T, RequestError>) -> Void) {
+        Task {
+            let result: Result<T, RequestError> = await movieService.searchPerson(person: person)
+            completion(result)
+        }
+    }
+    
+    //MARK: Load image
     func loadImage(_ urlString: String?, completion: @escaping (Result<UIImage, RequestError>) -> Void) {
         Task {
             let result: Result<UIImage, RequestError> = await movieService.loadImage(urlString)

@@ -10,6 +10,7 @@ import Foundation
 //MARK: - MovieEndpoints
 enum MovieEndpoints {
     case searchTitle
+    case searchPerson
 }
 
 
@@ -22,6 +23,8 @@ extension MovieEndpoints: Endpoint {
             
         case .searchTitle:  
             return .movieHost
+        case .searchPerson:
+            return .movieHost
         }
     }
     
@@ -31,6 +34,8 @@ extension MovieEndpoints: Endpoint {
             
         case .searchTitle:   
             return "/v1.4/movie/search"
+        case .searchPerson:
+            return "/v1.4/person/search"
         }
     }
     
@@ -39,6 +44,8 @@ extension MovieEndpoints: Endpoint {
         switch self {
             
         case .searchTitle:   
+            return .get
+        case .searchPerson:
             return .get
         }
     }
@@ -49,6 +56,8 @@ extension MovieEndpoints: Endpoint {
             
         case .searchTitle:   
             return .none
+        case .searchPerson:
+            return .none
         }
     }
     
@@ -57,6 +66,8 @@ extension MovieEndpoints: Endpoint {
         switch self {
             
         case .searchTitle:   
+            return .none
+        case .searchPerson:
             return .none
         }
     }

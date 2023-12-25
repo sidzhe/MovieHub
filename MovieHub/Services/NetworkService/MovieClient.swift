@@ -18,7 +18,6 @@ protocol MovieClient {
 extension MovieClient {
     
     func sendRequest<T: Decodable>(endpoint: Endpoint, responseModel: T.Type, searchTitle: String) async -> Result<T, RequestError> {
-        
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host.rawValue
@@ -56,7 +55,7 @@ extension MovieClient {
         }
     }
     
-    // Load Imaeg
+    // Load Image
     func imageRequest(_ urlString: String?) async -> Result<UIImage, RequestError> {
         guard let urlString = urlString, let url = URL(string: urlString) else {
             return .failure(.invalidURL)
@@ -69,7 +68,7 @@ extension MovieClient {
                let cachedImage = UIImage(data: cachedResponse.data) {
                 return .success(cachedImage)
             }
-
+            
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let response = response as? HTTPURLResponse else {
                 return .failure(.noResponse)
@@ -80,7 +79,7 @@ extension MovieClient {
                 guard let image = UIImage(data: data) else {
                     return .failure(.unexpectedStatusCode)
                 }
-    
+                
                 let cachedResponse = CachedURLResponse(response: response, data: data)
                 URLCache.shared.storeCachedResponse(cachedResponse, for: request)
                 
@@ -94,5 +93,4 @@ extension MovieClient {
             return .failure(.unknown)
         }
     }
-
 }
