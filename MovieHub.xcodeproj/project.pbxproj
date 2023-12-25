@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E18489D52B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18489D42B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift */; };
+		E18489D92B3A195200CBED52 /* UISearchController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18489D82B3A195200CBED52 /* UISearchController + Extension.swift */; };
+		E18489DB2B3A199A00CBED52 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18489DA2B3A199A00CBED52 /* SearchResultsViewController.swift */; };
+		E18489DD2B3A1FD200CBED52 /* NavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18489DC2B3A1FD200CBED52 /* NavigationController + Extension.swift */; };
 		EB8267612B38A1D50024BAAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267602B38A1D50024BAAE /* AppDelegate.swift */; };
 		EB8267632B38A1D50024BAAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267622B38A1D50024BAAE /* SceneDelegate.swift */; };
 		EB82676A2B38A1D50024BAAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8267692B38A1D50024BAAE /* Assets.xcassets */; };
@@ -63,6 +67,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E18489D42B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		E18489D82B3A195200CBED52 /* UISearchController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchController + Extension.swift"; sourceTree = "<group>"; };
+		E18489DA2B3A199A00CBED52 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		E18489DC2B3A1FD200CBED52 /* NavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController + Extension.swift"; sourceTree = "<group>"; };
 		EB82675D2B38A1D50024BAAE /* MovieHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8267602B38A1D50024BAAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB8267622B38A1D50024BAAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +139,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E18489D62B39C21300CBED52 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E18489D42B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E18489D72B3A193000CBED52 /* Extensions  */ = {
+			isa = PBXGroup;
+			children = (
+				E18489D82B3A195200CBED52 /* UISearchController + Extension.swift */,
+				E18489DC2B3A1FD200CBED52 /* NavigationController + Extension.swift */,
+			);
+			path = "Extensions ";
+			sourceTree = "<group>";
+		};
 		EB8267542B38A1D50024BAAE = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +197,7 @@
 		EB8267752B38A28B0024BAAE /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				E18489D72B3A193000CBED52 /* Extensions  */,
 				EB8267692B38A1D50024BAAE /* Assets.xcassets */,
 				EB82676B2B38A1D50024BAAE /* LaunchScreen.storyboard */,
 				EB82676E2B38A1D50024BAAE /* Info.plist */,
@@ -593,7 +619,9 @@
 		EBE76C6A2B3973950053E522 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E18489D62B39C21300CBED52 /* Cell */,
 				EBE76C6E2B3973D10053E522 /* SearchViewController.swift */,
+				E18489DA2B3A199A00CBED52 /* SearchResultsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -795,7 +823,9 @@
 				EB82678A2B38AB9A0024BAAE /* OnboardingProtocols.swift in Sources */,
 				EBE76C712B3974080053E522 /* SearchPresenter.swift in Sources */,
 				EBE76C622B3972DB0053E522 /* WishlistPresenter.swift in Sources */,
+				E18489D92B3A195200CBED52 /* UISearchController + Extension.swift in Sources */,
 				EBE76C512B3971CA0053E522 /* DetailViewController.swift in Sources */,
+				E18489DB2B3A199A00CBED52 /* SearchResultsViewController.swift in Sources */,
 				EBE76C552B3972300053E522 /* DetailInteractor.swift in Sources */,
 				EBE76C642B39732C0053E522 /* WishlistInteractor.swift in Sources */,
 				EB82678E2B38B2260024BAAE /* OnboardingInteractor.swift in Sources */,
@@ -812,10 +842,12 @@
 				EBE76C2A2B396E370053E522 /* MainRouter.swift in Sources */,
 				EBE76C6F2B3973D10053E522 /* SearchViewController.swift in Sources */,
 				EBE76C6D2B39739E0053E522 /* SearchProtocols.swift in Sources */,
+				E18489D52B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift in Sources */,
 				EBE76C662B3973590053E522 /* WishlistRouter.swift in Sources */,
 				EBE76C332B396EFB0053E522 /* MovieListViewController.swift in Sources */,
 				EBE76C352B396F2D0053E522 /* MovieListPresenter.swift in Sources */,
 				EBE76C402B396FDD0053E522 /* PopularProtocols.swift in Sources */,
+				E18489DD2B3A1FD200CBED52 /* NavigationController + Extension.swift in Sources */,
 				EBE76C8D2B3977430053E522 /* ChristmasViewController.swift in Sources */,
 				EB8267932B38B7860024BAAE /* Builder.swift in Sources */,
 				EBE76C462B39707B0053E522 /* PopularInteractor.swift in Sources */,
