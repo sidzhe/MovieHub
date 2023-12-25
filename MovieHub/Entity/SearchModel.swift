@@ -72,7 +72,3 @@ struct ReleaseYear: Decodable {
     let start, end: Int
 }
 
-enum TypeEnum: Decodable {
-    case movie
-    case tvSeries
-}
