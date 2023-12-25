@@ -11,6 +11,7 @@ import UIKit
 protocol NetworkServiceProtool: AnyObject {
     func searchTitle<T: Decodable>(_ title: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func searchPerson<T: Decodable>(_ person: String, completion: @escaping (Result<T, RequestError>) -> Void)
+    func searchID<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func loadImage(_ urlString: String?, completion: @escaping (Result<UIImage, RequestError>) -> Void)
 }
 
@@ -33,6 +34,14 @@ final class NetworkkService: NetworkServiceProtool {
     func searchPerson<T: Decodable>(_ person: String, completion: @escaping (Result<T, RequestError>) -> Void) {
         Task {
             let result: Result<T, RequestError> = await movieService.searchPerson(person: person)
+            completion(result)
+        }
+    }
+    
+    //MARK: Search with ID
+    func searchID<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void) {
+        Task {
+            let result: Result<T, RequestError> = await movieService.searchWithId(identifier: identifier)
             completion(result)
         }
     }

@@ -11,6 +11,7 @@ import Foundation
 enum MovieEndpoints {
     case searchTitle
     case searchPerson
+    case searchId
 }
 
 
@@ -25,6 +26,8 @@ extension MovieEndpoints: Endpoint {
             return .movieHost
         case .searchPerson:
             return .movieHost
+        case .searchId:
+            return .movieHost
         }
     }
     
@@ -36,6 +39,8 @@ extension MovieEndpoints: Endpoint {
             return "/v1.4/movie/search"
         case .searchPerson:
             return "/v1.4/person/search"
+        case .searchId:
+            return "/v1.4/movie/"
         }
     }
     
@@ -46,6 +51,8 @@ extension MovieEndpoints: Endpoint {
         case .searchTitle:   
             return .get
         case .searchPerson:
+            return .get
+        case .searchId:
             return .get
         }
     }
@@ -58,6 +65,8 @@ extension MovieEndpoints: Endpoint {
             return .none
         case .searchPerson:
             return .none
+        case .searchId:
+            return .none
         }
     }
     
@@ -69,6 +78,9 @@ extension MovieEndpoints: Endpoint {
             return .none
         case .searchPerson:
             return .none
+        case .searchId:
+            let item = [URLQueryItem(name: "limit", value: "10")]
+            return item
         }
     }
 }
