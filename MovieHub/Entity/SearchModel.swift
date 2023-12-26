@@ -15,27 +15,27 @@ struct SearchModel: Decodable {
 
 // MARK: - Doc
 struct Doc: Decodable {
-    let id: Int
-    let name, alternativeName, enName: String
-    let type: String
-    let year: Int
+    let id: Int?
+    let name, alternativeName, enName: String?
+    let type: String?
+    let year: Int?
     let docDescription, shortDescription: String?
-    let movieLength: Int
-    let isSeries, ticketsOnSale: Bool
+    let movieLength: Int?
+    let isSeries, ticketsOnSale: Bool?
     let totalSeriesLength: Int?
     let seriesLength: Int?
     let ratingMPAA: String?
     let ageRating: Int?
     let top10: Int?
     let top250: Int?
-    let typeNumber: Int
+    let typeNumber: Int?
     let status: String?
-    let names: [Name]
-    let externalId: ExternalID
-    let poster, backdrop: Backdrop
-    let rating, votes: Rating
-    let genres, countries: [Country]
-    let releaseYears: [ReleaseYear]
+    let names: [Name]?
+    let externalId: ExternalID?
+    let poster, backdrop: Backdrop?
+    let rating, votes: Rating?
+    let genres, countries: [Country]?
+    let releaseYears: [ReleaseYear]?
 }
 
 // MARK: - Backdrop

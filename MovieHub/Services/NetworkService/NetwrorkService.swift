@@ -55,6 +55,14 @@ final class NetworkkService: NetworkServiceProtool {
         }
     }
     
+    //MARK: Get Movie with slug
+    func getSlugCollection<T: Decodable>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void) {
+        Task {
+            let result: Result<T, RequestError> = await movieService.movieFilter(slugTag: slugTag)
+            completion(result)
+        }
+    }
+    
     //MARK: Load image
     func loadImage(_ urlString: String?, completion: @escaping (Result<UIImage, RequestError>) -> Void) {
         Task {

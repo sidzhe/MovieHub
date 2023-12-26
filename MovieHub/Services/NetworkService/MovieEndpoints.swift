@@ -13,6 +13,7 @@ enum MovieEndpoints {
     case searchPerson
     case searchId
     case slugList
+    case movieSlugFilter
 }
 
 
@@ -27,7 +28,8 @@ extension MovieEndpoints: Endpoint {
         case .searchPerson:   return "/v1.4/person/search"
         case .searchId:       return "/v1.4/movie/"
         case .slugList:       return "/v1.4/list"
-            
+        case .movieSlugFilter:    return "/v1.4/movie"
+             
         }
     }
     
@@ -39,7 +41,8 @@ extension MovieEndpoints: Endpoint {
         case .searchPerson:   return .get
         case .searchId:       return .get
         case .slugList:       return .get
-            
+        case .movieSlugFilter:    return .get
+             
         }
     }
     
@@ -51,7 +54,8 @@ extension MovieEndpoints: Endpoint {
         case .searchPerson:   return .none
         case .searchId:       return .none
         case .slugList:       return .none
-            
+        case .movieSlugFilter:    return .none
+             
         }
     }
     
@@ -63,6 +67,7 @@ extension MovieEndpoints: Endpoint {
         case .searchPerson:   return .none
         case .searchId:       return [URLQueryItem(name: "limit", value: "10")]
         case .slugList:       return [URLQueryItem(name: "pages", value: String(Int.random(in: 1...9))), URLQueryItem(name: "limit", value: "10")]
+        case .movieSlugFilter:    return .none
              
         }
     }
