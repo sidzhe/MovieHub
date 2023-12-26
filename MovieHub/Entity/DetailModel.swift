@@ -9,39 +9,39 @@ import Foundation
 
 // MARK: - DetailModel
 struct DetailModel: Decodable {
-    let id: Int
-    let externalId: ExternalID
-    let name, alternativeName: String
+    let id: Int?
+    let externalId: ExternalID?
+    let name, alternativeName: String?
     let enName: String?
-    let names: [Name]
-    let type: String
-    let typeNumber, year: Int
-    let description, shortDescription, slogan: String
+    let names: [Name]?
+    let type: String?
+    let typeNumber, year: Int?
+    let description, shortDescription, slogan: String?
     let status: String?
-    let rating, votes: Rating
-    let movieLength: Int
+    let rating, votes: Rating?
+    let movieLength: Int?
     let ratingMPAA: String?
     let ageRating: Int?
-    let poster, backdrop: Backdrop
-    let genres, countries: [Country]
-    let persons: [Person]
-    let budget: Budget
-    let fees: Fees
-    let sequelsAndPrequels: [SequelsAndPrequel]
-    let watchability: Watchability
+    let poster, backdrop: Backdrop?
+    let genres, countries: [Country]?
+    let persons: [Person]?
+    let budget: Budget?
+    let fees: Fees?
+    let sequelsAndPrequels: [SequelsAndPrequel]?
+    let watchability: Watchability?
     let top10, top250: Int?
-    let facts: [Fact]
-    let similarMovies: [SequelsAndPrequel]
-    let createdAt, updatedAt: String
-    let videos: Videos
-    let premiere: Premiere
-    let ticketsOnSale: Bool
-    let audience: [Audience]
-    let isSeries: Bool
+    let facts: [Fact]?
+    let similarMovies: [SequelsAndPrequel]?
+    let createdAt, updatedAt: String?
+    let videos: Videos?
+    let premiere: Premiere?
+    let ticketsOnSale: Bool?
+    let audience: [Audience]?
+    let isSeries: Bool?
     let seriesLength: Int?
     let totalSeriesLength: Int?
-    let logo: Logo
-    let lists: [String]
+    let logo: Logo?
+    let lists: [String]?
 }
 
 // MARK: - Audience

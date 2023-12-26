@@ -13,6 +13,10 @@ protocol NetworkServiceProtool: AnyObject {
     func searchPerson<T: Decodable>(_ person: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func searchID<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func searchColletions<T: Decodable>(completion: @escaping (Result<T, RequestError>) -> Void)
+    func getSlugCollection<T: Decodable>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void)
+    func getGenreCollection<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
+    func getRateCollection<T: Decodable>(completion: @escaping (Result<T, RequestError>) -> Void)
+    func getMovieWithPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void)
     func loadImage(_ urlString: String?, completion: @escaping (Result<UIImage, RequestError>) -> Void)
 }
 
@@ -58,7 +62,31 @@ final class NetworkkService: NetworkServiceProtool {
     //MARK: Get Movie with slug
     func getSlugCollection<T: Decodable>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void) {
         Task {
-            let result: Result<T, RequestError> = await movieService.movieFilter(slugTag: slugTag)
+            let result: Result<T, RequestError> = await movieService.movieFilterSlug(slugTag: slugTag)
+            completion(result)
+        }
+    }
+    
+    //MARK: Get Movie with genre
+    func getGenreCollection<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void) {
+        Task {
+            let result: Result<T, RequestError> = await movieService.movieFilterGenres(genre: genre.rawValue)
+            completion(result)
+        }
+    }
+    
+    //MARK: Get rate movies
+    func getRateCollection<T: Decodable>(completion: @escaping (Result<T, RequestError>) -> Void) {
+        Task {
+            let result: Result<T, RequestError> = await movieService.movieFilterRate()
+            completion(result)
+        }
+    }
+    
+    //MARK: Movie related person
+    func getMovieWithPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void) {
+        Task {
+            let result: Result<T, RequestError> = await movieService.movieFilterPerson(actorsId: personId)
             completion(result)
         }
     }

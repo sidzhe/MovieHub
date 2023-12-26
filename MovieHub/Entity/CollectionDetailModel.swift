@@ -9,6 +9,6 @@ import Foundation
 
 // MARK: - CollectionDetailModel
 struct CollectionDetailModel: Decodable {
-    let docs: [Doc]
+    let docs: [Doc]?
     let total, limit, page, pages: Int?
 }
