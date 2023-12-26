@@ -12,6 +12,7 @@ protocol NetworkServiceProtool: AnyObject {
     func searchTitle<T: Decodable>(_ title: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func searchPerson<T: Decodable>(_ person: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func searchID<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void)
+    func searchColletions<T: Decodable>(completion: @escaping (Result<T, RequestError>) -> Void)
     func loadImage(_ urlString: String?, completion: @escaping (Result<UIImage, RequestError>) -> Void)
 }
 
@@ -42,6 +43,14 @@ final class NetworkkService: NetworkServiceProtool {
     func searchID<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void) {
         Task {
             let result: Result<T, RequestError> = await movieService.searchWithId(identifier: identifier)
+            completion(result)
+        }
+    }
+    
+    //MARK: Get collections
+    func searchColletions<T: Decodable>(completion: @escaping (Result<T, RequestError>) -> Void) {
+        Task {
+            let result: Result<T, RequestError> = await movieService.searchCollection()
             completion(result)
         }
     }

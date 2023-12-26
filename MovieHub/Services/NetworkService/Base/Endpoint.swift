@@ -9,7 +9,7 @@ import Foundation
 
 protocol Endpoint {
     var scheme: String { get }
-    var host: RequestHost { get }
+    var host: String { get }
     var path: String { get }
     var method: RequestMethod { get }
     var header: [String : String]? { get }
@@ -20,9 +20,6 @@ protocol Endpoint {
 
 extension Endpoint {
     var scheme: String { "https" }
-    var header: [String: String]? { ["X-API-KEY": "PS2CH02-M8W4WWW-JSKN52C-CEB0JZK"] }
-}
-
-enum RequestHost: String {
-    case movieHost = "api.kinopoisk.dev"
+    var host: String { "api.kinopoisk.dev" }
+    var header: [String: String]? { ["X-API-KEY": "1K2XK7T-NY34DBQ-M8GKW41-JZP9BKH"] }
 }

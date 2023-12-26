@@ -12,6 +12,7 @@ protocol MovieServiceProtool {
     func searchMovie<T: Decodable>(searchTitle: String) async -> Result<T, RequestError>
     func searchPerson<T: Decodable>(person: String) async -> Result<T, RequestError>
     func searchWithId<T: Decodable>(identifier: String) async -> Result<T, RequestError>
+    func searchCollection<T: Decodable>() async -> Result<T, RequestError>
     func loadImage(_ urlString: String?) async -> Result<UIImage, RequestError>
 }
 
@@ -26,12 +27,16 @@ struct MovieService: MovieServiceProtool, MovieClient {
     func searchPerson<T: Decodable>(person: String) async -> Result<T, RequestError> {
         return await sendRequest(endpoint: MovieEndpoints.searchPerson, responseModel: T.self, searchTitle: person)
     }
+        
+    func searchWithId<T: Decodable>(identifier: String) async -> Result<T, RequestError> {
+        return await sendIdRequest(endpoint: MovieEndpoints.searchId, responseModel: T.self, idenfifier: identifier)
+    }
+    
+    func searchCollection<T: Decodable>() async -> Result<T, RequestError> {
+        return await sendListSlug(endpoint: MovieEndpoints.slugList, responseModel: T.self)
+    }
     
     func loadImage(_ urlString: String?) async -> Result<UIImage, RequestError> {
         return await imageRequest(urlString)
-    }
-    
-    func searchWithId<T: Decodable>(identifier: String) async -> Result<T, RequestError> {
-        return await sendIdRequest(endpoint: MovieEndpoints.searchId, responseModel: T.self, idenfifier: identifier)
     }
 }
