@@ -15,7 +15,7 @@ protocol MovieServiceProtool {
     func searchCollection<T: Decodable>() async -> Result<T, RequestError>
     func movieFilterSlug<T: Decodable>(slugTag: String) async -> Result<T, RequestError>
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
-    func movieFilterRate<T: Decodable>() async -> Result<T, RequestError>
+    func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func loadImage(_ urlString: String?) async -> Result<UIImage, RequestError>
     func movieFilterPerson<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError>
 }
@@ -99,7 +99,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
     }
     
     //MARK: Rated moveies
-    func movieFilterRate<T: Decodable>() async -> Result<T, RequestError> {
+    func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError> {
         let endpoint = MovieEndpoints.movieFilter
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme
@@ -107,9 +107,10 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.path = endpoint.path
         let items = [URLQueryItem(name: "page", value: String(Int.random(in: 1...75))),
                      URLQueryItem(name: "limit", value: "10"),
-                     URLQueryItem(name: "rating.kp", value: "8.5-10")]
+                     URLQueryItem(name: "rating.kp", value: "4.5-10"),
+                     URLQueryItem(name: "genres.name", value: genre)]
+    
         urlComponents.queryItems = items
-        
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.movieFilter, responseModel: T.self)
     }
     

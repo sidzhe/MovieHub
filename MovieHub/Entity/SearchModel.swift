@@ -8,13 +8,13 @@
 import Foundation
 
 // MARK: - SearchModel
-struct SearchModel: Decodable {
+struct SearchModel: Hashable, Decodable {
     let docs: [Doc]
     let total, limit, page, pages: Int
 }
 
 // MARK: - Doc
-struct Doc: Decodable {
+struct Doc: Hashable, Decodable {
     let id: Int?
     let name, alternativeName, enName: String?
     let type: String?
@@ -39,36 +39,36 @@ struct Doc: Decodable {
 }
 
 // MARK: - Backdrop
-struct Backdrop: Decodable {
+struct Backdrop: Hashable, Decodable {
     let url, previewURL: String?
 }
 
 // MARK: - Country
-struct Country: Decodable {
-    let name: String
+struct Country: Hashable, Decodable {
+    let name: String?
 }
 
 // MARK: - ExternalID
-struct ExternalID: Decodable {
+struct ExternalID: Hashable, Decodable {
     let tmdb: Int?
     let kpHD, imdb: String?
 }
 
 // MARK: - Name
-struct Name: Decodable {
-    let name: String
+struct Name: Hashable, Decodable {
+    let name: String?
     let language: String?
     let type: String?
 }
 
 // MARK: - Rating
-struct Rating: Decodable {
-    let kp, imdb, filmCritics, russianFilmCritics: Double
+struct Rating: Hashable, Decodable {
+    let kp, imdb, filmCritics, russianFilmCritics: Double?
     let await: Int?
 }
 
 // MARK: - ReleaseYear
-struct ReleaseYear: Decodable {
-    let start, end: Int
+struct ReleaseYear: Hashable, Decodable {
+    let start, end: Int?
 }
 

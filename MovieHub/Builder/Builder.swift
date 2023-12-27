@@ -38,7 +38,8 @@ final class Builder {
     static func createMain() -> UIViewController {
         let view = MainViewController()
         let presenter = MainPresenter()
-        let interactor = MainInteractor()
+        let networkService = NetworkService()
+        let interactor = MainInteractor(networkService: networkService)
         let router = MainRouter()
         view.presenter = presenter
         presenter.view = view
