@@ -9,6 +9,8 @@ import UIKit
 
 final class WishlistViewController: UIViewController {
     
+    let movieNamesArray = ["Spider-Man", "Spider-Man Spider-Man", "Spider-Man Spider-Man Spider-ManSpider-Man Spider-Man Spider-Man"]
+    
     //MARK: Properties
     var presenter: WishlistPresenterProtocol?
     private lazy var wishTableView: UITableView = {
@@ -58,6 +60,7 @@ extension WishlistViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WishListTableViewCell.reuseId, for: indexPath) as? WishListTableViewCell else {return .init()}
+        cell.setMovieName(name: movieNamesArray[indexPath.row])
         return cell
     }
     

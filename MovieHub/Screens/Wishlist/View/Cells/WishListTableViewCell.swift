@@ -13,7 +13,7 @@ class WishListTableViewCell: UITableViewCell {
     static let reuseId = String(String(describing: WishListTableViewCell.self))
     
     private let darkBackgroundView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .darkGray
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
@@ -21,10 +21,11 @@ class WishListTableViewCell: UITableViewCell {
     }()
     private let hStack: UIStackView = {
         let stack = UIStackView()
+        //stack.backgroundColor = .blue
         stack.axis = .horizontal
         stack.spacing = 16
-        stack.alignment = .center
-        stack.distribution = .equalCentering
+        stack.alignment = .fill
+        stack.distribution = .fill
         return stack
     }()
     private lazy var leftImageView: UIImageView = {
@@ -36,34 +37,35 @@ class WishListTableViewCell: UITableViewCell {
     }()
     private let vStack: UIStackView = {
         let stack = UIStackView()
+        //stack.backgroundColor = .cyan
         stack.axis = .vertical
         stack.alignment = .leading
+        stack.distribution = .equalSpacing
         stack.spacing = 6
         return stack
     }()
     
     private var genreLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Action"
-        label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        //        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .lightGray
         return label
     }()
     private var movieNameLabel: UILabel = {
         let label = UILabel()
-         label.text = "Spider-Man"
+        label.text = "Spider-Man"
         label.numberOfLines = 2
-        
-         label.font = .systemFont(ofSize: 14, weight: .semibold)
-         label.textColor = .white
-         return label
-     }()
+        label.font = .systemFont(ofSize: 16, weight: .semibold)
+        label.textColor = .white
+        return label
+    }()
     private var ratingLabel: UILabel = {
         let label = UILabel()
         //beginning
         let beginningAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 12),
+            .font: UIFont.systemFont(ofSize: 14),
             .foregroundColor: UIColor.gray
         ]
         let beginningAttributeContainer = AttributeContainer(beginningAttributes)
@@ -79,7 +81,12 @@ class WishListTableViewCell: UITableViewCell {
         let fullAttText = beginningAttString + endAttString
         label.attributedText = NSAttributedString(fullAttText)
         return label
-     }()
+    }()
+    private var heartImageView: UIImageView = {
+        let view = UIImageView(image: UIImage(systemName: "heart.fill"))
+        view.tintColor = .red
+        return view
+    }()
     
     //MARK: - Init
     
@@ -94,7 +101,11 @@ class WishListTableViewCell: UITableViewCell {
     }
     
     //MARK: - Methods
-
+    
+    func setMovieName(name: String) {
+        movieNameLabel.text = name
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: animated)
     }
@@ -103,23 +114,46 @@ class WishListTableViewCell: UITableViewCell {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         contentView.addSubview(darkBackgroundView)
-        darkBackgroundView.addSubview(hStack)
+        //        darkBackgroundView.addSubviews(leftImageView, genreLabel, movieNameLabel, ratingLabel, heartImageView)
+        darkBackgroundView.addSubviews(hStack, heartImageView)
         hStack.addArrangedSubviews(leftImageView, vStack)
         vStack.addArrangedSubviews(genreLabel, movieNameLabel, ratingLabel)
     }
-
+    
 }
 
 extension WishListTableViewCell {
     private func setConstraints() {
         darkBackgroundView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 24, bottom: 8, right: 24))
+            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
         }
         hStack.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(12)
         }
         leftImageView.snp.makeConstraints { make in
-            make.height.equalTo(leftImageView.snp.width).multipliedBy(83.0/121.0)
+            //            make.centerY.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(121.0 / 327.0)
+            //            make.width.equalTo(leftImageView.snp.height).multipliedBy(121.0/83.0)
+            //            make.leading.equalToSuperview().inset(12)
+        }
+        
+        //        genreLabel.snp.makeConstraints { make in
+        //            make.leading.equalTo(leftImageView.snp.trailing).inset(-16)
+        //            make.top.equalToSuperview().inset(16)
+        //        }
+        //        movieNameLabel.snp.makeConstraints { make in
+        //            make.top.equalTo(genreLabel.snp.bottom).inset(-6)
+        //            make.leading.equalTo(genreLabel)
+        //            make.trailing.equalToSuperview().inset(-12)
+        //        }
+        //        ratingLabel.snp.makeConstraints { make in
+        //            make.top.equalTo(movieNameLabel.snp.bottom).inset(-6)
+        //            make.leading.equalTo(genreLabel)
+        //            make.bottom.equalToSuperview().inset(12)
+        //        }
+        heartImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(24)
+            make.trailing.bottom.equalToSuperview().inset(12)
         }
     }
 }
