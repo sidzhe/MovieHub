@@ -21,7 +21,6 @@ class WishListTableViewCell: UITableViewCell {
     }()
     private let hStack: UIStackView = {
         let stack = UIStackView()
-        //stack.backgroundColor = .blue
         stack.axis = .horizontal
         stack.spacing = 16
         stack.alignment = .fill
@@ -48,7 +47,6 @@ class WishListTableViewCell: UITableViewCell {
     private var genreLabel: UILabel = {
         let label = UILabel()
         label.text = "Action"
-        //        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 14, weight: .semibold)
         label.textColor = .lightGray
         return label
@@ -114,7 +112,6 @@ class WishListTableViewCell: UITableViewCell {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         contentView.addSubview(darkBackgroundView)
-        //        darkBackgroundView.addSubviews(leftImageView, genreLabel, movieNameLabel, ratingLabel, heartImageView)
         darkBackgroundView.addSubviews(hStack, heartImageView)
         hStack.addArrangedSubviews(leftImageView, vStack)
         vStack.addArrangedSubviews(genreLabel, movieNameLabel, ratingLabel)
@@ -131,26 +128,9 @@ extension WishListTableViewCell {
             make.edges.equalToSuperview().inset(12)
         }
         leftImageView.snp.makeConstraints { make in
-            //            make.centerY.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(121.0 / 327.0)
-            //            make.width.equalTo(leftImageView.snp.height).multipliedBy(121.0/83.0)
-            //            make.leading.equalToSuperview().inset(12)
         }
         
-        //        genreLabel.snp.makeConstraints { make in
-        //            make.leading.equalTo(leftImageView.snp.trailing).inset(-16)
-        //            make.top.equalToSuperview().inset(16)
-        //        }
-        //        movieNameLabel.snp.makeConstraints { make in
-        //            make.top.equalTo(genreLabel.snp.bottom).inset(-6)
-        //            make.leading.equalTo(genreLabel)
-        //            make.trailing.equalToSuperview().inset(-12)
-        //        }
-        //        ratingLabel.snp.makeConstraints { make in
-        //            make.top.equalTo(movieNameLabel.snp.bottom).inset(-6)
-        //            make.leading.equalTo(genreLabel)
-        //            make.bottom.equalToSuperview().inset(12)
-        //        }
         heartImageView.snp.makeConstraints { make in
             make.width.height.equalTo(24)
             make.trailing.bottom.equalToSuperview().inset(12)
