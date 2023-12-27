@@ -16,7 +16,8 @@ final class WishlistViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         table.register(WishListTableViewCell.self, forCellReuseIdentifier: WishListTableViewCell.reuseId)
-        table.rowHeight = 107+16
+        table.rowHeight = UITableView.automaticDimension
+        table.estimatedRowHeight = 107+16
         table.separatorStyle = .none
         table.backgroundColor = .clear
         return table
@@ -28,20 +29,14 @@ final class WishlistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
-        setConstraints()
     }
     
     //MARK: - Methods
     private func setViews() {
-        view.backgroundColor = .gray
+        view.backgroundColor = .black
         view.addSubview(wishTableView)
-        //wishTableView.frame = view.bounds
+        wishTableView.frame = view.bounds
         
-    }
-    private func setConstraints() {
-        wishTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
     
 }
@@ -62,10 +57,7 @@ extension WishlistViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: WishListTableViewCell.reuseId, for: indexPath) as? WishListTableViewCell else {
-            print("UITableViewCell")
-            return .init()}
-        print("Custom cell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WishListTableViewCell.reuseId, for: indexPath) as? WishListTableViewCell else {return .init()}
         return cell
     }
     
