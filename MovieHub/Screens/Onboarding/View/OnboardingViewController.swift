@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class OnboardingViewController: UIViewController {
     
@@ -16,7 +17,7 @@ final class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .yellow
+        
         
     }
 }

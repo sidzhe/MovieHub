@@ -7,10 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E18489D52B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18489D42B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift */; };
-		E18489D92B3A195200CBED52 /* UISearchController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18489D82B3A195200CBED52 /* UISearchController + Extension.swift */; };
-		E18489DB2B3A199A00CBED52 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18489DA2B3A199A00CBED52 /* SearchResultsViewController.swift */; };
-		E18489DD2B3A1FD200CBED52 /* NavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18489DC2B3A1FD200CBED52 /* NavigationController + Extension.swift */; };
+		EB369B0B2B398BAB00BB4275 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B0A2B398BAB00BB4275 /* Endpoint.swift */; };
+		EB369B0D2B398BB200BB4275 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B0C2B398BB200BB4275 /* HTTPMethod.swift */; };
+		EB369B0F2B398BB900BB4275 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B0E2B398BB900BB4275 /* RequestError.swift */; };
+		EB369B112B398CA100BB4275 /* MovieEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B102B398CA100BB4275 /* MovieEndpoints.swift */; };
+		EB369B132B39911200BB4275 /* MovieClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B122B39911200BB4275 /* MovieClient.swift */; };
+		EB369B152B39940400BB4275 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B142B39940400BB4275 /* MovieService.swift */; };
+		EB369B172B399CE800BB4275 /* NetwrorkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B162B399CE800BB4275 /* NetwrorkService.swift */; };
+		EB369B192B39A2E500BB4275 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B182B39A2E500BB4275 /* SearchModel.swift */; };
+		EB369B1C2B39BAD300BB4275 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB369B1B2B39BAD300BB4275 /* SnapKit */; };
+		EB369B1E2B39CA1700BB4275 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B1D2B39CA1700BB4275 /* PersonModel.swift */; };
+		EB369B202B39D00F00BB4275 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B1F2B39D00F00BB4275 /* DetailModel.swift */; };
+		EB369B242B3AC51D00BB4275 /* ColletionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B232B3AC51D00BB4275 /* ColletionModel.swift */; };
+		EB369B262B3B085800BB4275 /* CollectionDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B252B3B085800BB4275 /* CollectionDetailModel.swift */; };
+		EB369B282B3B15D300BB4275 /* MovieGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B272B3B15D300BB4275 /* MovieGenre.swift */; };
+		EB369B2A2B3B20F100BB4275 /* PersonDetalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B292B3B20F100BB4275 /* PersonDetalModel.swift */; };
+		EB6CB2BF2B3C1AFE00DC30BC /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB2BE2B3C1AFE00DC30BC /* Extension + UIColor.swift */; };
+		EB6CB2C12B3C203A00DC30BC /* Extension + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB2C02B3C203A00DC30BC /* Extension + UIFont.swift */; };
+		EB6CB2D52B3C250600DC30BC /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2CC2B3C250600DC30BC /* Montserrat-ExtraBold.ttf */; };
+		EB6CB2D62B3C250600DC30BC /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2CD2B3C250600DC30BC /* Montserrat-Bold.ttf */; };
+		EB6CB2D72B3C250600DC30BC /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2CE2B3C250600DC30BC /* Montserrat-Light.ttf */; };
+		EB6CB2D82B3C250600DC30BC /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2CF2B3C250600DC30BC /* Montserrat-Medium.ttf */; };
+		EB6CB2D92B3C250600DC30BC /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2D02B3C250600DC30BC /* Montserrat-Black.ttf */; };
+		EB6CB2DA2B3C250600DC30BC /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2D12B3C250600DC30BC /* Montserrat-Regular.ttf */; };
+		EB6CB2DB2B3C250600DC30BC /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2D22B3C250600DC30BC /* Montserrat-SemiBold.ttf */; };
+		EB6CB2DC2B3C250600DC30BC /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2D32B3C250600DC30BC /* Montserrat-ExtraLight.ttf */; };
+		EB6CB2DD2B3C250600DC30BC /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2D42B3C250600DC30BC /* Montserrat-Thin.ttf */; };
 		EB8267612B38A1D50024BAAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267602B38A1D50024BAAE /* AppDelegate.swift */; };
 		EB8267632B38A1D50024BAAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267622B38A1D50024BAAE /* SceneDelegate.swift */; };
 		EB82676A2B38A1D50024BAAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8267692B38A1D50024BAAE /* Assets.xcassets */; };
@@ -67,10 +89,31 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E18489D42B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMovieCollectionViewCell.swift; sourceTree = "<group>"; };
-		E18489D82B3A195200CBED52 /* UISearchController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchController + Extension.swift"; sourceTree = "<group>"; };
-		E18489DA2B3A199A00CBED52 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
-		E18489DC2B3A1FD200CBED52 /* NavigationController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationController + Extension.swift"; sourceTree = "<group>"; };
+		EB369B0A2B398BAB00BB4275 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		EB369B0C2B398BB200BB4275 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		EB369B0E2B398BB900BB4275 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		EB369B102B398CA100BB4275 /* MovieEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndpoints.swift; sourceTree = "<group>"; };
+		EB369B122B39911200BB4275 /* MovieClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieClient.swift; sourceTree = "<group>"; };
+		EB369B142B39940400BB4275 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		EB369B162B399CE800BB4275 /* NetwrorkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwrorkService.swift; sourceTree = "<group>"; };
+		EB369B182B39A2E500BB4275 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		EB369B1D2B39CA1700BB4275 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
+		EB369B1F2B39D00F00BB4275 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
+		EB369B232B3AC51D00BB4275 /* ColletionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColletionModel.swift; sourceTree = "<group>"; };
+		EB369B252B3B085800BB4275 /* CollectionDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailModel.swift; sourceTree = "<group>"; };
+		EB369B272B3B15D300BB4275 /* MovieGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenre.swift; sourceTree = "<group>"; };
+		EB369B292B3B20F100BB4275 /* PersonDetalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetalModel.swift; sourceTree = "<group>"; };
+		EB6CB2BE2B3C1AFE00DC30BC /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
+		EB6CB2C02B3C203A00DC30BC /* Extension + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIFont.swift"; sourceTree = "<group>"; };
+		EB6CB2CC2B3C250600DC30BC /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		EB6CB2CD2B3C250600DC30BC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		EB6CB2CE2B3C250600DC30BC /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		EB6CB2CF2B3C250600DC30BC /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		EB6CB2D02B3C250600DC30BC /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		EB6CB2D12B3C250600DC30BC /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		EB6CB2D22B3C250600DC30BC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		EB6CB2D32B3C250600DC30BC /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
+		EB6CB2D42B3C250600DC30BC /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		EB82675D2B38A1D50024BAAE /* MovieHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8267602B38A1D50024BAAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB8267622B38A1D50024BAAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,27 +176,58 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB369B1C2B39BAD300BB4275 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E18489D62B39C21300CBED52 /* Cell */ = {
+		EB369B082B3989B200BB4275 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				E18489D42B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift */,
+				EB369B092B398B9E00BB4275 /* Base */,
+				EB369B102B398CA100BB4275 /* MovieEndpoints.swift */,
+				EB369B122B39911200BB4275 /* MovieClient.swift */,
+				EB369B142B39940400BB4275 /* MovieService.swift */,
+				EB369B162B399CE800BB4275 /* NetwrorkService.swift */,
 			);
-			path = Cell;
+			path = NetworkService;
 			sourceTree = "<group>";
 		};
-		E18489D72B3A193000CBED52 /* Extensions  */ = {
+		EB369B092B398B9E00BB4275 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				E18489D82B3A195200CBED52 /* UISearchController + Extension.swift */,
-				E18489DC2B3A1FD200CBED52 /* NavigationController + Extension.swift */,
+				EB369B0A2B398BAB00BB4275 /* Endpoint.swift */,
+				EB369B0C2B398BB200BB4275 /* HTTPMethod.swift */,
+				EB369B0E2B398BB900BB4275 /* RequestError.swift */,
 			);
-			path = "Extensions ";
+			path = Base;
+			sourceTree = "<group>";
+		};
+		EB6CB2BD2B3C1AEC00DC30BC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EB6CB2BE2B3C1AFE00DC30BC /* Extension + UIColor.swift */,
+				EB6CB2C02B3C203A00DC30BC /* Extension + UIFont.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EB6CB2C22B3C205900DC30BC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EB6CB2D02B3C250600DC30BC /* Montserrat-Black.ttf */,
+				EB6CB2CD2B3C250600DC30BC /* Montserrat-Bold.ttf */,
+				EB6CB2CC2B3C250600DC30BC /* Montserrat-ExtraBold.ttf */,
+				EB6CB2D32B3C250600DC30BC /* Montserrat-ExtraLight.ttf */,
+				EB6CB2CE2B3C250600DC30BC /* Montserrat-Light.ttf */,
+				EB6CB2CF2B3C250600DC30BC /* Montserrat-Medium.ttf */,
+				EB6CB2D12B3C250600DC30BC /* Montserrat-Regular.ttf */,
+				EB6CB2D22B3C250600DC30BC /* Montserrat-SemiBold.ttf */,
+				EB6CB2D42B3C250600DC30BC /* Montserrat-Thin.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		EB8267542B38A1D50024BAAE = {
@@ -197,7 +271,8 @@
 		EB8267752B38A28B0024BAAE /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				E18489D72B3A193000CBED52 /* Extensions  */,
+				EB6CB2C22B3C205900DC30BC /* Fonts */,
+				EB6CB2BD2B3C1AEC00DC30BC /* Helpers */,
 				EB8267692B38A1D50024BAAE /* Assets.xcassets */,
 				EB82676B2B38A1D50024BAAE /* LaunchScreen.storyboard */,
 				EB82676E2B38A1D50024BAAE /* Info.plist */,
@@ -333,6 +408,7 @@
 		EB8267802B38A4230024BAAE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				EB369B082B3989B200BB4275 /* NetworkService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -340,6 +416,13 @@
 		EB8267812B38A4AD0024BAAE /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				EB369B272B3B15D300BB4275 /* MovieGenre.swift */,
+				EB369B182B39A2E500BB4275 /* SearchModel.swift */,
+				EB369B1D2B39CA1700BB4275 /* PersonModel.swift */,
+				EB369B292B3B20F100BB4275 /* PersonDetalModel.swift */,
+				EB369B1F2B39D00F00BB4275 /* DetailModel.swift */,
+				EB369B232B3AC51D00BB4275 /* ColletionModel.swift */,
+				EB369B252B3B085800BB4275 /* CollectionDetailModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -764,6 +847,9 @@
 			dependencies = (
 			);
 			name = MovieHub;
+			packageProductDependencies = (
+				EB369B1B2B39BAD300BB4275 /* SnapKit */,
+			);
 			productName = MovieHub;
 			productReference = EB82675D2B38A1D50024BAAE /* MovieHub.app */;
 			productType = "com.apple.product-type.application";
@@ -792,6 +878,9 @@
 				Base,
 			);
 			mainGroup = EB8267542B38A1D50024BAAE;
+			packageReferences = (
+				EB369B1A2B39BAD300BB4275 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = EB82675E2B38A1D50024BAAE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -806,8 +895,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB6CB2DA2B3C250600DC30BC /* Montserrat-Regular.ttf in Resources */,
+				EB6CB2D72B3C250600DC30BC /* Montserrat-Light.ttf in Resources */,
+				EB6CB2D92B3C250600DC30BC /* Montserrat-Black.ttf in Resources */,
+				EB6CB2D62B3C250600DC30BC /* Montserrat-Bold.ttf in Resources */,
 				EB82676D2B38A1D50024BAAE /* LaunchScreen.storyboard in Resources */,
+				EB6CB2D52B3C250600DC30BC /* Montserrat-ExtraBold.ttf in Resources */,
+				EB6CB2DB2B3C250600DC30BC /* Montserrat-SemiBold.ttf in Resources */,
+				EB6CB2DD2B3C250600DC30BC /* Montserrat-Thin.ttf in Resources */,
+				EB6CB2D82B3C250600DC30BC /* Montserrat-Medium.ttf in Resources */,
 				EB82676A2B38A1D50024BAAE /* Assets.xcassets in Resources */,
+				EB6CB2DC2B3C250600DC30BC /* Montserrat-ExtraLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,14 +919,22 @@
 				EBE76C482B39709F0053E522 /* PopularRouter.swift in Sources */,
 				EBE76C732B39743D0053E522 /* SearchInteractor.swift in Sources */,
 				EB82678A2B38AB9A0024BAAE /* OnboardingProtocols.swift in Sources */,
+				EB369B192B39A2E500BB4275 /* SearchModel.swift in Sources */,
+				EB369B262B3B085800BB4275 /* CollectionDetailModel.swift in Sources */,
+				EB369B132B39911200BB4275 /* MovieClient.swift in Sources */,
+				EB369B242B3AC51D00BB4275 /* ColletionModel.swift in Sources */,
 				EBE76C712B3974080053E522 /* SearchPresenter.swift in Sources */,
+				EB369B202B39D00F00BB4275 /* DetailModel.swift in Sources */,
 				EBE76C622B3972DB0053E522 /* WishlistPresenter.swift in Sources */,
 				E18489D92B3A195200CBED52 /* UISearchController + Extension.swift in Sources */,
 				EBE76C512B3971CA0053E522 /* DetailViewController.swift in Sources */,
 				E18489DB2B3A199A00CBED52 /* SearchResultsViewController.swift in Sources */,
 				EBE76C552B3972300053E522 /* DetailInteractor.swift in Sources */,
 				EBE76C642B39732C0053E522 /* WishlistInteractor.swift in Sources */,
+				EB369B0F2B398BB900BB4275 /* RequestError.swift in Sources */,
 				EB82678E2B38B2260024BAAE /* OnboardingInteractor.swift in Sources */,
+				EB369B1E2B39CA1700BB4275 /* PersonModel.swift in Sources */,
+				EB369B282B3B15D300BB4275 /* MovieGenre.swift in Sources */,
 				EBE76C9A2B3979B00053E522 /* TabBarProtocols.swift in Sources */,
 				EBE76C7C2B39749F0053E522 /* ProfileProtocols.swift in Sources */,
 				EBE76C572B3972500053E522 /* DetailRouter.swift in Sources */,
@@ -841,10 +947,12 @@
 				EBE76C442B39704B0053E522 /* PopularPresenter.swift in Sources */,
 				EBE76C2A2B396E370053E522 /* MainRouter.swift in Sources */,
 				EBE76C6F2B3973D10053E522 /* SearchViewController.swift in Sources */,
+				EB6CB2BF2B3C1AFE00DC30BC /* Extension + UIColor.swift in Sources */,
 				EBE76C6D2B39739E0053E522 /* SearchProtocols.swift in Sources */,
 				E18489D52B39C20F00CBED52 /* RecentMovieCollectionViewCell.swift in Sources */,
 				EBE76C662B3973590053E522 /* WishlistRouter.swift in Sources */,
 				EBE76C332B396EFB0053E522 /* MovieListViewController.swift in Sources */,
+				EB6CB2C12B3C203A00DC30BC /* Extension + UIFont.swift in Sources */,
 				EBE76C352B396F2D0053E522 /* MovieListPresenter.swift in Sources */,
 				EBE76C402B396FDD0053E522 /* PopularProtocols.swift in Sources */,
 				E18489DD2B3A1FD200CBED52 /* NavigationController + Extension.swift in Sources */,
@@ -858,13 +966,19 @@
 				EBE76C392B396F9E0053E522 /* MovieListRouter.swift in Sources */,
 				EBE76C8B2B3976F70053E522 /* ProfileRouter.swift in Sources */,
 				EBE76C892B3976D70053E522 /* ProfileInteractor.swift in Sources */,
+				EB369B112B398CA100BB4275 /* MovieEndpoints.swift in Sources */,
+				EB369B0D2B398BB200BB4275 /* HTTPMethod.swift in Sources */,
 				EBE76C262B396DD90053E522 /* MainPresenter.swift in Sources */,
 				EBE76C422B39701C0053E522 /* PopularViewController.swift in Sources */,
 				EBE76C9E2B397A020053E522 /* TabBarPresenter.swift in Sources */,
 				EBE76C9C2B3979E40053E522 /* TabBarViewController.swift in Sources */,
 				EBE76C5E2B3972840053E522 /* WishlistProtocols.swift in Sources */,
 				EB8267882B38AB110024BAAE /* OnboardingViewController.swift in Sources */,
+				EB369B2A2B3B20F100BB4275 /* PersonDetalModel.swift in Sources */,
+				EB369B0B2B398BAB00BB4275 /* Endpoint.swift in Sources */,
 				EBE76C852B39767C0053E522 /* ProfileViewController.swift in Sources */,
+				EB369B152B39940400BB4275 /* MovieService.swift in Sources */,
+				EB369B172B399CE800BB4275 /* NetwrorkService.swift in Sources */,
 				EBE76C532B3971FB0053E522 /* DetailPresenter.swift in Sources */,
 				EBE76C8F2B3977680053E522 /* ChristmasPresenter.swift in Sources */,
 				EBE76C872B3976A30053E522 /* ProfilePresenter.swift in Sources */,
@@ -1087,6 +1201,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EB369B1A2B39BAD300BB4275 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EB369B1B2B39BAD300BB4275 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB369B1A2B39BAD300BB4275 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EB8267552B38A1D50024BAAE /* Project object */;
 }
