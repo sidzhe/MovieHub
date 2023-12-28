@@ -515,6 +515,14 @@
 			path = Builder;
 			sourceTree = "<group>";
 		};
+		EBDD1FCB2B3D898100C1712A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EB6CB2DE2B3C26FB00DC30BC /* AccountView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		EBE76C1C2B396D2C0053E522 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,9 +550,9 @@
 		EBE76C1F2B396D490053E522 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EB6CB2E52B3C49FA00DC30BC /* Cells */,
 				EBE76C232B396DA50053E522 /* MainViewController.swift */,
-				EB6CB2DE2B3C26FB00DC30BC /* AccountView.swift */,
+				EB6CB2E52B3C49FA00DC30BC /* Cells */,
+				EBDD1FCB2B3D898100C1712A /* Helpers */,
 			);
 			path = View;
 			sourceTree = "<group>";

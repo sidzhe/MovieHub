@@ -39,7 +39,7 @@ final class PopularCell: UICollectionViewCell {
     
     private let blurView: UIVisualEffectView = {
         let view = UIVisualEffectView()
-        let effect = UIBlurEffect(style: .dark)
+        let effect = UIBlurEffect(style: .light)
         view.effect = effect
         view.clipsToBounds = true
         view.layer.cornerRadius = 6

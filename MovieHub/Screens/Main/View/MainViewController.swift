@@ -66,7 +66,7 @@ final class MainViewController: UIViewController {
     }
     
     private func setCategories() {
-        let indexPath = presenter?.updateSelectedIndex ?? IndexPath(row: 0, section: 1)
+        let indexPath = IndexPath(row: 0, section: 1)
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         collectionView(collectionView, didSelectItemAt: indexPath)
     }
@@ -271,7 +271,6 @@ extension MainViewController: UICollectionViewDelegate {
             print("collection")
         case .categories:
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            presenter?.updateSelectedIndex = indexPath
             let value = presenter?.getCategories()[indexPath.row].category ?? ""
             presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
             

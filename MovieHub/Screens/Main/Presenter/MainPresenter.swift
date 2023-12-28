@@ -13,7 +13,6 @@ final class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
     var router: MainRouterProtocol?
-    var updateSelectedIndex: IndexPath? = IndexPath(row: 0, section: 1)
     
     //MARK: Methods
     func fetch() {

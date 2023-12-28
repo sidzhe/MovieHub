@@ -16,7 +16,6 @@ protocol MainViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol MainPresenterProtocol: AnyObject {
     var view: MainViewProtocol? { get set }
-    var updateSelectedIndex: IndexPath? { get set }
     func fetch()
     func getColletionModel() -> [DocCollect]
     func getCategories() -> [CategoryModel]
