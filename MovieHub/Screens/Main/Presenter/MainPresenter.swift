@@ -17,7 +17,7 @@ final class MainPresenter: MainPresenterProtocol {
     //MARK: Methods
     func fetch() {
         interactor?.requestCollection()
-        interactor?.requestMostRating()
+        interactor?.requestMostRating(genre: .anime)
     }
     
     func updateUI() {
@@ -29,8 +29,8 @@ final class MainPresenter: MainPresenterProtocol {
         return model
     }
     
-    func getCategories() -> [String] {
-        guard let interactor = interactor else { return [String]() }
+    func getCategories() -> [CategoryModel] {
+        guard let interactor = interactor else { return [CategoryModel]() }
         return interactor.cagegoriesData
     }
     
@@ -38,10 +38,15 @@ final class MainPresenter: MainPresenterProtocol {
         guard let model = interactor?.mostPopular?.docs else { return [Doc]() }
         return model
     }
+    
+    func selectedCategory(_ index: Int, genre: MovieGenre) {
+        interactor?.selectedCategory(index)
+        interactor?.requestMostRating(genre: genre)
+    }
 }
 
 
 //MARK: - Extension MainInteractorOutputProtocol
 extension MainPresenter: MainInteractorOutputProtocol {
-
+    
 }

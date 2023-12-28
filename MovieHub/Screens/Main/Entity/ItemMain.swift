@@ -9,7 +9,7 @@ import Foundation
 
 struct ItemMain: Hashable {
     var collection: DocCollect?
-    var categories: String?
+    var categories: CategoryModel?
     var popular: Doc?
     let identifier = UUID()
 }

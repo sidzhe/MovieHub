@@ -8,12 +8,12 @@
 import Foundation
 
 final class MainInteractor: MainInteractorInputProtocol {
-    
+
     //MARK: - Properties
     weak var presenter: MainInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
     var collectionData: ColletionModel?
-    var cagegoriesData = MovieGenre.allCases.map { $0.rawValue }
+    var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue) }
     var mostPopular: CollectionDetailModel?
     
     //MARK: Init
@@ -35,8 +35,8 @@ final class MainInteractor: MainInteractorInputProtocol {
         }
     }
     
-    func requestMostRating() {
-        networkService.getRateCollection(genre: .drama) { [weak self] (result: (Result<CollectionDetailModel, RequestError>)) in
+    func requestMostRating(genre: MovieGenre) {
+        networkService.getRateCollection(genre: genre) { [weak self] (result: (Result<CollectionDetailModel, RequestError>)) in
             switch result {
                 
             case .success(let collection):
@@ -46,5 +46,11 @@ final class MainInteractor: MainInteractorInputProtocol {
                 print(error.customMessage)
             }
         }
+    }
+    
+    func selectedCategory(_ index: Int) {
+        cagegoriesData.enumerated().forEach { cagegoriesData[$0.offset].isSelected = false }
+        cagegoriesData[index].isSelected = !cagegoriesData[index].isSelected
+        presenter?.updateUI()
     }
 }

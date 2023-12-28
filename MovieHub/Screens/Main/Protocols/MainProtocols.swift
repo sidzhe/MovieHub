@@ -18,18 +18,20 @@ protocol MainPresenterProtocol: AnyObject {
     var view: MainViewProtocol? { get set }
     func fetch()
     func getColletionModel() -> [DocCollect]
-    func getCategories() -> [String]
+    func getCategories() -> [CategoryModel]
     func getMostPopular() -> [Doc]
+    func selectedCategory(_ index: Int, genre: MovieGenre)
 }
 
 /// PRESENTER -> INTERACTOR
 protocol MainInteractorInputProtocol: AnyObject {
     var presenter: MainInteractorOutputProtocol? { get set }
     var collectionData: ColletionModel? { get }
-    var cagegoriesData: [String] { get }
+    var cagegoriesData: [CategoryModel] { get }
     var mostPopular: CollectionDetailModel? { get }
     func requestCollection()
-    func requestMostRating()
+    func requestMostRating(genre: MovieGenre)
+    func selectedCategory(_ index: Int)
 }
 
 /// INTERACTOR -> PRESENTER

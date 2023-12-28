@@ -46,6 +46,15 @@ final class MainViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let indexPath = IndexPath(row: 0, section: 1)
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+        collectionView(collectionView, didSelectItemAt: indexPath)
+        
+    }
+    
     private func setupView() {
         view.backgroundColor = .primaryDark
         view.addSubview(accountView)
@@ -159,10 +168,12 @@ private extension MainViewController {
         }
     }
     
-    func registrationCategories() -> UICollectionView.CellRegistration<CategoriesCell, String> {
-        return UICollectionView.CellRegistration<CategoriesCell, String> { [weak self] cell, indexPath, itemIdentifier in
+    func registrationCategories() -> UICollectionView.CellRegistration<CategoriesCell, CategoryModel> {
+        return UICollectionView.CellRegistration<CategoriesCell, CategoryModel> { [weak self] cell, indexPath, itemIdentifier in
             guard let model = self?.presenter?.getCategories() else { return }
             cell.configure(category: model[indexPath.row])
+            cell.clipsToBounds = true
+            cell.layer.cornerRadius = 8
         }
     }
     
@@ -253,6 +264,20 @@ extension MainViewController: MainViewProtocol {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        
+        guard let sectionKind = Section(rawValue: indexPath.section) else { return }
+        
+        switch sectionKind {
+            
+        case .collection:
+            print("collection")
+        case .categories:
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            let value = presenter?.getCategories()[indexPath.row].category ?? ""
+            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
+            
+        case .popular:
+            print("popular")
+        }
     }
 }

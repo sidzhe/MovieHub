@@ -12,7 +12,6 @@ final class CategoriesCell: UICollectionViewCell {
     //MARK: UI Elements
     private lazy var categoryLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .primaryBlue
         label.textAlignment = .center
         label.font = UIFont.montserratMedium(size: 12)
         return label
@@ -32,14 +31,13 @@ final class CategoriesCell: UICollectionViewCell {
     
     //MARK: - Methods
     private func setupViews() {
-        contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = 8
-        contentView.backgroundColor = .primarySoft
         contentView.addSubview(categoryLabel)
         categoryLabel.snp.makeConstraints { $0.center.equalToSuperview() }
     }
     
-    func configure(category: String) {
-        categoryLabel.text = category.capitalized
+    func configure(category: CategoryModel) {
+        categoryLabel.text = category.category.capitalized
+        backgroundColor = category.isSelected ? .primarySoft : .clear
+        categoryLabel.textColor = category.isSelected ? .primaryBlue : .white
     }
 }
