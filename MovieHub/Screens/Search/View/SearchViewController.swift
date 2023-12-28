@@ -34,7 +34,7 @@ final class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .primaryDark
         setupSearchBar()
         registerCollectionsCells()
         setupHierarchy()
@@ -61,7 +61,7 @@ final class SearchViewController: UIViewController {
     }
     
     private func setupHierarchy() {
-        collectionView.backgroundColor = .black
+        collectionView.backgroundColor = .clear
         view.addSubview(collectionView)
     }
     private func setupLayout() {
@@ -104,33 +104,7 @@ extension SearchViewController: UISearchResultsUpdating {
     }
 }
 
-// MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
-extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YourCellReuseIdentifier", for: indexPath)
-        cell.backgroundColor = UIColor.green
-        
-        cell.frame.size = CGSize(width: 355, height: 147)
-        
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(
-            width: (view.frame.size.width / 3) - 5,
-            height: (view.frame.size.height / 3) - 5
-        )
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 23, bottom: 10, right: 20)
-    }
-    
-    
-}
+
 
 //MARK: - Extension SearchViewProtocol
 extension SearchViewController: SearchViewProtocol {

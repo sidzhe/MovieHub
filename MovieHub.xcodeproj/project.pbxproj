@@ -11,6 +11,7 @@
 		E1EE76A32B3DC58A00BC5858 /* UISearchController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A12B3DC58A00BC5858 /* UISearchController + Extension.swift */; };
 		E1EE76A62B3DC5B200BC5858 /* RecentMovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A52B3DC5B200BC5858 /* RecentMovieCollectionViewCell.swift */; };
 		E1EE76A82B3DC5CF00BC5858 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A72B3DC5CF00BC5858 /* SearchResultsViewController.swift */; };
+		E1EE76AA2B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A92B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift */; };
 		EB369B0B2B398BAB00BB4275 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B0A2B398BAB00BB4275 /* Endpoint.swift */; };
 		EB369B0D2B398BB200BB4275 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B0C2B398BB200BB4275 /* HTTPMethod.swift */; };
 		EB369B0F2B398BB900BB4275 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B0E2B398BB900BB4275 /* RequestError.swift */; };
@@ -97,6 +98,7 @@
 		E1EE76A12B3DC58A00BC5858 /* UISearchController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UISearchController + Extension.swift"; path = "MovieHub/Support/Extensions /UISearchController + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		E1EE76A52B3DC5B200BC5858 /* RecentMovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentMovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		E1EE76A72B3DC5CF00BC5858 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		E1EE76A92B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchviewController + UICollectionView.swift"; sourceTree = "<group>"; };
 		EB369B0A2B398BAB00BB4275 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		EB369B0C2B398BB200BB4275 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		EB369B0E2B398BB900BB4275 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
@@ -720,9 +722,10 @@
 		EBE76C6A2B3973950053E522 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E1EE76A72B3DC5CF00BC5858 /* SearchResultsViewController.swift */,
 				E1EE76A42B3DC5B200BC5858 /* Cell */,
 				EBE76C6E2B3973D10053E522 /* SearchViewController.swift */,
+				E1EE76A92B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift */,
+				E1EE76A72B3DC5CF00BC5858 /* SearchResultsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -971,6 +974,7 @@
 				EB6CB2C12B3C203A00DC30BC /* Extension + UIFont.swift in Sources */,
 				EBE76C352B396F2D0053E522 /* MovieListPresenter.swift in Sources */,
 				EBE76C402B396FDD0053E522 /* PopularProtocols.swift in Sources */,
+				E1EE76AA2B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift in Sources */,
 				EBE76C8D2B3977430053E522 /* ChristmasViewController.swift in Sources */,
 				EB8267932B38B7860024BAAE /* Builder.swift in Sources */,
 				EBE76C462B39707B0053E522 /* PopularInteractor.swift in Sources */,
