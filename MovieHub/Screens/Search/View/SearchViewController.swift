@@ -15,6 +15,17 @@ final class SearchViewController: UIViewController {
         case recentMovie
     }
     
+    let c = [
+        "All",
+        "Comedy",
+        "Animation",
+        "Science fiction",
+        "Horror",
+        "Drama",
+        "Thriller",
+        "Documentary"
+    ]
+    
     //MARK: Properties
     var presenter: SearchPresenterProtocol?
     
@@ -55,7 +66,7 @@ final class SearchViewController: UIViewController {
     // MARK: - Setup
     
     private func registerCollectionsCells() {
-       
+        
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "YourCellReuseIdentifier")
         collectionView.register(RecentMovieCollectionViewCell.self, forCellWithReuseIdentifier: RecentMovieCollectionViewCell.identifier )
     }
@@ -77,16 +88,25 @@ final class SearchViewController: UIViewController {
     // MARK: - CompositionalLayout
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { sectionIndex, _ in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
-                                                  heightDimension: .fractionalHeight(0.1))
+            
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(0.08),
+                heightDimension: .fractionalHeight(0.08)
+            )
+            
             let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-            layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
-                                                   heightDimension: .absolute(20))
+            
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(0.5),
+                heightDimension: .absolute(20))
             let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
+            
             let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-            layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            
+            layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+            
             return layoutSection
+            
         }
     }
 }
