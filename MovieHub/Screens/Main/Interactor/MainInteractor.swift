@@ -8,7 +8,7 @@
 import Foundation
 
 final class MainInteractor: MainInteractorInputProtocol {
-
+    
     //MARK: - Properties
     weak var presenter: MainInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
@@ -29,6 +29,7 @@ final class MainInteractor: MainInteractorInputProtocol {
         presenter?.updateUI()
     }
     
+    //MARK: Requests
     func requestCollection() {
         networkService.searchColletions { [weak self] (result: (Result<ColletionModel, RequestError>)) in
             switch result {
@@ -44,11 +45,12 @@ final class MainInteractor: MainInteractorInputProtocol {
     
     func requestMostRating(genre: MovieGenre) {
         networkService.getRateCollection(genre: genre) { [weak self] (result: (Result<CollectionDetailModel, RequestError>)) in
+            guard let self = self else { return }
             switch result {
                 
             case .success(let collection):
-                self?.mostPopular = collection
-                self?.presenter?.updateUI()
+                self.mostPopular = collection
+                self.presenter?.updateUI()
             case .failure(let error):
                 print(error.customMessage)
             }
@@ -58,17 +60,18 @@ final class MainInteractor: MainInteractorInputProtocol {
     func requestSearch(_ title: String) {
         
         guard !title.isEmpty else {
-            self.searchData = nil
-            self.presenter?.updateUI()
+            searchData = nil
+            presenter?.updateUI()
             return
         }
         
         networkService.searchTitle(title) { [weak self] (result: (Result<SearchModel, RequestError>)) in
+            guard let self = self else { return }
             switch result {
                 
             case .success(let search):
-                self?.searchData = search
-                self?.presenter?.updateUI()
+                self.searchData = search
+                self.presenter?.updateUI()
             case .failure(let error):
                 print(error.customMessage)
             }

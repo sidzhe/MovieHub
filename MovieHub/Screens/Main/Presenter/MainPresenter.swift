@@ -14,15 +14,16 @@ final class MainPresenter: MainPresenterProtocol {
     var interactor: MainInteractorInputProtocol?
     var router: MainRouterProtocol?
     
-    //MARK: Methods
+    //MARK: Requests
     func fetch() {
         interactor?.requestCollection()
     }
     
-    func updateUI() {
-        view?.updateUI()
+    func fetchSearchRequest(_ title: String) {
+        interactor?.requestSearch(title)
     }
     
+    //MARK: - Get models
     func getColletionModel() -> [DocCollect] {
         guard let model = interactor?.collectionData?.docs else { return [DocCollect]() }
         return model
@@ -43,18 +44,38 @@ final class MainPresenter: MainPresenterProtocol {
         return model
     }
     
+    //MARK: Select category
     func selectedCategory(_ index: Int, genre: MovieGenre) {
         interactor?.selectedCategory(index)
         interactor?.requestMostRating(genre: genre)
     }
     
-    func fetchSearchRequest(_ title: String) {
-        interactor?.requestSearch(title)
+    //MARK: Route to
+    func routeToMovieList() {
+        guard let view = view else { return }
+        router?.pushToMovieList(from: view)
+    }
+    
+    func routeToPupularMovie() {
+        guard let view = view else { return }
+        router?.pushToPopularMovie(from: view)
+    }
+    
+    func routeToDetail() {
+        guard let view = view else { return }
+        router?.pushToDetail(from: view)
+    }
+    
+    func routeToWishList() {
+        guard let view = view else { return }
+        router?.pushToWishList(from: view)
     }
 }
 
 
 //MARK: - Extension MainInteractorOutputProtocol
 extension MainPresenter: MainInteractorOutputProtocol {
-    
+    func updateUI() {
+        view?.updateUI()
+    }
 }

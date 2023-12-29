@@ -16,7 +16,6 @@ protocol MovieServiceProtool {
     func movieFilterSlug<T: Decodable>(slugTag: String) async -> Result<T, RequestError>
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError>
-    func loadImage(_ urlString: String?) async -> Result<UIImage, RequestError>
     func movieFilterPerson<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError>
 }
 
@@ -130,10 +129,5 @@ struct MovieService: MovieServiceProtool, MovieClient {
         items.append(contentsOf: anotherItems)
         urlComponents.queryItems = items
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.personFilter, responseModel: T.self)
-    }
-    
-    //MARK: Load image
-    func loadImage(_ urlString: String?) async -> Result<UIImage, RequestError> {
-        return await imageRequest(urlString)
     }
 }

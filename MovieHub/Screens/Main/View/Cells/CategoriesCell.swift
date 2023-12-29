@@ -17,6 +17,14 @@ final class CategoriesCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .horizontal
+        view.spacing = 20
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     //MARK: Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +39,14 @@ final class CategoriesCell: UICollectionViewCell {
     
     //MARK: - Methods
     private func setupViews() {
-        contentView.addSubview(categoryLabel)
+        stackView.addArrangedSubview(categoryLabel)
+        contentView.addSubview(stackView)
+        
+        stackView.snp.makeConstraints {
+            $0.verticalEdges.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(10)
+        }
+        
         categoryLabel.snp.makeConstraints { $0.center.equalToSuperview() }
     }
     

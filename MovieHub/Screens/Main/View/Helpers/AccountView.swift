@@ -10,10 +10,13 @@ import SnapKit
 
 final class AccountView: UIView {
     
+    //MARK: Propeties
+    var callBackButton: (() -> Void)?
+    
     //MARK: UI Elements
     private lazy var avatar: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "swift")
+        image.image = UIImage(systemName: "person.fill")
         image.clipsToBounds = true
         image.layer.cornerRadius = 20
         return image
@@ -39,6 +42,7 @@ final class AccountView: UIView {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         button.tintColor = .red
+        button.addTarget(self, action: #selector(tapHeart), for: .touchUpInside)
         return button
     }()
     
@@ -83,5 +87,9 @@ final class AccountView: UIView {
             make.size.equalTo(25)
             make.center.equalToSuperview()
         }
+    }
+    
+    @objc private func tapHeart() {
+        callBackButton?()
     }
 }

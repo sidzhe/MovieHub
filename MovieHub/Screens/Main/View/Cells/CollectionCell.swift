@@ -57,10 +57,8 @@ final class CollectionCell: UICollectionViewCell {
     private func setupViews() {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 16
-        
         backgroundImage.addSubview(nameLabel)
         backgroundImage.addSubview(countLabel)
-        
         contentView.addSubview(backgroundImage)
         
         backgroundImage.snp.makeConstraints { make in
@@ -81,9 +79,9 @@ final class CollectionCell: UICollectionViewCell {
     
     //MARK: Configure
     func configure(_ model: DocCollect) {
+        guard let url = URL(string: model.cover?.url ?? model.cover?.previewUrl ?? "") else { return }
+        Task { backgroundImage.kf.setImage(with: url) }
         nameLabel.text = model.name
         countLabel.text = "\(model.moviesCount ?? 0) movies"
-        guard let url = URL(string: model.cover?.url ?? model.cover?.previewUrl ?? "") else { return }
-        backgroundImage.kf.setImage(with: url)
     }
 }

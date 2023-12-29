@@ -5,7 +5,7 @@
 //  Created by sidzhe on 25.12.2023.
 //
 
-import Foundation
+import UIKit
 
 /// PRESENTER -> VIEW
 protocol MainViewProtocol: AnyObject {
@@ -23,6 +23,10 @@ protocol MainPresenterProtocol: AnyObject {
     func getSearchData() -> [Doc]
     func selectedCategory(_ index: Int, genre: MovieGenre)
     func fetchSearchRequest(_ title: String)
+    func routeToMovieList()
+    func routeToPupularMovie()
+    func routeToDetail()
+    func routeToWishList()
 }
 
 /// PRESENTER -> INTERACTOR
@@ -45,5 +49,8 @@ protocol MainInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol MainRouterProtocol: AnyObject {
-    
+    func pushToMovieList(from view: MainViewProtocol)
+    func pushToPopularMovie(from view: MainViewProtocol)
+    func pushToDetail(from view: MainViewProtocol)
+    func pushToWishList(from view: MainViewProtocol)
 }

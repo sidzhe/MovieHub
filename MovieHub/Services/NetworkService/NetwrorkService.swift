@@ -17,7 +17,6 @@ protocol NetworkServiceProtool: AnyObject {
     func getGenreCollection<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
     func getRateCollection<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
     func getMovieWithPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void)
-    func loadImage(_ urlString: String?, completion: @escaping (Result<UIImage, RequestError>) -> Void)
 }
 
 
@@ -87,14 +86,6 @@ final class NetworkService: NetworkServiceProtool {
     func getMovieWithPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void) {
         Task {
             let result: Result<T, RequestError> = await movieService.movieFilterPerson(actorsId: personId)
-            completion(result)
-        }
-    }
-    
-    //MARK: Load image
-    func loadImage(_ urlString: String?, completion: @escaping (Result<UIImage, RequestError>) -> Void) {
-        Task {
-            let result: Result<UIImage, RequestError> = await movieService.loadImage(urlString)
             completion(result)
         }
     }

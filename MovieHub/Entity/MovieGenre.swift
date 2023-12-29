@@ -31,10 +31,8 @@ enum MovieGenre: String, CaseIterable {
     case realnoeTV = "реальное ТВ"
     case semeynyy = "семейный"
     case sport = "спорт"
-    case tokShou = "ток-шоу"
     case triller = "триллер"
     case uzhasy = "ужасы"
     case fantastika = "фантастика"
-    case filmNuar = "фильм-нуар"
     case fentezi = "фэнтези"
 }

@@ -45,6 +45,7 @@ final class MainViewController: UIViewController {
         createDataSource()
         applySnapshot()
         setCategories()
+        heartButtonTarget()
         
     }
     
@@ -70,8 +71,11 @@ final class MainViewController: UIViewController {
     //MARK: Set Categories
     private func setCategories() {
         let indexPath = IndexPath(row: 0, section: 2)
-        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         collectionView(collectionView, didSelectItemAt: indexPath)
+    }
+    
+    private func heartButtonTarget() {
+        accountView.callBackButton = { [weak self] in self?.presenter?.routeToWishList() }
     }
 }
 
@@ -89,7 +93,7 @@ private extension MainViewController {
             if sectionKind == .search {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = .init(top: 0, leading: 10, bottom: 15, trailing: 0)
+                item.contentInsets = .init(top: 0, leading: 10, bottom: 15, trailing: 10)
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.65))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
@@ -111,10 +115,10 @@ private extension MainViewController {
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .categories {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2), heightDimension: .fractionalHeight(0.06))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .absolute(31))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
@@ -207,17 +211,19 @@ private extension MainViewController {
     
     func registrationCagegoryHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
+            header.callBackButton = { [weak self] in self?.presenter?.routeToMovieList() }
             header.configure(header: "Categories")
         }
     }
     
     func registrationPopularHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
+            header.callBackButton = { [weak self] in self?.presenter?.routeToPupularMovie() }
             header.configure(header: "Most popular")
         }
     }
     
-    //MARK: - Create dataSource
+    //MARK: Create dataSource
     func createDataSource() {
         let registrationSearch = registrationSearch()
         let registrationCollection = registrationCollection()
@@ -295,17 +301,12 @@ extension MainViewController: UICollectionViewDelegate {
         guard let sectionKind = Section(rawValue: indexPath.section) else { return }
         
         switch sectionKind {
-        case .search:
-            print("search")
-        case .collection:
-            print("collection")
         case .categories:
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             let value = presenter?.getCategories()[indexPath.row].category ?? ""
             presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
-            
-        case .popular:
-            print("popular")
+        default:
+            presenter?.routeToDetail()
         }
     }
 }

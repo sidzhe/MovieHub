@@ -9,6 +9,9 @@ import UIKit
 
 final class HeaderCell: UICollectionReusableView {
     
+    //MARK: Properties
+    var callBackButton: (() -> Void)?
+    
     //MARK: UI Elements
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -22,6 +25,7 @@ final class HeaderCell: UICollectionReusableView {
         button.setTitle(button.isSelected ? "Hide" : "See All", for: .normal)
         button.titleLabel?.font = UIFont.montserratRegular(size: 14)
         button.setTitleColor(.primaryBlue, for: .normal)
+        button.addTarget(self, action: #selector(tapSee), for: .touchUpInside)
         return button
     }()
     
@@ -52,6 +56,10 @@ final class HeaderCell: UICollectionReusableView {
             make.right.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+    }
+    
+    @objc private func tapSee() {
+        callBackButton?()
     }
     
     func configure(header: String) {
