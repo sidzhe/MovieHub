@@ -31,6 +31,7 @@ final class MainViewController: UIViewController {
             clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
             clearButton.tintColor = .primaryBlue
         }
+        text.delegate = self
         return text
     }()
     
@@ -47,6 +48,7 @@ final class MainViewController: UIViewController {
         
     }
     
+    //MARK: Set Views
     private func setupView() {
         view.backgroundColor = .primaryDark
         view.addSubview(accountView)
@@ -65,14 +67,16 @@ final class MainViewController: UIViewController {
         }
     }
     
+    //MARK: Set Categories
     private func setCategories() {
-        let indexPath = IndexPath(row: 0, section: 1)
+        let indexPath = IndexPath(row: 0, section: 2)
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         collectionView(collectionView, didSelectItemAt: indexPath)
     }
 }
 
 
+//MARK: - Extension Set CollactionView
 private extension MainViewController {
     
     //MARK: Create Laouyt
@@ -82,7 +86,19 @@ private extension MainViewController {
             
             let section: NSCollectionLayoutSection
             
-            if sectionKind == .collection {
+            if sectionKind == .search {
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
+                
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.65))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+                
+                section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = 15
+                section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
+                
+            } else if sectionKind == .collection {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
@@ -159,6 +175,13 @@ private extension MainViewController {
     }
     
     //MARK: Regisration
+    func registrationSearch() -> UICollectionView.CellRegistration<PopularCell, Doc> {
+        return UICollectionView.CellRegistration<PopularCell, Doc> { [weak self] cell, indexPath, itemIdentifier in
+            guard let model = self?.presenter?.getSearchData() else { return }
+            cell.configure(category: model[indexPath.row])
+        }
+    }
+    
     func registrationCollection() -> UICollectionView.CellRegistration<CollectionCell, DocCollect> {
         return UICollectionView.CellRegistration<CollectionCell, DocCollect> { [weak self] cell, indexPath, itemIdentifier in
             guard let model = self?.presenter?.getColletionModel() else { return }
@@ -196,6 +219,7 @@ private extension MainViewController {
     
     //MARK: - Create dataSource
     func createDataSource() {
+        let registrationSearch = registrationSearch()
         let registrationCollection = registrationCollection()
         let registrationCategories = registrationCategories()
         let registrationMostPopular = registrationMostPopular()
@@ -208,7 +232,8 @@ private extension MainViewController {
             guard let sectionKind = Section(rawValue: indexPath.section) else { return nil }
             
             switch sectionKind {
-                
+            case .search:
+                return collectionView.dequeueConfiguredReusableCell(using: registrationSearch, for: indexPath, item: item.search)
             case .collection:
                 return collectionView.dequeueConfiguredReusableCell(using: registrationCollection, for: indexPath, item: item.collection)
             case .categories:
@@ -222,6 +247,8 @@ private extension MainViewController {
             if kind == UICollectionView.elementKindSectionHeader {
                 if let sectionKind = Section(rawValue: indexPath.section) {
                     switch sectionKind {
+                    case .search:
+                        return nil
                     case .collection:
                         return nil
                     case .categories:
@@ -238,17 +265,41 @@ private extension MainViewController {
     //MARK: applySnapshot
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, ItemMain>()
-        snapshot.appendSections([.collection, .categories, .popular])
+        snapshot.appendSections([.search, .collection, .categories, .popular])
         guard let presenter = presenter else { return }
-        let itemCollection = presenter.getColletionModel().map { ItemMain(collection: $0) }
-        let itemCategory = presenter.getCategories().map { ItemMain(categories: $0) }
-        let itemPopular = presenter.getMostPopular().map { ItemMain(popular: $0) }
+        let itemSearch = presenter.getSearchData().map { ItemMain(search: $0)}
+        let itemCollection = presenter.getColletionModel().map { ItemMain(collection: $0)}
+        let itemCategory = presenter.getCategories().map { ItemMain(categories: $0)}
+        let itemPopular = presenter.getMostPopular().map { ItemMain(popular: $0)}
         
+        snapshot.appendItems(itemSearch, toSection: .search)
         snapshot.appendItems(itemCollection, toSection: .collection)
         snapshot.appendItems(itemCategory, toSection: .categories)
         snapshot.appendItems(itemPopular, toSection: .popular)
         
         dataSource?.apply(snapshot, animatingDifferences: true)
+    }
+}
+
+//MARK: - Extension UICollectionViewDelegate
+extension MainViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let sectionKind = Section(rawValue: indexPath.section) else { return }
+        
+        switch sectionKind {
+        case .search:
+            print("search")
+        case .collection:
+            print("collection")
+        case .categories:
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            let value = presenter?.getCategories()[indexPath.row].category ?? ""
+            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
+            
+        case .popular:
+            print("popular")
+        }
     }
 }
 
@@ -260,22 +311,17 @@ extension MainViewController: MainViewProtocol {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let sectionKind = Section(rawValue: indexPath.section) else { return }
-        
-        switch sectionKind {
-            
-        case .collection:
-            print("collection")
-        case .categories:
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            let value = presenter?.getCategories()[indexPath.row].category ?? ""
-            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
-            
-        case .popular:
-            print("popular")
-        }
+
+//MARK: - Extension UITextFieldDelegate
+extension MainViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text else { return false }
+        presenter?.fetchSearchRequest(text)
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        presenter?.fetchSearchRequest("")
+        return true
     }
 }

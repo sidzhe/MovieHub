@@ -8,6 +8,7 @@
 import Foundation
 
 struct ItemMain: Hashable {
+    var search: Doc?
     var collection: DocCollect?
     var categories: CategoryModel?
     var popular: Doc?

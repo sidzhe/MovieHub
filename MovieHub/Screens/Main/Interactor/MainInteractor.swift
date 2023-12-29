@@ -15,6 +15,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     var collectionData: ColletionModel?
     var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue) }
     var mostPopular: CollectionDetailModel?
+    var searchData: SearchModel?
     
     //MARK: Init
     init(networkService: NetworkServiceProtool) {
@@ -22,6 +23,12 @@ final class MainInteractor: MainInteractorInputProtocol {
     }
     
     //MARK: Methods
+    func selectedCategory(_ index: Int) {
+        cagegoriesData.enumerated().forEach { cagegoriesData[$0.offset].isSelected = false }
+        cagegoriesData[index].isSelected = !cagegoriesData[index].isSelected
+        presenter?.updateUI()
+    }
+    
     func requestCollection() {
         networkService.searchColletions { [weak self] (result: (Result<ColletionModel, RequestError>)) in
             switch result {
@@ -48,9 +55,23 @@ final class MainInteractor: MainInteractorInputProtocol {
         }
     }
     
-    func selectedCategory(_ index: Int) {
-        cagegoriesData.enumerated().forEach { cagegoriesData[$0.offset].isSelected = false }
-        cagegoriesData[index].isSelected = !cagegoriesData[index].isSelected
-        presenter?.updateUI()
+    func requestSearch(_ title: String) {
+        
+        guard !title.isEmpty else {
+            self.searchData = nil
+            self.presenter?.updateUI()
+            return
+        }
+        
+        networkService.searchTitle(title) { [weak self] (result: (Result<SearchModel, RequestError>)) in
+            switch result {
+                
+            case .success(let search):
+                self?.searchData = search
+                self?.presenter?.updateUI()
+            case .failure(let error):
+                print(error.customMessage)
+            }
+        }
     }
 }

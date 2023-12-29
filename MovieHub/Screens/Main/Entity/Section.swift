@@ -8,5 +8,5 @@
 import Foundation
 
 enum Section: Int {
-    case collection, categories, popular
+    case search, collection, categories, popular
 }

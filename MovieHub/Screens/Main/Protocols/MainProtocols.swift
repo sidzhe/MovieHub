@@ -20,7 +20,9 @@ protocol MainPresenterProtocol: AnyObject {
     func getColletionModel() -> [DocCollect]
     func getCategories() -> [CategoryModel]
     func getMostPopular() -> [Doc]
+    func getSearchData() -> [Doc]
     func selectedCategory(_ index: Int, genre: MovieGenre)
+    func fetchSearchRequest(_ title: String)
 }
 
 /// PRESENTER -> INTERACTOR
@@ -29,8 +31,10 @@ protocol MainInteractorInputProtocol: AnyObject {
     var collectionData: ColletionModel? { get }
     var cagegoriesData: [CategoryModel] { get }
     var mostPopular: CollectionDetailModel? { get }
+    var searchData: SearchModel? { get }
     func requestCollection()
     func requestMostRating(genre: MovieGenre)
+    func requestSearch(_ title: String)
     func selectedCategory(_ index: Int)
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 
 final class MainPresenter: MainPresenterProtocol {
-    
+
     //MARK: Properties
     weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
@@ -38,9 +38,18 @@ final class MainPresenter: MainPresenterProtocol {
         return model
     }
     
+    func getSearchData() -> [Doc] {
+        guard let model = interactor?.searchData?.docs else { return [Doc]() }
+        return model
+    }
+    
     func selectedCategory(_ index: Int, genre: MovieGenre) {
         interactor?.selectedCategory(index)
         interactor?.requestMostRating(genre: genre)
+    }
+    
+    func fetchSearchRequest(_ title: String) {
+        interactor?.requestSearch(title)
     }
 }
 
