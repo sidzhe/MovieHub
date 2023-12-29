@@ -11,6 +11,7 @@ final class DetailViewController: UIViewController {
     
     //MARK: Properties
     var presenter: DetailPresenterProtocol?
+//    let movie = DetailModel
     
     private lazy var backgroundImageView: UIImageView = {
         let iv = UIImageView()
@@ -117,6 +118,11 @@ final class DetailViewController: UIViewController {
         lb.textColor = .white
         lb.text = "Cast and Crew"
         return lb
+    }()
+    
+    private lazy var castCollectionView: UICollectionView = {
+        let cv = UICollectionView()
+        return cv
     }()
     
     
