@@ -8,7 +8,7 @@
 import Foundation
 
 final class MainPresenter: MainPresenterProtocol {
-
+    
     //MARK: Properties
     weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?

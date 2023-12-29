@@ -89,7 +89,7 @@ private extension MainViewController {
             if sectionKind == .search {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
+                item.contentInsets = .init(top: 0, leading: 10, bottom: 15, trailing: 0)
                 
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.65))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
@@ -265,18 +265,25 @@ private extension MainViewController {
     //MARK: applySnapshot
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, ItemMain>()
-        snapshot.appendSections([.search, .collection, .categories, .popular])
+        
         guard let presenter = presenter else { return }
-        let itemSearch = presenter.getSearchData().map { ItemMain(search: $0)}
-        let itemCollection = presenter.getColletionModel().map { ItemMain(collection: $0)}
-        let itemCategory = presenter.getCategories().map { ItemMain(categories: $0)}
-        let itemPopular = presenter.getMostPopular().map { ItemMain(popular: $0)}
         
-        snapshot.appendItems(itemSearch, toSection: .search)
-        snapshot.appendItems(itemCollection, toSection: .collection)
-        snapshot.appendItems(itemCategory, toSection: .categories)
-        snapshot.appendItems(itemPopular, toSection: .popular)
-        
+        if presenter.getSearchData().isEmpty {
+            snapshot.appendSections([.search, .collection, .categories, .popular])
+            let itemSearch = presenter.getSearchData().map { ItemMain(search: $0)}
+            let itemCollection = presenter.getColletionModel().map { ItemMain(collection: $0)}
+            let itemCategory = presenter.getCategories().map { ItemMain(categories: $0)}
+            let itemPopular = presenter.getMostPopular().map { ItemMain(popular: $0)}
+            
+            snapshot.appendItems(itemSearch, toSection: .search)
+            snapshot.appendItems(itemCollection, toSection: .collection)
+            snapshot.appendItems(itemCategory, toSection: .categories)
+            snapshot.appendItems(itemPopular, toSection: .popular)
+        } else {
+            snapshot.appendSections([.search])
+            let itemSearch = presenter.getSearchData().map { ItemMain(search: $0)}
+            snapshot.appendItems(itemSearch, toSection: .search)
+        }
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
