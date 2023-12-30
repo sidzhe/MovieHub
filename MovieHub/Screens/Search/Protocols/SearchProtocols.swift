@@ -15,11 +15,19 @@ protocol SearchViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol SearchPresenterProtocol: AnyObject {
     var view: SearchViewProtocol? { get set }
+    func getCategories() -> [SearchCategoryModel]
+    func getRecentMovie() -> [Doc]
+    func getSearchData() -> [Doc]
+    func selectedCategory(_ index: Int, genre: MovieGenre)
 }
 
 /// PRESENTER -> INTERACTOR
 protocol SearchInteractorInputProtocol: AnyObject {
     var presenter: SearchInteractorOutputProtocol? { get set }
+    var searchMovie: SearchModel? { get }
+    var searchCategoriesData: [SearchCategoryModel] { get }
+    func requestSearch(_ title: String)
+    func selectedCategory(_ index: Int)
 }
 
 /// INTERACTOR -> PRESENTER

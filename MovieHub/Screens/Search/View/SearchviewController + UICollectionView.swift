@@ -6,18 +6,39 @@
 //
 import UIKit
 
-// MARK: - UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return presenter?.getCategories().count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YourCellReuseIdentifier", for: indexPath)
-        cell.backgroundColor = UIColor.green
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesSearchCell.identifier, for: indexPath) as? CategoriesSearchCell else {
+            return UICollectionViewCell()
+        }
         
-        cell.frame.size = CGSize(width: 355, height: 147)
+        guard let model = self.presenter?.getCategories() else { return cell }
+        cell.configure(category: model[indexPath.row])
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 8
         
         return cell
+    }
+}
+
+// MARK: -  UICollectionViewDelegate,
+extension SearchViewController {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let sectionKind = SearchSection(rawValue: indexPath.section) else { return }
+        
+        switch sectionKind {
+        case .categories:
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            let value = presenter?.getCategories()[indexPath.row].category ?? ""
+            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
+        default:
+           break
+        }
     }
 }

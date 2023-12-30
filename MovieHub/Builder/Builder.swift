@@ -108,7 +108,8 @@ final class Builder {
     static func createSearch() -> UIViewController {
         let view = SearchViewController()
         let presenter = SearchPresenter()
-        let interactor = SearchInteractor()
+        let networkService = NetworkkService()
+        let interactor = SearchInteractor(networkService: networkService)
         let router = SearchRouter()
         view.presenter = presenter
         presenter.view = view

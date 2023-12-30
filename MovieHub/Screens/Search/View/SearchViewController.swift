@@ -9,23 +9,6 @@ import UIKit
 
 final class SearchViewController: UIViewController {
     
-    enum Section {
-        case category
-        case upcomingMovie
-        case recentMovie
-    }
-    
-    let c = [
-        "All",
-        "Comedy",
-        "Animation",
-        "Science fiction",
-        "Horror",
-        "Drama",
-        "Thriller",
-        "Documentary"
-    ]
-    
     //MARK: Properties
     var presenter: SearchPresenterProtocol?
     
@@ -50,7 +33,14 @@ final class SearchViewController: UIViewController {
         registerCollectionsCells()
         setupHierarchy()
         setupLayout()
+        setCategories()
         navigationController?.setupNavigationBar()
+    }
+    
+    //MARK: Set Categories
+    private func setCategories() {
+        let indexPath = IndexPath(row: 0, section: 2)
+        collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
     // MARK: - UISearchController
@@ -66,8 +56,7 @@ final class SearchViewController: UIViewController {
     // MARK: - Setup
     
     private func registerCollectionsCells() {
-        
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "YourCellReuseIdentifier")
+        collectionView.register(CategoriesSearchCell.self, forCellWithReuseIdentifier: CategoriesSearchCell.identifier)
         collectionView.register(RecentMovieCollectionViewCell.self, forCellWithReuseIdentifier: RecentMovieCollectionViewCell.identifier )
     }
     
@@ -90,20 +79,21 @@ final class SearchViewController: UIViewController {
         return UICollectionViewCompositionalLayout { sectionIndex, _ in
             
             let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.08),
-                heightDimension: .fractionalHeight(0.08)
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalHeight(1.0)
             )
             
             let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-            
+            layoutItem.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
             let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.5),
-                heightDimension: .absolute(20))
+                widthDimension: .fractionalWidth(0.8),
+                heightDimension: .fractionalHeight(0.2))
             let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
             
             let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-            
-            layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+            layoutSection.interGroupSpacing = 5
+            layoutSection.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+            layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0)
             
             return layoutSection
             
@@ -116,7 +106,7 @@ extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, searchText.count >= 2 else { return }
         
-        if let resultController = searchController.searchResultsController as? SearchResultsViewController {
+        if searchController.searchResultsController is SearchResultsViewController {
             //
             //            resultController.navigationControllerFromCategories = self.navigationController
             //            resultController.viewModel.searchText = searchText
