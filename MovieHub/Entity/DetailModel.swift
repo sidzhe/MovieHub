@@ -68,7 +68,7 @@ struct Fees: Decodable {
 }
 
 // MARK: - Logo
-struct Logo: Decodable {
+struct Logo: Hashable, Decodable {
     let url: String
 }
 

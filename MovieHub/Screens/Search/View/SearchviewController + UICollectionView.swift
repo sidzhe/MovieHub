@@ -8,6 +8,10 @@ import UIKit
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+      return  3
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.getCategories().count ?? 0
     }

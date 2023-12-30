@@ -38,7 +38,8 @@ final class Builder {
     static func createMain() -> UIViewController {
         let view = MainViewController()
         let presenter = MainPresenter()
-        let interactor = MainInteractor()
+        let networkService = NetworkService()
+        let interactor = MainInteractor(networkService: networkService)
         let router = MainRouter()
         view.presenter = presenter
         presenter.view = view
@@ -108,7 +109,7 @@ final class Builder {
     static func createSearch() -> UIViewController {
         let view = SearchViewController()
         let presenter = SearchPresenter()
-        let networkService = NetworkkService()
+        let networkService = NetworkService()
         let interactor = SearchInteractor(networkService: networkService)
         let router = SearchRouter()
         view.presenter = presenter

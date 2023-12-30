@@ -70,7 +70,9 @@ extension MovieEndpoints: Endpoint {
         case .searchTitle:    return .none
         case .searchPerson:   return .none
         case .searchId:       return [URLQueryItem(name: "limit", value: "10")]
-        case .slugList:       return [URLQueryItem(name: "pages", value: String(Int.random(in: 1...9))), URLQueryItem(name: "limit", value: "10")]
+        case .slugList:       return [URLQueryItem(name: "pages", value: String(Int.random(in: 1...9))),
+                                      URLQueryItem(name: "limit", value: "10"),
+                                      URLQueryItem(name: "notNullFields", value: "cover.url")]
         case .movieFilter:    return .none
         case .personFilter:   return .none
             

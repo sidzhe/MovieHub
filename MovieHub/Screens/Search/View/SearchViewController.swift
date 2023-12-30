@@ -57,7 +57,7 @@ final class SearchViewController: UIViewController {
     
     private func registerCollectionsCells() {
         collectionView.register(CategoriesSearchCell.self, forCellWithReuseIdentifier: CategoriesSearchCell.identifier)
-        collectionView.register(RecentMovieCollectionViewCell.self, forCellWithReuseIdentifier: RecentMovieCollectionViewCell.identifier )
+     //   collectionView.register(RecentMovieCollectionViewCell.self, forCellWithReuseIdentifier: RecentMovieCollectionViewCell.identifier )
     }
     
     private func setupHierarchy() {
@@ -84,16 +84,18 @@ final class SearchViewController: UIViewController {
             )
             
             let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-            layoutItem.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
+            layoutItem.contentInsets.trailing = 16
+            layoutItem.contentInsets.bottom = 16
+            
             let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.8),
-                heightDimension: .fractionalHeight(0.2))
+                widthDimension: .fractionalWidth(0.35),
+                heightDimension: .absolute(35))
             let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
             
             let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-            layoutSection.interGroupSpacing = 5
+            layoutSection.interGroupSpacing = 15
             layoutSection.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-            layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0)
+            layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 15, trailing: 0)
             
             return layoutSection
             

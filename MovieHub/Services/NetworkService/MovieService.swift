@@ -15,8 +15,7 @@ protocol MovieServiceProtool {
     func searchCollection<T: Decodable>() async -> Result<T, RequestError>
     func movieFilterSlug<T: Decodable>(slugTag: String) async -> Result<T, RequestError>
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
-    func movieFilterRate<T: Decodable>() async -> Result<T, RequestError>
-    func loadImage(_ urlString: String?) async -> Result<UIImage, RequestError>
+    func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterPerson<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError>
 }
 
@@ -99,17 +98,20 @@ struct MovieService: MovieServiceProtool, MovieClient {
     }
     
     //MARK: Rated moveies
-    func movieFilterRate<T: Decodable>() async -> Result<T, RequestError> {
+    func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError> {
         let endpoint = MovieEndpoints.movieFilter
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
-        let items = [URLQueryItem(name: "page", value: String(Int.random(in: 1...75))),
+        var items = [URLQueryItem(name: "page", value: String(Int.random(in: 1...75))),
                      URLQueryItem(name: "limit", value: "10"),
-                     URLQueryItem(name: "rating.kp", value: "8.5-10")]
+                     URLQueryItem(name: "rating.kp", value: "4.5-10")]
+        if genre != "все" {
+            let item = URLQueryItem(name: "genres.name", value: genre)
+            items.append(item)
+        }
         urlComponents.queryItems = items
-        
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.movieFilter, responseModel: T.self)
     }
     
@@ -127,10 +129,5 @@ struct MovieService: MovieServiceProtool, MovieClient {
         items.append(contentsOf: anotherItems)
         urlComponents.queryItems = items
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.personFilter, responseModel: T.self)
-    }
-    
-    //MARK: Load image
-    func loadImage(_ urlString: String?) async -> Result<UIImage, RequestError> {
-        return await imageRequest(urlString)
     }
 }
