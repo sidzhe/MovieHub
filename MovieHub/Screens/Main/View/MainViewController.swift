@@ -74,8 +74,17 @@ final class MainViewController: UIViewController {
         collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
+    //MARK: Target
     private func heartButtonTarget() {
         accountView.callBackButton = { [weak self] in self?.presenter?.routeToWishList() }
+    }
+    
+    //MARK: - Display network error
+    private func alertError(_ error: RequestError) {
+        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive)
+        alert.addAction(action)
+        Task { present(alert, animated: true) }
     }
 }
 
@@ -115,10 +124,10 @@ private extension MainViewController {
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .categories {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(115), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .absolute(31))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(115), heightDimension: .absolute(31))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
@@ -316,6 +325,10 @@ extension MainViewController: UICollectionViewDelegate {
 extension MainViewController: MainViewProtocol {
     func updateUI() {
         Task { applySnapshot() }
+    }
+    
+    func displayRequestError(error: RequestError) {
+        alertError(error)
     }
 }
 

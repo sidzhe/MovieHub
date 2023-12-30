@@ -32,13 +32,14 @@ final class MainInteractor: MainInteractorInputProtocol {
     //MARK: Requests
     func requestCollection() {
         networkService.searchColletions { [weak self] (result: (Result<ColletionModel, RequestError>)) in
+            guard let self = self else { return }
             switch result {
                 
             case .success(let collection):
-                self?.collectionData = collection
-                self?.presenter?.updateUI()
+                self.collectionData = collection
+                self.presenter?.updateUI()
             case .failure(let error):
-                print(error.customMessage)
+                self.presenter?.getError(error: error)
             }
         }
     }
@@ -52,7 +53,7 @@ final class MainInteractor: MainInteractorInputProtocol {
                 self.mostPopular = collection
                 self.presenter?.updateUI()
             case .failure(let error):
-                print(error.customMessage)
+                self.presenter?.getError(error: error)
             }
         }
     }
@@ -73,7 +74,7 @@ final class MainInteractor: MainInteractorInputProtocol {
                 self.searchData = search
                 self.presenter?.updateUI()
             case .failure(let error):
-                print(error.customMessage)
+                self.presenter?.getError(error: error)
             }
         }
     }

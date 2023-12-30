@@ -78,4 +78,8 @@ extension MainPresenter: MainInteractorOutputProtocol {
     func updateUI() {
         view?.updateUI()
     }
+    
+    func getError(error: RequestError) {
+        view?.displayRequestError(error: error)
+    }
 }

@@ -11,6 +11,7 @@ import UIKit
 protocol MainViewProtocol: AnyObject {
     var presenter: MainPresenterProtocol? { get set }
     func updateUI()
+    func displayRequestError(error: RequestError)
 }
 
 /// VIEW -> PRESENTER
@@ -45,6 +46,7 @@ protocol MainInteractorInputProtocol: AnyObject {
 /// INTERACTOR -> PRESENTER
 protocol MainInteractorOutputProtocol: AnyObject {
     func updateUI()
+    func getError(error: RequestError)
 }
 
 /// PRESENTER -> ROUTER

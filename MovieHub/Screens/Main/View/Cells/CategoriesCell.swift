@@ -20,6 +20,7 @@ final class CategoriesCell: UICollectionViewCell {
     private lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
+        view.distribution = .equalCentering
         view.spacing = 20
         view.backgroundColor = .clear
         return view
@@ -41,6 +42,7 @@ final class CategoriesCell: UICollectionViewCell {
     private func setupViews() {
         stackView.addArrangedSubview(categoryLabel)
         contentView.addSubview(stackView)
+        contentView.addSubview(categoryLabel)
         
         stackView.snp.makeConstraints {
             $0.verticalEdges.equalToSuperview()
