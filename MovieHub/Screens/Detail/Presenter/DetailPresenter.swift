@@ -15,10 +15,13 @@ final class DetailPresenter: DetailPresenterProtocol {
     var router: DetailRouterProtocol?
     
     
+    func requestDetailData() {
+        interactor?.fetch("1219177")
+    }
+    
 }
 
 
 //MARK: - Extension DetailInteractorOutputProtocol
 extension DetailPresenter: DetailInteractorOutputProtocol {
-    
 }

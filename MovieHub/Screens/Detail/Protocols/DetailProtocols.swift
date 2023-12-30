@@ -15,15 +15,18 @@ protocol DetailViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol DetailPresenterProtocol: AnyObject {
     var view: DetailViewProtocol? { get set }
+    func requestDetailData()
 }
 
 /// PRESENTER -> INTERACTOR
 protocol DetailInteractorInputProtocol: AnyObject {
     var presenter: DetailInteractorOutputProtocol? { get set }
+    func fetch(_:String)
 }
 
 /// INTERACTOR -> PRESENTER
 protocol DetailInteractorOutputProtocol: AnyObject {
+    
     
 }
 
