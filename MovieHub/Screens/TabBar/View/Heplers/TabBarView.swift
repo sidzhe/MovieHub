@@ -12,14 +12,14 @@ final class TabBarView: UIView {
     
     //MARK: UI elements
     private lazy var icon: UIImageView = {
-        let button = UIImageView()
-        button.tintColor = .primaryBlue
-        return button
+        let icon = UIImageView()
+        icon.tintColor = .primaryGray
+        return icon
     }()
     
     private lazy var iconLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .primaryBlue
+        label.textColor = .primaryGray
         label.font = UIFont.montserratMedium(size: 12)
         return label
     }()
@@ -30,7 +30,7 @@ final class TabBarView: UIView {
         self.icon.image = icon
         self.iconLabel.text = title
         self.tag = tag
-        setupViews()
+        self.updateLayout(state: false)
     }
     
     required init?(coder: NSCoder) {
@@ -38,12 +38,38 @@ final class TabBarView: UIView {
     }
     
     //MARK: Methods
-    private func setupViews() {
-        addSubview(icon)
-        
-        icon.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+    func updateLayout(state: Bool) {
+        if state {
+            icon.tintColor = .primaryBlue
+            iconLabel.textColor = .primaryBlue
+            addSubview(icon)
+            addSubview(iconLabel)
+
+            icon.snp.remakeConstraints { make in
+                make.size.equalTo(24)
+                make.centerY.equalToSuperview()
+                make.left.equalToSuperview()
+            }
+
+            iconLabel.snp.remakeConstraints { make in
+                make.left.equalTo(icon.snp.right).offset(4)
+                make.centerY.equalToSuperview()
+                make.right.equalToSuperview().inset(4)
+            }
+        } else {
+            icon.tintColor = .primaryGray
+            iconLabel.textColor = .primaryGray
+            iconLabel.removeFromSuperview()
+
+            addSubview(icon)
+
+            icon.snp.remakeConstraints { make in
+                make.size.equalTo(24)
+                make.center.equalToSuperview()
+            }
         }
+
+        self.layoutIfNeeded()
     }
 }
 

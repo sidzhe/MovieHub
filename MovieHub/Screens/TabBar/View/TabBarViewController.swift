@@ -11,12 +11,13 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
     
     //MARK: Properties
     var presenter: TabBarPresenterProtocol?
+    private let tapGesture = UITapGestureRecognizer()
     
     //MARK: UI Elements
-    private let tabBarHomeView = TabBarView(icon: UIImage(systemName: "house")!, title: "Home", tag: 0)
+    private let tabBarHomeView = TabBarView(icon: UIImage(systemName: "play.tv")!, title: "Home", tag: 0)
     private let tabBarSearchView = TabBarView(icon: UIImage(systemName: "magnifyingglass")!, title: "Search", tag: 1)
-    private let tabBarTreeView = TabBarView(icon: UIImage(systemName: "puzzlepiece.extension")!, title: "Tree", tag: 2)
-    private let tabBarProfileView = TabBarView(icon: UIImage(systemName: "person.circle.fill")!, title: "Profile", tag: 3)
+    private let tabBarTreeView = TabBarView(icon: UIImage(systemName: "puzzlepiece.extension.fill")!, title: "Tree", tag: 2)
+    private let tabBarProfileView = TabBarView(icon: UIImage(systemName: "person.fill")!, title: "Profile", tag: 3)
     
     private lazy var selectedView: UIView = {
         let view = UIView()
@@ -39,12 +40,18 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        tapGesture.delegate = self
-        stackView.addGestureRecognizer(tapGesture)
-        
+        setupGesture()
         setupTabBar()
         createTabBar()
+        
+    }
+    
+    //MARK: viewDidAppear
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tabBarHomeView.updateLayout(state: true)
+        presenter?.previousViewTag = 0
         
     }
     
@@ -56,6 +63,12 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
         return vc
     }
     
+    //MARK: - Setup gesture
+    private func setupGesture() {
+        tapGesture.delegate = self
+        tapGesture.addTarget(self, action: #selector(handleTap))
+        stackView.addGestureRecognizer(tapGesture)
+    }
     
     //MARK: - SetupTabBar
     private func setupTabBar() {
@@ -63,24 +76,26 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
         
         let customView = UIView()
         view.addSubview(customView)
-        customView.snp.makeConstraints { make in
-            make.bottom.horizontalEdges.equalToSuperview()
-            make.height.equalTo(85)
-        }
-        customView.backgroundColor = .primaryDark
-        customView.addSubview(selectedView)
-        customView.addSubview(stackView)
-        
-        stackView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(40)
-            make.top.equalToSuperview().inset(10)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-        }
         
         stackView.addArrangedSubview(tabBarHomeView)
         stackView.addArrangedSubview(tabBarSearchView)
         stackView.addArrangedSubview(tabBarTreeView)
         stackView.addArrangedSubview(tabBarProfileView)
+        
+        customView.backgroundColor = .primaryDark
+        customView.addSubview(selectedView)
+        customView.addSubview(stackView)
+        
+        customView.snp.makeConstraints { make in
+            make.bottom.horizontalEdges.equalToSuperview()
+            make.height.equalTo(85)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview().inset(20)
+            make.top.equalToSuperview().inset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
         
         selectedView.snp.makeConstraints { make in
             make.center.equalTo(tabBarHomeView.snp.center)
@@ -88,7 +103,6 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
             make.width.equalTo(90)
         }
     }
-    
     
     //MARK: - CreateTabBar
     private func createTabBar() {
@@ -98,7 +112,7 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
         let profileVC = Builder.createProfile()
         
         viewControllers = [
-            //            generateVC(homeVC, "Home", UIImage(systemName: "house")),
+            generateVC(homeVC, "Home", UIImage(systemName: "house")),
             generateVC(searchVC, "Search", UIImage(systemName: "magnifyingglass")),
             generateVC(christmasVC, "Tree", UIImage(systemName: "puzzlepiece.extension")),
             generateVC(profileVC, "Account", UIImage(systemName: "person.circle.fill"))
@@ -111,11 +125,16 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
         let tappedPoint = sender.location(in: stackView)
         
         if let tappedSubview = stackView.hitTest(tappedPoint, with: nil) as? TabBarView {
+            guard presenter?.previousViewTag != tappedSubview.tag else { return }
             selectedIndex = tappedSubview.tag
+            defer { presenter?.previousViewTag = selectedIndex }
             UIView.animate(withDuration: 0.25) { [weak self] in
                 guard let self = self else { return }
-                let centerX = tappedSubview.frame.origin.x + tappedSubview.frame.width + 5
+                let centerX = tappedSubview.frame.origin.x + self.selectedView.frame.width - 35
                 self.selectedView.center = CGPoint(x: centerX, y: self.selectedView.center.y)
+                tappedSubview.updateLayout(state: true)
+                guard let previousTag = presenter?.previousViewTag else { return }
+                (stackView.subviews[previousTag] as? TabBarView)?.updateLayout(state: false)
             }
         }
     }
