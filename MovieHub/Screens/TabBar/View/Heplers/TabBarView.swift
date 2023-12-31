@@ -21,6 +21,7 @@ final class TabBarView: UIView {
         let label = UILabel()
         label.textColor = .primaryGray
         label.font = UIFont.montserratMedium(size: 12)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -43,14 +44,13 @@ final class TabBarView: UIView {
             icon.tintColor = .primaryBlue
             iconLabel.textColor = .primaryBlue
             addSubview(icon)
-            addSubview(iconLabel)
-
+            
             icon.snp.remakeConstraints { make in
                 make.size.equalTo(24)
                 make.centerY.equalToSuperview()
                 make.left.equalToSuperview()
             }
-
+            
             iconLabel.snp.remakeConstraints { make in
                 make.left.equalTo(icon.snp.right).offset(4)
                 make.centerY.equalToSuperview()
@@ -60,15 +60,20 @@ final class TabBarView: UIView {
             icon.tintColor = .primaryGray
             iconLabel.textColor = .primaryGray
             iconLabel.removeFromSuperview()
-
+            
             addSubview(icon)
-
+            addSubview(iconLabel)
+            
             icon.snp.remakeConstraints { make in
                 make.size.equalTo(24)
                 make.center.equalToSuperview()
             }
+            
+            iconLabel.snp.remakeConstraints { make in
+                make.size.equalTo(0)
+            }
         }
-
+        
         self.layoutIfNeeded()
     }
 }

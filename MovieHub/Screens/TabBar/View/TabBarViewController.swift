@@ -41,8 +41,8 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
         super.viewDidLoad()
         
         setupGesture()
-        setupTabBar()
         createTabBar()
+        setupTabBar()
         
     }
     
@@ -98,7 +98,8 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
         }
         
         selectedView.snp.makeConstraints { make in
-            make.center.equalTo(tabBarHomeView.snp.center)
+            make.centerY.equalTo(tabBarHomeView.snp.centerY)
+            make.centerX.equalTo(tabBarHomeView.snp.centerX).offset(-4)
             make.height.equalTo(40)
             make.width.equalTo(90)
         }

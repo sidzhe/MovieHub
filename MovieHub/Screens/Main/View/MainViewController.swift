@@ -183,7 +183,7 @@ private extension MainViewController {
         collectionView?.snp.makeConstraints({ make in
             make.top.equalTo(seatchTextField.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalToSuperview().inset(90)
         })
     }
     
