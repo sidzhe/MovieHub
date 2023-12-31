@@ -8,11 +8,12 @@
 import Foundation
 
 final class SearchPresenter: SearchPresenterProtocol {
-
     //MARK: Properties
     weak var view: SearchViewProtocol?
     var interactor: SearchInteractorInputProtocol?
     var router: SearchRouterProtocol?
+    
+    internal var searchSections: [SearchSection] = []
     
     //MARK: Select category
     func selectedCategory(_ index: Int, genre: MovieGenre) {
@@ -21,6 +22,7 @@ final class SearchPresenter: SearchPresenterProtocol {
     }
     
     //MARK: - Get models
+    
     func getCategories() -> [SearchCategoryModel] {
         guard let interactor = interactor else { return [SearchCategoryModel]() }
         return interactor.searchCategoriesData

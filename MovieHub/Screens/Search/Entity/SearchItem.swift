@@ -1,5 +1,5 @@
 //
-//  SearchItem.swift
+//  ItemSearch.swift
 //  MovieHub
 //
 //  Created by Келлер Дмитрий on 30.12.2023.
@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct SearchItem {
-    var title: String
-    var image: String?
-    var releaseYears: String?
-    var duration: String?
-    var category: CategoryModel?
+struct ItemSearch {
+    let identifier = UUID()
+    
+    var search: Doc?
+    var categories: SearchCategoryModel?
+    var upcomingMovie: Doc?
+    var recentMovie: Doc?
 }

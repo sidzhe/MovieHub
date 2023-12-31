@@ -17,8 +17,8 @@ final class SearchViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -54,6 +54,10 @@ final class SearchViewController: UIViewController {
     }
     
     // MARK: - Setup
+    private func setDelegates() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
     
     private func registerCollectionsCells() {
         collectionView.register(CategoriesSearchCell.self, forCellWithReuseIdentifier: CategoriesSearchCell.identifier)
@@ -61,7 +65,7 @@ final class SearchViewController: UIViewController {
     }
     
     private func setupHierarchy() {
-        collectionView.backgroundColor = .clear
+
         view.addSubview(collectionView)
     }
     private func setupLayout() {

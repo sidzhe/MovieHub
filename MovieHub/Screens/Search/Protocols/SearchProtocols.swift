@@ -15,6 +15,7 @@ protocol SearchViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol SearchPresenterProtocol: AnyObject {
     var view: SearchViewProtocol? { get set }
+    var searchSections: [SearchSection] { get }
     func getCategories() -> [SearchCategoryModel]
     func getRecentMovie() -> [Doc]
     func getSearchData() -> [Doc]

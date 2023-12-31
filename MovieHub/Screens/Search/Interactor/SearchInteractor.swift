@@ -8,7 +8,7 @@
 import Foundation
 
 final class SearchInteractor: SearchInteractorInputProtocol {
-
+    
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
@@ -25,9 +25,9 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     func selectedCategory(_ index: Int) {
         searchCategoriesData.enumerated().forEach { searchCategoriesData[$0.offset].isSelected = false }
         searchCategoriesData[index].isSelected = !searchCategoriesData[index].isSelected
-      //  presenter?.updateUI()
+        //  presenter?.updateUI()
     }
-
+    
     
     func requestSearch(_ title: String) {
         networkService.searchTitle(title) { [weak self] (result: (Result<SearchModel, RequestError>)) in
@@ -42,5 +42,5 @@ final class SearchInteractor: SearchInteractorInputProtocol {
             }
         }
     }
-    }
+}
 

@@ -9,7 +9,7 @@ import UIKit
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-      return  3
+        return  3
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -34,7 +34,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 extension SearchViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let sectionKind = SearchSection(rawValue: indexPath.section) else { return }
+       let sectionKind = presenter?.searchSections[indexPath.section]
         
         switch sectionKind {
         case .categories:

@@ -7,17 +7,19 @@
 
 import Foundation
 
-enum SearchSection {
-    case categories([SearchItem])
-    case upcomingMovies([SearchItem])
-    case recentMovies([SearchItem])
+enum SearchSection: Int {
+    case categories
+    case upcomingMovies
+    case recentMovies
     
-    var items: [SearchItem] {
+    var title: String {
         switch self {
-        case .categories(let items),
-                .upcomingMovies(let items),
-                .recentMovies(let items):
-            return items
+        case .categories:
+            return ""
+        case .upcomingMovies:
+            return "Upcoming Movie"
+        case .recentMovies:
+            return "Recent movie"
         }
     }
 }
