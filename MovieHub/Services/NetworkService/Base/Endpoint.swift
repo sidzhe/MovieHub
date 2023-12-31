@@ -21,5 +21,5 @@ protocol Endpoint {
 extension Endpoint {
     var scheme: String { "https" }
     var host: String { "api.kinopoisk.dev" }
-    var header: [String: String]? { ["X-API-KEY": "1K2XK7T-NY34DBQ-M8GKW41-JZP9BKH"] }
+    var header: [String: String]? { ["X-API-KEY": "PS2CH02-M8W4WWW-JSKN52C-CEB0JZK"] }
 }

@@ -15,4 +15,5 @@ protocol TabBarViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol TabBarPresenterProtocol: AnyObject {
     var view: TabBarViewProtocol? { get set }
+    var previousViewTag: Int? { get set }
 }
