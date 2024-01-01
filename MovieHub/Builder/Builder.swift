@@ -137,7 +137,8 @@ final class Builder {
     static func createChristmas() -> UIViewController {
         let view = ChristmasViewController()
         let presenter = ChristmasPresenter()
-        let interactor = ChristmasInteractor()
+        let networkService = NetworkService()
+        let interactor = ChristmasInteractor(networkService: networkService)
         let router = ChristmasRouter()
         view.presenter = presenter
         presenter.view = view

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegate {
+final class TabBarViewController: UITabBarController {
     
     //MARK: Properties
     var presenter: TabBarPresenterProtocol?
@@ -65,7 +65,6 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
     
     //MARK: - Setup gesture
     private func setupGesture() {
-        tapGesture.delegate = self
         tapGesture.addTarget(self, action: #selector(handleTap))
         stackView.addGestureRecognizer(tapGesture)
     }
@@ -113,7 +112,7 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
         let profileVC = Builder.createProfile()
         
         viewControllers = [
-//            generateVC(homeVC, "Home", UIImage(systemName: "house")),
+            generateVC(homeVC, "Home", UIImage(systemName: "house")),
             generateVC(searchVC, "Search", UIImage(systemName: "magnifyingglass")),
             generateVC(christmasVC, "Tree", UIImage(systemName: "puzzlepiece.extension")),
             generateVC(profileVC, "Account", UIImage(systemName: "person.circle.fill"))

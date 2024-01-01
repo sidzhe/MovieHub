@@ -13,12 +13,24 @@ final class ChristmasPresenter: ChristmasPresenterProtocol {
     weak var view: ChristmasViewProtocol?
     var interactor: ChristmasInteractorInputProtocol?
     var router: ChristmasRouterProtocol?
+    var backgroundAnimationCount = 0
+    var boomAnimationCount = 82
+    //MARK:
+    func getLoadedMovie() -> DetailModel? {
+        guard let model = interactor?.loadedMovie else { return nil }
+        return model
+    }
     
-    
+    func fetchRequest() {
+        interactor?.getMovieWithId()
+    }
 }
 
 
 //MARK: - Extension ChristmasInteractorOutputProtocol
 extension ChristmasPresenter: ChristmasInteractorOutputProtocol {
     
+    func getRequsetError(_ error: RequestError) {
+        view?.displayRequestError(error: error)
+    }
 }

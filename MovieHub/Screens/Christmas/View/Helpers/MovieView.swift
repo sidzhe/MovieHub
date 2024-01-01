@@ -1,15 +1,13 @@
 //
-//  PopularCell.swift
+//  MovieView.swift
 //  MovieHub
 //
-//  Created by sidzhe on 27.12.2023.
+//  Created by sidzhe on 01.01.2024.
 //
 
 import UIKit
-import SnapKit
-import Kingfisher
 
-final class PopularCell: UICollectionViewCell {
+final class MovieView: UIView {
     
     //MARK: UI Elements
     private lazy var posterImage: UIImageView = {
@@ -62,28 +60,22 @@ final class PopularCell: UICollectionViewCell {
     }()
     
     //MARK: Inits
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    init(model: DetailModel) {
+        super.init(frame: .zero)
         setupViews()
-        
+        self.configure(movieModel: model)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        posterImage.image = nil
-        
-    }
-    
     //MARK: Methods
     private func setupViews() {
-        contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = 8
+        clipsToBounds = true
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.primaryBlue.cgColor
+        layer.cornerRadius = 8
         
         footerView.addSubview(nameLabel)
         footerView.addSubview(categoryLabel)
@@ -91,9 +83,9 @@ final class PopularCell: UICollectionViewCell {
         blurView.contentView.addSubview(starImage)
         blurView.contentView.addSubview(ratingLabel)
         
-        contentView.addSubview(posterImage)
-        contentView.addSubview(footerView)
-        contentView.addSubview(blurView)
+        addSubview(posterImage)
+        addSubview(footerView)
+        addSubview(blurView)
         
         posterImage.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview()
@@ -134,11 +126,12 @@ final class PopularCell: UICollectionViewCell {
         }
     }
     
-    func configure(category: Doc) {
-        guard let url = URL(string: category.poster?.url ?? category.poster?.previewURL ?? "") else { return }
+    //MARK: configure
+    func configure(movieModel: DetailModel) {
+        guard let url = URL(string: movieModel.poster?.url ?? movieModel.poster?.previewURL ?? "") else { return }
         Task { posterImage.kf.setImage(with: url) }
-        nameLabel.text = category.name ?? category.alternativeName
-        categoryLabel.text = category.genres?.first?.name
-        ratingLabel.text = String(format: "%.1f", category.rating?.kp ?? 0.0)
+        nameLabel.text = movieModel.name ?? movieModel.alternativeName
+        categoryLabel.text = movieModel.genres?.first?.name
+        ratingLabel.text = String(format: "%.1f", movieModel.rating?.kp ?? 0.0)
     }
 }

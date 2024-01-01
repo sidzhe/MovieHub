@@ -14,40 +14,98 @@ final class ChristmasViewController: UIViewController {
     var presenter: ChristmasPresenterProtocol?
     private var timer: Timer?
     private var boomTimer: Timer?
-    private var count = 0
-    private var count2 = 82
+    private let tapGesture = UITapGestureRecognizer()
     
     //MARK: - UI Elements
-    private let elkaImage = UIImageView(image:  UIImage(named: "elka")!)
-    private let yellowBallImage = UIImageView(image: UIImage(named: "yellowBall"))
-    private let greenBallImage = UIImageView(image: UIImage(named: "greenBall"))
+    private var movieView: MovieView?
     private let backgroungImage = UIImageView()
+    private let elkaImage = UIImageView(image:  UIImage(named: "tree")!)
     
-    private lazy var yellowBallButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: #selector(tapBall), for: .touchUpInside)
+    private let yellowBallImage1 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage2 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage3 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage4 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage5 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage6 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage7 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage8 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage9 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage10 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage11 = BallView(ballImage: "yellowBall")
+    
+    private let greenBallImage1 = BallView(ballImage: "greenBall")
+    private let greenBallImage2 = BallView(ballImage: "greenBall")
+    private let greenBallImage3 = BallView(ballImage: "greenBall")
+    private let greenBallImage4 = BallView(ballImage: "greenBall")
+    private let greenBallImage5 = BallView(ballImage: "greenBall")
+    private let greenBallImage6 = BallView(ballImage: "greenBall")
+    private let greenBallImage7 = BallView(ballImage: "greenBall")
+    private let greenBallImage8 = BallView(ballImage: "greenBall")
+    private let greenBallImage9 = BallView(ballImage: "greenBall")
+    private let greenBallImage10 = BallView(ballImage: "greenBall")
+    
+    private lazy var closeMovieViewButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.tintColor = .primaryBlue
+        button.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
         return button
     }()
     
-    private lazy var greenBallButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: #selector(tapBall), for: .touchUpInside)
-        return button
-    }()
+    //MARK: ViewDidDisappear
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        timer?.invalidate()
+        timer = nil
+        backgroungImage.image = nil
+        movieView?.removeFromSuperview()
+        movieView = nil
+        
+    }
     
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presenter?.fetchRequest()
+        setupGesture()
+        setupViews()
+        
+    }
+    
+    //MARK: Setup UI
+    private func setupViews() {
+        elkaImage.isUserInteractionEnabled = true
+        
         view.backgroundColor = .primaryDark
         elkaImage.backgroundColor = .clear
         
+        elkaImage.addSubview(greenBallImage1)
+        elkaImage.addSubview(greenBallImage2)
+        elkaImage.addSubview(greenBallImage3)
+        elkaImage.addSubview(greenBallImage4)
+        elkaImage.addSubview(greenBallImage5)
+        elkaImage.addSubview(greenBallImage6)
+        elkaImage.addSubview(greenBallImage7)
+        elkaImage.addSubview(greenBallImage8)
+        elkaImage.addSubview(greenBallImage9)
+        elkaImage.addSubview(greenBallImage10)
+        
+        elkaImage.addSubview(yellowBallImage1)
+        elkaImage.addSubview(yellowBallImage2)
+        elkaImage.addSubview(yellowBallImage3)
+        elkaImage.addSubview(yellowBallImage4)
+        elkaImage.addSubview(yellowBallImage5)
+        elkaImage.addSubview(yellowBallImage6)
+        elkaImage.addSubview(yellowBallImage7)
+        elkaImage.addSubview(yellowBallImage8)
+        elkaImage.addSubview(yellowBallImage9)
+        elkaImage.addSubview(yellowBallImage10)
+        elkaImage.addSubview(yellowBallImage11)
+        
         view.addSubview(backgroungImage)
         view.addSubview(elkaImage)
-        view.addSubview(yellowBallImage)
-        view.addSubview(greenBallImage)
-        view.addSubview(yellowBallButton)
-        view.addSubview(greenBallButton)
         
         backgroungImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -59,79 +117,246 @@ final class ChristmasViewController: UIViewController {
             make.bottom.equalToSuperview().inset(90)
         }
         
-        yellowBallImage.snp.makeConstraints { make in
+        greenBallImage1.snp.makeConstraints { make in
             make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 18)
+            make.left.equalToSuperview().inset(view.frame.width / 10)
+        }
+        
+        greenBallImage2.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 12)
+            make.centerX.equalTo(view.snp.centerX)
+        }
+        
+        yellowBallImage1.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 18)
+            make.right.equalToSuperview().inset(view.frame.width / 10)
+        }
+        
+        yellowBallImage2.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 8)
+            make.left.equalToSuperview().inset(view.frame.width / 4)
+        }
+        
+        greenBallImage3.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 8)
+            make.right.equalToSuperview().inset(view.frame.width / 4)
+        }
+        
+        yellowBallImage3.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 5)
+            make.centerX.equalTo(view.snp.centerX)
+        }
+        
+        greenBallImage4.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 6.5)
+            make.left.equalToSuperview().inset(view.frame.width / 10)
+        }
+        
+        yellowBallImage4.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 6)
+            make.right.equalToSuperview().inset(view.frame.width / 10)
+        }
+        
+        greenBallImage5.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 4.4)
+            make.right.equalToSuperview().inset(view.frame.width / 4)
+        }
+        
+        yellowBallImage5.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 4.4)
+            make.left.equalToSuperview().inset(view.frame.width / 4)
+        }
+        
+        greenBallImage6.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 3.5)
+            make.right.equalToSuperview().inset(view.frame.width / 3)
+        }
+        
+        yellowBallImage6.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 3.5)
+            make.left.equalToSuperview().inset(view.frame.width / 3)
+        }
+        
+        yellowBallImage7.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 2.9)
+            make.centerX.equalTo(view.snp.centerX)
+        }
+        
+        greenBallImage7.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 3.1)
+            make.left.equalToSuperview().inset(view.frame.width / 4.7)
+        }
+        
+        yellowBallImage8.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 3.1)
+            make.right.equalToSuperview().inset(view.frame.width / 4.7)
+        }
+        
+        yellowBallImage9.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 2.6)
+            make.left.equalToSuperview().inset(view.frame.width / 3.5)
+        }
+        
+        greenBallImage8.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 2.6)
+            make.right.equalToSuperview().inset(view.frame.width / 3.5)
+        }
+        
+        greenBallImage9.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 2.25)
+            make.centerX.equalTo(view.snp.centerX)
+        }
+        
+        yellowBallImage10.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 2.05)
+            make.right.equalToSuperview().inset(view.frame.width / 3.1)
+        }
+        
+        greenBallImage10.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 2.05)
+            make.left.equalToSuperview().inset(view.frame.width / 3.1)
+        }
+        
+        yellowBallImage11.snp.makeConstraints { make in
+            make.size.equalTo(45)
+            make.bottom.equalToSuperview().inset(view.frame.height / 1.85)
+            make.centerX.equalTo(view.snp.centerX)
+        }
+    }
+    
+    //MARK: Set gesture
+    private func setupGesture() {
+        tapGesture.addTarget(self, action: #selector(handleTap))
+        elkaImage.addGestureRecognizer(tapGesture)
+    }
+    
+    //MARK: Create MovieView
+    private func createMovieView() {
+        let model = presenter?.getLoadedMovie()
+        guard let model = model else { return }
+        movieView = MovieView(model: model)
+        
+        view.addSubview(movieView!)
+        movieView?.alpha = 0
+        
+        movieView!.snp.makeConstraints { make in
+            make.height.equalTo(view.frame.height / 3)
+            make.width.equalTo(view.frame.width / 2)
             make.center.equalToSuperview()
         }
+    }
+    
+    //MARK: Create close button
+    private func createCloseButton() {
+        view?.addSubview(closeMovieViewButton)
         
-        greenBallImage.snp.makeConstraints { make in
-            make.size.equalTo(45)
-            make.top.equalTo(yellowBallImage.snp.top).offset(50)
-            make.centerX.equalToSuperview()
-        }
-        
-        yellowBallButton.snp.makeConstraints { make in
-            make.center.equalTo(yellowBallImage.snp.center)
-            make.size.equalTo(50)
-        }
-        
-        greenBallButton.snp.makeConstraints { make in
-            make.center.equalTo(greenBallImage.snp.center)
-            make.size.equalTo(50)
+        closeMovieViewButton.snp.makeConstraints { make in
+            make.size.equalTo(25)
+            make.right.equalTo(movieView!.snp.right).inset(-11)
+            make.top.equalTo(movieView!.snp.top).inset(-11)
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    //MARK: Animation tagret
+    @objc private func handleTap(_ sender: UITapGestureRecognizer) {
+        createMovieView()
         
-        timer?.invalidate()
-        boomTimer?.invalidate()
-        boomTimer = nil
-        timer = nil
-        backgroungImage.image = nil
+        let tappedPoint = sender.location(in: elkaImage)
         
-    }
-    
-    @objc private func tapBall(_ sender: UIButton) {
-        print("tap tap")
-        
-        UIView.animate(withDuration: 0.5, delay: .zero, options: [.curveEaseOut, .preferredFramesPerSecond60]) {
-            self.timer = Timer.scheduledTimer(timeInterval: 0.075, target: self, selector: #selector(self.updateAnimation), userInfo: nil, repeats: true)
-            let transform = CGAffineTransform(scaleX: 2.5, y: 2.5)
-            let rotateTransform = CGAffineTransform(rotationAngle: .greatestFiniteMagnitude)
-            self.yellowBallImage.transform = transform.concatenating(rotateTransform)
-            self.yellowBallImage.center = self.view.center
-        } completion: { [weak self] _ in
-
-            UIView.animate(withDuration: 0.3, delay: 0) {
-                
-                self?.yellowBallImage.image = UIImage(named: "animation81")
-                
-                self?.yellowBallImage.snp.remakeConstraints {
-                    $0.size.equalTo(200)
-                    $0.center.equalToSuperview()
+        if let tappedSubview = elkaImage.hitTest(tappedPoint, with: nil) as? BallView {
+            
+            UIView.animate(withDuration: 0.5, delay: .zero, options: [.curveEaseOut, .preferredFramesPerSecond60]) { [weak self] in
+                guard let self = self else { return }
+                if self.timer == nil {
+                    self.timer = Timer.scheduledTimer(timeInterval: 0.075, target: self, selector: #selector(self.updateAnimation), userInfo: nil, repeats: true)
                 }
                 
-                self?.boomTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self?.updateAnimationBoom), userInfo: nil, repeats: true)
+                let transform = CGAffineTransform(scaleX: 2.5, y: 2.5)
+                let rotateTransform = CGAffineTransform(rotationAngle: .greatestFiniteMagnitude)
+                tappedSubview.transform = transform.concatenating(rotateTransform)
+                tappedSubview.center = self.view.center
+            } completion: { [weak self] _ in
+                self?.closeMovieViewButton.alpha = 1.0
+                UIView.animate(withDuration: 0.3, delay: 0) {
+                    tappedSubview.updateImage("animation81")
+                    
+                    tappedSubview.snp.remakeConstraints {
+                        $0.size.equalTo(200)
+                        $0.center.equalToSuperview()
+                    }
+                    
+                    self?.createCloseButton()
+                    
+                    self?.boomTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
+                        guard let self = self, let presenter = presenter else { return }
+                        if presenter.boomAnimationCount < 85 {
+                            Task { tappedSubview.updateImage("animation\(presenter.boomAnimationCount)") }
+                            presenter.boomAnimationCount += 1
+                        } else {
+                            tappedSubview.removeFromSuperview()
+                            self.boomTimer?.invalidate()
+                            self.boomTimer = nil
+                        }
+                    })
+                }
+                
+                self?.movieView?.alpha = 1.0
             }
         }
     }
     
+    //MARK: Animation methods
     @objc private func updateAnimation() {
-        if count < 99 {
-            Task { self.backgroungImage.image = UIImage(named: "confetti-27-\(self.count)") }
-            count += 1
+        guard let presenter = presenter else { return }
+        if presenter.backgroundAnimationCount < 99 {
+            Task { self.backgroungImage.image = UIImage(named: "confetti-27-\(presenter.backgroundAnimationCount)") }
+            presenter.backgroundAnimationCount += 1
         } else {
-            count = 1
+            presenter.backgroundAnimationCount = 1
         }
     }
     
+    //MARK: Update animation
     @objc private func updateAnimationBoom() {
-        if count2 < 85 {
-            Task { self.yellowBallImage.image = UIImage(named: "animation\(self.count2)") }
-            count2 += 1
-        } else {
-            self.yellowBallImage.isHidden = true
+        guard let presenter = presenter else { return }
+        if presenter.boomAnimationCount < 85 {
+            presenter.boomAnimationCount += 1
+        }
+    }
+    
+    //MARK: - Alert network error
+    private func alertError(_ error: RequestError) {
+        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive)
+        alert.addAction(action)
+        Task { present(alert, animated: true) }
+    }
+    
+    //MARK: Close button target
+    @objc private func tapCloseButton() {
+        UIView.animate(withDuration: 0.25) {
+            self.movieView?.alpha = 0.0
+            self.closeMovieViewButton.alpha = 0.0
         }
     }
 }
@@ -140,4 +365,8 @@ final class ChristmasViewController: UIViewController {
 //MARK: - Extension ChristmasViewProtocol
 extension ChristmasViewController: ChristmasViewProtocol {
     
+    //MARK: Display request error
+    func displayRequestError(error: RequestError) {
+        alertError(error)
+    }
 }
