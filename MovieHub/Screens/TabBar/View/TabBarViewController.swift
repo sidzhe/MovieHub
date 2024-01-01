@@ -113,7 +113,7 @@ final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegat
         let profileVC = Builder.createProfile()
         
         viewControllers = [
-            generateVC(homeVC, "Home", UIImage(systemName: "house")),
+//            generateVC(homeVC, "Home", UIImage(systemName: "house")),
             generateVC(searchVC, "Search", UIImage(systemName: "magnifyingglass")),
             generateVC(christmasVC, "Tree", UIImage(systemName: "puzzlepiece.extension")),
             generateVC(profileVC, "Account", UIImage(systemName: "person.circle.fill"))
