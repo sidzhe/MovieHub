@@ -17,6 +17,7 @@ protocol MovieServiceProtool {
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterPerson<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError>
+    func movieWirhPerosn<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError>
 }
 
 
@@ -124,10 +125,38 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.path = endpoint.path
         var items = [URLQueryItem(name: "page", value: "1"),
                      URLQueryItem(name: "limit", value: "10"),
-                     URLQueryItem(name: "selectFields", value: "movies")]
+                     URLQueryItem(name: "selectFields", value: "name"),
+                     URLQueryItem(name: "selectFields", value: "enName"),
+                     URLQueryItem(name: "selectFields", value: "photo"),
+                     URLQueryItem(name: "selectFields", value: "growth"),
+                     URLQueryItem(name: "selectFields", value: "birthday"),
+                     URLQueryItem(name: "selectFields", value: "age"),
+                     URLQueryItem(name: "selectFields", value: "birthPlace"),
+                     URLQueryItem(name: "selectFields", value: "spouses"),
+                     URLQueryItem(name: "selectFields", value: "profession"),
+                     URLQueryItem(name: "selectFields", value: "facts"),
+                     URLQueryItem(name: "selectFields", value: "movies")
+        ]
         let anotherItems = actorsId.map { URLQueryItem(name: "id", value: String($0))}
         items.append(contentsOf: anotherItems)
         urlComponents.queryItems = items
+        
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.personFilter, responseModel: T.self)
+    }
+    
+    //MARK: Movie with person
+    func movieWirhPerosn<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError> {
+        let endpoint = MovieEndpoints.movieWithPerson
+        var urlComponents = URLComponents()
+        urlComponents.scheme = endpoint.scheme
+        urlComponents.host = endpoint.host
+        urlComponents.path = endpoint.path
+        var items = [URLQueryItem(name: "page", value: "1"),
+                     URLQueryItem(name: "limit", value: "10")]
+        let anotherItems = actorsId.map { URLQueryItem(name: "persons.id", value: String($0))}
+        items.append(contentsOf: anotherItems)
+        urlComponents.queryItems = items
+        
+        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.movieWithPerson, responseModel: T.self)
     }
 }
