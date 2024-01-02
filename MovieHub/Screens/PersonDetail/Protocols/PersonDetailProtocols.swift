@@ -10,21 +10,28 @@ import Foundation
 /// PRESENTER -> VIEW
 protocol PersonDetailViewProtocol: AnyObject {
     var presenter: PersonDetailPresenterProtocol? { get set }
+    func updateUI()
+    func displayRequestError(_ error: RequestError)
 }
 
 /// VIEW -> PRESENTER
 protocol PersonDetailPresenterProtocol: AnyObject {
     var view: PersonDetailViewProtocol? { get set }
+    func getPersonDetailData() -> PersonDetalModel?
+    func getSearchData() -> [Doc]?
 }
 
 /// PRESENTER -> INTERACTOR
 protocol PersonDetailInteractorInputProtocol: AnyObject {
     var presenter: PersonDetailInteractorOutputProtocol? { get set }
+    var searchData: SearchModel? { get }
+    var personDetailData: PersonDetalModel? { get }
 }
 
 /// INTERACTOR -> PRESENTER
 protocol PersonDetailInteractorOutputProtocol: AnyObject {
-    
+    func updateUI()
+    func getRequestError(_ error: RequestError)
 }
 
 /// PRESENTER -> ROUTER
