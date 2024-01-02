@@ -84,7 +84,7 @@ final class MainViewController: UIViewController {
         let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .destructive)
         alert.addAction(action)
-        Task { present(alert, animated: true) }
+        present(alert, animated: true) 
     }
 }
 
@@ -328,7 +328,7 @@ extension MainViewController: MainViewProtocol {
     }
     
     func displayRequestError(error: RequestError) {
-        alertError(error)
+        Task { alertError(error) }
     }
 }
 
