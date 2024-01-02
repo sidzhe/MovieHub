@@ -20,6 +20,7 @@ protocol ChristmasPresenterProtocol: AnyObject {
     var boomAnimationCount: Int { get set }
     func getLoadedMovie() -> DetailModel?
     func fetchRequest()
+    func routeToDetailVC()
 }
 
 /// PRESENTER -> INTERACTOR
@@ -36,5 +37,5 @@ protocol ChristmasInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol ChristmasRouterProtocol: AnyObject {
-    
+    func pushToDetailMovie(from view: ChristmasViewProtocol?)
 }

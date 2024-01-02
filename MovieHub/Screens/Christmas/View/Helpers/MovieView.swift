@@ -9,6 +9,9 @@ import UIKit
 
 final class MovieView: UIView {
     
+    //MARK: Properties
+    var callBackButton: (() -> Void)?
+    
     //MARK: UI Elements
     private lazy var posterImage: UIImageView = {
         let view = UIImageView()
@@ -59,6 +62,12 @@ final class MovieView: UIView {
         return view
     }()
     
+    private lazy var clickButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        return button
+    }()
+    
     //MARK: Inits
     init(model: DetailModel) {
         super.init(frame: .zero)
@@ -86,6 +95,7 @@ final class MovieView: UIView {
         addSubview(posterImage)
         addSubview(footerView)
         addSubview(blurView)
+        addSubview(clickButton)
         
         posterImage.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview()
@@ -124,6 +134,15 @@ final class MovieView: UIView {
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().inset(5)
         }
+        
+        clickButton.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    //MARK: Buttons target
+    @objc private func tapButton() {
+        callBackButton?()
     }
     
     //MARK: configure

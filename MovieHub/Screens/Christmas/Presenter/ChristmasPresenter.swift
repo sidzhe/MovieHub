@@ -8,7 +8,7 @@
 import Foundation
 
 final class ChristmasPresenter: ChristmasPresenterProtocol {
-    
+
     //MARK: Properties
     weak var view: ChristmasViewProtocol?
     var interactor: ChristmasInteractorInputProtocol?
@@ -23,6 +23,10 @@ final class ChristmasPresenter: ChristmasPresenterProtocol {
     
     func fetchRequest() {
         interactor?.getMovieWithId()
+    }
+    
+    func routeToDetailVC() {
+        router?.pushToDetailMovie(from: view)
     }
 }
 

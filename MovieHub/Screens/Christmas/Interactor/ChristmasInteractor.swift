@@ -12,7 +12,10 @@ final class ChristmasInteractor: ChristmasInteractorInputProtocol {
     //MARK: Properties
     weak var presenter: ChristmasInteractorOutputProtocol?
     private let networkService: NetworkServiceProtool
-    private let newYearMovies = ["8124", "56322", "738499", "1828", "42664", "391755"]
+    private let newYearMovies = ["8124", "348", "5928", "6144", "6851", "84052", "986", "807339", "90207", "664",
+                                 "1117379", "104927", "22328", "38905", "79440", "5942", "6133", "1828", "391755", "7114",
+                                 "577558", "2737", "10074", "95194", "1646", "9262", "258636", "493768", "77331", "42664"]
+    
     var loadedMovie: DetailModel?
     
     //MARK: Init
@@ -22,7 +25,7 @@ final class ChristmasInteractor: ChristmasInteractorInputProtocol {
     
     //MARK: Search movie
     func getMovieWithId() {
-        networkService.searchID(newYearMovies[Int.random(in: 0...5)]) { [weak self] (result: (Result<DetailModel, RequestError>)) in
+        networkService.searchID(newYearMovies[Int.random(in: 0..<30)]) { [weak self] (result: (Result<DetailModel, RequestError>)) in
             switch result {
                 
             case .success(let movie):

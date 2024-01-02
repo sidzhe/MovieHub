@@ -61,6 +61,7 @@ final class ChristmasViewController: UIViewController {
         backgroungImage.image = nil
         movieView?.removeFromSuperview()
         movieView = nil
+        closeMovieViewButton.alpha = 0.0
         
     }
     
@@ -264,22 +265,26 @@ final class ChristmasViewController: UIViewController {
             make.width.equalTo(view.frame.width / 2)
             make.center.equalToSuperview()
         }
+        
+        movieView?.callBackButton = { [weak self] in self?.presenter?.routeToDetailVC() }
     }
     
     //MARK: Create close button
     private func createCloseButton() {
         view?.addSubview(closeMovieViewButton)
+        guard let movieView = movieView else { return }
         
         closeMovieViewButton.snp.makeConstraints { make in
-            make.size.equalTo(25)
-            make.right.equalTo(movieView!.snp.right).inset(-11)
-            make.top.equalTo(movieView!.snp.top).inset(-11)
+            make.size.equalTo(70)
+            make.right.equalTo(movieView.snp.right).inset(-35)
+            make.top.equalTo(movieView.snp.top).inset(-35)
         }
     }
     
     //MARK: Animation tagret
     @objc private func handleTap(_ sender: UITapGestureRecognizer) {
         createMovieView()
+        presenter?.fetchRequest()
         
         let tappedPoint = sender.location(in: elkaImage)
         
@@ -313,14 +318,13 @@ final class ChristmasViewController: UIViewController {
                             Task { tappedSubview.updateImage("animation\(presenter.boomAnimationCount)") }
                             presenter.boomAnimationCount += 1
                         } else {
+                            self.movieView?.alpha = 1.0
                             tappedSubview.removeFromSuperview()
                             self.boomTimer?.invalidate()
                             self.boomTimer = nil
                         }
                     })
                 }
-                
-                self?.movieView?.alpha = 1.0
             }
         }
     }
@@ -349,7 +353,7 @@ final class ChristmasViewController: UIViewController {
         let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .destructive)
         alert.addAction(action)
-        Task { present(alert, animated: true) }
+        present(alert, animated: true)
     }
     
     //MARK: Close button target
@@ -367,6 +371,6 @@ extension ChristmasViewController: ChristmasViewProtocol {
     
     //MARK: Display request error
     func displayRequestError(error: RequestError) {
-        alertError(error)
+        Task { alertError(error) }
     }
 }
