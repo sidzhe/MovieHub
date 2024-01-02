@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB20D07F2B42EC9100B5E094 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D07E2B42EC9100B5E094 /* BallView.swift */; };
+		EB20D0812B430C0800B5E094 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D0802B430C0800B5E094 /* MovieView.swift */; };
 		E13878002B4343D900054F5C /* CategoriesMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13877FF2B4343D900054F5C /* CategoriesMenuCollectionView.swift */; };
 		E1EE76A22B3DC58A00BC5858 /* NavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A02B3DC58A00BC5858 /* NavigationController + Extension.swift */; };
 		E1EE76A32B3DC58A00BC5858 /* UISearchController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A12B3DC58A00BC5858 /* UISearchController + Extension.swift */; };
@@ -110,6 +112,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB20D07E2B42EC9100B5E094 /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
+		EB20D0802B430C0800B5E094 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
 		E13877FF2B4343D900054F5C /* CategoriesMenuCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesMenuCollectionView.swift; sourceTree = "<group>"; };
 		E1EE76A02B3DC58A00BC5858 /* NavigationController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NavigationController + Extension.swift"; path = "MovieHub/Support/Extensions /NavigationController + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		E1EE76A12B3DC58A00BC5858 /* UISearchController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UISearchController + Extension.swift"; path = "MovieHub/Support/Extensions /UISearchController + Extension.swift"; sourceTree = SOURCE_ROOT; };
@@ -225,6 +229,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB20D07B2B42EC7800B5E094 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EB20D07E2B42EC9100B5E094 /* BallView.swift */,
+				EB20D0802B430C0800B5E094 /* MovieView.swift */,
+			);
+			path = Helpers;
 		E13877FE2B43438D00054F5C /* CategoriesMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,6 +919,7 @@
 			isa = PBXGroup;
 			children = (
 				EBE76C8C2B3977430053E522 /* ChristmasViewController.swift */,
+				EB20D07B2B42EC7800B5E094 /* Helpers */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1084,6 +1096,7 @@
 				EBE76C2A2B396E370053E522 /* MainRouter.swift in Sources */,
 				EBE76C6F2B3973D10053E522 /* SearchViewController.swift in Sources */,
 				EB6CB2BF2B3C1AFE00DC30BC /* Extension + UIColor.swift in Sources */,
+				EB20D07F2B42EC9100B5E094 /* BallView.swift in Sources */,
 				EBE76C6D2B39739E0053E522 /* SearchProtocols.swift in Sources */,
 				EBE76C662B3973590053E522 /* WishlistRouter.swift in Sources */,
 				EBE76C332B396EFB0053E522 /* MovieListViewController.swift in Sources */,
@@ -1125,6 +1138,7 @@
 				E1EE76B82B41B61E00BC5858 /* SearchSection.swift in Sources */,
 				EBE76C872B3976A30053E522 /* ProfilePresenter.swift in Sources */,
 				EBE76C242B396DA50053E522 /* MainViewController.swift in Sources */,
+				EB20D0812B430C0800B5E094 /* MovieView.swift in Sources */,
 				EBE76C752B39746A0053E522 /* SearchRouter.swift in Sources */,
 				EBE76C912B3977930053E522 /* ChristmasInteractor.swift in Sources */,
 				EBE76C282B396E140053E522 /* MainInteractor.swift in Sources */,
