@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import SnapKit
 
 final class SearchViewController: UIViewController {
     
     //MARK: Properties
     var presenter: SearchPresenterProtocol?
+    
+    private let categoriesMenuCollectionView = CategoriesMenuCollectionView(categories: presenter?.getCategories() ?? [])
     
     // MARK: - Outlets
     
@@ -18,7 +21,7 @@ final class SearchViewController: UIViewController {
         let layout = createLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
-
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -31,16 +34,22 @@ final class SearchViewController: UIViewController {
         view.backgroundColor = .primaryDark
         setupSearchBar()
         registerCollectionsCells()
-        setupHierarchy()
+//        setDelegates()
+
         setupLayout()
         setCategories()
         navigationController?.setupNavigationBar()
     }
     
+    private func setupViews() {
+        view.addSubview(categoriesMenuCollectionView)
+        view.addSubview(collectionView)
+    }
+    
     //MARK: Set Categories
     private func setCategories() {
-        let indexPath = IndexPath(row: 0, section: 2)
-        collectionView(collectionView, didSelectItemAt: indexPath)
+        //        let indexPath = IndexPath(row: 0, section: 2)
+        //        collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
     // MARK: - UISearchController
@@ -54,20 +63,24 @@ final class SearchViewController: UIViewController {
     }
     
     // MARK: - Setup
-    private func setDelegates() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
+//    private func setDelegates() {
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+//    }
     
     private func registerCollectionsCells() {
-        collectionView.register(CategoriesSearchCell.self, forCellWithReuseIdentifier: CategoriesSearchCell.identifier)
-     //   collectionView.register(RecentMovieCollectionViewCell.self, forCellWithReuseIdentifier: RecentMovieCollectionViewCell.identifier )
+        
+        collectionView.register(
+            UpcomingMovieCell.self,
+            forCellWithReuseIdentifier: UpcomingMovieCell.identifier
+        )
+        
+        collectionView.register(
+            RecentMovieCollectionViewCell.self,
+            forCellWithReuseIdentifier: RecentMovieCollectionViewCell.identifier
+        )
     }
-    
-    private func setupHierarchy() {
 
-        view.addSubview(collectionView)
-    }
     private func setupLayout() {
         
         NSLayoutConstraint.activate([

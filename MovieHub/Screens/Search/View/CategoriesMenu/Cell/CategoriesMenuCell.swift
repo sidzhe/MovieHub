@@ -1,13 +1,14 @@
 //
-//  CategoriesSearchCell.swift
+//  CategoriesMenuCell.swift
 //  MovieHub
 //
 //  Created by Келлер Дмитрий on 30.12.2023.
 //
 
 import UIKit
+import SnapKit
 
-final class CategoriesSearchCell: UICollectionViewCell {
+final class CategoriesMenuCell: UICollectionViewCell {
     
     static let identifier = "CategoryCell"
     
@@ -15,22 +16,15 @@ final class CategoriesSearchCell: UICollectionViewCell {
     private lazy var categoryLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.montserratMedium(size: 12)
+        label.textColor = .white
+        label.font = UIFont.montserratMedium(size: 14)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .horizontal
-        view.spacing = 20
-        view.backgroundColor = .clear
-        return view
     }()
     
     //MARK: Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupViews()
         
     }
@@ -41,18 +35,17 @@ final class CategoriesSearchCell: UICollectionViewCell {
     
     //MARK: - Methods
     private func setupViews() {
-        stackView.addArrangedSubview(categoryLabel)
-        contentView.addSubview(stackView)
+        backgroundColor = .primaryDark
+        layer.cornerRadius = 8
         
-        stackView.snp.makeConstraints {
-            $0.verticalEdges.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(10)
-        }
-        
+        addSubview(categoryLabel)
+    }
+    
+    private func setConstraints() {
         categoryLabel.snp.makeConstraints { $0.center.equalToSuperview() }
     }
     
-    func configure(category: SearchCategoryModel) {
+    func configure(category: CategoryModel) {
         categoryLabel.text = category.category.capitalized
         backgroundColor = category.isSelected ? .primarySoft : .clear
         categoryLabel.textColor = category.isSelected ? .primaryBlue : .white

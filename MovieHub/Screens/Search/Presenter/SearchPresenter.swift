@@ -23,9 +23,9 @@ final class SearchPresenter: SearchPresenterProtocol {
     
     //MARK: - Get models
     
-    func getCategories() -> [SearchCategoryModel] {
-        guard let interactor = interactor else { return [SearchCategoryModel]() }
-        return interactor.searchCategoriesData
+    func getCategories() -> [CategoryModel] {
+        guard let interactor = interactor else { return [CategoryModel]() }
+        return interactor.categoriesData
     }
     
     func getRecentMovie() -> [Doc] {
