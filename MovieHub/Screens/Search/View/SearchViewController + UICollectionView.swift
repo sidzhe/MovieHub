@@ -52,7 +52,7 @@ extension SearchViewController: UICollectionViewDataSource {
                 withReuseIdentifier: SearchHeader.identifier,
                 for: indexPath
             ) as? SearchHeader else { return UICollectionReusableView() }
-#warning("добавить конфигу")
+            header.configure(header: sections[indexPath.section].title)
             return header
         default:
             return UICollectionReusableView()

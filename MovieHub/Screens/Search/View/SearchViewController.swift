@@ -96,34 +96,6 @@ final class SearchViewController: UIViewController {
             make.bottom.equalTo(view.snp.bottom)
         }
     }
-    
-    // MARK: - CompositionalLayout
-    private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { sectionIndex, _ in
-            
-            let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)
-            )
-            
-            let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-            layoutItem.contentInsets.trailing = 16
-            layoutItem.contentInsets.bottom = 16
-            
-            let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.35),
-                heightDimension: .absolute(35))
-            let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
-            
-            let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-            layoutSection.interGroupSpacing = 15
-            layoutSection.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-            layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 15, trailing: 0)
-            
-            return layoutSection
-            
-        }
-    }
 }
 
 // MARK: - UISearchResultsUpdating
@@ -147,7 +119,68 @@ extension SearchViewController: SearchViewProtocol {
     }
 }
 
-//MARK: Constants
+//MARK: - CompositionalLayout
+extension SearchViewController {
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { sectionIndex, _ in
+            let section = self.sections[sectionIndex]
+            switch section {
+            case .upcomingMovies:
+                return self.createUpcomingMoviesSection()
+            case .recentMovies:
+                return self.createRecentMoviesSection()
+            }
+        }
+    }
+    
+    private func createUpcomingMoviesSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        
+        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        layoutItem.contentInsets.trailing = 16
+        layoutItem.contentInsets.bottom = 16
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.35),
+            heightDimension: .absolute(35))
+        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
+        
+        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+        layoutSection.interGroupSpacing = 15
+        layoutSection.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 15, trailing: 0)
+        
+        return layoutSection
+    }
+    
+    private func createRecentMoviesSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        
+        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        layoutItem.contentInsets.trailing = 16
+        layoutItem.contentInsets.bottom = 16
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.35),
+            heightDimension: .absolute(35))
+        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
+        
+        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+        layoutSection.interGroupSpacing = 15
+        layoutSection.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 15, trailing: 0)
+        
+        return layoutSection
+    }
+}
+
+//MARK: - Constants
 extension SearchViewController {
     struct Constants {
         static let topAnchor: CGFloat = 8
