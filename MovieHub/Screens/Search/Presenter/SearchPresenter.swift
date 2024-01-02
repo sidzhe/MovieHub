@@ -29,7 +29,7 @@ final class SearchPresenter: SearchPresenterProtocol {
     }
     
     func getRecentMovie() -> [Doc] {
-        //warning
+#warning("добавить логику")
         let recent:[Doc] = []
         return recent
     }

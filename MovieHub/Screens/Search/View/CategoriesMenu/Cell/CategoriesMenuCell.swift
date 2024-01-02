@@ -40,11 +40,6 @@ final class CategoriesMenuCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Methods
-    func configure(category: CategoryModel) {
-        categoryLabel.text = category.category.capitalized
-    }
-    
     //MARK: - Private Methods
     private func setupViews() {
         backgroundColor = .primaryDark

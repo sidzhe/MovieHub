@@ -51,7 +51,7 @@ extension CategoriesMenuCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesMenuCell.identifier, for: indexPath) as? CategoriesMenuCell else { return UICollectionViewCell() }
         
-        cell.categoryLabel.text = categories[indexPath.item].category
+        cell.categoryLabel.text = categories[indexPath.item].category.capitalized
         return cell
     }
 }

@@ -25,7 +25,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     func selectedCategory(_ index: Int) {
         categoriesData.enumerated().forEach { categoriesData[$0.offset].isSelected = false }
         categoriesData[index].isSelected = !categoriesData[index].isSelected
-        //  presenter?.updateUI()
+        presenter?.updateUI()
     }
     
     
@@ -36,7 +36,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
                 
             case .success(let search):
                 self.searchMovie = search
-                //self.presenter?.updateUI()
+                self.presenter?.updateUI()
             case .failure(let error):
                 print(error.customMessage)
             }

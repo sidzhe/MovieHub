@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E13878002B4343D900054F5C /* CategoriesMenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13877FF2B4343D900054F5C /* CategoriesMenuCollectionView.swift */; };
+		E13878032B444AEF00054F5C /* SearchHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13878022B444AEF00054F5C /* SearchHeader.swift */; };
 		E1EE76A22B3DC58A00BC5858 /* NavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A02B3DC58A00BC5858 /* NavigationController + Extension.swift */; };
 		E1EE76A32B3DC58A00BC5858 /* UISearchController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A12B3DC58A00BC5858 /* UISearchController + Extension.swift */; };
 		E1EE76A82B3DC5CF00BC5858 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A72B3DC5CF00BC5858 /* SearchResultsViewController.swift */; };
-		E1EE76AA2B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A92B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift */; };
+		E1EE76AA2B3DC88D00BC5858 /* SearchViewController + UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A92B3DC88D00BC5858 /* SearchViewController + UICollectionView.swift */; };
 		E1EE76B32B40048700BC5858 /* CategoriesMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76B22B40048700BC5858 /* CategoriesMenuCell.swift */; };
 		E1EE76B82B41B61E00BC5858 /* SearchSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76B52B41B61E00BC5858 /* SearchSection.swift */; };
 		E1EE76B92B41B61E00BC5858 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76B62B41B61E00BC5858 /* SearchItem.swift */; };
@@ -111,10 +112,11 @@
 
 /* Begin PBXFileReference section */
 		E13877FF2B4343D900054F5C /* CategoriesMenuCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesMenuCollectionView.swift; sourceTree = "<group>"; };
+		E13878022B444AEF00054F5C /* SearchHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeader.swift; sourceTree = "<group>"; };
 		E1EE76A02B3DC58A00BC5858 /* NavigationController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NavigationController + Extension.swift"; path = "MovieHub/Support/Extensions /NavigationController + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		E1EE76A12B3DC58A00BC5858 /* UISearchController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UISearchController + Extension.swift"; path = "MovieHub/Support/Extensions /UISearchController + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		E1EE76A72B3DC5CF00BC5858 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
-		E1EE76A92B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchviewController + UICollectionView.swift"; sourceTree = "<group>"; };
+		E1EE76A92B3DC88D00BC5858 /* SearchViewController + UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController + UICollectionView.swift"; sourceTree = "<group>"; };
 		E1EE76B22B40048700BC5858 /* CategoriesMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesMenuCell.swift; sourceTree = "<group>"; };
 		E1EE76B52B41B61E00BC5858 /* SearchSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSection.swift; sourceTree = "<group>"; };
 		E1EE76B62B41B61E00BC5858 /* SearchItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
@@ -245,8 +247,9 @@
 		E1EE76A42B3DC5B200BC5858 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				E1EE76BE2B41BF6D00BC5858 /* RecentMovieCollectionViewCell.swift */,
 				E1EE76BC2B41BEED00BC5858 /* UpcomingMovieCell.swift */,
+				E1EE76BE2B41BF6D00BC5858 /* RecentMovieCollectionViewCell.swift */,
+				E13878022B444AEF00054F5C /* SearchHeader.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -826,7 +829,7 @@
 				E13877FE2B43438D00054F5C /* CategoriesMenu */,
 				E1EE76A42B3DC5B200BC5858 /* Cell */,
 				EBE76C6E2B3973D10053E522 /* SearchViewController.swift */,
-				E1EE76A92B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift */,
+				E1EE76A92B3DC88D00BC5858 /* SearchViewController + UICollectionView.swift */,
 				E1EE76A72B3DC5CF00BC5858 /* SearchResultsViewController.swift */,
 			);
 			path = View;
@@ -1082,6 +1085,7 @@
 				EBE76C442B39704B0053E522 /* PopularPresenter.swift in Sources */,
 				EBCA67DB2B3C6C22008B59B9 /* CategoriesCell.swift in Sources */,
 				EBE76C2A2B396E370053E522 /* MainRouter.swift in Sources */,
+				E13878032B444AEF00054F5C /* SearchHeader.swift in Sources */,
 				EBE76C6F2B3973D10053E522 /* SearchViewController.swift in Sources */,
 				EB6CB2BF2B3C1AFE00DC30BC /* Extension + UIColor.swift in Sources */,
 				EBE76C6D2B39739E0053E522 /* SearchProtocols.swift in Sources */,
@@ -1090,7 +1094,7 @@
 				EB6CB2C12B3C203A00DC30BC /* Extension + UIFont.swift in Sources */,
 				EBE76C352B396F2D0053E522 /* MovieListPresenter.swift in Sources */,
 				EBE76C402B396FDD0053E522 /* PopularProtocols.swift in Sources */,
-				E1EE76AA2B3DC88D00BC5858 /* SearchviewController + UICollectionView.swift in Sources */,
+				E1EE76AA2B3DC88D00BC5858 /* SearchViewController + UICollectionView.swift in Sources */,
 				EBE76C8D2B3977430053E522 /* ChristmasViewController.swift in Sources */,
 				EB8267932B38B7860024BAAE /* Builder.swift in Sources */,
 				EBE76C462B39707B0053E522 /* PopularInteractor.swift in Sources */,

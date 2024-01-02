@@ -13,10 +13,11 @@ final class SearchViewController: UIViewController {
     //MARK: Properties
     var presenter: SearchPresenterProtocol?
     
+    let sections = SearchSectionData.shared.sectionsArray
+    
     // MARK: - Outlets
     private lazy var categoriesMenuCollectionView: CategoriesMenuCollectionView = {
         let collectionView = CategoriesMenuCollectionView(categories: presenter?.getCategories() ?? [])
-
         return collectionView
     }()
     
@@ -38,9 +39,8 @@ final class SearchViewController: UIViewController {
         setupViews()
         setupLayout()
         registerCollectionsCells()
-        //        setDelegates()
-       
-        
+        setDelegates()
+
         navigationController?.setupNavigationBar()
     }
     
@@ -61,13 +61,12 @@ final class SearchViewController: UIViewController {
     }
     
     // MARK: - Setup
-    //    private func setDelegates() {
-    //        collectionView.delegate = self
-    //        collectionView.dataSource = self
-    //    }
+        private func setDelegates() {
+            collectionView.delegate = self
+            collectionView.dataSource = self
+        }
     
     private func registerCollectionsCells() {
-        
         collectionView.register(
             UpcomingMovieCell.self,
             forCellWithReuseIdentifier: UpcomingMovieCell.identifier
@@ -77,6 +76,8 @@ final class SearchViewController: UIViewController {
             RecentMovieCollectionViewCell.self,
             forCellWithReuseIdentifier: RecentMovieCollectionViewCell.identifier
         )
+        
+        collectionView.register(SearchHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeader.identifier)
     }
     
     private func setupLayout() {
@@ -93,7 +94,6 @@ final class SearchViewController: UIViewController {
             make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
             make.bottom.equalTo(view.snp.bottom)
-            
         }
     }
     
@@ -145,12 +145,10 @@ extension SearchViewController: SearchViewProtocol {
     func updateUI() {
         categoriesMenuCollectionView.reloadData()
     }
-    
-    
 }
 
 //MARK: Constants
-extension SearchViewController{
+extension SearchViewController {
     struct Constants {
         static let topAnchor: CGFloat = 8
         static let horizontalSpacing: CGFloat = 20
