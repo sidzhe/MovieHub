@@ -13,7 +13,7 @@ final class CategoriesMenuCell: UICollectionViewCell {
     static let identifier = "CategoryCell"
     
     //MARK: UI Elements
-    private lazy var categoryLabel: UILabel = {
+    lazy var categoryLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
@@ -22,11 +22,18 @@ final class CategoriesMenuCell: UICollectionViewCell {
         return label
     }()
     
+    override var isSelected: Bool {
+        didSet {
+            backgroundColor = isSelected ? .primarySoft : .clear
+            categoryLabel.textColor = isSelected ? .primaryBlue : .white
+        }
+    }
+    
     //MARK: Inits
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
-        
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -34,6 +41,11 @@ final class CategoriesMenuCell: UICollectionViewCell {
     }
     
     //MARK: - Methods
+    func configure(category: CategoryModel) {
+        categoryLabel.text = category.category.capitalized
+    }
+    
+    //MARK: - Private Methods
     private func setupViews() {
         backgroundColor = .primaryDark
         layer.cornerRadius = 8
@@ -43,12 +55,6 @@ final class CategoriesMenuCell: UICollectionViewCell {
     
     private func setConstraints() {
         categoryLabel.snp.makeConstraints { $0.center.equalToSuperview() }
-    }
-    
-    func configure(category: CategoryModel) {
-        categoryLabel.text = category.category.capitalized
-        backgroundColor = category.isSelected ? .primarySoft : .clear
-        categoryLabel.textColor = category.isSelected ? .primaryBlue : .white
     }
 }
 

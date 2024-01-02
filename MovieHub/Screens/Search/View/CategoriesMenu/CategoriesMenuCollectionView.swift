@@ -11,7 +11,7 @@ final class CategoriesMenuCollectionView: UICollectionView {
     
     private var categories: [CategoryModel]
     
-    private let categoryLayout = UICollectionViewLayout()
+    private let categoryLayout = UICollectionViewFlowLayout()
     
     init(categories: [CategoryModel]) {
         self.categories = categories
@@ -24,8 +24,13 @@ final class CategoriesMenuCollectionView: UICollectionView {
     }
     
     private func configure() {
+        categoryLayout.minimumInteritemSpacing = 5
+        categoryLayout.scrollDirection = .horizontal
+        
         backgroundColor = .none
         translatesAutoresizingMaskIntoConstraints = false
+        bounces = false
+        showsHorizontalScrollIndicator = false
         
         delegate = self
         dataSource = self
@@ -33,6 +38,7 @@ final class CategoriesMenuCollectionView: UICollectionView {
             CategoriesMenuCell.self,
             forCellWithReuseIdentifier: CategoriesMenuCell.identifier
         )
+        selectItem(at: [0,0], animated: true, scrollPosition: [])
     }
 }
 
@@ -44,11 +50,27 @@ extension CategoriesMenuCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoriesMenuCell.identifier, for: indexPath) as? CategoriesMenuCell else { return UICollectionViewCell() }
-        cell.configure(category: categories[indexPath.row])
+        
+        cell.categoryLabel.text = categories[indexPath.item].category
         return cell
     }
 }
 
+// MARK: - UICollectionViewDelegate
 extension CategoriesMenuCollectionView: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension CategoriesMenuCollectionView: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let categoryFont = UIFont.montserratMedium(size: 14)
+        let categoryAttributes = [NSAttributedString.Key.font : categoryFont as Any]
+        let categoryWidth = categories[indexPath.item].category.size(withAttributes: categoryAttributes).width + 20
+        
+        return CGSize(width: categoryWidth, height: collectionView.frame.height)
+    }
 }

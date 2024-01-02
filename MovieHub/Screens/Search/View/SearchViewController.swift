@@ -13,9 +13,12 @@ final class SearchViewController: UIViewController {
     //MARK: Properties
     var presenter: SearchPresenterProtocol?
     
-    private let categoriesMenuCollectionView = CategoriesMenuCollectionView(categories: presenter?.getCategories() ?? [])
-    
     // MARK: - Outlets
+    private lazy var categoriesMenuCollectionView: CategoriesMenuCollectionView = {
+        let collectionView = CategoriesMenuCollectionView(categories: presenter?.getCategories() ?? [])
+
+        return collectionView
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -30,26 +33,21 @@ final class SearchViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .primaryDark
+       
         setupSearchBar()
-        registerCollectionsCells()
-//        setDelegates()
-
+        setupViews()
         setupLayout()
-        setCategories()
+        registerCollectionsCells()
+        //        setDelegates()
+       
+        
         navigationController?.setupNavigationBar()
     }
     
     private func setupViews() {
+        view.backgroundColor = .primaryDark
         view.addSubview(categoriesMenuCollectionView)
         view.addSubview(collectionView)
-    }
-    
-    //MARK: Set Categories
-    private func setCategories() {
-        //        let indexPath = IndexPath(row: 0, section: 2)
-        //        collectionView(collectionView, didSelectItemAt: indexPath)
     }
     
     // MARK: - UISearchController
@@ -63,10 +61,10 @@ final class SearchViewController: UIViewController {
     }
     
     // MARK: - Setup
-//    private func setDelegates() {
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
-//    }
+    //    private func setDelegates() {
+    //        collectionView.delegate = self
+    //        collectionView.dataSource = self
+    //    }
     
     private func registerCollectionsCells() {
         
@@ -80,15 +78,23 @@ final class SearchViewController: UIViewController {
             forCellWithReuseIdentifier: RecentMovieCollectionViewCell.identifier
         )
     }
-
+    
     private func setupLayout() {
         
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor,constant: 144),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
+        categoriesMenuCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(80)
+            make.leading.equalTo(view.snp.leading).offset(24)
+            make.trailing.equalTo(view.snp.trailing)
+            make.height.equalTo(31)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(categoriesMenuCollectionView.snp.bottom).offset(10)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.snp.bottom)
+            
+        }
     }
     
     // MARK: - CompositionalLayout
@@ -134,9 +140,12 @@ extension SearchViewController: UISearchResultsUpdating {
 }
 
 
-
 //MARK: - Extension SearchViewProtocol
 extension SearchViewController: SearchViewProtocol {
+    func updateUI() {
+        categoriesMenuCollectionView.reloadData()
+    }
+    
     
 }
 

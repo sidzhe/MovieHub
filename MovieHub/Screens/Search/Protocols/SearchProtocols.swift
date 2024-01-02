@@ -10,6 +10,7 @@ import Foundation
 /// PRESENTER -> VIEW
 protocol SearchViewProtocol: AnyObject {
     var presenter: SearchPresenterProtocol? { get set }
+    func updateUI()
 }
 
 /// VIEW -> PRESENTER
@@ -33,7 +34,7 @@ protocol SearchInteractorInputProtocol: AnyObject {
 
 /// INTERACTOR -> PRESENTER
 protocol SearchInteractorOutputProtocol: AnyObject {
-    
+    func updateUI()
 }
 
 /// PRESENTER -> ROUTER

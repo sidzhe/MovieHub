@@ -43,5 +43,7 @@ final class SearchPresenter: SearchPresenterProtocol {
 
 //MARK: - Extension SearchInteractorOutputProtocol
 extension SearchPresenter: SearchInteractorOutputProtocol {
-    
+    func updateUI() {
+        view?.updateUI()
+    }
 }

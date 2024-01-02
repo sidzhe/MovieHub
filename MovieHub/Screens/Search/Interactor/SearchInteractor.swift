@@ -8,12 +8,12 @@
 import Foundation
 
 final class SearchInteractor: SearchInteractorInputProtocol {
-    
+
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
     var searchMovie: SearchModel?
-    var searchCategoriesData = MovieGenre.allCases.map { SearchCategoryModel(category: $0.rawValue) }
+    var categoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue) }
     var recentMovie: SearchModel?
     
     //MARK: Init
@@ -23,8 +23,8 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     
     //MARK: Methods
     func selectedCategory(_ index: Int) {
-        searchCategoriesData.enumerated().forEach { searchCategoriesData[$0.offset].isSelected = false }
-        searchCategoriesData[index].isSelected = !searchCategoriesData[index].isSelected
+        categoriesData.enumerated().forEach { categoriesData[$0.offset].isSelected = false }
+        categoriesData[index].isSelected = !categoriesData[index].isSelected
         //  presenter?.updateUI()
     }
     
