@@ -231,7 +231,7 @@ private extension PersonDetailViewController {
 //MARK: - Extension UICollectionViewDelegate
 extension PersonDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let movieId = presenter?.getSearchData()[indexPath.row].id else { return }
+//        guard let movieId = presenter?.getSearchData()[indexPath.row].id else { return }
         presenter?.routeToDetail()
     }
 }
