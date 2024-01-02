@@ -140,5 +140,7 @@ final class PopularCell: UICollectionViewCell {
         nameLabel.text = category.name ?? category.alternativeName
         categoryLabel.text = category.genres?.first?.name
         ratingLabel.text = String(format: "%.1f", category.rating?.kp ?? 0.0)
+        
+        
     }
 }

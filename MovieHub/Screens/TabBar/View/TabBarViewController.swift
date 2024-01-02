@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TabBarViewController: UITabBarController {
+final class TabBarViewController: UITabBarController, UIGestureRecognizerDelegate {
     
     //MARK: Properties
     var presenter: TabBarPresenterProtocol?
@@ -65,6 +65,7 @@ final class TabBarViewController: UITabBarController {
     
     //MARK: - Setup gesture
     private func setupGesture() {
+        tapGesture.delegate = self
         tapGesture.addTarget(self, action: #selector(handleTap))
         stackView.addGestureRecognizer(tapGesture)
     }
