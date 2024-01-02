@@ -34,20 +34,19 @@ final class SearchViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        setupSearchBar()
+        
         setupViews()
-        setupLayout()
+        setConstraints()
         registerCollectionsCells()
         setDelegates()
-
-        navigationController?.setupNavigationBar()
     }
     
     private func setupViews() {
+        navigationController?.setupNavigationBar()
         view.backgroundColor = .primaryDark
-        view.addSubview(categoriesMenuCollectionView)
+        setupSearchBar()
         view.addSubview(collectionView)
+        view.addSubview(categoriesMenuCollectionView)
     }
     
     // MARK: - UISearchController
@@ -61,10 +60,10 @@ final class SearchViewController: UIViewController {
     }
     
     // MARK: - Setup
-        private func setDelegates() {
-            collectionView.delegate = self
-            collectionView.dataSource = self
-        }
+    private func setDelegates() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
     
     private func registerCollectionsCells() {
         collectionView.register(
@@ -78,12 +77,13 @@ final class SearchViewController: UIViewController {
         )
         
         collectionView.register(SearchHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeader.identifier)
+        collectionView.collectionViewLayout = createLayout()
     }
     
-    private func setupLayout() {
+    private func setConstraints() {
         
         categoriesMenuCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(80)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.leading.equalTo(view.snp.leading).offset(24)
             make.trailing.equalTo(view.snp.trailing)
             make.height.equalTo(31)
@@ -119,10 +119,11 @@ extension SearchViewController: SearchViewProtocol {
     }
 }
 
-//MARK: - CompositionalLayout
+//MARK: - Create CompositionalLayout
 extension SearchViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { sectionIndex, _ in
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            guard let self  else { return nil }
             let section = self.sections[sectionIndex]
             switch section {
             case .upcomingMovies:
@@ -133,50 +134,80 @@ extension SearchViewController {
         }
     }
     
+    private func createLayoutSection(
+        group: NSCollectionLayoutGroup,
+        behavior: UICollectionLayoutSectionOrthogonalScrollingBehavior,
+        interGroupSpacing: CGFloat,
+        supplementaryItems: [NSCollectionLayoutBoundarySupplementaryItem],
+        contentInsets: Bool) -> NSCollectionLayoutSection {
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = behavior
+            section.interGroupSpacing = interGroupSpacing
+            section.boundarySupplementaryItems = supplementaryItems
+            section.supplementariesFollowContentInsets = contentInsets
+            return section
+        }
+    
     private func createUpcomingMoviesSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+        let item = NSCollectionLayoutItem(layoutSize: .init(
+            widthDimension: .fractionalHeight(1),
+            heightDimension: .fractionalHeight(1))
         )
         
-        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        layoutItem.contentInsets.trailing = 16
-        layoutItem.contentInsets.bottom = 16
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension:  .fractionalWidth(0.9),
+                heightDimension: .fractionalHeight(0.35)
+            )
+            ,
+            subitems: [item]
+        )
         
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.35),
-            heightDimension: .absolute(35))
-        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
-        
-        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-        layoutSection.interGroupSpacing = 15
-        layoutSection.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 15, trailing: 0)
-        
-        return layoutSection
+        let section = createLayoutSection(
+            group: group,
+            behavior: .groupPaging,
+            interGroupSpacing: 5,
+            supplementaryItems: [supplementaryHeaderItem()],
+            contentInsets: false
+         )
+     //   section.contentInsets = .init(top: 0, leading: -10, bottom: 0, trailing: 0)
+        return section
     }
     
     private func createRecentMoviesSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+        let item = NSCollectionLayoutItem(layoutSize: .init(
+            widthDimension: .fractionalHeight(0.28),
+            heightDimension: .fractionalHeight(1))
         )
         
-        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        layoutItem.contentInsets.trailing = 16
-        layoutItem.contentInsets.bottom = 16
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .init(
+                widthDimension:  .fractionalWidth(1),
+                heightDimension: .fractionalHeight(0.35)
+            )
+            ,
+            subitems: [item]
+        )
         
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.35),
-            heightDimension: .absolute(35))
-        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [layoutItem])
-        
-        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-        layoutSection.interGroupSpacing = 15
-        layoutSection.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 15, trailing: 0)
-        
-        return layoutSection
+        let section = createLayoutSection(
+            group: group,
+            behavior: .groupPaging,
+            interGroupSpacing: 5,
+            supplementaryItems: [supplementaryHeaderItem()],
+            contentInsets: false
+         )
+       // section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: -10)
+        return section
+    }
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        .init(layoutSize: .init(
+            widthDimension: .fractionalWidth(0.9),
+            heightDimension: .estimated(50)),
+              elementKind: UICollectionView.elementKindSectionHeader,
+              alignment: .top
+        )
     }
 }
 

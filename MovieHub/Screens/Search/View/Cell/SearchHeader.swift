@@ -33,7 +33,7 @@ final class SearchHeader: UICollectionReusableView {
         super.init(frame: frame)
         
         setupViews()
-        setupLayout()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -46,7 +46,7 @@ final class SearchHeader: UICollectionReusableView {
         addSubview(seeAllButton)
     }
     
-    private func setupLayout() {
+    private func setConstraints() {
         headerLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalToSuperview()

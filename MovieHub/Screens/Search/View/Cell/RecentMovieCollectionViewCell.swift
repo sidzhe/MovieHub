@@ -66,7 +66,7 @@ final class RecentMovieCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setupViews()
-        setupLayout()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -94,7 +94,7 @@ final class RecentMovieCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(blurView)
     }
     
-    private func setupLayout() {
+    private func setConstraints() {
         
         posterImage.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview()
