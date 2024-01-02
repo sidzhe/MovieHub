@@ -12,20 +12,8 @@ final class PersonDetailViewController: UIViewController {
     
     //MARK: Properties
     var presenter:  PersonDetailPresenterProtocol?
-    
-    //MARK: UI Elements
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = .init(width: view.frame.width / 3, height: 250)
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 16
-        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.backgroundColor = .clear
-        view.dataSource = self
-        view.delegate = self
-        view.register(PopularCell.self, forCellWithReuseIdentifier: "PersonCell")
-        return view
-    }()
+    private var collectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Doc>?
     
     private let avatar: UIImageView = {
         let view = UIImageView()
@@ -38,7 +26,6 @@ final class PersonDetailViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.montserratMedium(size: 16)
         label.textColor = .white
-        label.text = "Мэтью Макконахи"
         return label
     }()
     
@@ -46,7 +33,6 @@ final class PersonDetailViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.montserratMedium(size: 14)
         label.textColor = .white
-        label.text = "Дата рождения\n4 ноября, 1969 * 50 лет"
         label.numberOfLines = 0
         return label
     }()
@@ -55,42 +41,8 @@ final class PersonDetailViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.montserratMedium(size: 14)
         label.textColor = .white
-        label.text = "Карьера\nАктер, продюссер"
         label.numberOfLines = 0
         return label
-    }()
-    
-    private lazy var awardsLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.montserratMedium(size: 14)
-        label.textColor = .white
-        label.text = "Награды\nЗолотой глобус"
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    private lazy var factsLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.montserratMedium(size: 14)
-        label.textColor = .white
-        label.text = "Факты\nПросто красава"
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    private lazy var  moviesLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.montserratMedium(size: 14)
-        label.textColor = .white
-        label.text = "Фильмы"
-        return label
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        let view = UIStackView()
-        view.axis = .vertical
-        view.spacing = 20
-        return view
     }()
     
     //MARK: ViewDidLoad
@@ -98,23 +50,20 @@ final class PersonDetailViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        setTitles()
+        configureCollectionView()
+        createDataSource()
+        applySnapshot()
+        
     }
     
     //MARK: Setup UI
     private func setupViews() {
         view.backgroundColor = .primaryDark
         
-        stackView.addArrangedSubview(awardsLabel)
-        stackView.addArrangedSubview(factsLabel)
-        stackView.addArrangedSubview(moviesLabel)
-        
         view.addSubview(avatar)
         view.addSubview(nameLabel)
         view.addSubview(birdDayLabel)
         view.addSubview(careerLabel)
-        view.addSubview(stackView)
-        view.addSubview(collectionView)
         
         avatar.snp.makeConstraints { make in
             make.width.equalTo(135)
@@ -140,23 +89,23 @@ final class PersonDetailViewController: UIViewController {
             make.left.equalTo(avatar.snp.right).offset(20)
             make.right.equalToSuperview().inset(24)
         }
-        
-        stackView.snp.makeConstraints { make in
-            make.top.equalTo(avatar.snp.bottom).offset(34)
-            make.horizontalEdges.equalToSuperview().inset(22)
-        }
-        
-        collectionView.snp.makeConstraints { make in
-            make.horizontalEdges.equalToSuperview().inset(15)
-            make.top.equalTo(stackView.snp.bottom)
-            make.bottom.equalToSuperview().inset(90)
-        }
     }
     
+    //MARK: Set titles
     private func setTitles() {
-        guard let model = presenter?.getPersonDetailData() else { return }
-      
+        guard let presenter = presenter, let model = presenter.getPersonDetailData()?.docs?.first else { return }
         
+        let birthDay = presenter.dateFormatter(model.birthday)
+        let age = presenter.formatAgeString(age: model.age)
+        let career = presenter.convertModel(model: model.profession)
+        
+        Task {
+            nameLabel.text = model.name
+            birdDayLabel.text = "Дата рождения\n\(birthDay)\n• \(age)\n• \(model.birthPlace?.last?.value ?? "")"
+            careerLabel.text = "Карьера\n\(career)"
+            guard let url = URL(string: model.photo ?? "") else { return }
+            avatar.kf.setImage(with: url)
+        }
     }
     
     //MARK: - Display network error
@@ -168,25 +117,122 @@ final class PersonDetailViewController: UIViewController {
     }
 }
 
-
-//MARK: - Extension UICollectionViewDataSource
-extension PersonDetailViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.getSearchData()?.count ?? 0
+//MARK: - Extension PersonDetailViewController
+private extension PersonDetailViewController {
+    
+    //MARK: Create Laouyt
+    func createLayout() -> UICollectionViewLayout {
+        let sectionProvider = {(sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            let section: NSCollectionLayoutSection
+            
+            if sectionIndex == 0 {
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.65))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = 15
+                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.contentInsets = .init(top: 8, leading: 16, bottom: 16, trailing: 16)
+                
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1000))
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: headerSize,
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top)
+                sectionHeader.pinToVisibleBounds = false
+                sectionHeader.zIndex = 2
+                section.boundarySupplementaryItems = [sectionHeader]
+                
+            } else {
+                fatalError("Unkown section")
+            }
+            
+            return section
+        }
+        
+        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PersonCell", for: indexPath) as? PopularCell
-        guard let model = presenter?.getSearchData() else { return UICollectionViewCell() }
-        cell?.configure(category: model[indexPath.row])
-        return cell ?? UICollectionViewCell()
+    //MARK: Setup collection view
+    func configureCollectionView() {
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.backgroundColor = .clear
+        collectionView.delegate = self
+        view.addSubview(collectionView)
+        
+        collectionView?.snp.makeConstraints({ make in
+            make.top.equalTo(avatar.snp.bottom).offset(32)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview().inset(90)
+        })
+    }
+    
+    //MARK: Regisration
+    func registrationMovies() -> UICollectionView.CellRegistration<PopularCell, Doc> {
+        return UICollectionView.CellRegistration<PopularCell, Doc> { [weak self] cell, indexPath, itemIdentifier in
+            guard let model = self?.presenter?.getSearchData() else { return }
+            cell.configure(category: model[indexPath.row])
+        }
+    }
+    
+    func registrationHeader() -> UICollectionView.SupplementaryRegistration<PersonHeader> {
+        return UICollectionView.SupplementaryRegistration<PersonHeader> (elementKind: UICollectionView.elementKindSectionHeader)
+        { [weak self] header, _, indexPath in
+            guard let model = self?.presenter?.getPersonDetailData()?.docs else { return }
+            header.configure(model[0])
+        }
+    }
+    
+    //MARK: Create dataSource
+    func createDataSource() {
+        let registrationMovies = registrationMovies()
+        let registrationHeader = registrationHeader()
+        
+        dataSource = UICollectionViewDiffableDataSource<Int, Doc>(collectionView: collectionView) {
+            (collectionView, indexPath, item) -> UICollectionViewCell? in
+            
+            switch indexPath.section {
+            case 0:
+                return collectionView.dequeueConfiguredReusableCell(using: registrationMovies, for: indexPath, item: item)
+            default:
+                return nil
+            }
+        }
+        
+        dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
+            if kind == UICollectionView.elementKindSectionHeader {
+                
+                switch indexPath.section {
+                case 0:
+                    return collectionView.dequeueConfiguredReusableSupplementary(using: registrationHeader, for: indexPath)
+                default:
+                    return nil
+                }
+            }
+            return nil
+        }
+    }
+    
+    //MARK: applySnapshot
+    func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Doc>()
+        guard let presenter = presenter else { return }
+        snapshot.appendSections([.min])
+        guard let item = presenter.getSearchData() else { return }
+        snapshot.appendItems(item, toSection: .min)
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
- 
+
+
 //MARK: - Extension UICollectionViewDelegate
 extension PersonDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        guard let movieId = presenter?.getSearchData()[indexPath.row].id else { return }
+        presenter?.routeToDetail()
     }
 }
 
@@ -197,7 +243,7 @@ extension PersonDetailViewController: PersonDetailViewProtocol {
     func updateUI() {
         Task {
             setTitles()
-            collectionView.reloadData()
+            applySnapshot()
         }
     }
     

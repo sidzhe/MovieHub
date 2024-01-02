@@ -147,4 +147,19 @@ final class Builder {
         interactor.presenter = presenter
         return view
     }
+    
+    /// PersonDetailVC
+    static func createPersonDetail(personId: [Int]) -> UIViewController {
+        let view = PersonDetailViewController()
+        let presenter = PersonDetailPresenter()
+        let networkService = NetworkService()
+        let interactor = PersonDetailInteractor(networkService: networkService, personId: personId)
+        let router = PersonDetailRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
 }

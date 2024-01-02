@@ -16,7 +16,7 @@ protocol NetworkServiceProtool: AnyObject {
     func getSlugCollection<T: Decodable>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func getGenreCollection<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
     func getRateCollection<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
-    func getMovieWithPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void)
+    func getDetailPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void)
 }
 
 
@@ -83,9 +83,17 @@ final class NetworkService: NetworkServiceProtool {
     }
     
     //MARK: Movie related person
-    func getMovieWithPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void) {
+    func getDetailPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void) {
         Task {
             let result: Result<T, RequestError> = await movieService.movieFilterPerson(actorsId: personId)
+            completion(result)
+        }
+    }
+    
+    //MARK: Movie with person
+    func getMovieWithPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void) {
+        Task {
+            let result: Result<T, RequestError> = await movieService.movieWirhPerosn(actorsId: personId)
             completion(result)
         }
     }
