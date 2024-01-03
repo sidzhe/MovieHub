@@ -12,21 +12,23 @@ final class PersonDetailInteractor: PersonDetailInteractorInputProtocol {
     //MARK: - Properties
     weak var presenter: PersonDetailInteractorOutputProtocol?
     private let networkService: NetworkService
-    private var personId: [Int]
+    private var personId: Int
     var searchData: SearchModel?
     var personDetailData: PersonDetalModel?
+    var awardsData: AwardsModel?
     
     //MARK: Init
-    init(networkService: NetworkService, personId: [Int]) {
+    init(networkService: NetworkService, personId: Int) {
         self.networkService = networkService
         self.personId = personId
+        awardsRequest()
         personRequest()
         movieWithPersonRequest()
     }
     
     //MARK: Person request
     func personRequest() {
-        networkService.getDetailPerson(personId: personId) { [weak self] (result: (Result<PersonDetalModel, RequestError>)) in
+        networkService.getDetailPerson(personId: [personId]) { [weak self] (result: (Result<PersonDetalModel, RequestError>)) in
             switch result {
                 
             case .success(let person):
@@ -45,6 +47,20 @@ final class PersonDetailInteractor: PersonDetailInteractorInputProtocol {
                 
             case .success(let movies):
                 self?.searchData = movies
+                self?.presenter?.updateUI()
+            case .failure(let error):
+                self?.presenter?.getRequestError(error)
+            }
+        }
+    }
+    
+    //MARK: Awards request
+    func awardsRequest() {
+        networkService.getAwardsPerson(personId: personId) { [weak self] (result: (Result<AwardsModel, RequestError>)) in
+            switch result {
+                
+            case .success(let awards):
+                self?.awardsData = awards
                 self?.presenter?.updateUI()
             case .failure(let error):
                 self?.presenter?.getRequestError(error)

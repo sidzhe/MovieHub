@@ -17,7 +17,9 @@ protocol MovieServiceProtool {
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterPerson<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError>
-    func movieWirhPerosn<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError>
+    func movieWirhPerosn<T: Decodable>(actorsId: Int) async -> Result<T, RequestError>
+    func awardsPerson<T: Decodable>(actorsId: Int) async -> Result<T, RequestError>
+    func movieUpcomingGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
 }
 
 
@@ -145,18 +147,48 @@ struct MovieService: MovieServiceProtool, MovieClient {
     }
     
     //MARK: Movie with person
-    func movieWirhPerosn<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError> {
+    func movieWirhPerosn<T: Decodable>(actorsId: Int) async -> Result<T, RequestError> {
         let endpoint = MovieEndpoints.movieWithPerson
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
         var items = [URLQueryItem(name: "page", value: "1"),
-                     URLQueryItem(name: "limit", value: "10")]
-        let anotherItems = actorsId.map { URLQueryItem(name: "persons.id", value: String($0))}
-        items.append(contentsOf: anotherItems)
+                     URLQueryItem(name: "limit", value: "10"),
+                     URLQueryItem(name: "persons.id", value: actorsId.description)]
         urlComponents.queryItems = items
         
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.movieWithPerson, responseModel: T.self)
+    }
+    
+    //MARK: Awards person
+    func awardsPerson<T: Decodable>(actorsId: Int) async -> Result<T, RequestError> {
+        let endpoint = MovieEndpoints.awards
+        var urlComponents = URLComponents()
+        urlComponents.scheme = endpoint.scheme
+        urlComponents.host = endpoint.host
+        urlComponents.path = endpoint.path
+        var items = [URLQueryItem(name: "page", value: "1"),
+                     URLQueryItem(name: "limit", value: "10"),
+                     URLQueryItem(name: "personId", value: actorsId.description)]
+        urlComponents.queryItems = items
+        
+        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.awards, responseModel: T.self)
+    }
+    
+    //MARK: upcoming with gesres
+    func movieUpcomingGenres<T: Decodable>(genre: String) async -> Result<T, RequestError> {
+        let endpoint = MovieEndpoints.upcoming
+        var urlComponents = URLComponents()
+        urlComponents.scheme = endpoint.scheme
+        urlComponents.host = endpoint.host
+        urlComponents.path = endpoint.path
+        let items = [URLQueryItem(name: "page", value: "1"),
+                     URLQueryItem(name: "limit", value: "10"),
+                     URLQueryItem(name: "selectFields", value: "sequelsAndPrequels"),
+                     URLQueryItem(name: "notNullFields", value: "sequelsAndPrequels.id"),
+                     URLQueryItem(name: "genres.name", value: genre)]
+        urlComponents.queryItems = items
+        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.upcoming, responseModel: T.self)
     }
 }

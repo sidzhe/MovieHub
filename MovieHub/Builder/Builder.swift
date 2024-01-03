@@ -149,7 +149,7 @@ final class Builder {
     }
     
     /// PersonDetailVC
-    static func createPersonDetail(personId: [Int]) -> UIViewController {
+    static func createPersonDetail(personId: Int) -> UIViewController {
         let view = PersonDetailViewController()
         let presenter = PersonDetailPresenter()
         let networkService = NetworkService()

@@ -25,6 +25,11 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
         return model
     }
     
+    func getAwardsData() -> [DocAwards]? {
+        guard let model = interactor?.awardsData?.docs.filter({ $0.winning == true }) else { return nil }
+        return model
+    }
+    
     //MARK: Conver methods
     func convertModel(model: [BirthPlace]?) -> String {
         model?.compactMap { "• " + ($0.value ?? "") }.joined(separator: "\n") ?? ""
@@ -41,7 +46,7 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
             let outputDateFormatter = DateFormatter()
             outputDateFormatter.dateFormat = "d MMMM yyyy"
             outputDateFormatter.locale = Locale(identifier: "ru_RU")
-            resultString = "• " + outputDateFormatter.string(from: date)
+            resultString = " • " + outputDateFormatter.string(from: date)
         }
         
         return resultString

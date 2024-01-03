@@ -64,7 +64,7 @@ struct Name: Hashable, Decodable {
 // MARK: - Rating
 struct Rating: Hashable, Decodable {
     let kp, imdb, filmCritics, russianFilmCritics: Double?
-    let await: Int?
+    let await: Double?
 }
 
 // MARK: - ReleaseYear

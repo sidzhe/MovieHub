@@ -16,6 +16,8 @@ enum MovieEndpoints {
     case movieFilter
     case personFilter
     case movieWithPerson
+    case awards
+    case upcoming
 }
 
 
@@ -33,6 +35,8 @@ extension MovieEndpoints: Endpoint {
         case .movieFilter:      return "/v1.4/movie"
         case .personFilter:     return "/v1.4/person"
         case .movieWithPerson:  return "/v1.4/movie"
+        case .awards:           return "/v1.4/person/awards"
+        case .upcoming:         return "/v1.4/movie"
         }
     }
     
@@ -47,6 +51,8 @@ extension MovieEndpoints: Endpoint {
         case .movieFilter:      return .none
         case .personFilter:     return .none
         case .movieWithPerson:  return .none
+        case .awards:           return .none
+        case .upcoming:         return .none
         }
     }
     
@@ -63,6 +69,8 @@ extension MovieEndpoints: Endpoint {
         case .movieFilter:      return .none
         case .personFilter:     return .none
         case .movieWithPerson:  return .none
+        case .awards:           return .none
+        case .upcoming:         return .none
         }
     }
 }

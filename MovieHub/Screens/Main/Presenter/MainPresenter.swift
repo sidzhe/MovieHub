@@ -36,7 +36,7 @@ final class MainPresenter: MainPresenterProtocol {
     
     func getMostPopular() -> [Doc] {
         guard let model = interactor?.mostPopular?.docs else { return [Doc]() }
-        return model
+        return model 
     }
     
     func getSearchData() -> [Doc] {
