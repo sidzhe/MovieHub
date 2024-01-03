@@ -28,13 +28,11 @@ extension SearchViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch sections[indexPath.section] {
-          
+            
         case .upcomingMovies:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCell.identifier, for: indexPath) as? UpcomingMovieCell else { return UICollectionViewCell() }
-            if let category = category {
-                print(category)
-                presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: category)!)
-             }
+            
+            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: category) ?? .all)
             
             guard let model = self.presenter?.getUpcomingMovie() else { return cell }
             cell.configure(with: model[indexPath.row])
@@ -69,6 +67,5 @@ extension SearchViewController: UICollectionViewDataSource {
 // MARK: -  UICollectionViewDelegate,
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
     }
 }

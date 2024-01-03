@@ -12,7 +12,7 @@ final class SearchViewController: UIViewController {
     
     //MARK: Properties
     var presenter: SearchPresenterProtocol?
-    var category: String?
+    var category = "все"
     let sections = SearchSectionData.shared.sectionsArray
     
     // MARK: - Outlets

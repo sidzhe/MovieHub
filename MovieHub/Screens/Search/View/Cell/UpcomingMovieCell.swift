@@ -20,10 +20,8 @@ final class UpcomingMovieCell: UICollectionViewCell {
     
     lazy var movieContentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .label
+        view.backgroundColor = .primaryDark
         view.layer.cornerRadius = 8
-        view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 1
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
