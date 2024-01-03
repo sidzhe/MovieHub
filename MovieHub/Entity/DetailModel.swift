@@ -27,11 +27,11 @@ struct DetailModel: Decodable {
     let persons: [Person]?
     let budget: Budget?
     let fees: Fees?
-    let sequelsAndPrequels: [SequelsAndPrequel]?
+    let sequelsAndPrequels: [SequelsPrequel]?
     let watchability: Watchability?
     let top10, top250: Int?
     let facts: [Fact]?
-    let similarMovies: [SequelsAndPrequel]?
+    let similarMovies: [SequelsPrequel]?
     let createdAt, updatedAt: String?
     let videos: Videos?
     let premiere: Premiere?
@@ -87,9 +87,9 @@ struct Premiere: Decodable {
 }
 
 // MARK: - SequelsAndPrequel
-struct SequelsAndPrequel: Decodable {
-    let id: Int
-    let name, alternativeName: String
+struct SequelsPrequel: Hashable, Decodable {
+    let id: Int?
+    let name, alternativeName: String?
     let enName: String?
     let type: String
     let poster: Backdrop
@@ -98,24 +98,24 @@ struct SequelsAndPrequel: Decodable {
 }
 
 // MARK: - Videos
-struct Videos: Decodable {
-    let trailers: [Trailer]
+struct Videos: Hashable, Decodable  {
+    let trailers: [Trailer]?
 }
 
 // MARK: - Trailer
-struct Trailer: Decodable {
-    let url: String
-    let name, site, type: String
+struct Trailer: Hashable, Decodable {
+    let url: String?
+    let name, site, type: String?
 }
 
 // MARK: - Watchability
-struct Watchability: Decodable {
-    let items: [Item]
+struct Watchability: Hashable, Decodable {
+    let items: [Item]?
 }
 
 // MARK: - Item
-struct Item: Decodable {
-    let name: String
-    let logo: Logo
-    let url: String
+struct Item: Hashable, Decodable {
+    let name: String?
+    let logo: Logo?
+    let url: String?
 }

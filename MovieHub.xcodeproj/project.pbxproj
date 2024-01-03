@@ -64,6 +64,8 @@
 		EBCA67DB2B3C6C22008B59B9 /* CategoriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA67DA2B3C6C22008B59B9 /* CategoriesCell.swift */; };
 		EBCA67DD2B3C74B7008B59B9 /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCA67DC2B3C74B7008B59B9 /* PopularCell.swift */; };
 		EBDD1FCA2B3D700300C1712A /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD1FC92B3D700300C1712A /* CategoryModel.swift */; };
+		EBDFCFAE2B455D3A00B1FE5E /* AwardsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDFCFAD2B455D3A00B1FE5E /* AwardsModel.swift */; };
+		EBDFCFB02B457AD000B1FE5E /* UpcomingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDFCFAF2B457AD000B1FE5E /* UpcomingModel.swift */; };
 		EBE76C222B396D550053E522 /* MainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE76C212B396D550053E522 /* MainProtocols.swift */; };
 		EBE76C242B396DA50053E522 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE76C232B396DA50053E522 /* MainViewController.swift */; };
 		EBE76C262B396DD90053E522 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE76C252B396DD90053E522 /* MainPresenter.swift */; };
@@ -167,6 +169,8 @@
 		EBCA67DA2B3C6C22008B59B9 /* CategoriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCell.swift; sourceTree = "<group>"; };
 		EBCA67DC2B3C74B7008B59B9 /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
 		EBDD1FC92B3D700300C1712A /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		EBDFCFAD2B455D3A00B1FE5E /* AwardsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardsModel.swift; sourceTree = "<group>"; };
+		EBDFCFAF2B457AD000B1FE5E /* UpcomingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingModel.swift; sourceTree = "<group>"; };
 		EBE76C212B396D550053E522 /* MainProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocols.swift; sourceTree = "<group>"; };
 		EBE76C232B396DA50053E522 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EBE76C252B396DD90053E522 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
@@ -528,6 +532,7 @@
 		EB8267812B38A4AD0024BAAE /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				EBDFCFAD2B455D3A00B1FE5E /* AwardsModel.swift */,
 				EB369B272B3B15D300BB4275 /* MovieGenre.swift */,
 				EB369B182B39A2E500BB4275 /* SearchModel.swift */,
 				EB369B1D2B39CA1700BB4275 /* PersonModel.swift */,
@@ -535,6 +540,7 @@
 				EB369B1F2B39D00F00BB4275 /* DetailModel.swift */,
 				EB369B232B3AC51D00BB4275 /* ColletionModel.swift */,
 				EB369B252B3B085800BB4275 /* CollectionDetailModel.swift */,
+				EBDFCFAF2B457AD000B1FE5E /* UpcomingModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -1055,6 +1061,7 @@
 				EBE76C712B3974080053E522 /* SearchPresenter.swift in Sources */,
 				EB369B202B39D00F00BB4275 /* DetailModel.swift in Sources */,
 				EBE76C622B3972DB0053E522 /* WishlistPresenter.swift in Sources */,
+				EBDFCFB02B457AD000B1FE5E /* UpcomingModel.swift in Sources */,
 				EBE76C512B3971CA0053E522 /* DetailViewController.swift in Sources */,
 				EBE76C552B3972300053E522 /* DetailInteractor.swift in Sources */,
 				E1EE76B92B41B61E00BC5858 /* SearchItem.swift in Sources */,
@@ -1130,6 +1137,7 @@
 				EBE76C872B3976A30053E522 /* ProfilePresenter.swift in Sources */,
 				EBE76C242B396DA50053E522 /* MainViewController.swift in Sources */,
 				EBE76C752B39746A0053E522 /* SearchRouter.swift in Sources */,
+				EBDFCFAE2B455D3A00B1FE5E /* AwardsModel.swift in Sources */,
 				EBE76C912B3977930053E522 /* ChristmasInteractor.swift in Sources */,
 				EBE76C282B396E140053E522 /* MainInteractor.swift in Sources */,
 				EB03F5A92B440CAC004BAE47 /* PersonDetailProtocols.swift in Sources */,

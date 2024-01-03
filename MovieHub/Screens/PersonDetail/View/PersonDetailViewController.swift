@@ -99,10 +99,19 @@ final class PersonDetailViewController: UIViewController {
         let age = presenter.formatAgeString(age: model.age)
         let career = presenter.convertModel(model: model.profession)
         
+        nameLabel.text = model.name
+        
+        let birdDayLabelText = "Дата рождения\n\(birthDay)\n • \(age)\n • \(model.birthPlace?.last?.value ?? "")"
+        let attributedDirdDay = NSMutableAttributedString(string: birdDayLabelText)
+        attributedDirdDay.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 13))
+        birdDayLabel.attributedText = attributedDirdDay
+        
+        let careerLabelText = "Карьера\n\(career)"
+        let attributedString = NSMutableAttributedString(string: careerLabelText)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 7))
+        careerLabel.attributedText = attributedString
+        
         Task {
-            nameLabel.text = model.name
-            birdDayLabel.text = "Дата рождения\n\(birthDay)\n• \(age)\n• \(model.birthPlace?.last?.value ?? "")"
-            careerLabel.text = "Карьера\n\(career)"
             guard let url = URL(string: model.photo ?? "") else { return }
             avatar.kf.setImage(with: url)
         }
@@ -160,6 +169,7 @@ private extension PersonDetailViewController {
     func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         view.addSubview(collectionView)
         
@@ -181,7 +191,9 @@ private extension PersonDetailViewController {
     func registrationHeader() -> UICollectionView.SupplementaryRegistration<PersonHeader> {
         return UICollectionView.SupplementaryRegistration<PersonHeader> (elementKind: UICollectionView.elementKindSectionHeader)
         { [weak self] header, _, indexPath in
-            guard let model = self?.presenter?.getPersonDetailData()?.docs else { return }
+            guard let model = self?.presenter?.getPersonDetailData()?.docs,
+                  let awardsModel = self?.presenter?.getAwardsData() else { return }
+            header.configureAwards(awardsModel[0])
             header.configure(model[0])
         }
     }
@@ -231,7 +243,7 @@ private extension PersonDetailViewController {
 //MARK: - Extension UICollectionViewDelegate
 extension PersonDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let movieId = presenter?.getSearchData()[indexPath.row].id else { return }
+        //        guard let movieId = presenter?.getSearchData()[indexPath.row].id else { return }
         presenter?.routeToDetail()
     }
 }

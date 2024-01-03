@@ -22,7 +22,7 @@ final class PersonHeader: UICollectionReusableView {
     private lazy var  moviesLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.montserratMedium(size: 14)
-        label.textColor = .white
+        label.textColor = .primaryBlue
         label.text = "Фильмы"
         return label
     }()
@@ -65,13 +65,26 @@ final class PersonHeader: UICollectionReusableView {
 
     //MARK: Convert
     private func convertModel(model: [BirthPlace]?) -> String {
-        model?.compactMap { "• " + ($0.value ?? "") }.joined(separator: "\n") ?? ""
+        model?.compactMap { " • " + ($0.value ?? "") }
+            .joined(separator: "\n") ?? ""
     }
     
     //MARK: Configure
     func configure(_ model: PersonDoc) {
         let facts = convertModel(model: model.facts)
-        awardsLabel.text = "Награды\nЗолотой глобус"
-        factsLabel.text = "Факты\n\(facts)"
+        let fullText = "Факты\n\n\(facts)"
+        let attributedString = NSMutableAttributedString(string: fullText)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 5))
+        factsLabel.attributedText = attributedString
+    }
+    
+    func configureAwards(_ model: DocAwards) {
+        let awards = model.nomination?.award?.title ?? ""
+        let awardNomination = model.nomination?.title ?? ""
+        let awardMovie = model.movie?.name ?? ""
+        let fullText = "Награды\n\n • \(awards) - \(awardNomination.lowercased()) “\(awardMovie)”"
+        let attributedString = NSMutableAttributedString(string: fullText)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 7))
+        awardsLabel.attributedText = attributedString
     }
 }
