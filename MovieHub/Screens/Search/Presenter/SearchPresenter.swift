@@ -19,7 +19,7 @@ final class SearchPresenter: SearchPresenterProtocol {
     //MARK: Select category
     func selectedCategory(_ index: Int, genre: MovieGenre) {
         interactor?.selectedCategory(index)
-       // interactor?.requestMostRating(genre: genre)
+        interactor?.requestUpcomingMovie(category: genre)
     }
     
     //MARK: - Get models

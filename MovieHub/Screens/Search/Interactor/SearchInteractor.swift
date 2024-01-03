@@ -47,7 +47,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     }
     
     func requestUpcomingMovie(category: MovieGenre) {
-        networkService.getGenreCollection(genre: category) { [weak self] (result: (Result<[Doc], RequestError>)) in
+        networkService.getmovieUpcomingGenres(genre: category) { [weak self] (result: (Result<[Doc], RequestError>)) in
             guard let self else { return }
             switch result {
                 

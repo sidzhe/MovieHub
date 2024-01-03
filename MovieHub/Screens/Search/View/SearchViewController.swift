@@ -12,11 +12,11 @@ final class SearchViewController: UIViewController {
     
     //MARK: Properties
     var presenter: SearchPresenterProtocol?
-    
+    var category: String?
     let sections = SearchSectionData.shared.sectionsArray
     
     // MARK: - Outlets
-    private lazy var categoriesMenuCollectionView: CategoriesMenuCollectionView = {
+    lazy var categoriesMenuCollectionView: CategoriesMenuCollectionView = {
         let collectionView = CategoriesMenuCollectionView(categories: presenter?.getCategories() ?? [])
         return collectionView
     }()
@@ -40,9 +40,10 @@ final class SearchViewController: UIViewController {
         registerCollectionsCells()
         setDelegates()
         
-        categoriesMenuCollectionView.callBack = {
-            print($0)
+        categoriesMenuCollectionView.callBack = { [weak self] selectedCategory in
+            self?.category = selectedCategory
         }
+     
     }
     
     private func setupViews() {
@@ -76,8 +77,8 @@ final class SearchViewController: UIViewController {
         )
         
         collectionView.register(
-            RecentMovieCollectionViewCell.self,
-            forCellWithReuseIdentifier: RecentMovieCollectionViewCell.identifier
+            PopularCell.self,
+            forCellWithReuseIdentifier: PopularCell.identifier
         )
         
         collectionView.register(SearchHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeader.identifier)

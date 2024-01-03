@@ -31,11 +31,17 @@ extension SearchViewController: UICollectionViewDataSource {
           
         case .upcomingMovies:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCell.identifier, for: indexPath) as? UpcomingMovieCell else { return UICollectionViewCell() }
+            if let category = category {
+                print(category)
+                presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: category)!)
+             }
             
+            guard let model = self.presenter?.getUpcomingMovie() else { return cell }
+            cell.configure(with: model[indexPath.row])
             return cell
             
         case .recentMovies:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentMovieCollectionViewCell.identifier, for: indexPath) as? RecentMovieCollectionViewCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.identifier, for: indexPath) as? PopularCell else { return UICollectionViewCell() }
             
             guard let model = self.presenter?.getSearchData() else { return cell }
             cell.configure(category: model[indexPath.row])
