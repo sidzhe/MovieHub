@@ -39,11 +39,15 @@ final class SearchViewController: UIViewController {
         setConstraints()
         registerCollectionsCells()
         setDelegates()
+        
+        categoriesMenuCollectionView.callBack = {
+            print($0)
+        }
     }
     
     private func setupViews() {
-        navigationController?.setupNavigationBar()
         view.backgroundColor = .primaryDark
+        navigationController?.setupNavigationBar()
         setupSearchBar()
         view.addSubview(collectionView)
         view.addSubview(categoriesMenuCollectionView)
@@ -84,7 +88,7 @@ final class SearchViewController: UIViewController {
         
         categoriesMenuCollectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            make.leading.equalTo(view.snp.leading).offset(24)
+            make.leading.equalTo(view.snp.leading).offset(14)
             make.trailing.equalTo(view.snp.trailing)
             make.height.equalTo(31)
         }
@@ -159,8 +163,7 @@ extension SearchViewController {
             layoutSize: .init(
                 widthDimension:  .fractionalWidth(0.9),
                 heightDimension: .fractionalHeight(0.35)
-            )
-            ,
+            ),
             subitems: [item]
         )
         
@@ -185,8 +188,7 @@ extension SearchViewController {
             layoutSize: .init(
                 widthDimension:  .fractionalWidth(1),
                 heightDimension: .fractionalHeight(0.35)
-            )
-            ,
+            ),
             subitems: [item]
         )
         

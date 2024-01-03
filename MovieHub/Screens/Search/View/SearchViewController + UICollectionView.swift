@@ -18,9 +18,9 @@ extension SearchViewController: UICollectionViewDataSource {
             switch currentSection {
                 
             case .upcomingMovies:
-                return presenter?.getSearchData().count ?? 0
+                return presenter?.getUpcomingMovie().count ?? 0
             case .recentMovies:
-                return presenter?.getSearchData().count ?? 0
+                return presenter?.getUpcomingMovie().count ?? 0
             }
         }
         return 0
@@ -63,5 +63,6 @@ extension SearchViewController: UICollectionViewDataSource {
 // MARK: -  UICollectionViewDelegate,
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 final class SearchPresenter: SearchPresenterProtocol {
+    
     //MARK: Properties
     weak var view: SearchViewProtocol?
     var interactor: SearchInteractorInputProtocol?
@@ -26,6 +27,11 @@ final class SearchPresenter: SearchPresenterProtocol {
     func getCategories() -> [CategoryModel] {
         guard let interactor = interactor else { return [CategoryModel]() }
         return interactor.categoriesData
+    }
+    
+    func getUpcomingMovie() -> [Doc] {
+        guard let model = interactor?.upcomingMovie else { return [Doc]() }
+        return model
     }
     
     func getRecentMovie() -> [Doc] {

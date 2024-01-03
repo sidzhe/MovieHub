@@ -12,9 +12,12 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
-    var searchMovie: SearchModel?
     var categoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue) }
-    var recentMovie: SearchModel?
+    
+    var searchMovie: SearchModel?
+    var upcomingMovie: [Doc] = []
+    var recentMovie: [Doc] = []
+
     
     //MARK: Init
     init(networkService: NetworkServiceProtool) {
@@ -36,6 +39,20 @@ final class SearchInteractor: SearchInteractorInputProtocol {
                 
             case .success(let search):
                 self.searchMovie = search
+                self.presenter?.updateUI()
+            case .failure(let error):
+                print(error.customMessage)
+            }
+        }
+    }
+    
+    func requestUpcomingMovie(category: MovieGenre) {
+        networkService.getGenreCollection(genre: category) { [weak self] (result: (Result<[Doc], RequestError>)) in
+            guard let self else { return }
+            switch result {
+                
+            case .success(let upcomingMovie):
+                self.upcomingMovie = upcomingMovie
                 self.presenter?.updateUI()
             case .failure(let error):
                 print(error.customMessage)
