@@ -66,8 +66,8 @@ final class PersonDetailViewController: UIViewController {
         view.addSubview(careerLabel)
         
         avatar.snp.makeConstraints { make in
-            make.width.equalTo(135)
-            make.height.equalTo(213)
+            make.width.equalTo(150)
+            make.height.equalTo(220)
             make.left.equalToSuperview().inset(24)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
@@ -146,7 +146,7 @@ private extension PersonDetailViewController {
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
                 section.contentInsets = .init(top: 8, leading: 16, bottom: 16, trailing: 16)
                 
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(1000))
+                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(500))
                 let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: headerSize,
                     elementKind: UICollectionView.elementKindSectionHeader,
@@ -193,8 +193,8 @@ private extension PersonDetailViewController {
         { [weak self] header, _, indexPath in
             guard let model = self?.presenter?.getPersonDetailData()?.docs,
                   let awardsModel = self?.presenter?.getAwardsData() else { return }
-            header.configureAwards(awardsModel[0])
-            header.configure(model[0])
+            header.configureAwards(awardsModel.first)
+            header.configure(model.first)
         }
     }
     
@@ -243,7 +243,6 @@ private extension PersonDetailViewController {
 //MARK: - Extension UICollectionViewDelegate
 extension PersonDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        guard let movieId = presenter?.getSearchData()[indexPath.row].id else { return }
         presenter?.routeToDetail()
     }
 }

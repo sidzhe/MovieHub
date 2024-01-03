@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
 //        window?.rootViewController = Builder.createTabBar()
-        window?.rootViewController = Builder.createPersonDetail(personId: 718)
+        window?.rootViewController = UINavigationController(rootViewController: Builder.createPersonDetail(personId: 718))
         window?.makeKeyAndVisible()
     }
 }

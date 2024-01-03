@@ -8,7 +8,7 @@
 import Foundation
 
 final class PersonDetailPresenter: PersonDetailPresenterProtocol {
-
+    
     //MARK: Properties
     weak var view: PersonDetailViewProtocol?
     var interactor: PersonDetailInteractorInputProtocol?

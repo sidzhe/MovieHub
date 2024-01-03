@@ -62,29 +62,57 @@ final class PersonHeader: UICollectionReusableView {
         addSubview(stackView)
         stackView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
-
+    
     //MARK: Convert
     private func convertModel(model: [BirthPlace]?) -> String {
-        model?.compactMap { " • " + ($0.value ?? "") }
-            .joined(separator: "\n") ?? ""
+        let convertModel = model?.compactMap {
+            " • " + (removingHTMLEscapes(text: $0.value) ?? "") + "\n"
+        }
+        
+        let output = convertModel?.joined(separator: "\n") ?? ""
+        return output
+    }
+    
+    //MARK: Remove HTML elements
+    func removingHTMLEscapes(text: String?) -> String? {
+        guard let data = text?.data(using: .utf8) else { return nil }
+        
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ]
+        
+        do {
+            let attributedString = try NSAttributedString(data: data, options: options, documentAttributes: nil)
+            return attributedString.string
+        } catch {
+            print("Ошибка при удалении HTML-тегов: \(error)")
+            return nil
+        }
     }
     
     //MARK: Configure
-    func configure(_ model: PersonDoc) {
-        let facts = convertModel(model: model.facts)
-        let fullText = "Факты\n\n\(facts)"
-        let attributedString = NSMutableAttributedString(string: fullText)
-        attributedString.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 5))
-        factsLabel.attributedText = attributedString
+    func configure(_ model: PersonDoc?) {
+        Task {
+            guard let model = model else { return }
+            let facts = convertModel(model: model.facts)
+            let fullText = "Факты\n\n\(facts)"
+            let attributedString = NSMutableAttributedString(string: fullText)
+            attributedString.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 5))
+            factsLabel.attributedText = attributedString
+        }
     }
     
-    func configureAwards(_ model: DocAwards) {
-        let awards = model.nomination?.award?.title ?? ""
-        let awardNomination = model.nomination?.title ?? ""
-        let awardMovie = model.movie?.name ?? ""
-        let fullText = "Награды\n\n • \(awards) - \(awardNomination.lowercased()) “\(awardMovie)”"
-        let attributedString = NSMutableAttributedString(string: fullText)
-        attributedString.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 7))
-        awardsLabel.attributedText = attributedString
+    func configureAwards(_ model: DocAwards?) {
+        Task {
+            guard let model = model else { return }
+            let awards = model.nomination?.award?.title ?? ""
+            let awardNomination = model.nomination?.title ?? ""
+            let awardMovie = model.movie?.name ?? ""
+            let fullText = "Награды\n\n • \(awards) - \(awardNomination.lowercased()) “\(awardMovie)”"
+            let attributedString = NSMutableAttributedString(string: fullText)
+            attributedString.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 7))
+            awardsLabel.attributedText = attributedString
+        }
     }
 }
