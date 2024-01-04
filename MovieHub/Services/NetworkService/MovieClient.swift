@@ -21,7 +21,7 @@ extension MovieClient {
         guard let url = urlComponents.url else { return .failure(.invalidURL)}
         
         var request = URLRequest(url: url)
-        request.httpMethod = endpoint.method.rawValue
+        request.httpMethod = endpoint.method
         request.allHTTPHeaderFields = endpoint.header
         
         if let body = endpoint.body {

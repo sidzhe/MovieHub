@@ -17,6 +17,9 @@ protocol MovieServiceProtool {
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterPerson<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError>
+    func movieWirhPerosn<T: Decodable>(actorsId: Int) async -> Result<T, RequestError>
+    func awardsPerson<T: Decodable>(actorsId: Int) async -> Result<T, RequestError>
+    func movieUpcomingGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
 }
 
 
@@ -124,10 +127,70 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.path = endpoint.path
         var items = [URLQueryItem(name: "page", value: "1"),
                      URLQueryItem(name: "limit", value: "10"),
-                     URLQueryItem(name: "selectFields", value: "movies")]
+                     URLQueryItem(name: "selectFields", value: "name"),
+                     URLQueryItem(name: "selectFields", value: "enName"),
+                     URLQueryItem(name: "selectFields", value: "photo"),
+                     URLQueryItem(name: "selectFields", value: "growth"),
+                     URLQueryItem(name: "selectFields", value: "birthday"),
+                     URLQueryItem(name: "selectFields", value: "age"),
+                     URLQueryItem(name: "selectFields", value: "birthPlace"),
+                     URLQueryItem(name: "selectFields", value: "spouses"),
+                     URLQueryItem(name: "selectFields", value: "profession"),
+                     URLQueryItem(name: "selectFields", value: "facts"),
+                     URLQueryItem(name: "selectFields", value: "movies")
+        ]
         let anotherItems = actorsId.map { URLQueryItem(name: "id", value: String($0))}
         items.append(contentsOf: anotherItems)
         urlComponents.queryItems = items
+        
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.personFilter, responseModel: T.self)
+    }
+    
+    //MARK: Movie with person
+    func movieWirhPerosn<T: Decodable>(actorsId: Int) async -> Result<T, RequestError> {
+        let endpoint = MovieEndpoints.movieWithPerson
+        var urlComponents = URLComponents()
+        urlComponents.scheme = endpoint.scheme
+        urlComponents.host = endpoint.host
+        urlComponents.path = endpoint.path
+        let items = [URLQueryItem(name: "page", value: "1"),
+                     URLQueryItem(name: "limit", value: "10"),
+                     URLQueryItem(name: "persons.id", value: actorsId.description)]
+        urlComponents.queryItems = items
+        
+        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.movieWithPerson, responseModel: T.self)
+    }
+    
+    //MARK: Awards person
+    func awardsPerson<T: Decodable>(actorsId: Int) async -> Result<T, RequestError> {
+        let endpoint = MovieEndpoints.awards
+        var urlComponents = URLComponents()
+        urlComponents.scheme = endpoint.scheme
+        urlComponents.host = endpoint.host
+        urlComponents.path = endpoint.path
+        let items = [URLQueryItem(name: "page", value: "1"),
+                     URLQueryItem(name: "limit", value: "10"),
+                     URLQueryItem(name: "personId", value: actorsId.description),
+                     URLQueryItem(name: "winning", value: "true")]
+        urlComponents.queryItems = items
+        
+        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.awards, responseModel: T.self)
+    }
+    
+    //MARK: upcoming with gesres
+    func movieUpcomingGenres<T: Decodable>(genre: String) async -> Result<T, RequestError> {
+        let endpoint = MovieEndpoints.upcoming
+        var urlComponents = URLComponents()
+        urlComponents.scheme = endpoint.scheme
+        urlComponents.host = endpoint.host
+        urlComponents.path = endpoint.path
+        let items = [URLQueryItem(name: "page", value: "1"),
+                     URLQueryItem(name: "limit", value: "10"),
+                     URLQueryItem(name: "selectFields", value: "movieLength"),
+                     URLQueryItem(name: "selectFields", value: "sequelsAndPrequels"),
+                     URLQueryItem(name: "notNullFields", value: "sequelsAndPrequels.id"),
+                     URLQueryItem(name: "genres.name", value: genre)]
+        urlComponents.queryItems = items
+        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.upcoming, responseModel: T.self)
     }
 }
