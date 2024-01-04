@@ -185,6 +185,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.path = endpoint.path
         let items = [URLQueryItem(name: "page", value: "1"),
                      URLQueryItem(name: "limit", value: "10"),
+                     URLQueryItem(name: "selectFields", value: "movieLength"),
                      URLQueryItem(name: "selectFields", value: "sequelsAndPrequels"),
                      URLQueryItem(name: "notNullFields", value: "sequelsAndPrequels.id"),
                      URLQueryItem(name: "genres.name", value: genre)]

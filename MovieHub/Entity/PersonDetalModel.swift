@@ -8,12 +8,12 @@
 import Foundation
 
 //MARK: - PersonDetalModel
-struct PersonDetalModel: Decodable {
+struct PersonDetalModel: Hashable, Decodable {
     let docs: [PersonDoc]?
 }
 
 // MARK: - Doc
-struct PersonDoc: Decodable {
+struct PersonDoc: Hashable, Decodable {
     let age: Int?
     let birthPlace: [BirthPlace]?
     let birthday: String?
@@ -28,12 +28,12 @@ struct PersonDoc: Decodable {
 }
 
 // MARK: - BirthPlace
-struct BirthPlace: Decodable {
+struct BirthPlace: Hashable, Decodable {
     let value: String?
 }
 
 // MARK: - Movie
-struct Movie: Decodable {
+struct Movie: Hashable, Decodable {
     let id: Int
     let name: String?
     let rating: Double?
@@ -44,7 +44,7 @@ struct Movie: Decodable {
 }
 
 // MARK: - Spouse
-struct Spouse: Decodable {
+struct Spouse: Hashable, Decodable {
     let id: Int?
     let name: String?
     let divorced: Bool?

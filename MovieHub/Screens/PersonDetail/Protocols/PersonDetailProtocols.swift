@@ -18,8 +18,9 @@ protocol PersonDetailViewProtocol: AnyObject {
 protocol PersonDetailPresenterProtocol: AnyObject {
     var view: PersonDetailViewProtocol? { get set }
     func getPersonDetailData() -> PersonDetalModel?
-    func getSearchData() -> [Doc]?
-    func getAwardsData() -> [DocAwards]?
+    func getSearchData() -> [Doc]
+    func getAwardsData() -> [DocAwards]
+    func getFacts() -> [String]
     func convertModel(model: [BirthPlace]?) -> String
     func dateFormatter(_ convertDate: String?) -> String
     func formatAgeString(age: Int?) -> String

@@ -20,14 +20,20 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
         return model
     }
     
-    func getSearchData() -> [Doc]? {
-        guard let model = interactor?.searchData?.docs else { return nil }
+    func getSearchData() -> [Doc] {
+        guard let model = interactor?.searchData?.docs else { return [Doc]() }
         return model
     }
     
-    func getAwardsData() -> [DocAwards]? {
-        guard let model = interactor?.awardsData?.docs.filter({ $0.winning == true }) else { return nil }
+    func getAwardsData() -> [DocAwards] {
+        guard let model = interactor?.awardsData?.docs.filter({ $0.winning == true }) else { return [DocAwards]() }
         return model
+    }
+    
+    func getFacts() -> [String] {
+        guard let model = interactor?.personDetailData?.docs?.first?.facts else { return [String]() }
+        let output = model.compactMap { /*removingHTMLEscapes(text: $0.value)*/ $0.value }
+        return output
     }
     
     //MARK: Conver methods
@@ -60,6 +66,23 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
             return "\(age) года"
         } else {
             return "\(age) лет"
+        }
+    }
+    
+    private func removingHTMLEscapes(text: String?) -> String? {
+        guard let data = text?.data(using: .utf8) else { return nil }
+        
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ]
+        
+        do {
+            let attributedString = try NSAttributedString(data: data, options: options, documentAttributes: nil)
+            return attributedString.string
+        } catch {
+            print("Ошибка при удалении HTML-тегов: \(error)")
+            return nil
         }
     }
     
