@@ -15,19 +15,21 @@ final class SearchPresenter: SearchPresenterProtocol {
     var router: SearchRouterProtocol?
     var categories: MovieGenre.AllCases = MovieGenre.allCases
     
-    //MARK: Select category
+    //MARK: - Fetch
     func fetchUpcomingMovie(with genre: MovieGenre) {
         interactor?.requestUpcomingMovie(category: genre)
     }
     
+    func fetchSearchedMovie(with searchText: String) {
+        interactor?.requestSearch(searchText)
+    }
+    
     //MARK: - Get models
-    
-    
     func getUpcomingMovie() -> [UpcomingDoc] {
         guard let model = interactor?.upcomingMovie?.docs else { return [UpcomingDoc]() }
         return model
     }
-    
+
     func getRecentMovie() -> [Doc] {
 #warning("добавить логику")
         let recent:[Doc] = []

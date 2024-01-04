@@ -19,8 +19,8 @@ extension UISearchController {
         searchController.definesPresentationContext = true
         
         if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textField.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-            textField.textColor = .white
+            textField.font = UIFont.montserratSemiBold(size: 16)
+            textField.textColor = UIColor.white
             textField.clipsToBounds = true
             textField.layer.cornerRadius = 18
             textField.attributedPlaceholder = NSAttributedString(
@@ -28,7 +28,7 @@ extension UISearchController {
                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         }
         
-    return searchController
+        return searchController
     }
 }
 

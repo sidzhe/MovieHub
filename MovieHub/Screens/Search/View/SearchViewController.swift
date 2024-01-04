@@ -106,11 +106,9 @@ extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, searchText.count >= 2 else { return }
         
-        if searchController.searchResultsController is SearchResultsViewController {
-            //
-            //            resultController.navigationControllerFromCategories = self.navigationController
-            //            resultController.viewModel.searchText = searchText
-        }
+        guard let resultController = searchController.searchResultsController as? SearchResultsViewController  else { return }
+       // resultController.searchText = searchText
+        presenter.fetchSearchedMovie(with: searchText)
     }
 }
 
@@ -175,7 +173,7 @@ extension SearchViewController {
             supplementaryItems: [supplementaryHeaderItem()],
             contentInsets: false
          )
-     //   section.contentInsets = .init(top: 0, leading: -10, bottom: 0, trailing: 0)
+        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
         return section
     }
     

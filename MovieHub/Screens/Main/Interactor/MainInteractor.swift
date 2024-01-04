@@ -11,14 +11,14 @@ final class MainInteractor: MainInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: MainInteractorOutputProtocol?
-    var networkService: NetworkServiceProtool
+    var networkService: NetworkServiceProtocol
     var collectionData: ColletionModel?
     var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue) }
     var mostPopular: CollectionDetailModel?
     var searchData: SearchModel?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool) {
+    init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }
     

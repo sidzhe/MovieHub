@@ -11,7 +11,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
 
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
-    var networkService: NetworkServiceProtool
+    var networkService: NetworkServiceProtocol
     
     var searchMovie: SearchModel?
     var upcomingMovie: UpcomingModel?
@@ -19,9 +19,8 @@ final class SearchInteractor: SearchInteractorInputProtocol {
 
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool) {
+    init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
-        self.requestUpcomingMovie(category: .anime)
     }
     
     //MARK: Methods
@@ -33,7 +32,8 @@ final class SearchInteractor: SearchInteractorInputProtocol {
                 
             case .success(let search):
                 self.searchMovie = search
-                self.presenter?.updateUI()
+                print(search)
+                //self.presenter?.updateUI()
             case .failure(let error):
                 print(error.customMessage)
             }
@@ -47,7 +47,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
                 
             case .success(let upcomingMovie):
                 self.upcomingMovie = upcomingMovie
-               // print(upcomingMovie)
+                print(upcomingMovie)
                 self.presenter?.updateUI()
             case .failure(let error):
                 print(error.customMessage)

@@ -23,6 +23,7 @@ protocol SearchPresenterProtocol: AnyObject {
     func getSearchData() -> [Doc]
     
     func fetchUpcomingMovie(with genre: MovieGenre)
+    func fetchSearchedMovie(with searchText: String) 
 }
 
 /// PRESENTER -> INTERACTOR

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class UpcomingMovieCell: UICollectionViewCell {
     
@@ -105,6 +106,18 @@ final class UpcomingMovieCell: UICollectionViewCell {
         ratingLabel.text = String(format: "Rating: %.1f", model.rating?.kp ?? 0.0)
     }
     
+    func configure(for searchedMovie: Doc) {
+        
+        let url = URL(string: searchedMovie.poster?.url ?? "")
+                
+        Task(priority: .userInitiated) { [weak self] in self?.posterImageView.kf.setImage(with: url) }
+        
+        nameLabel.text = searchedMovie.name ?? searchedMovie.alternativeName
+        yearLabel.text = String("\(searchedMovie.year)")
+        durationLabel.text = "\(String(describing: searchedMovie.rating)) Minutes"
+        categoryLabel.text = searchedMovie.type
+        ratingLabel.text = String(format: "Rating: %.1f", searchedMovie.rating?.kp ?? 0.0)
+    }
     
     // MARK: - Private methods
     private func setupView() {

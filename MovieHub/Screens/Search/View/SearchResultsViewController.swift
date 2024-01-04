@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController {
+final class SearchResultsViewController: UIViewController {
     
-    var presenter: SearchPresenterProtocol?
+    var presenter: SearchPresenterProtocol!
     
     // MARK: - UI
     
@@ -26,7 +26,9 @@ class SearchResultsViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setConstraints()
+        
     }
+  
     
     // MARK: - Private methods
     private func setupUI() {
@@ -40,7 +42,7 @@ class SearchResultsViewController: UIViewController {
     private func setConstraints() {
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top).offset(10)
+            make.top.equalTo(view.snp.top).offset(100)
             make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
             make.bottom.equalTo(view.snp.bottom)
@@ -65,7 +67,7 @@ class SearchResultsViewController: UIViewController {
 }
 
 extension SearchResultsViewController: UICollectionViewDataSource {
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         presenter?.getSearchData().count ?? 0
     }
@@ -77,8 +79,8 @@ extension SearchResultsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-       guard let searchData = presenter?.getSearchData()[indexPath.row] else { return cell }
-       // cell.configure(with: searchData)
+        guard let searchData = presenter?.getSearchData()[indexPath.row] else { return cell }
+        cell.configure(for: searchData)
         return cell
     }
 }
