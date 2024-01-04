@@ -76,7 +76,7 @@ final class PersonDetailViewController: UIViewController {
         
         avatar.snp.makeConstraints { make in
             make.width.equalTo(150)
-            make.height.equalTo(220)
+            make.height.equalTo(250)
             make.left.equalToSuperview().inset(24)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
@@ -168,7 +168,6 @@ private extension PersonDetailViewController {
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
                 section.contentInsets = .init(top: 8, leading: 16, bottom: 16, trailing: 16)
                 
-                
                 let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(44))
                 let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: headerSize,
@@ -238,7 +237,7 @@ private extension PersonDetailViewController {
         view.addSubview(collectionView)
         
         collectionView?.snp.makeConstraints({ make in
-            make.top.equalTo(avatar.snp.bottom).offset(32)
+            make.top.equalTo(avatar.snp.bottom).offset(15)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview().inset(90)
         })
@@ -268,6 +267,7 @@ private extension PersonDetailViewController {
     
     func registrationMovieHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
+            header.callBackButton = { [weak self] in self?.presenter?.routeToPopular() }
             header.configure(header: "Фильмы")
         }
     }
@@ -330,13 +330,16 @@ private extension PersonDetailViewController {
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<PersonSection, PersonItem>()
         guard let presenter = presenter else { return }
-        snapshot.appendSections([.awards, .facts, .movies])
+        
         let awards = presenter.getAwardsData().map { PersonItem(awards: $0) }
         let facts = presenter.getFacts().map { PersonItem(facts: $0) }
         let movies = presenter.getSearchData().map { PersonItem(movies: $0) }
+        
+        snapshot.appendSections([.awards, .facts, .movies])
         snapshot.appendItems(awards, toSection: .awards)
         snapshot.appendItems(facts, toSection: .facts)
         snapshot.appendItems(movies, toSection: .movies)
+        
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
@@ -345,7 +348,10 @@ private extension PersonDetailViewController {
 //MARK: - Extension UICollectionViewDelegate
 extension PersonDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.routeToDetail()
+        
+        if indexPath.section == 2 {
+            presenter?.routeToDetail()
+        }
     }
 }
 

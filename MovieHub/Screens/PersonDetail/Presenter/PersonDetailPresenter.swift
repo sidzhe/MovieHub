@@ -26,13 +26,13 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
     }
     
     func getAwardsData() -> [DocAwards] {
-        guard let model = interactor?.awardsData?.docs.filter({ $0.winning == true }) else { return [DocAwards]() }
+        guard let model = interactor?.awardsData?.docs else { return [DocAwards]() }
         return model
     }
     
     func getFacts() -> [String] {
         guard let model = interactor?.personDetailData?.docs?.first?.facts else { return [String]() }
-        let output = model.compactMap { /*removingHTMLEscapes(text: $0.value)*/ $0.value }
+        let output = model.compactMap { removingHTMLEscapes(text: $0.value) }
         return output
     }
     
@@ -70,25 +70,26 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
     }
     
     private func removingHTMLEscapes(text: String?) -> String? {
-        guard let data = text?.data(using: .utf8) else { return nil }
-        
-        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-            .documentType: NSAttributedString.DocumentType.html,
-            .characterEncoding: String.Encoding.utf8.rawValue
-        ]
+        guard let text = text else { return nil }
         
         do {
-            let attributedString = try NSAttributedString(data: data, options: options, documentAttributes: nil)
-            return attributedString.string
+            let regex = try NSRegularExpression(pattern: "<[^>]+>", options: .caseInsensitive)
+            let range = NSRange(location: 0, length: text.utf16.count)
+            let htmlFreeString = regex.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "")
+            return htmlFreeString
         } catch {
             print("Ошибка при удалении HTML-тегов: \(error)")
             return nil
         }
     }
     
-    //MARK: Route to Detail
+    //MARK: Route to VC
     func routeToDetail() {
         router?.pushToDetail(from: view)
+    }
+    
+    func routeToPopular() {
+        router?.pushToPopularMovie(from: view)
     }
 }
 

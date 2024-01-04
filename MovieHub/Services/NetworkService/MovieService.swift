@@ -153,7 +153,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
-        var items = [URLQueryItem(name: "page", value: "1"),
+        let items = [URLQueryItem(name: "page", value: "1"),
                      URLQueryItem(name: "limit", value: "10"),
                      URLQueryItem(name: "persons.id", value: actorsId.description)]
         urlComponents.queryItems = items
@@ -168,9 +168,10 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
-        var items = [URLQueryItem(name: "page", value: "1"),
+        let items = [URLQueryItem(name: "page", value: "1"),
                      URLQueryItem(name: "limit", value: "10"),
-                     URLQueryItem(name: "personId", value: actorsId.description)]
+                     URLQueryItem(name: "personId", value: actorsId.description),
+                     URLQueryItem(name: "winning", value: "true")]
         urlComponents.queryItems = items
         
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.awards, responseModel: T.self)

@@ -61,7 +61,21 @@ final class AwardCell: UICollectionViewCell {
         let awards = model.nomination?.award?.title ?? ""
         let awardNomination = model.nomination?.title ?? ""
         let awardMovie = model.movie?.name ?? ""
-        awardLabel.text = "\(awardNomination) \n\(awardMovie)"
-        awardIcon.image = UIImage(named: awards)
+        awardLabel.text = "\(awards) \n\(awardNomination) \n\(awardMovie)"
+        awardIcon.image = awardLoad(awards)
+    }
+    
+    //MARK: Load award image
+    private func awardLoad(_ imageName: String) -> UIImage {
+        switch imageName {
+        case "Оскар":
+            return UIImage(named: "oscar") ?? UIImage()
+        case "Каннский кинофестиваль":
+            return UIImage(named: "cann") ?? UIImage()
+        case "Золотой глобус":
+            return UIImage(named: "globe") ?? UIImage()
+        default:
+            return UIImage(named: "award") ?? UIImage()
+        }
     }
 }

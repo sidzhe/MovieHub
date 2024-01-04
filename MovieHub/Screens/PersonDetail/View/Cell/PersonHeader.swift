@@ -29,7 +29,7 @@ final class PersonHeader: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Methods
+    //MARK: Setup UI
     private func setupViews() {
         addSubview(titleLabel)
         
@@ -39,6 +39,7 @@ final class PersonHeader: UICollectionReusableView {
         }
     }
     
+    //MARK: Configure
     func configure(header: String) {
         titleLabel.text = header
     }

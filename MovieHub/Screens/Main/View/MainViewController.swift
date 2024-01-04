@@ -46,7 +46,6 @@ final class MainViewController: UIViewController {
         setCategories()
         heartButtonTarget()
         
-        
     }
     
     //MARK: Set Views

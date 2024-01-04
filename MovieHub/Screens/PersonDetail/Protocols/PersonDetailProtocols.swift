@@ -25,6 +25,7 @@ protocol PersonDetailPresenterProtocol: AnyObject {
     func dateFormatter(_ convertDate: String?) -> String
     func formatAgeString(age: Int?) -> String
     func routeToDetail()
+    func routeToPopular()
 }
 
 /// PRESENTER -> INTERACTOR
@@ -44,4 +45,5 @@ protocol PersonDetailInteractorOutputProtocol: AnyObject {
 /// PRESENTER -> ROUTER
 protocol PersonDetailRouterProtocol: AnyObject {
     func pushToDetail(from view: PersonDetailViewProtocol?)
+    func pushToPopularMovie(from view: PersonDetailViewProtocol?)
 }
