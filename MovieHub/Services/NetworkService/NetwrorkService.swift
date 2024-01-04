@@ -113,6 +113,7 @@ final class NetworkService: NetworkServiceProtool {
     func getmovieUpcomingGenres<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void) {
         Task {
             let result: Result<T, RequestError> = await movieService.movieUpcomingGenres(genre: genre.rawValue)
+           // print(genre.rawValue)
             completion(result)
         }
     }

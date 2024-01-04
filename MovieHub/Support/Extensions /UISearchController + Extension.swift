@@ -20,7 +20,7 @@ extension UISearchController {
         
         if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
             textField.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-            textField.textColor = .label
+            textField.textColor = .white
             textField.clipsToBounds = true
             textField.layer.cornerRadius = 18
             textField.attributedPlaceholder = NSAttributedString(

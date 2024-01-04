@@ -15,6 +15,7 @@ struct UpcomingModel: Decodable {
 
 // MARK: - UpcomingDoc
 struct UpcomingDoc: Decodable {
+    let movieLength: Int?
     let sequelsAndPrequels: [SequelsAndPrequel]?
 }
 
@@ -26,6 +27,7 @@ struct SequelsAndPrequel: Decodable {
     let poster: Poster?
     let rating: Rating?
     let year: Int?
+    
 }
 
 // MARK: - Poster

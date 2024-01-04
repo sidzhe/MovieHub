@@ -6,24 +6,34 @@
 //
 import UIKit
 
-// MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDataSource
 extension SearchViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section >= 0 && section <= sections.count {
-            let currentSection = sections[section]
-            switch currentSection {
-                
-            case .upcomingMovies:
-                return presenter?.getUpcomingMovie().count ?? 0
-            case .recentMovies:
-                return presenter?.getUpcomingMovie().count ?? 0
-            }
+//        if section >= 0 && section <= sections.count {
+//            let currentSection = sections[section]
+//            switch currentSection {
+//                
+//            case .upcomingMovies:
+//                return presenter?.getUpcomingMovie().count ?? 0
+//            case .recentMovies:
+//                return presenter?.getUpcomingMovie().count ?? 0
+//            }
+//        }
+//        return 0
+        switch section {
+        case 0:
+            return presenter?.getUpcomingMovie().count ?? 0
+        case 1:
+            return 0
+          //  return presenter?.getUpcomingMovie().count ?? 0
+        default:
+            return 0
         }
-        return 0
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -31,20 +41,20 @@ extension SearchViewController: UICollectionViewDataSource {
             
         case .upcomingMovies:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCell.identifier, for: indexPath) as? UpcomingMovieCell else { return UICollectionViewCell() }
+             
+            guard let model = self.presenter?.getUpcomingMovie() else { return UICollectionViewCell() }
             
-            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: category) ?? .all)
-            
-            guard let model = self.presenter?.getUpcomingMovie() else { return cell }
             cell.configure(with: model[indexPath.row])
             return cell
             
         case .recentMovies:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.identifier, for: indexPath) as? PopularCell else { return UICollectionViewCell() }
-            
-            guard let model = self.presenter?.getSearchData() else { return cell }
-            cell.configure(category: model[indexPath.row])
-            
-            return cell
+            return UICollectionViewCell()
+//            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.identifier, for: indexPath) as? PopularCell else { return UICollectionViewCell() }
+//            
+//            guard let model = self.presenter?.getSearchData() else { return UICollectionViewCell() }
+//            cell.configure(category: model[indexPath.row])
+//            
+//            return cell
         }
     }
     
@@ -67,5 +77,6 @@ extension SearchViewController: UICollectionViewDataSource {
 // MARK: -  UICollectionViewDelegate,
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       //
     }
 }

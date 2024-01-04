@@ -8,29 +8,23 @@
 import Foundation
 
 final class SearchPresenter: SearchPresenterProtocol {
-    
+
     //MARK: Properties
     weak var view: SearchViewProtocol?
     var interactor: SearchInteractorInputProtocol?
     var router: SearchRouterProtocol?
-    
-    internal var searchSections: [SearchSection] = []
+    var categories: MovieGenre.AllCases = MovieGenre.allCases
     
     //MARK: Select category
-    func selectedCategory(_ index: Int, genre: MovieGenre) {
-        interactor?.selectedCategory(index)
+    func fetchUpcomingMovie(with genre: MovieGenre) {
         interactor?.requestUpcomingMovie(category: genre)
     }
     
     //MARK: - Get models
     
-    func getCategories() -> [CategoryModel] {
-        guard let interactor = interactor else { return [CategoryModel]() }
-        return interactor.categoriesData
-    }
     
-    func getUpcomingMovie() -> [Doc] {
-        guard let model = interactor?.upcomingMovie else { return [Doc]() }
+    func getUpcomingMovie() -> [UpcomingDoc] {
+        guard let model = interactor?.upcomingMovie?.docs else { return [UpcomingDoc]() }
         return model
     }
     

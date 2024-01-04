@@ -23,6 +23,8 @@ final class UpcomingMovieCell: UICollectionViewCell {
         view.backgroundColor = .primaryDark
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -68,6 +70,13 @@ final class UpcomingMovieCell: UICollectionViewCell {
         textColor: .primaryGray
     )
     
+    private lazy var infoStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [nameLabel, yearLabel, durationLabel, categoryLabel])
+        stackView.axis = .vertical
+        stackView.spacing = Constants.interSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -75,7 +84,6 @@ final class UpcomingMovieCell: UICollectionViewCell {
         
         setupView()
         setConstraints()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -84,15 +92,17 @@ final class UpcomingMovieCell: UICollectionViewCell {
     
     // MARK: - Public methods
     
-    func configure(with upcomingMovie: Doc) {
-        guard let url = URL(string: upcomingMovie.poster?.url ?? upcomingMovie.poster?.previewURL ?? "") else { return }
+    func configure(with upcomingMovie: UpcomingDoc) {
+        
+        guard let model = upcomingMovie.sequelsAndPrequels?.first,
+              let url = URL(string: model.poster?.url ?? "")  else { return }
         Task(priority: .userInitiated) { [weak self] in self?.posterImageView.kf.setImage(with: url) }
         
-        nameLabel.text = upcomingMovie.name ?? upcomingMovie.alternativeName
-        yearLabel.text = String("\(upcomingMovie.year)")
-        durationLabel.text = "\(String(describing: upcomingMovie.movieLength)) Minutes"
-        categoryLabel.text = upcomingMovie.genres?.first?.name
-        ratingLabel.text = String(format: "Rating: %.1f", upcomingMovie.rating?.kp ?? 0.0)
+        nameLabel.text = model.name ?? model.alternativeName
+        yearLabel.text = String("\(model.year)")
+        durationLabel.text = "\(String(describing: model.rating)) Minutes"
+        categoryLabel.text = model.type
+        ratingLabel.text = String(format: "Rating: %.1f", model.rating?.kp ?? 0.0)
     }
     
     
@@ -100,65 +110,51 @@ final class UpcomingMovieCell: UICollectionViewCell {
     private func setupView() {
         addSubview(movieContentView)
         movieContentView.addSubview(posterImageView)
-        movieContentView.addSubview(nameLabel)
-        movieContentView.addSubview(yearLabel)
-        movieContentView.addSubview(durationLabel)
-        movieContentView.addSubview(categoryLabel)
-        blurView.contentView.addSubview(starImage)
-        blurView.contentView.addSubview(ratingLabel)
+        movieContentView.addSubview(infoStackView)
+//        blurView.contentView.addSubview(starImage)
+//        blurView.contentView.addSubview(ratingLabel)
     }
     
     private func setConstraints() {
+        
         movieContentView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Constants.verticalSpacing)
-            make.leading.equalToSuperview().offset(Constants.horizontalSpacing)
-            make.trailing.equalToSuperview().offset(-Constants.horizontalSpacing)
-            make.bottom.equalToSuperview().offset(-Constants.horizontalSpacing)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-Constants.verticalSpacing)
         }
-
+        
         posterImageView.snp.makeConstraints { make in
             make.top.equalTo(movieContentView.snp.top)
             make.leading.equalTo(movieContentView.snp.leading)
-            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 3.8)
+            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 1.5)
             make.height.equalTo(movieContentView.snp.height)
         }
-
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(movieContentView.snp.top).offset(Constants.interSpacing)
-            make.leading.equalTo(movieContentView.snp.trailing).offset(Constants.interSpacing)
+        
+        infoStackView.snp.makeConstraints { make in
+            make.top.equalTo(movieContentView.snp.top).offset(Constants.verticalSpacing)
+            make.leading.equalTo(posterImageView.snp.trailing).offset(Constants.interSpacing)
             make.trailing.equalTo(movieContentView.snp.trailing).offset(-Constants.horizontalSpacing)
-        }
-
-        yearLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel.snp.bottom).offset(Constants.interSpacing)
-            make.leading.equalTo(movieContentView.snp.trailing).offset(Constants.interSpacing)
-            make.trailing.equalTo(movieContentView.snp.trailing).offset(-Constants.horizontalSpacing)
-        }
-
-        durationLabel.snp.makeConstraints { make in
-            make.top.equalTo(yearLabel.snp.bottom).offset(Constants.interSpacing + 4)
-            make.leading.equalTo(movieContentView.snp.trailing).offset(Constants.interSpacing)
-            make.trailing.equalTo(movieContentView.snp.trailing).offset(-Constants.horizontalSpacing)
-            make.bottom.equalTo(movieContentView.snp.bottom).offset(-Constants.verticalSpacing * 12)
+            make.bottom.lessThanOrEqualTo(movieContentView.snp.bottom).offset(-Constants.interSpacing)
         }
         
-        blurView.snp.makeConstraints { make in
-            make.height.equalTo(24)
-            make.width.equalTo(62)
-            make.top.left.equalToSuperview().inset(8)
-        }
-        
-        starImage.snp.makeConstraints { make in
-            make.size.equalTo(18)
-            make.left.equalToSuperview().inset(5)
-            make.centerY.equalToSuperview()
-        }
-        
-        ratingLabel.snp.makeConstraints { make in
-            make.left.equalTo(starImage.snp.right).inset(-5)
-            make.centerY.equalToSuperview()
-            make.right.equalToSuperview().inset(5)
-        }
+//        blurView.snp.makeConstraints { make in
+//            make.height.equalTo(24)
+//            make.width.equalTo(62)
+//            make.top.left.equalToSuperview().inset(8)
+//        }
+//        
+//        starImage.snp.makeConstraints { make in
+//            make.size.equalTo(18)
+//            make.left.equalToSuperview().inset(5)
+//            make.centerY.equalToSuperview()
+//        }
+//        
+//        ratingLabel.snp.makeConstraints { make in
+//            make.left.equalTo(starImage.snp.right).inset(-5)
+//            make.centerY.equalToSuperview()
+//            make.right.equalToSuperview().inset(5)
+//        }
     }
 }
 

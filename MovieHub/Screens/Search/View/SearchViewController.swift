@@ -11,15 +11,12 @@ import SnapKit
 final class SearchViewController: UIViewController {
     
     //MARK: Properties
-    var presenter: SearchPresenterProtocol?
-    var category = "все"
+    var presenter: SearchPresenterProtocol!
+    var selectedCategory: MovieGenre = .all
     let sections = SearchSectionData.shared.sectionsArray
     
-    // MARK: - Outlets
-    lazy var categoriesMenuCollectionView: CategoriesMenuCollectionView = {
-        let collectionView = CategoriesMenuCollectionView(categories: presenter?.getCategories() ?? [])
-        return collectionView
-    }()
+    // MARK: - UI
+    lazy var categoriesMenuCollectionView = CategoriesMenuCollectionView(categories: presenter.categories)
     
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -39,11 +36,12 @@ final class SearchViewController: UIViewController {
         setConstraints()
         registerCollectionsCells()
         setDelegates()
-        
+      
         categoriesMenuCollectionView.callBack = { [weak self] selectedCategory in
-            self?.category = selectedCategory
+            self?.selectedCategory = selectedCategory
+            print(selectedCategory)
+            self?.presenter?.fetchUpcomingMovie(with: selectedCategory)
         }
-     
     }
     
     private func setupViews() {
@@ -77,7 +75,7 @@ final class SearchViewController: UIViewController {
         )
         
         collectionView.register(
-            PopularCell.self,
+            UICollectionViewCell.self,
             forCellWithReuseIdentifier: PopularCell.identifier
         )
         
@@ -120,7 +118,9 @@ extension SearchViewController: UISearchResultsUpdating {
 //MARK: - Extension SearchViewProtocol
 extension SearchViewController: SearchViewProtocol {
     func updateUI() {
-        categoriesMenuCollectionView.reloadData()
+        Task {
+            categoriesMenuCollectionView.reloadData()
+        }
     }
 }
 
@@ -162,7 +162,7 @@ extension SearchViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension:  .fractionalWidth(0.9),
+                widthDimension:  .fractionalWidth(1),
                 heightDimension: .fractionalHeight(0.35)
             ),
             subitems: [item]
@@ -181,7 +181,7 @@ extension SearchViewController {
     
     private func createRecentMoviesSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(
-            widthDimension: .fractionalHeight(0.28),
+            widthDimension: .fractionalHeight(1),
             heightDimension: .fractionalHeight(1))
         )
         

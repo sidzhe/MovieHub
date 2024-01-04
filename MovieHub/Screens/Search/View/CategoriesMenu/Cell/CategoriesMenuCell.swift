@@ -41,8 +41,8 @@ final class CategoriesMenuCell: UICollectionViewCell {
     }
     
     //MARK: - Methods
-    func configure(category: CategoryModel) {
-        categoryLabel.text = category.category.capitalized
+    func configure(category: MovieGenre) {
+        categoryLabel.text = category.rawValue.capitalized
     }
     
     //MARK: - Private Methods
