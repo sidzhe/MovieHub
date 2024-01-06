@@ -19,7 +19,7 @@ protocol NetworkServiceProtocol: AnyObject {
     func getDetailPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void)
     func getMovieWithPerson<T: Decodable>(personId: Int, completion: @escaping (Result<T, RequestError>) -> Void)
     func getAwardsPerson<T: Decodable>(personId: Int, completion: @escaping (Result<T, RequestError>) -> Void)
-    func getmovieUpcomingGenres<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
+    func getMovieUpcomingGenres<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
 }
 
 
@@ -110,7 +110,7 @@ final class NetworkService: NetworkServiceProtocol {
     }
     
     //MARK: Person awards
-    func getmovieUpcomingGenres<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void) {
+    func getMovieUpcomingGenres<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void) {
         Task {
             let result: Result<T, RequestError> = await movieService.movieUpcomingGenres(genre: genre.rawValue)
            // print(genre.rawValue)

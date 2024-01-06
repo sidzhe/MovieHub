@@ -9,15 +9,16 @@ import UIKit
 
 final class CategoriesMenuCollectionView: UICollectionView {
     
-    private var categories: MovieGenre.AllCases
+    private var categories: [String] = []
     
     private let categoryLayout = UICollectionViewFlowLayout()
-    var callBack: ((MovieGenre) -> Void)?
+    var callBack: ((String) -> Void)?
     
-    init(categories: MovieGenre.AllCases) {
+    init(categories: [String]) {
         self.categories = categories
         super.init(frame: .zero, collectionViewLayout: categoryLayout)
         configure()
+        setCategories()
     }
     
     required init?(coder: NSCoder) {
@@ -39,7 +40,18 @@ final class CategoriesMenuCollectionView: UICollectionView {
             CategoriesMenuCell.self,
             forCellWithReuseIdentifier: CategoriesMenuCell.identifier
         )
-        selectItem(at: [0,0], animated: true, scrollPosition: [])
+        selectItem(at: [0,1], animated: true, scrollPosition: [])
+    }
+    
+    //MARK: Set Categories
+    private func setCategories() {
+      let indexPath = IndexPath(row: 0, section: 2)
+      handleSelection(at: indexPath)
+    }
+
+    private func handleSelection(at indexPath: IndexPath) {
+      let model = categories[indexPath.row]
+      callBack?(model)
     }
 }
 
@@ -61,9 +73,8 @@ extension CategoriesMenuCollectionView: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension CategoriesMenuCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let model = categories[indexPath.item]
+            let model = categories[indexPath.row]
             callBack?(model)
-        
     }
 }
 
@@ -73,7 +84,7 @@ extension CategoriesMenuCollectionView: UICollectionViewDelegateFlowLayout {
         
         let categoryFont = UIFont.montserratMedium(size: 14)
         let categoryAttributes = [NSAttributedString.Key.font : categoryFont as Any]
-        let categoryWidth = categories[indexPath.item].rawValue.size(withAttributes: categoryAttributes).width + 20
+        let categoryWidth = categories[indexPath.item].size(withAttributes: categoryAttributes).width + 20
         
         return CGSize(width: categoryWidth, height: collectionView.frame.height)
     }

@@ -24,8 +24,6 @@ final class UpcomingMovieCell: UICollectionViewCell {
         view.backgroundColor = .primaryDark
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.borderWidth = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -94,16 +92,19 @@ final class UpcomingMovieCell: UICollectionViewCell {
     // MARK: - Public methods
     
     func configure(with upcomingMovie: UpcomingDoc) {
-        
-        guard let model = upcomingMovie.sequelsAndPrequels?.first,
-              let url = URL(string: model.poster?.url ?? "")  else { return }
-        Task(priority: .userInitiated) { [weak self] in self?.posterImageView.kf.setImage(with: url) }
-        
-        nameLabel.text = model.name ?? model.alternativeName
-        yearLabel.text = String("\(model.year)")
-        durationLabel.text = "\(String(describing: model.rating)) Minutes"
-        categoryLabel.text = model.type
-        ratingLabel.text = String(format: "Rating: %.1f", model.rating?.kp ?? 0.0)
+      guard let model = upcomingMovie.sequelsAndPrequels?.first,
+            let urlString = model.poster?.url ?? model.poster?.previewURL,
+            let url = URL(string: urlString) else { return }
+      
+      Task(priority: .userInitiated) { [weak self] in
+        self?.posterImageView.kf.setImage(with: url)
+      }
+      
+      nameLabel.text = model.name ?? model.alternativeName
+      yearLabel.text = String("\(model.year)")
+      durationLabel.text = "\(String(describing: model.rating)) Minutes"
+      categoryLabel.text = model.type
+      ratingLabel.text = String(format: "Rating: %.1f", model.rating?.kp ?? 0.0)
     }
     
     func configure(for searchedMovie: Doc) {
@@ -131,16 +132,16 @@ final class UpcomingMovieCell: UICollectionViewCell {
     private func setConstraints() {
         
         movieContentView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.verticalSpacing)
+            make.top.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-Constants.verticalSpacing)
+            make.bottom.equalToSuperview()
         }
         
         posterImageView.snp.makeConstraints { make in
             make.top.equalTo(movieContentView.snp.top)
             make.leading.equalTo(movieContentView.snp.leading)
-            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 1.5)
+            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 2)
             make.height.equalTo(movieContentView.snp.height)
         }
         

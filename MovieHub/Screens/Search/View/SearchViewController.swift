@@ -11,12 +11,19 @@ import SnapKit
 final class SearchViewController: UIViewController {
     
     //MARK: Properties
-    var presenter: SearchPresenterProtocol!
-    var selectedCategory: MovieGenre = .all
+    var presenter: SearchPresenterProtocol?
+    
+    var searchController: UISearchController!
+    
+    var selectedCategory = "аниме"
     let sections = SearchSectionData.shared.sectionsArray
     
     // MARK: - UI
-    lazy var categoriesMenuCollectionView = CategoriesMenuCollectionView(categories: presenter.categories)
+
+    private lazy var categoriesMenuCollectionView: CategoriesMenuCollectionView = {
+        let collectionView = CategoriesMenuCollectionView(categories: presenter?.getCategories() ?? [])
+           return collectionView
+       }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -34,12 +41,16 @@ final class SearchViewController: UIViewController {
         
         setupViews()
         setConstraints()
-        registerCollectionsCells()
         setDelegates()
-      
+        registerCollectionsCells()
+        
+        presenter?.fetchUpcomingMovie(with: selectedCategory)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         categoriesMenuCollectionView.callBack = { [weak self] selectedCategory in
             self?.selectedCategory = selectedCategory
-            print(selectedCategory)
             self?.presenter?.fetchUpcomingMovie(with: selectedCategory)
         }
     }
@@ -55,12 +66,13 @@ final class SearchViewController: UIViewController {
     // MARK: - UISearchController
     private func setupSearchBar() {
         
-        let searchController = UISearchController.makeCustomSearchController(
+        searchController = UISearchController.makeCustomSearchController(
             placeholder: "Type title, categories, years, etc",
             delegate: self
         )
         navigationItem.searchController = searchController
     }
+    
     
     // MARK: - Setup
     private func setDelegates() {
@@ -75,7 +87,7 @@ final class SearchViewController: UIViewController {
         )
         
         collectionView.register(
-            UICollectionViewCell.self,
+            PopularCell.self,
             forCellWithReuseIdentifier: PopularCell.identifier
         )
         
@@ -101,23 +113,12 @@ final class SearchViewController: UIViewController {
     }
 }
 
-// MARK: - UISearchResultsUpdating
-extension SearchViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text, searchText.count >= 2 else { return }
-        
-        guard let resultController = searchController.searchResultsController as? SearchResultsViewController  else { return }
-       // resultController.searchText = searchText
-        presenter.fetchSearchedMovie(with: searchText)
-    }
-}
-
 
 //MARK: - Extension SearchViewProtocol
 extension SearchViewController: SearchViewProtocol {
     func updateUI() {
         Task {
-            categoriesMenuCollectionView.reloadData()
+            collectionView.reloadData()
         }
     }
 }

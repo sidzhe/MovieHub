@@ -9,26 +9,28 @@ import Foundation
 
 /// PRESENTER -> VIEW
 protocol SearchViewProtocol: AnyObject {
-    //var presenter: SearchPresenterProtocol { get set }
+    var presenter: SearchPresenterProtocol? { get set }
     func updateUI()
 }
 
 /// VIEW -> PRESENTER
 protocol SearchPresenterProtocol: AnyObject {
     var view: SearchViewProtocol? { get set }
-    var categories: MovieGenre.AllCases { get }
-
+   
     func getUpcomingMovie() -> [UpcomingDoc]
     func getRecentMovie() -> [Doc]
     func getSearchData() -> [Doc]
+    func getCategories() -> [String]
     
-    func fetchUpcomingMovie(with genre: MovieGenre)
+    func fetchUpcomingMovie(with genre: String)
     func fetchSearchedMovie(with searchText: String) 
 }
 
 /// PRESENTER -> INTERACTOR
 protocol SearchInteractorInputProtocol: AnyObject {
     var presenter: SearchInteractorOutputProtocol? { get set }
+    
+    var categories: [String] { get }
     
     var searchMovie: SearchModel? { get }
     var upcomingMovie: UpcomingModel? { get }

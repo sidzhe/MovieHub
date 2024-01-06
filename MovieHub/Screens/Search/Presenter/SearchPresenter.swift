@@ -8,16 +8,17 @@
 import Foundation
 
 final class SearchPresenter: SearchPresenterProtocol {
+    
 
     //MARK: Properties
     weak var view: SearchViewProtocol?
     var interactor: SearchInteractorInputProtocol?
     var router: SearchRouterProtocol?
-    var categories: MovieGenre.AllCases = MovieGenre.allCases
+   
     
     //MARK: - Fetch
-    func fetchUpcomingMovie(with genre: MovieGenre) {
-        interactor?.requestUpcomingMovie(category: genre)
+    func fetchUpcomingMovie(with genre: String) {
+        interactor?.requestUpcomingMovie(category: MovieGenre(rawValue: genre) ?? .all)
     }
     
     func fetchSearchedMovie(with searchText: String) {
@@ -25,8 +26,14 @@ final class SearchPresenter: SearchPresenterProtocol {
     }
     
     //MARK: - Get models
+    func getCategories() -> [String] {
+        guard let model = interactor?.categories else { return [] }
+        return model
+    }
+    
     func getUpcomingMovie() -> [UpcomingDoc] {
         guard let model = interactor?.upcomingMovie?.docs else { return [UpcomingDoc]() }
+      //print(model)
         return model
     }
 

@@ -8,15 +8,17 @@
 import Foundation
 
 final class SearchInteractor: SearchInteractorInputProtocol {
-
+    
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
     var networkService: NetworkServiceProtocol
     
+    var categories = MovieGenre.allCases.map { $0.rawValue }
+    
     var searchMovie: SearchModel?
     var upcomingMovie: UpcomingModel?
     var recentMovie: [Doc] = []
-
+    
     
     //MARK: Init
     init(networkService: NetworkServiceProtocol) {
@@ -24,7 +26,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     }
     
     //MARK: Methods
- 
+    
     func requestSearch(_ title: String) {
         networkService.searchTitle(title) { [weak self] (result: (Result<SearchModel, RequestError>)) in
             guard let self = self else { return }
@@ -41,18 +43,17 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     }
     
     func requestUpcomingMovie(category: MovieGenre) {
-        networkService.getmovieUpcomingGenres(genre: category) { [weak self] (result: (Result<UpcomingModel, RequestError>)) in
-            guard let self else { return }
+        networkService.getMovieUpcomingGenres(genre: category) { [weak self] (result: (Result<UpcomingModel, RequestError>)) in
+            guard let self = self else { return }
             switch result {
-                
             case .success(let upcomingMovie):
-                self.upcomingMovie = upcomingMovie
-                print(upcomingMovie)
-                self.presenter?.updateUI()
+               
+                    self.upcomingMovie = upcomingMovie
+                    self.presenter?.updateUI()
+              
             case .failure(let error):
                 print(error.customMessage)
             }
         }
     }
 }
-

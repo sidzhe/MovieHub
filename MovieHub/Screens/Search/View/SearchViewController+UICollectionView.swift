@@ -26,7 +26,9 @@ extension SearchViewController: UICollectionViewDataSource {
 //        return 0
         switch section {
         case 0:
+            print(presenter?.getUpcomingMovie().count ?? 0)
             return presenter?.getUpcomingMovie().count ?? 0
+            
         case 1:
             return presenter?.getRecentMovie().count ?? 0
         default:
