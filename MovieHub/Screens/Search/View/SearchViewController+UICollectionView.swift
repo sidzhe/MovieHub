@@ -13,7 +13,17 @@ extension SearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
+//        if section >= 0 && section <= sections.count {
+//            let currentSection = sections[section]
+//            switch currentSection {
+//                
+//            case .upcomingMovies:
+//                return presenter?.getUpcomingMovie().count ?? 0
+//            case .recentMovies:
+//                return presenter?.getUpcomingMovie().count ?? 0
+//            }
+//        }
+//        return 0
         switch section {
         case 0:
             return presenter?.getUpcomingMovie().count ?? 0
@@ -22,7 +32,6 @@ extension SearchViewController: UICollectionViewDataSource {
         default:
             return 0
         }
-    
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -37,7 +46,6 @@ extension SearchViewController: UICollectionViewDataSource {
             return cell
             
         case .recentMovies:
-            return UICollectionViewCell()
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.identifier, for: indexPath) as? PopularCell else { return UICollectionViewCell() }
             
             guard let model = self.presenter?.getSearchData() else { return UICollectionViewCell() }
