@@ -141,7 +141,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
         posterImageView.snp.makeConstraints { make in
             make.top.equalTo(movieContentView.snp.top)
             make.leading.equalTo(movieContentView.snp.leading)
-            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 1.5)
+            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 3.0)
             make.height.equalTo(movieContentView.snp.height)
         }
         

@@ -9,11 +9,11 @@ import UIKit
 
 final class SearchResultsViewController: UIViewController {
     
-    var presenter: SearchPresenterProtocol?
+    var searchedMovie: [Doc]?
     
     // MARK: - UI
     
-    private lazy var collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.register(UpcomingMovieCell.self, forCellWithReuseIdentifier: UpcomingMovieCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -26,8 +26,9 @@ final class SearchResultsViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setConstraints()
-        
     }
+    
+    
 
     // MARK: - Private methods
     private func setupUI() {
@@ -68,7 +69,7 @@ final class SearchResultsViewController: UIViewController {
 extension SearchResultsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter?.getSearchData().count ?? 0
+        searchedMovie?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -78,7 +79,7 @@ extension SearchResultsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        guard let searchData = presenter?.getSearchData()[indexPath.row] else { return cell }
+        guard let searchData = searchedMovie?[indexPath.row] else { return cell }
         cell.configure(for: searchData)
         return cell
     }
@@ -90,11 +91,3 @@ extension SearchResultsViewController: UICollectionViewDelegate {
     }
 }
 
-extension SearchResultsViewController: SearchViewProtocol {
-    
-    func updateUI() {
-        Task {
-            collectionView.reloadData()
-        }
-    }
-}
