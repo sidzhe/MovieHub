@@ -72,6 +72,13 @@ final class SearchViewController: UIViewController {
         navigationItem.searchController = searchController
     }
     
+    //MARK: - Display network error
+    private func alertError(_ error: RequestError) {
+        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
     
     // MARK: - Setup
     private func setDelegates() {
@@ -115,6 +122,12 @@ final class SearchViewController: UIViewController {
 
 //MARK: - Extension SearchViewProtocol
 extension SearchViewController: SearchViewProtocol {
+    func displayRequestError(error: RequestError) {
+        Task {
+            alertError(_:error)
+        }
+    }
+    
     func updateUI() {
         Task {
             collectionView.reloadData()

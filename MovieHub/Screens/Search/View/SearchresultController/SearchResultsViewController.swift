@@ -10,12 +10,14 @@ import UIKit
 final class SearchResultsViewController: UIViewController {
     
     var searchedMovie: [Doc]?
+    var searchedPerson: [DocPerson]?
+    
+    let sections = SearchResultSection.AllCases()
     
     // MARK: - UI
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.register(UpcomingMovieCell.self, forCellWithReuseIdentifier: UpcomingMovieCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
         
@@ -25,22 +27,39 @@ final class SearchResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setConstraints()
+       
     }
     
     
 
     // MARK: - Private methods
     private func setupUI() {
-        
         view.addSubview(collectionView)
         collectionView.backgroundColor = .primaryDark
-        collectionView.dataSource = self
+        setDelegates()
+        setConstraints()
+        registerCollectionsCells()
+    }
+    
+    // MARK: - Setup
+    private func setDelegates() {
         collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
+    private func registerCollectionsCells() {
+        collectionView.register(
+            UpcomingMovieCell.self,
+            forCellWithReuseIdentifier: UpcomingMovieCell.identifier
+        )
+        
+        collectionView.register(
+            PersonCell.self,
+            forCellWithReuseIdentifier: PersonCell.identifier
+        )
     }
     
     private func setConstraints() {
-        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(100)
             make.leading.equalTo(view.snp.leading)
@@ -48,8 +67,8 @@ final class SearchResultsViewController: UIViewController {
             make.bottom.equalTo(view.snp.bottom)
         }
     }
-    // MARK: - UICollectionViewCompositionalLayout
     
+    // MARK: - UICollectionViewCompositionalLayout
     private func createLayout() -> UICollectionViewLayout {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
@@ -63,31 +82,6 @@ final class SearchResultsViewController: UIViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
         
         return UICollectionViewCompositionalLayout(section: section)
-    }
-}
-
-extension SearchResultsViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        searchedMovie?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCell.identifier, for: indexPath) as? UpcomingMovieCell
-        else {
-            return UICollectionViewCell()
-        }
-        
-        guard let searchData = searchedMovie?[indexPath.row] else { return cell }
-        cell.configure(for: searchData)
-        return cell
-    }
-}
-
-extension SearchResultsViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
     }
 }
 

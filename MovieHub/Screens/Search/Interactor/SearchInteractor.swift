@@ -9,12 +9,16 @@ import Foundation
 
 final class SearchInteractor: SearchInteractorInputProtocol {
     
+
+    
+    
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
     var networkService: NetworkServiceProtocol
     
     var categories = MovieGenre.allCases.map { $0.rawValue }
     
+    var searchPerson: PersonModel?
     var searchMovie: SearchModel?
     var upcomingMovie: UpcomingModel?
     var recentMovie: [Doc] = []
@@ -26,6 +30,20 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     }
     
     //MARK: Methods
+    
+    func requestPerson(name: String) {
+        networkService.searchPerson(name) { [weak self] (result: (Result<PersonModel, RequestError>)) in
+                                                                  
+            guard let self else { return }
+            switch result {
+                
+            case .success(let person):
+                self.searchPerson = person
+            case .failure(let error):
+                print(error.customMessage)
+            }
+        }
+    }
     
     func requestSearch(_ title: String) {
         networkService.searchTitle(title) { [weak self] (result: (Result<SearchModel, RequestError>)) in

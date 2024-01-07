@@ -13,22 +13,10 @@ extension SearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        if section >= 0 && section <= sections.count {
-//            let currentSection = sections[section]
-//            switch currentSection {
-//                
-//            case .upcomingMovies:
-//                return presenter?.getUpcomingMovie().count ?? 0
-//            case .recentMovies:
-//                return presenter?.getUpcomingMovie().count ?? 0
-//            }
-//        }
-//        return 0
+
         switch section {
         case 0:
-            print(presenter?.getUpcomingMovie().count ?? 0)
             return presenter?.getUpcomingMovie().count ?? 0
-            
         case 1:
             return presenter?.getRecentMovie().count ?? 0
         default:

@@ -13,8 +13,13 @@ extension SearchViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text, searchText.count >= 2 else { return }
         
         guard let resultController = searchController.searchResultsController as? SearchResultsViewController  else { return }
+        
          presenter?.fetchSearchedMovie(with: searchText)
+        presenter?.fetchSearchedPerson(with: searchText)
+        
         resultController.searchedMovie = presenter?.getSearchData() ?? []
+        resultController.searchedPerson = presenter?.getSearchPerson() ?? []
+        
         resultController.collectionView.reloadData()
     }
 }
