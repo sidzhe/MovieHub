@@ -43,6 +43,7 @@ protocol SearchInteractorInputProtocol: AnyObject {
 /// INTERACTOR -> PRESENTER
 protocol SearchInteractorOutputProtocol: AnyObject {
     func updateUI()
+    
 }
 
 /// PRESENTER -> ROUTER

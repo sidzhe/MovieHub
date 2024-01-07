@@ -89,8 +89,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public methods
-    
+    // MARK: - For UpcomingMovie
     func configure(with upcomingMovie: UpcomingDoc) {
       guard let model = upcomingMovie.sequelsAndPrequels?.first,
             let urlString = model.poster?.url ?? model.poster?.previewURL,
@@ -107,6 +106,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
       ratingLabel.text = String(format: "Rating: %.1f", model.rating?.kp ?? 0.0)
     }
     
+    // MARK: - For SearchedMovie
     func configure(for searchedMovie: Doc) {
         
         let url = URL(string: searchedMovie.poster?.url ?? "")
@@ -141,14 +141,14 @@ final class UpcomingMovieCell: UICollectionViewCell {
         posterImageView.snp.makeConstraints { make in
             make.top.equalTo(movieContentView.snp.top)
             make.leading.equalTo(movieContentView.snp.leading)
-            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 2)
+            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 1.5)
             make.height.equalTo(movieContentView.snp.height)
         }
         
         infoStackView.snp.makeConstraints { make in
             make.top.equalTo(movieContentView.snp.top).offset(Constants.verticalSpacing)
             make.leading.equalTo(posterImageView.snp.trailing).offset(Constants.interSpacing)
-            make.trailing.equalTo(movieContentView.snp.trailing).offset(-Constants.horizontalSpacing)
+            make.trailing.equalTo(movieContentView.snp.trailing)
             make.bottom.lessThanOrEqualTo(movieContentView.snp.bottom).offset(-Constants.interSpacing)
         }
         

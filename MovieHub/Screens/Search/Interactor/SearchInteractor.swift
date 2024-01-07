@@ -34,8 +34,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
                 
             case .success(let search):
                 self.searchMovie = search
-                print(search)
-                //self.presenter?.updateUI()
+                self.presenter?.updateUI()
             case .failure(let error):
                 print(error.customMessage)
             }

@@ -29,7 +29,6 @@ final class SearchViewController: UIViewController {
         let layout = createLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
-        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()

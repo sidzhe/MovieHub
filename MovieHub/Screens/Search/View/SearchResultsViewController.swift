@@ -9,7 +9,7 @@ import UIKit
 
 final class SearchResultsViewController: UIViewController {
     
-    var presenter: SearchPresenterProtocol!
+    var presenter: SearchPresenterProtocol?
     
     // MARK: - UI
     
@@ -28,8 +28,7 @@ final class SearchResultsViewController: UIViewController {
         setConstraints()
         
     }
-  
-    
+
     // MARK: - Private methods
     private func setupUI() {
         
@@ -88,5 +87,14 @@ extension SearchResultsViewController: UICollectionViewDataSource {
 extension SearchResultsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
+    }
+}
+
+extension SearchResultsViewController: SearchViewProtocol {
+    
+    func updateUI() {
+        Task {
+            collectionView.reloadData()
+        }
     }
 }
