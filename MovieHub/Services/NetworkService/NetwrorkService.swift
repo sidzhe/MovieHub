@@ -11,7 +11,7 @@ import UIKit
 protocol NetworkServiceProtocol: AnyObject {
     func searchTitle<T: Decodable>(_ title: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func searchPerson<T: Decodable>(_ person: String, completion: @escaping (Result<T, RequestError>) -> Void)
-    func searchID<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void)
+    func searchDetailID<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func searchColletions<T: Decodable>(completion: @escaping (Result<T, RequestError>) -> Void)
     func getSlugCollection<T: Decodable>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func getGenreCollection<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
@@ -19,7 +19,8 @@ protocol NetworkServiceProtocol: AnyObject {
     func getDetailPerson<T: Decodable>(personId: [Int], completion: @escaping (Result<T, RequestError>) -> Void)
     func getMovieWithPerson<T: Decodable>(personId: Int, completion: @escaping (Result<T, RequestError>) -> Void)
     func getAwardsPerson<T: Decodable>(personId: Int, completion: @escaping (Result<T, RequestError>) -> Void)
-    func getMovieUpcomingGenres<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
+    func getmovieUpcomingGenres<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void)
+    func searchMovieById<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void)
 }
 
 
@@ -46,9 +47,9 @@ final class NetworkService: NetworkServiceProtocol {
     }
     
     //MARK: Search with ID
-    func searchID<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void) {
+    func searchDetailID<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void) {
         Task {
-            let result: Result<T, RequestError> = await movieService.searchWithId(identifier: identifier)
+            let result: Result<T, RequestError> = await movieService.searchMovieById(identifier: identifier)
             completion(result)
         }
     }
@@ -110,10 +111,16 @@ final class NetworkService: NetworkServiceProtocol {
     }
     
     //MARK: Person awards
-    func getMovieUpcomingGenres<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void) {
+    func getmovieUpcomingGenres<T: Decodable>(genre: MovieGenre, completion: @escaping (Result<T, RequestError>) -> Void) {
         Task {
             let result: Result<T, RequestError> = await movieService.movieUpcomingGenres(genre: genre.rawValue)
-           // print(genre.rawValue)
+            completion(result)
+        }
+    }
+    
+    func searchMovieById<T: Decodable>(_ identifier: String, completion: @escaping (Result<T, RequestError>) -> Void) {
+        Task {
+            let result: Result<T, RequestError> = await movieService.searchMovieById(identifier: identifier)
             completion(result)
         }
     }

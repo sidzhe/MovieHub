@@ -25,7 +25,7 @@ final class ChristmasInteractor: ChristmasInteractorInputProtocol {
     
     //MARK: Search movie
     func getMovieWithId() {
-        networkService.searchID(newYearMovies[Int.random(in: 0..<30)]) { [weak self] (result: (Result<DetailModel, RequestError>)) in
+        networkService.searchDetailID(newYearMovies[Int.random(in: 0..<30)]) { [weak self] (result: (Result<DetailModel, RequestError>)) in
             switch result {
                 
             case .success(let movie):
