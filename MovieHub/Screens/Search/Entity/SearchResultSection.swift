@@ -10,6 +10,15 @@ import Foundation
 enum SearchResultSection: Int, CaseIterable {
     case person
     case movie
+    
+    var title: String {
+        switch self {
+        case .person:
+            return "Actors"
+        case .movie:
+            return "Movie Related"
+        }
+    }
 }
 
 struct SearchResultSectionData {

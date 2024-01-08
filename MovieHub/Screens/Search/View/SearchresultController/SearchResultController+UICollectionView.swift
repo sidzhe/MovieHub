@@ -4,8 +4,10 @@
 //
 //  Created by Келлер Дмитрий on 07.01.2024.
 //
+
 import UIKit
 
+// MARK: - UICollectionViewDataSource
 extension SearchResultsViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -49,6 +51,22 @@ extension SearchResultsViewController: UICollectionViewDataSource {
             return cell
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: SearchHeader.identifier,
+                for: indexPath
+            ) as? SearchHeader else { return UICollectionReusableView() }
+            header.configure(header: sections[indexPath.section].title)
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+    }
+    
 }
 
 extension SearchResultsViewController: UICollectionViewDelegate {

@@ -12,43 +12,18 @@ final class UpcomingMovieCell: UICollectionViewCell {
     
     static let identifier = "UpcomingMovieCell"
     
-    private lazy var posterImageView: UIImageView = {
-        let view = UIImageView()
-        view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    // MARK: - Views
     
-    lazy var movieContentView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .primaryDark
-        view.layer.cornerRadius = 8
-        view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let blurView: UIVisualEffectView = {
-        let view = UIVisualEffectView()
-        let effect = UIBlurEffect(style: .light)
-        view.effect = effect
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 6
-        return view
-    }()
+    private lazy var posterImageView: UIImageView = _posterImageView
+    private lazy var movieContentView: UIView = _movieContentView
+    private lazy var blurView: UIVisualEffectView = _blurView
+    private lazy var starImage: UIImageView = _starImage
     
     private let ratingLabel: UILabel = makeLabel(
         fontSize: 17,
         textColor: .primaryOrange
     )
-    
-    private lazy var starImage: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(systemName: "star.fill")
-        view.tintColor = .primaryOrange
-        return view
-    }()
-    
+
     private let nameLabel: UILabel = makeLabel(
         fontSize: 16,
         textColor: .white
@@ -91,19 +66,19 @@ final class UpcomingMovieCell: UICollectionViewCell {
     
     // MARK: - For UpcomingMovie
     func configure(with upcomingMovie: UpcomingDoc) {
-      guard let model = upcomingMovie.sequelsAndPrequels?.first,
-            let urlString = model.poster?.url ?? model.poster?.previewURL,
-            let url = URL(string: urlString) else { return }
-      
-      Task(priority: .userInitiated) { [weak self] in
-        self?.posterImageView.kf.setImage(with: url)
-      }
-      
-      nameLabel.text = model.name ?? model.alternativeName
-      yearLabel.text = String("\(model.year)")
-      durationLabel.text = "\(String(describing: model.rating)) Minutes"
-      categoryLabel.text = model.type
-      ratingLabel.text = String(format: "Rating: %.1f", model.rating?.kp ?? 0.0)
+        guard let model = upcomingMovie.sequelsAndPrequels?.first,
+              let urlString = model.poster?.url ?? model.poster?.previewURL,
+              let url = URL(string: urlString) else { return }
+        
+        Task(priority: .userInitiated) { [weak self] in
+            self?.posterImageView.kf.setImage(with: url)
+        }
+        
+        nameLabel.text = model.name ?? model.alternativeName
+        yearLabel.text = "\(model.year ?? 0)" 
+        durationLabel.text = "\(upcomingMovie.movieLength ?? 0) Minutes"
+        categoryLabel.text = model.type ?? ""
+        ratingLabel.text = String(format: "Rating: %.1f", model.rating?.kp ?? 0.0)
     }
     
     // MARK: - For SearchedMovie
@@ -141,7 +116,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
         posterImageView.snp.makeConstraints { make in
             make.top.equalTo(movieContentView.snp.top)
             make.leading.equalTo(movieContentView.snp.leading)
-            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 3.0)
+            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 2.5)
             make.height.equalTo(movieContentView.snp.height)
         }
         
@@ -173,8 +148,41 @@ final class UpcomingMovieCell: UICollectionViewCell {
 }
 
 //MARK: Static methods & properties
-extension UpcomingMovieCell {
-    private static func makeLabel(fontSize: CGFloat, textColor: UIColor) -> UILabel {
+private extension UpcomingMovieCell {
+    
+    var _posterImageView: UIImageView {
+        let view = UIImageView()
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+    
+    var _movieContentView: UIView {
+        let view = UIView()
+        view.backgroundColor = .primaryDark
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+    
+    var _blurView: UIVisualEffectView  {
+        let view = UIVisualEffectView()
+        let effect = UIBlurEffect(style: .light)
+        view.effect = effect
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 6
+        return view
+    }
+    
+    var _starImage: UIImageView {
+        let view = UIImageView()
+        view.image = UIImage(systemName: "star.fill")
+        view.tintColor = .primaryOrange
+        return view
+    }
+
+    static func makeLabel(fontSize: CGFloat, textColor: UIColor) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left

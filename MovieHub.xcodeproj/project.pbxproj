@@ -343,9 +343,9 @@
 		E1EE76A42B3DC5B200BC5858 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E1D824B62B4B3837009E6B86 /* PersonCell.swift */,
 				E1EE76BC2B41BEED00BC5858 /* UpcomingMovieCell.swift */,
 				E13878022B444AEF00054F5C /* SearchHeader.swift */,
-				E1D824B62B4B3837009E6B86 /* PersonCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

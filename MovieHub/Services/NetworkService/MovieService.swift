@@ -187,6 +187,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
                      URLQueryItem(name: "limit", value: "10"),
                      URLQueryItem(name: "selectFields", value: "movieLength"),
                      URLQueryItem(name: "selectFields", value: "sequelsAndPrequels"),
+                     URLQueryItem(name: "notNullFields", value: "year"),
                      URLQueryItem(name: "notNullFields", value: "sequelsAndPrequels.id"),
                      URLQueryItem(name: "genres.name", value: genre)]
         urlComponents.queryItems = items
