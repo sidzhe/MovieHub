@@ -8,7 +8,7 @@
 import Foundation
 
 final class PersonDetailPresenter: PersonDetailPresenterProtocol {
-
+    
     //MARK: Properties
     weak var view: PersonDetailViewProtocol?
     var interactor: PersonDetailInteractorInputProtocol?
@@ -20,14 +20,20 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
         return model
     }
     
-    func getSearchData() -> [Doc]? {
-        guard let model = interactor?.searchData?.docs else { return nil }
+    func getSearchData() -> [Doc] {
+        guard let model = interactor?.searchData?.docs else { return [Doc]() }
         return model
     }
     
-    func getAwardsData() -> [DocAwards]? {
-        guard let model = interactor?.awardsData?.docs.filter({ $0.winning == true }) else { return nil }
+    func getAwardsData() -> [DocAwards] {
+        guard let model = interactor?.awardsData?.docs else { return [DocAwards]() }
         return model
+    }
+    
+    func getFacts() -> [String] {
+        guard let model = interactor?.personDetailData?.docs?.first?.facts else { return [String]() }
+        let output = model.compactMap { removingHTMLEscapes(text: $0.value) }
+        return output
     }
     
     //MARK: Conver methods
@@ -63,9 +69,27 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
         }
     }
     
-    //MARK: Route to Detail
+    private func removingHTMLEscapes(text: String?) -> String? {
+        guard let text = text else { return nil }
+        
+        do {
+            let regex = try NSRegularExpression(pattern: "<[^>]+>", options: .caseInsensitive)
+            let range = NSRange(location: 0, length: text.utf16.count)
+            let htmlFreeString = regex.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "")
+            return htmlFreeString
+        } catch {
+            print("Ошибка при удалении HTML-тегов: \(error)")
+            return nil
+        }
+    }
+    
+    //MARK: Route to VC
     func routeToDetail() {
         router?.pushToDetail(from: view)
+    }
+    
+    func routeToPopular() {
+        router?.pushToPopularMovie(from: view)
     }
 }
 

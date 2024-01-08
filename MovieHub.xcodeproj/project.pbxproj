@@ -19,6 +19,12 @@
 		E1D824B72B4B3837009E6B86 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D824B62B4B3837009E6B86 /* PersonCell.swift */; };
 		E1D824B92B4B4421009E6B86 /* SearchResultSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D824B82B4B4421009E6B86 /* SearchResultSection.swift */; };
 		E1D824BD2B4B4748009E6B86 /* SearchResultController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D824BC2B4B4748009E6B86 /* SearchResultController+UICollectionView.swift */; };
+		E1D824BF2B4C93A2009E6B86 /* AwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D824BE2B4C93A2009E6B86 /* AwardCell.swift */; };
+		E1D824C12B4C93A8009E6B86 /* FactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D824C02B4C93A8009E6B86 /* FactsCell.swift */; };
+		E1D824C52B4C93D3009E6B86 /* PersonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D824C32B4C93D3009E6B86 /* PersonItem.swift */; };
+		E1D824C62B4C93D3009E6B86 /* PersonSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D824C42B4C93D3009E6B86 /* PersonSection.swift */; };
+		E1D824CA2B4C940A009E6B86 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D824C82B4C940A009E6B86 /* MovieView.swift */; };
+		E1D824CB2B4C940A009E6B86 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D824C92B4C940A009E6B86 /* BallView.swift */; };
 		E1EE76A22B3DC58A00BC5858 /* NavigationController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A02B3DC58A00BC5858 /* NavigationController + Extension.swift */; };
 		E1EE76A32B3DC58A00BC5858 /* UISearchController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A12B3DC58A00BC5858 /* UISearchController + Extension.swift */; };
 		E1EE76A82B3DC5CF00BC5858 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE76A72B3DC5CF00BC5858 /* SearchResultsViewController.swift */; };
@@ -131,6 +137,12 @@
 		E1D824B62B4B3837009E6B86 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		E1D824B82B4B4421009E6B86 /* SearchResultSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSection.swift; sourceTree = "<group>"; };
 		E1D824BC2B4B4748009E6B86 /* SearchResultController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultController+UICollectionView.swift"; sourceTree = "<group>"; };
+		E1D824BE2B4C93A2009E6B86 /* AwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AwardCell.swift; sourceTree = "<group>"; };
+		E1D824C02B4C93A8009E6B86 /* FactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactsCell.swift; sourceTree = "<group>"; };
+		E1D824C32B4C93D3009E6B86 /* PersonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonItem.swift; sourceTree = "<group>"; };
+		E1D824C42B4C93D3009E6B86 /* PersonSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonSection.swift; sourceTree = "<group>"; };
+		E1D824C82B4C940A009E6B86 /* MovieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
+		E1D824C92B4C940A009E6B86 /* BallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
 		E1EE76A02B3DC58A00BC5858 /* NavigationController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NavigationController + Extension.swift"; path = "MovieHub/Support/Extensions /NavigationController + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		E1EE76A12B3DC58A00BC5858 /* UISearchController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UISearchController + Extension.swift"; path = "MovieHub/Support/Extensions /UISearchController + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		E1EE76A72B3DC5CF00BC5858 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +258,7 @@
 		E1082A412B45972600FAC4C3 /* PersonDetail */ = {
 			isa = PBXGroup;
 			children = (
+				E1D824C22B4C93D3009E6B86 /* Entity */,
 				E1082A422B45972600FAC4C3 /* Presenter */,
 				E1082A442B45972600FAC4C3 /* View */,
 				E1082A482B45972600FAC4C3 /* Protocols */,
@@ -275,6 +288,8 @@
 		E1082A452B45972600FAC4C3 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E1D824C02B4C93A8009E6B86 /* FactsCell.swift */,
+				E1D824BE2B4C93A2009E6B86 /* AwardCell.swift */,
 				E1082A462B45972600FAC4C3 /* PersonHeader.swift */,
 			);
 			path = Cell;
@@ -338,6 +353,24 @@
 				E1D824BC2B4B4748009E6B86 /* SearchResultController+UICollectionView.swift */,
 			);
 			path = SearchresultController;
+			sourceTree = "<group>";
+		};
+		E1D824C22B4C93D3009E6B86 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				E1D824C32B4C93D3009E6B86 /* PersonItem.swift */,
+				E1D824C42B4C93D3009E6B86 /* PersonSection.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		E1D824C72B4C940A009E6B86 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E1D824C82B4C940A009E6B86 /* MovieView.swift */,
+				E1D824C92B4C940A009E6B86 /* BallView.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		E1EE76A42B3DC5B200BC5858 /* Cell */ = {
@@ -1006,6 +1039,7 @@
 		EBE76C802B3974B60053E522 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E1D824C72B4C940A009E6B86 /* Helpers */,
 				EBE76C8C2B3977430053E522 /* ChristmasViewController.swift */,
 			);
 			path = View;
@@ -1157,6 +1191,7 @@
 				EBE76C622B3972DB0053E522 /* WishlistPresenter.swift in Sources */,
 				EBDFCFB02B457AD000B1FE5E /* UpcomingModel.swift in Sources */,
 				EBE76C512B3971CA0053E522 /* DetailViewController.swift in Sources */,
+				E1D824CA2B4C940A009E6B86 /* MovieView.swift in Sources */,
 				EBE76C552B3972300053E522 /* DetailInteractor.swift in Sources */,
 				E1082A522B45972600FAC4C3 /* PersonDetailInteractor.swift in Sources */,
 				E1EE76B32B40048700BC5858 /* CategoriesMenuCell.swift in Sources */,
@@ -1171,7 +1206,9 @@
 				E1082A512B45972600FAC4C3 /* PersonDetailProtocols.swift in Sources */,
 				E1EE76BD2B41BEED00BC5858 /* UpcomingMovieCell.swift in Sources */,
 				EBCA67DD2B3C74B7008B59B9 /* PopularCell.swift in Sources */,
+				E1D824C62B4C93D3009E6B86 /* PersonSection.swift in Sources */,
 				EBE76C7C2B39749F0053E522 /* ProfileProtocols.swift in Sources */,
+				E1D824CB2B4C940A009E6B86 /* BallView.swift in Sources */,
 				EBE76C572B3972500053E522 /* DetailRouter.swift in Sources */,
 				EB6CB2DF2B3C26FB00DC30BC /* AccountView.swift in Sources */,
 				E1D824B72B4B3837009E6B86 /* PersonCell.swift in Sources */,
@@ -1199,16 +1236,19 @@
 				EBE76C8D2B3977430053E522 /* ChristmasViewController.swift in Sources */,
 				EB8267932B38B7860024BAAE /* Builder.swift in Sources */,
 				EBE76C462B39707B0053E522 /* PopularInteractor.swift in Sources */,
+				E1D824C52B4C93D3009E6B86 /* PersonItem.swift in Sources */,
 				EB8267902B38B33E0024BAAE /* OnboardingRouter.swift in Sources */,
 				EBE76C4F2B3971180053E522 /* DetailProtocols.swift in Sources */,
 				E1D824BD2B4B4748009E6B86 /* SearchResultController+UICollectionView.swift in Sources */,
 				E1D824B92B4B4421009E6B86 /* SearchResultSection.swift in Sources */,
 				E1EE76A22B3DC58A00BC5858 /* NavigationController + Extension.swift in Sources */,
 				E1EE76A82B3DC5CF00BC5858 /* SearchResultsViewController.swift in Sources */,
+				E1D824BF2B4C93A2009E6B86 /* AwardCell.swift in Sources */,
 				EB8267632B38A1D50024BAAE /* SceneDelegate.swift in Sources */,
 				EBE76C312B396EA20053E522 /* MovieListProtocols.swift in Sources */,
 				E1EE76A32B3DC58A00BC5858 /* UISearchController + Extension.swift in Sources */,
 				EBE76C392B396F9E0053E522 /* MovieListRouter.swift in Sources */,
+				E1D824C12B4C93A8009E6B86 /* FactsCell.swift in Sources */,
 				EBE76C8B2B3976F70053E522 /* ProfileRouter.swift in Sources */,
 				EBE76C892B3976D70053E522 /* ProfileInteractor.swift in Sources */,
 				EB369B112B398CA100BB4275 /* MovieEndpoints.swift in Sources */,

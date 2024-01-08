@@ -83,4 +83,3 @@ extension MainPresenter: MainInteractorOutputProtocol {
         view?.displayRequestError(error: error)
     }
 }
-

@@ -39,7 +39,6 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter?.fetch()
         setupView()
         configureCollectionView()
         createDataSource()
@@ -72,6 +71,7 @@ final class MainViewController: UIViewController {
     private func setCategories() {
         let indexPath = IndexPath(row: 0, section: 2)
         collectionView(collectionView, didSelectItemAt: indexPath)
+        presenter?.fetch()
     }
     
     //MARK: Target
@@ -124,10 +124,10 @@ private extension MainViewController {
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .categories {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(115), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(115), heightDimension: .absolute(31))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .absolute(31))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
@@ -311,7 +311,7 @@ extension MainViewController: UICollectionViewDelegate {
         
         switch sectionKind {
         case .categories:
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .right)
             let value = presenter?.getCategories()[indexPath.row].category ?? ""
             presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
         default:

@@ -18,12 +18,14 @@ protocol PersonDetailViewProtocol: AnyObject {
 protocol PersonDetailPresenterProtocol: AnyObject {
     var view: PersonDetailViewProtocol? { get set }
     func getPersonDetailData() -> PersonDetalModel?
-    func getSearchData() -> [Doc]?
-    func getAwardsData() -> [DocAwards]?
+    func getSearchData() -> [Doc]
+    func getAwardsData() -> [DocAwards]
+    func getFacts() -> [String]
     func convertModel(model: [BirthPlace]?) -> String
     func dateFormatter(_ convertDate: String?) -> String
     func formatAgeString(age: Int?) -> String
     func routeToDetail()
+    func routeToPopular()
 }
 
 /// PRESENTER -> INTERACTOR
@@ -43,4 +45,5 @@ protocol PersonDetailInteractorOutputProtocol: AnyObject {
 /// PRESENTER -> ROUTER
 protocol PersonDetailRouterProtocol: AnyObject {
     func pushToDetail(from view: PersonDetailViewProtocol?)
+    func pushToPopularMovie(from view: PersonDetailViewProtocol?)
 }

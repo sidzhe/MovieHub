@@ -8,13 +8,13 @@
 import Foundation
 
 // MARK: - AwardsModel
-struct AwardsModel: Decodable {
+struct AwardsModel: Hashable, Decodable {
     let docs: [DocAwards]
     let total, limit, page, pages: Int
 }
 
 // MARK: - Doc
-struct DocAwards: Decodable {
+struct DocAwards: Hashable, Decodable {
     let personID: Int?
     let nomination: Nomination?
     let movie: Movie?
@@ -23,13 +23,13 @@ struct DocAwards: Decodable {
 }
 
 // MARK: - Nomination
-struct Nomination: Decodable {
+struct Nomination: Hashable, Decodable {
     let award: Award?
     let title: String?
 }
 
 // MARK: - Award
-struct Award: Decodable {
+struct Award: Hashable, Decodable {
     let title: String?
     let year: Int?
 }

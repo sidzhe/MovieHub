@@ -21,8 +21,8 @@ final class PersonDetailInteractor: PersonDetailInteractorInputProtocol {
     init(networkService: NetworkService, personId: Int) {
         self.networkService = networkService
         self.personId = personId
-        awardsRequest()
         personRequest()
+        awardsRequest()
         movieWithPersonRequest()
     }
     

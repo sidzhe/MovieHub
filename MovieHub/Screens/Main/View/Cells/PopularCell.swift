@@ -10,7 +10,8 @@ import SnapKit
 import Kingfisher
 
 final class PopularCell: UICollectionViewCell {
-   static let identifier = "PopularCell"
+    
+    static let identifier = "PopularCell"
     
     //MARK: UI Elements
     private lazy var posterImage: UIImageView = {
@@ -141,6 +142,5 @@ final class PopularCell: UICollectionViewCell {
         nameLabel.text = category.name ?? category.alternativeName
         categoryLabel.text = category.genres?.first?.name
         ratingLabel.text = String(format: "%.1f", category.rating?.kp ?? 0.0)
-
     }
 }

@@ -15,4 +15,11 @@ final class PersonDetailRouter: PersonDetailRouterProtocol {
         let detailVC = Builder.createDetail()
         view.navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    //MARK: Route to PupalarMovie
+    func pushToPopularMovie(from view: PersonDetailViewProtocol?) {
+        guard let view = view as? UIViewController else { return }
+        let popularMovieVC = Builder.createPopular()
+        view.navigationController?.pushViewController(popularMovieVC, animated: true)
+    }
 }
