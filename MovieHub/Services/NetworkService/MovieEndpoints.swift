@@ -11,7 +11,8 @@ import Foundation
 enum MovieEndpoints {
     case searchTitle
     case searchPerson
-    case searchId
+    case searchDetailId
+    case searchMovieWithId
     case slugList
     case movieFilter
     case personFilter
@@ -28,15 +29,16 @@ extension MovieEndpoints: Endpoint {
     var path: String {
         switch self {
             
-        case .searchTitle:      return "/v1.4/movie/search"
-        case .searchPerson:     return "/v1.4/person/search"
-        case .searchId:         return "/v1.4/movie/"
-        case .slugList:         return "/v1.4/list"
-        case .movieFilter:      return "/v1.4/movie"
-        case .personFilter:     return "/v1.4/person"
-        case .movieWithPerson:  return "/v1.4/movie"
-        case .awards:           return "/v1.4/person/awards"
-        case .upcoming:         return "/v1.4/movie"
+        case .searchTitle:           return "/v1.4/movie/search"
+        case .searchPerson:          return "/v1.4/person/search"
+        case .searchDetailId:        return "/v1.4/movie/"
+        case .slugList:              return "/v1.4/list"
+        case .movieFilter:           return "/v1.4/movie"
+        case .personFilter:          return "/v1.4/person"
+        case .movieWithPerson:       return "/v1.4/movie"
+        case .awards:                return "/v1.4/person/awards"
+        case .upcoming:              return "/v1.4/movie"
+        case .searchMovieWithId:     return "/v1.4/movie"
         }
     }
     
@@ -44,15 +46,16 @@ extension MovieEndpoints: Endpoint {
     var body: [String : String]? {
         switch self {
             
-        case .searchTitle:      return .none
-        case .searchPerson:     return .none
-        case .searchId:         return .none
-        case .slugList:         return .none
-        case .movieFilter:      return .none
-        case .personFilter:     return .none
-        case .movieWithPerson:  return .none
-        case .awards:           return .none
-        case .upcoming:         return .none
+        case .searchTitle:            return .none
+        case .searchPerson:           return .none
+        case .searchDetailId:         return .none
+        case .slugList:               return .none
+        case .movieFilter:            return .none
+        case .personFilter:           return .none
+        case .movieWithPerson:        return .none
+        case .awards:                 return .none
+        case .upcoming:               return .none
+        case .searchMovieWithId:      return .none
         }
     }
     
@@ -60,17 +63,18 @@ extension MovieEndpoints: Endpoint {
     var item: [URLQueryItem]? {
         switch self {
             
-        case .searchTitle:      return .none
-        case .searchPerson:     return .none
-        case .searchId:         return [URLQueryItem(name: "limit", value: "10")]
-        case .slugList:         return [URLQueryItem(name: "pages", value: String(Int.random(in: 1...9))),
+        case .searchTitle:            return .none
+        case .searchPerson:           return .none
+        case .searchDetailId:         return [URLQueryItem(name: "limit", value: "10")]
+        case .slugList:               return [URLQueryItem(name: "pages", value: String(Int.random(in: 1...9))),
                                         URLQueryItem(name: "limit", value: "10"),
                                         URLQueryItem(name: "notNullFields", value: "cover.url")]
-        case .movieFilter:      return .none
-        case .personFilter:     return .none
-        case .movieWithPerson:  return .none
-        case .awards:           return .none
-        case .upcoming:         return .none
+        case .movieFilter:            return .none
+        case .personFilter:           return .none
+        case .movieWithPerson:        return .none
+        case .awards:                 return .none
+        case .upcoming:               return .none
+        case .searchMovieWithId:      return .none
         }
     }
 }
