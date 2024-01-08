@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WishListTableViewCell: UITableViewCell {
+final class WishListTableViewCell: UITableViewCell {
     
     //MARK: - Parameters
     static let reuseId = String(String(describing: WishListTableViewCell.self))

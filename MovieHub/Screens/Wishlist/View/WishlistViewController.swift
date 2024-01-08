@@ -38,7 +38,7 @@ final class WishlistViewController: UIViewController {
         view.backgroundColor = .primaryDark
         view.addSubview(wishTableView)
         wishTableView.frame = view.bounds
-        
+        title = "Wishlist"
     }
     
 }
