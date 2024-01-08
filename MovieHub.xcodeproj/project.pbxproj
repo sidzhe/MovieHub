@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A048D652B4C5D41004CBB78 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A048D632B4C5D41004CBB78 /* UIStackView + Extension.swift */; };
+		0A048D662B4C5D41004CBB78 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A048D642B4C5D41004CBB78 /* UIView + Extension.swift */; };
+		0A048D692B4C5D6D004CBB78 /* WishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A048D682B4C5D6C004CBB78 /* WishListTableViewCell.swift */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
 		EB03F5A52B440C9F004BAE47 /* PersonDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */; };
@@ -112,6 +115,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A048D632B4C5D41004CBB78 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView + Extension.swift"; path = "MovieHub/Extension/UIStackView + Extension.swift"; sourceTree = SOURCE_ROOT; };
+		0A048D642B4C5D41004CBB78 /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView + Extension.swift"; path = "MovieHub/Extension/UIView + Extension.swift"; sourceTree = SOURCE_ROOT; };
+		0A048D682B4C5D6C004CBB78 /* WishListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewCell.swift; sourceTree = "<group>"; };
 		EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailRouter.swift; sourceTree = "<group>"; };
 		EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailInteractor.swift; sourceTree = "<group>"; };
 		EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailPresenter.swift; sourceTree = "<group>"; };
@@ -229,6 +235,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A048D672B4C5D6C004CBB78 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0A048D682B4C5D6C004CBB78 /* WishListTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		EB03F59A2B440C57004BAE47 /* PersonDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +349,8 @@
 		EB6CB2BD2B3C1AEC00DC30BC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0A048D632B4C5D41004CBB78 /* UIStackView + Extension.swift */,
+				0A048D642B4C5D41004CBB78 /* UIView + Extension.swift */,
 				EB6CB2BE2B3C1AFE00DC30BC /* Extension + UIColor.swift */,
 				EB6CB2C02B3C203A00DC30BC /* Extension + UIFont.swift */,
 			);
@@ -410,7 +426,6 @@
 				EB8267812B38A4AD0024BAAE /* Entity */,
 				EB8267762B38A2E80024BAAE /* Screens */,
 				EB8267802B38A4230024BAAE /* Services */,
-				0A4A01B62B3B62EB00E4D826 /* Extension */,
 				EB8267752B38A28B0024BAAE /* Support */,
 			);
 			path = MovieHub;
@@ -833,7 +848,7 @@
 		EBE76C5B2B3972790053E522 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0A4A01AF2B3B5F1600E4D826 /* Cells */,
+				0A048D672B4C5D6C004CBB78 /* Cells */,
 				EBE76C5F2B3972B50053E522 /* WishlistViewController.swift */,
 			);
 			path = View;
@@ -1117,16 +1132,16 @@
 				EBE76C9A2B3979B00053E522 /* TabBarProtocols.swift in Sources */,
 				EBCA67DD2B3C74B7008B59B9 /* PopularCell.swift in Sources */,
 				EBE76C7C2B39749F0053E522 /* ProfileProtocols.swift in Sources */,
-				0A4A01B52B3B62D900E4D826 /* UIStackView + Extension.swift in Sources */,
 				EBE76C572B3972500053E522 /* DetailRouter.swift in Sources */,
 				EB6CB2DF2B3C26FB00DC30BC /* AccountView.swift in Sources */,
 				EB8267612B38A1D50024BAAE /* AppDelegate.swift in Sources */,
 				EBE76C602B3972B50053E522 /* WishlistViewController.swift in Sources */,
-				0A4A01B32B3B62CE00E4D826 /* UIView + Extension.swift in Sources */,
 				EBE76C372B396F7F0053E522 /* MovieListInteractor.swift in Sources */,
 				EBE76C222B396D550053E522 /* MainProtocols.swift in Sources */,
+				0A048D652B4C5D41004CBB78 /* UIStackView + Extension.swift in Sources */,
 				EBE76C832B3974C30053E522 /* ChristmasProtocols.swift in Sources */,
 				EB82678C2B38B19B0024BAAE /* OnboardingPresenter.swift in Sources */,
+				0A048D692B4C5D6D004CBB78 /* WishListTableViewCell.swift in Sources */,
 				EB6CB2E72B3C4A0200DC30BC /* CollectionCell.swift in Sources */,
 				EBE76C442B39704B0053E522 /* PopularPresenter.swift in Sources */,
 				EBCA67DB2B3C6C22008B59B9 /* CategoriesCell.swift in Sources */,
@@ -1165,6 +1180,7 @@
 				EB8267882B38AB110024BAAE /* OnboardingViewController.swift in Sources */,
 				EB369B2A2B3B20F100BB4275 /* PersonDetalModel.swift in Sources */,
 				EB369B0B2B398BAB00BB4275 /* Endpoint.swift in Sources */,
+				0A048D662B4C5D41004CBB78 /* UIView + Extension.swift in Sources */,
 				EBE76C852B39767C0053E522 /* ProfileViewController.swift in Sources */,
 				EB369B152B39940400BB4275 /* MovieService.swift in Sources */,
 				EB6CB2E42B3C31DF00DC30BC /* ItemMain.swift in Sources */,

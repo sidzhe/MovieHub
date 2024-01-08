@@ -35,7 +35,7 @@ final class WishlistViewController: UIViewController {
     
     //MARK: - Methods
     private func setViews() {
-        view.backgroundColor = .black
+        view.backgroundColor = .primaryDark
         view.addSubview(wishTableView)
         wishTableView.frame = view.bounds
         

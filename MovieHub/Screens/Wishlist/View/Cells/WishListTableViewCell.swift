@@ -14,7 +14,7 @@ class WishListTableViewCell: UITableViewCell {
     
     private let darkBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .primarySoft
         view.layer.cornerRadius = 16
         view.clipsToBounds = true
         return view
