@@ -38,7 +38,8 @@ final class Builder {
     static func createMain() -> UIViewController {
         let view = MainViewController()
         let presenter = MainPresenter()
-        let interactor = MainInteractor()
+        let networkService = NetworkService()
+        let interactor = MainInteractor(networkService: networkService)
         let router = MainRouter()
         view.presenter = presenter
         presenter.view = view
@@ -136,8 +137,24 @@ final class Builder {
     static func createChristmas() -> UIViewController {
         let view = ChristmasViewController()
         let presenter = ChristmasPresenter()
-        let interactor = ChristmasInteractor()
+        let networkService = NetworkService()
+        let interactor = ChristmasInteractor(networkService: networkService)
         let router = ChristmasRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
+    /// PersonDetailVC
+    static func createPersonDetail(personId: Int) -> UIViewController {
+        let view = PersonDetailViewController()
+        let presenter = PersonDetailPresenter()
+        let networkService = NetworkService()
+        let interactor = PersonDetailInteractor(networkService: networkService, personId: personId)
+        let router = PersonDetailRouter()
         view.presenter = presenter
         presenter.view = view
         presenter.interactor = interactor

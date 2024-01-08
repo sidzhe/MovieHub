@@ -11,7 +11,8 @@ final class TabBarPresenter: TabBarPresenterProtocol {
     
     //MARK: Properties
     weak var view: TabBarViewProtocol?
-
+    var previousViewTag: Int?
     
+    //MARK: - Save previous tag
     
 }

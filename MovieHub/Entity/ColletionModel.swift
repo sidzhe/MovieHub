@@ -8,13 +8,13 @@
 import Foundation
 
 // MARK: - ColletionModel
-struct ColletionModel: Decodable {
+struct ColletionModel: Hashable, Decodable {
     let docs: [DocCollect]
     let total, limit, page, pages: Int
 }
 
 // MARK: - Doc
-struct DocCollect: Decodable {
+struct DocCollect: Hashable, Decodable {
     let category, name, slug, createdAt: String
     let updatedAt, id: String
     let moviesCount: Int?
@@ -22,7 +22,7 @@ struct DocCollect: Decodable {
 }
 
 // MARK: - Cover
-struct Cover: Decodable {
+struct Cover: Hashable, Decodable {
     let url, previewUrl: String
 }
 
