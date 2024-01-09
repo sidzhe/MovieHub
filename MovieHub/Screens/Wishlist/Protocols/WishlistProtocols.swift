@@ -20,6 +20,8 @@ protocol WishlistPresenterProtocol: AnyObject {
 /// PRESENTER -> INTERACTOR
 protocol WishlistInteractorInputProtocol: AnyObject {
     var presenter: WishlistInteractorOutputProtocol? { get set }
+    var favoriteMoviesID: [Int] {get}
+    func requestFavoriteMovies()
 }
 
 /// INTERACTOR -> PRESENTER
