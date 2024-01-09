@@ -15,6 +15,8 @@ final class SearchResultsViewController: UIViewController {
     let sections = SearchResultSection.AllCases()
     
     // MARK: - UI
+
+    private lazy var infoImageView: UIImageView = _infoImageView
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -26,15 +28,24 @@ final class SearchResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-    }
-
-    // MARK: - Private methods
-    private func setupUI() {
-        view.addSubview(collectionView)
-        collectionView.backgroundColor = .primaryDark
         setDelegates()
         setConstraints()
         registerCollectionsCells()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+        print(searchedMovie)
+        print(searchedPerson)
+    }
+    
+    // MARK: - Private methods
+    private func setupUI() {
+        view.addSubview(collectionView)
+        view.addSubview(infoImageView)
+        collectionView.backgroundColor = .primaryDark
+
     }
     
     // MARK: - Setup
@@ -64,12 +75,25 @@ final class SearchResultsViewController: UIViewController {
     }
     
     private func setConstraints() {
+        
+        infoImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(100)
             make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
             make.bottom.equalTo(view.snp.bottom)
         }
+    }
+    
+    func updateInfoImageViewVisibility() {
+      if searchedMovie?.isEmpty ?? true || searchedPerson?.isEmpty ?? true {
+        infoImageView.isHidden = false
+      } else {
+        infoImageView.isHidden = true
+      }
     }
 }
 // MARK: - UICollectionViewCompositionalLayout
@@ -139,5 +163,11 @@ extension SearchResultsViewController {
               elementKind: UICollectionView.elementKindSectionHeader,
               alignment: .top
         )
+    }
+    
+    var _infoImageView: UIImageView {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "searchInfo")
+        return imageView
     }
 }

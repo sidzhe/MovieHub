@@ -19,8 +19,12 @@ final class UpcomingMovieCell: UICollectionViewCell {
     private lazy var blurView: UIVisualEffectView = _blurView
     private lazy var starImage: UIImageView = _starImage
     
+    private lazy var yearImage: UIImageView = _calendarImage
+    private lazy var movieLengthImage: UIImageView = _clockImage
+    private lazy var categoryImage: UIImageView = _movieImage
+    
     private let ratingLabel: UILabel = makeLabel(
-        fontSize: 17,
+        fontSize: 16,
         textColor: .primaryOrange
     )
 
@@ -34,7 +38,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
         textColor: .primaryGray
     )
     
-    private let durationLabel: UILabel = makeLabel(
+    private let movieLengthLabel: UILabel = makeLabel(
         fontSize: 12,
         textColor: .primaryGray
     )
@@ -44,10 +48,38 @@ final class UpcomingMovieCell: UICollectionViewCell {
         textColor: .primaryGray
     )
     
-    private lazy var infoStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, yearLabel, durationLabel, categoryLabel])
-        stackView.axis = .vertical
+    private lazy var yearStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [yearImage, yearLabel])
+        stackView.axis = .horizontal
         stackView.spacing = Constants.interSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private lazy var movieLengthStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [movieLengthImage, movieLengthLabel])
+        stackView.axis = .horizontal
+        stackView.spacing = Constants.interSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private lazy var categoryStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [categoryImage, categoryLabel])
+        stackView.axis = .horizontal
+        stackView.spacing = Constants.interSpacing
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private lazy var infoStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            yearStackView,
+            movieLengthStackView,
+            categoryStackView
+        ])
+        stackView.axis = .vertical
+        stackView.spacing = Constants.verticalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -75,10 +107,10 @@ final class UpcomingMovieCell: UICollectionViewCell {
         }
         
         nameLabel.text = model.name ?? model.alternativeName
-        yearLabel.text = "\(model.year ?? 0)" 
-        durationLabel.text = "\(upcomingMovie.movieLength ?? 0) Minutes"
-        categoryLabel.text = model.type ?? ""
-        ratingLabel.text = String(format: "Rating: %.1f", model.rating?.kp ?? 0.0)
+        yearLabel.text = model.year != nil ? "\(model.year!)" : "No Data"
+        movieLengthLabel.text = "\(upcomingMovie.movieLength ?? 0) Minutes"
+        categoryLabel.text = model.type?.capitalized ?? ""
+        ratingLabel.text = String(format: "%.1f", (model.rating?.kp ?? model.rating?.imdb) as Double? ?? 0.0)
     }
     
     // MARK: - For SearchedMovie
@@ -90,8 +122,8 @@ final class UpcomingMovieCell: UICollectionViewCell {
         
         nameLabel.text = searchedMovie.name ?? searchedMovie.alternativeName
         yearLabel.text = String("\(searchedMovie.year)")
-        durationLabel.text = "\(String(describing: searchedMovie.rating)) Minutes"
-        categoryLabel.text = searchedMovie.type
+        movieLengthLabel.text = "\(String(describing: searchedMovie.rating)) Minutes"
+        categoryLabel.text = searchedMovie.type?.capitalized
         ratingLabel.text = String(format: "Rating: %.1f", searchedMovie.rating?.kp ?? 0.0)
     }
     
@@ -99,9 +131,11 @@ final class UpcomingMovieCell: UICollectionViewCell {
     private func setupView() {
         addSubview(movieContentView)
         movieContentView.addSubview(posterImageView)
+        movieContentView.addSubview(nameLabel)
         movieContentView.addSubview(infoStackView)
-//        blurView.contentView.addSubview(starImage)
-//        blurView.contentView.addSubview(ratingLabel)
+        posterImageView.addSubview(blurView)
+        blurView.contentView.addSubview(starImage)
+        blurView.contentView.addSubview(ratingLabel)
     }
     
     private func setConstraints() {
@@ -113,6 +147,11 @@ final class UpcomingMovieCell: UICollectionViewCell {
             make.bottom.equalToSuperview()
         }
         
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(movieContentView.snp.top).offset(Constants.verticalSpacing * 2)
+            make.leading.equalTo(posterImageView.snp.trailing).offset(Constants.interSpacing)
+        }
+        
         posterImageView.snp.makeConstraints { make in
             make.top.equalTo(movieContentView.snp.top)
             make.leading.equalTo(movieContentView.snp.leading)
@@ -121,29 +160,29 @@ final class UpcomingMovieCell: UICollectionViewCell {
         }
         
         infoStackView.snp.makeConstraints { make in
-            make.top.equalTo(movieContentView.snp.top).offset(Constants.verticalSpacing)
+            make.top.equalTo(nameLabel.snp.bottom).offset(Constants.verticalSpacing * 3)
             make.leading.equalTo(posterImageView.snp.trailing).offset(Constants.interSpacing)
             make.trailing.equalTo(movieContentView.snp.trailing)
             make.bottom.lessThanOrEqualTo(movieContentView.snp.bottom).offset(-Constants.interSpacing)
         }
         
-//        blurView.snp.makeConstraints { make in
-//            make.height.equalTo(24)
-//            make.width.equalTo(62)
-//            make.top.left.equalToSuperview().inset(8)
-//        }
-//        
-//        starImage.snp.makeConstraints { make in
-//            make.size.equalTo(18)
-//            make.left.equalToSuperview().inset(5)
-//            make.centerY.equalToSuperview()
-//        }
-//        
-//        ratingLabel.snp.makeConstraints { make in
-//            make.left.equalTo(starImage.snp.right).inset(-5)
-//            make.centerY.equalToSuperview()
-//            make.right.equalToSuperview().inset(5)
-//        }
+        blurView.snp.makeConstraints { make in
+            make.height.equalTo(24)
+            make.width.equalTo(62)
+            make.top.left.equalToSuperview().inset(8)
+        }
+        
+        starImage.snp.makeConstraints { make in
+            make.size.equalTo(18)
+            make.left.equalToSuperview().inset(5)
+            make.centerY.equalToSuperview()
+        }
+        
+        ratingLabel.snp.makeConstraints { make in
+            make.left.equalTo(starImage.snp.right).inset(-5)
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().inset(5)
+        }
     }
 }
 
@@ -168,7 +207,7 @@ private extension UpcomingMovieCell {
     
     var _blurView: UIVisualEffectView  {
         let view = UIVisualEffectView()
-        let effect = UIBlurEffect(style: .light)
+        let effect = UIBlurEffect(style: .regular)
         view.effect = effect
         view.clipsToBounds = true
         view.layer.cornerRadius = 6
@@ -181,7 +220,25 @@ private extension UpcomingMovieCell {
         view.tintColor = .primaryOrange
         return view
     }
-
+    
+    var _calendarImage: UIImageView {
+        let view = UIImageView()
+        view.image = UIImage(named: "calendar")
+        return view
+    }
+    
+    var _clockImage: UIImageView {
+        let view = UIImageView()
+        view.image = UIImage(named: "clock")
+        return view
+    }
+    
+    var _movieImage: UIImageView {
+        let view = UIImageView()
+        view.image = UIImage(named: "movie")
+        return view
+    }
+    
     static func makeLabel(fontSize: CGFloat, textColor: UIColor) -> UILabel {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -193,7 +250,7 @@ private extension UpcomingMovieCell {
     }
     
     struct Constants {
-        static let verticalSpacing: CGFloat = 4
+        static let verticalSpacing: CGFloat = 15
         static let horizontalSpacing: CGFloat = 20
         static let interSpacing: CGFloat = 8
     }

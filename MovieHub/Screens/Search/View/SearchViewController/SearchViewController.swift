@@ -14,9 +14,9 @@ final class SearchViewController: UIViewController {
     var presenter: SearchPresenterProtocol?
     
     var searchController: UISearchController!
-    
-    var selectedCategory = "аниме"
     let sections = SearchSectionData.shared.sectionsArray
+    
+    var selectedCategory = "биография"
     
     var searchDelayTimer: Timer?
     let searchDelayInterval: TimeInterval = 2
