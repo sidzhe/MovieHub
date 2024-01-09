@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class MainViewController: UIViewController {
     
@@ -13,6 +14,7 @@ final class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol?
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, ItemMain>?
+    private let coreLocation = CLLocationManager()
     
     //MARK: UI Elements
     private let accountView = AccountView()
@@ -23,6 +25,7 @@ final class MainViewController: UIViewController {
         text.clipsToBounds = true
         text.layer.cornerRadius = 24
         text.clearButtonMode = .always
+        text.font = UIFont.montserratMedium(size: 15)
         text.textColor = .primaryGray
         let placeholderAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.primaryGray, .font: UIFont.montserratMedium(size: 15)!]
         text.attributedPlaceholder = NSAttributedString(string: "Search a title..", attributes: placeholderAttributes)
@@ -44,7 +47,8 @@ final class MainViewController: UIViewController {
         createDataSource()
         applySnapshot()
         setCategories()
-        heartButtonTarget()
+        accountViewButtonsTarget()
+        setLocation()
         
     }
     
@@ -67,6 +71,14 @@ final class MainViewController: UIViewController {
         }
     }
     
+    //MARK: Setup user location
+    private func setLocation() {
+        coreLocation.delegate = self
+        coreLocation.desiredAccuracy = .leastNormalMagnitude
+        coreLocation.requestWhenInUseAuthorization()
+        coreLocation.startUpdatingLocation()
+    }
+    
     //MARK: Set Categories
     private func setCategories() {
         let indexPath = IndexPath(row: 0, section: 2)
@@ -75,16 +87,17 @@ final class MainViewController: UIViewController {
     }
     
     //MARK: Target
-    private func heartButtonTarget() {
+    private func accountViewButtonsTarget() {
         accountView.callBackButton = { [weak self] in self?.presenter?.routeToWishList() }
+        accountView.callBackGlobe = { [weak self] in self?.presenter?.routeToGlobe() }
     }
     
     //MARK: - Display network error
-    private func alertError(_ error: RequestError) {
-        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
+    private func alertError(_ error: String) {
+        let alert = UIAlertController(title: "Request error", message: error, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .destructive)
         alert.addAction(action)
-        present(alert, animated: true) 
+        present(alert, animated: true)
     }
 }
 
@@ -305,8 +318,8 @@ private extension MainViewController {
 
 //MARK: - Extension UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         guard let sectionKind = Section(rawValue: indexPath.section) else { return }
         
         switch sectionKind {
@@ -323,11 +336,12 @@ extension MainViewController: UICollectionViewDelegate {
 
 //MARK: - Extension MainViewProtocol
 extension MainViewController: MainViewProtocol {
+    
     func updateUI() {
         Task { applySnapshot() }
     }
     
-    func displayRequestError(error: RequestError) {
+    func displayRequestError(error: String) {
         Task { alertError(error) }
     }
 }
@@ -335,6 +349,7 @@ extension MainViewController: MainViewProtocol {
 
 //MARK: - Extension UITextFieldDelegate
 extension MainViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else { return false }
         presenter?.fetchSearchRequest(text)
@@ -344,5 +359,55 @@ extension MainViewController: UITextFieldDelegate {
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         presenter?.fetchSearchRequest("")
         return true
+    }
+}
+
+
+//MARK: - Extension CLLocationManagerDelegate
+extension MainViewController: CLLocationManagerDelegate {
+    
+    //MARK: Get current city name from location
+    private func makeGeoDecoderLocation(_ location: CLLocation, completion: @escaping (String) -> Void) {
+        let geocoder = CLGeocoder()
+        let locale = Locale(identifier: "ru")
+        
+        geocoder.reverseGeocodeLocation(location, preferredLocale: locale) { [weak self] (placemarks, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                self.alertError("Ошибка обратного геокодирования: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let placemark = placemarks?.first else {
+                self.alertError("Город не найден")
+                return
+            }
+            
+            if let city = placemark.locality {
+                completion(city)
+            } else {
+                self.alertError("Город не найден в ответе геокодирования.")
+            }
+        }
+    }
+    
+    
+    //MARK: Location default methoods
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        coreLocation.startUpdatingLocation()
+        let lat = location.coordinate.latitude
+        let lon = location.coordinate.longitude
+        var currentCity = ""
+        makeGeoDecoderLocation(location) { [weak self] in
+            currentCity = $0
+            self?.presenter?.sendMyLocation(lat: lat, lon: lon, cityName: currentCity)
+            self?.coreLocation.stopUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        alertError("Ошибка получения текущей локации \(error.localizedDescription)")
     }
 }

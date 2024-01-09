@@ -9,9 +9,9 @@ import UIKit
 
 //MARK: - NetworkServiceProtool
 protocol NetworkServiceProtool: AnyObject {
-    func searchTitle(_ title: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
+    func searchMovieByTitle(_ title: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func searchPerson(_ person: String, completion: @escaping (Result<PersonModel, RequestError>) -> Void)
-    func searchID(_ identifier: String, completion: @escaping (Result<DetailModel, RequestError>) -> Void)
+    func searchDetailID(_ identifier: String, completion: @escaping (Result<DetailModel, RequestError>) -> Void)
     func searchColletions(completion: @escaping (Result<ColletionModel, RequestError>) -> Void)
     func getSlugCollection<T: Decodable>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func getGenreCollection(genre: MovieGenre, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
@@ -33,7 +33,7 @@ final class NetworkService: NetworkServiceProtool {
     private let movieService = MovieService()
     
     //MARK: Search with title
-    func searchTitle(_ title: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
+    func searchMovieByTitle(_ title: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
         Task {
             let result: Result<SearchModel, RequestError> = await movieService.searchMovie(searchTitle: title)
             completion(result)
@@ -49,7 +49,7 @@ final class NetworkService: NetworkServiceProtool {
     }
     
     //MARK: Search with ID
-    func searchID(_ identifier: String, completion: @escaping (Result<DetailModel, RequestError>) -> Void) {
+    func searchDetailID(_ identifier: String, completion: @escaping (Result<DetailModel, RequestError>) -> Void) {
         Task {
             let result: Result<DetailModel, RequestError> = await movieService.searchWithId(identifier: identifier)
             completion(result)
