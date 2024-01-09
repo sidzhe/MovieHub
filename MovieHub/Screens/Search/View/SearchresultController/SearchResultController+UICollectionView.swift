@@ -16,9 +16,9 @@ extension SearchResultsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
-        case 1:
+        case 0:
             return searchedPerson?.count ?? 0
-        case 2:
+        case 1:
             return searchedMovie?.count ?? 0
         default:
             return 0
@@ -29,8 +29,7 @@ extension SearchResultsViewController: UICollectionViewDataSource {
         switch sections[indexPath.section] {
             
         case .person:
-            guard
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PersonCell.identifier, for: indexPath) as? PersonCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PersonCell.identifier, for: indexPath) as? PersonCell
             else {
                 return UICollectionViewCell()
             }
@@ -40,8 +39,7 @@ extension SearchResultsViewController: UICollectionViewDataSource {
             return cell
             
         case .movie:
-            guard
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCell.identifier, for: indexPath) as? UpcomingMovieCell
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCell.identifier, for: indexPath) as? UpcomingMovieCell
             else {
                 return UICollectionViewCell()
             }

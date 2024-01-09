@@ -27,7 +27,6 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     }
     
     //MARK: Methods
-    
     func requestPerson(name: String) {
         networkService.searchPerson(name) { [weak self] (result: (Result<PersonModel, RequestError>)) in
                                                                   

@@ -27,7 +27,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
         fontSize: 16,
         textColor: .primaryOrange
     )
-
+    
     private let nameLabel: UILabel = makeLabel(
         fontSize: 16,
         textColor: .white
@@ -52,7 +52,6 @@ final class UpcomingMovieCell: UICollectionViewCell {
         let stackView = UIStackView(arrangedSubviews: [yearImage, yearLabel])
         stackView.axis = .horizontal
         stackView.spacing = Constants.interSpacing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -60,7 +59,6 @@ final class UpcomingMovieCell: UICollectionViewCell {
         let stackView = UIStackView(arrangedSubviews: [movieLengthImage, movieLengthLabel])
         stackView.axis = .horizontal
         stackView.spacing = Constants.interSpacing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -68,7 +66,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
         let stackView = UIStackView(arrangedSubviews: [categoryImage, categoryLabel])
         stackView.axis = .horizontal
         stackView.spacing = Constants.interSpacing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
         return stackView
     }()
     
@@ -80,7 +78,6 @@ final class UpcomingMovieCell: UICollectionViewCell {
         ])
         stackView.axis = .vertical
         stackView.spacing = Constants.verticalSpacing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -117,7 +114,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
     func configure(for searchedMovie: Doc) {
         
         let url = URL(string: searchedMovie.poster?.url ?? "")
-                
+        
         Task(priority: .userInitiated) { [weak self] in self?.posterImageView.kf.setImage(with: url) }
         
         nameLabel.text = searchedMovie.name ?? searchedMovie.alternativeName
@@ -129,6 +126,8 @@ final class UpcomingMovieCell: UICollectionViewCell {
     
     // MARK: - Private methods
     private func setupView() {
+        posterImageView.clipsToBounds = true
+        posterImageView.layer.cornerRadius = 8
         addSubview(movieContentView)
         movieContentView.addSubview(posterImageView)
         movieContentView.addSubview(nameLabel)
@@ -139,7 +138,6 @@ final class UpcomingMovieCell: UICollectionViewCell {
     }
     
     private func setConstraints() {
-        
         movieContentView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview()
@@ -150,6 +148,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(movieContentView.snp.top).offset(Constants.verticalSpacing * 2)
             make.leading.equalTo(posterImageView.snp.trailing).offset(Constants.interSpacing)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         posterImageView.snp.makeConstraints { make in
@@ -192,16 +191,12 @@ private extension UpcomingMovieCell {
     var _posterImageView: UIImageView {
         let view = UIImageView()
         view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
     
     var _movieContentView: UIView {
         let view = UIView()
         view.backgroundColor = .primaryDark
-        view.layer.cornerRadius = 8
-        view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
     

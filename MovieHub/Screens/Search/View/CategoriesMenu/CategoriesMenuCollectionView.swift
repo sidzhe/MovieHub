@@ -18,7 +18,7 @@ final class CategoriesMenuCollectionView: UICollectionView {
         self.categories = categories
         super.init(frame: .zero, collectionViewLayout: categoryLayout)
         configure()
-       
+        
     }
     
     required init?(coder: NSCoder) {
@@ -30,10 +30,7 @@ final class CategoriesMenuCollectionView: UICollectionView {
         categoryLayout.scrollDirection = .horizontal
         
         backgroundColor = .none
-        translatesAutoresizingMaskIntoConstraints = false
         bounces = false
-        showsHorizontalScrollIndicator = false
-        
         delegate = self
         dataSource = self
         register(
@@ -45,13 +42,13 @@ final class CategoriesMenuCollectionView: UICollectionView {
     
     //MARK: Set Categories
     private func setCategories() {
-      let indexPath = IndexPath(row: 0, section: 4)
-      handleSelection(at: indexPath)
+        let indexPath = IndexPath(row: 0, section: 4)
+        handleSelection(at: indexPath)
     }
-
+    
     private func handleSelection(at indexPath: IndexPath) {
-      let model = categories[indexPath.row]
-      callBack?(model)
+        let model = categories[indexPath.row]
+        callBack?(model)
     }
 }
 
@@ -74,8 +71,8 @@ extension CategoriesMenuCollectionView: UICollectionViewDataSource {
 extension CategoriesMenuCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            let model = categories[indexPath.row]
-            callBack?(model)
+        let model = categories[indexPath.row]
+        callBack?(model)
     }
 }
 
