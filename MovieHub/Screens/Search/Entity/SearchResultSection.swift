@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SearchResultSection: Int, CaseIterable {
+enum SearchResultSection: Int {
     case person
     case movie
     

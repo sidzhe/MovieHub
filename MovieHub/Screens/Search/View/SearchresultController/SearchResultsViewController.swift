@@ -12,7 +12,7 @@ final class SearchResultsViewController: UIViewController {
     var searchedMovie: [Doc]?
     var searchedPerson: [DocPerson]?
     
-    let sections = SearchResultSection.AllCases()
+    let sections = SearchResultSectionData.shared.sectionsArray
     
     // MARK: - UI
 
