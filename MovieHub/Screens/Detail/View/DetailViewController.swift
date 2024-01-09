@@ -59,7 +59,7 @@ final class DetailViewController: UIViewController {
     private lazy var rateLabel: UILabel = {
         let lb = UILabel()
         lb.font = .montserratSemiBold(size: 12)
-        lb.textColor = .secondaryOrange
+        lb.textColor = .primaryOrange
         lb.text = "4.5"
         return lb
     }()
@@ -69,7 +69,7 @@ final class DetailViewController: UIViewController {
         bt.layer.cornerRadius = 24
         bt.clipsToBounds = true
         bt.translatesAutoresizingMaskIntoConstraints = false
-        bt.backgroundColor = .secondaryOrange
+        bt.backgroundColor = .primaryOrange
         return bt
     }()
     

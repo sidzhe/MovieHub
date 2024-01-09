@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		10F2EC503162D1756FC570F7 /* Pods_MovieHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */; };
+		15BF8FC62B4DFD3C00532550 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FC52B4DFD3C00532550 /* Extension + UILabel.swift */; };
+		15BF8FC92B4DFD7900532550 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FC82B4DFD7900532550 /* Extension + UIStackView.swift */; };
+		15BF8FCB2B4DFE0D00532550 /* DetailGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */; };
+		15BF8FCD2B4DFE5500532550 /* CastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FCC2B4DFE5500532550 /* CastViewCell.swift */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
 		EB03F5A52B440C9F004BAE47 /* PersonDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */; };
@@ -144,6 +148,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15BF8FC52B4DFD3C00532550 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
+		15BF8FC82B4DFD7900532550 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
+		15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGradient.swift; sourceTree = "<group>"; };
+		15BF8FCC2B4DFE5500532550 /* CastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastViewCell.swift; sourceTree = "<group>"; };
 		661DA57DD8ABB2F02BAAC5C3 /* Pods-MovieHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.release.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.release.xcconfig"; sourceTree = "<group>"; };
 		7C2142BA46C1940226C00074 /* Pods-MovieHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.debug.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.debug.xcconfig"; sourceTree = "<group>"; };
 		D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,6 +311,25 @@
 				661DA57DD8ABB2F02BAAC5C3 /* Pods-MovieHub.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		15BF8FC72B4DFD4200532550 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				15BF8FCE2B4DFE6D00532550 /* Extensions */,
+				15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */,
+				15BF8FCC2B4DFE5500532550 /* CastViewCell.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		15BF8FCE2B4DFE6D00532550 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				15BF8FC52B4DFD3C00532550 /* Extension + UILabel.swift */,
+				15BF8FC82B4DFD7900532550 /* Extension + UIStackView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		875F286AEC91795772AD2913 /* Frameworks */ = {
@@ -594,6 +621,7 @@
 		EB82677B2B38A3CE0024BAAE /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				15BF8FC72B4DFD4200532550 /* Helpers */,
 				EBE76C4D2B3971120053E522 /* Protocols */,
 				EBE76C4C2B39710D0053E522 /* View */,
 				EBE76C4B2B3971060053E522 /* Presenter */,
@@ -1513,6 +1541,7 @@
 				EBBA2B7D2B4D98A900D55EF6 /* MapRouter.swift in Sources */,
 				EBE76C9A2B3979B00053E522 /* TabBarProtocols.swift in Sources */,
 				EBBA2B6F2B4D982E00D55EF6 /* CityListPresenter.swift in Sources */,
+				15BF8FC92B4DFD7900532550 /* Extension + UIStackView.swift in Sources */,
 				EBCA67DD2B3C74B7008B59B9 /* PopularCell.swift in Sources */,
 				EBE76C7C2B39749F0053E522 /* ProfileProtocols.swift in Sources */,
 				EBE76C572B3972500053E522 /* DetailRouter.swift in Sources */,
@@ -1548,6 +1577,7 @@
 				EBBA2B602B4D97A700D55EF6 /* DetailCinemaViewController.swift in Sources */,
 				EB0945F82B46D9A200331EAD /* AwardCell.swift in Sources */,
 				EBBA2B452B4D96B300D55EF6 /* GlobeRouter.swift in Sources */,
+				15BF8FCD2B4DFE5500532550 /* CastViewCell.swift in Sources */,
 				EB8267932B38B7860024BAAE /* Builder.swift in Sources */,
 				EBE76C462B39707B0053E522 /* PopularInteractor.swift in Sources */,
 				EB0945F62B46CD0200331EAD /* FactsCell.swift in Sources */,
@@ -1556,6 +1586,7 @@
 				EBE76C4F2B3971180053E522 /* DetailProtocols.swift in Sources */,
 				EB8267632B38A1D50024BAAE /* SceneDelegate.swift in Sources */,
 				EBE76C312B396EA20053E522 /* MovieListProtocols.swift in Sources */,
+				15BF8FC62B4DFD3C00532550 /* Extension + UILabel.swift in Sources */,
 				EBBA2B352B4D8ACF00D55EF6 /* CurrentCityEndpoints.swift in Sources */,
 				EBE76C392B396F9E0053E522 /* MovieListRouter.swift in Sources */,
 				EBE76C8B2B3976F70053E522 /* ProfileRouter.swift in Sources */,
@@ -1566,6 +1597,7 @@
 				EBE76C262B396DD90053E522 /* MainPresenter.swift in Sources */,
 				EBE76C422B39701C0053E522 /* PopularViewController.swift in Sources */,
 				EBE76C9E2B397A020053E522 /* TabBarPresenter.swift in Sources */,
+				15BF8FCB2B4DFE0D00532550 /* DetailGradient.swift in Sources */,
 				EBBA2B302B4D8A2400D55EF6 /* CurrentCityModel.swift in Sources */,
 				EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */,
 				EBE76C9C2B3979E40053E522 /* TabBarViewController.swift in Sources */,
