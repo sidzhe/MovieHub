@@ -13,11 +13,16 @@ final class CityListPresenter: CityListPresenterProtocol {
     weak var view: CityListViewProtocol?
     var interactor: CityListInteractorInputProtocol?
     var router: CityListRouterProtocol?
-        
+    
     //MARK: Get data for collectionView
     func getCityList() -> [String] {
         guard let interactor = interactor else { return [String]() }
         return interactor.cityList
+    }
+    
+    func getFilteredCity() -> [String] {
+        guard let model = interactor?.filteredCity else { return [String]() }
+        return model
     }
     
     //MARK: - Filter city
@@ -28,12 +33,7 @@ final class CityListPresenter: CityListPresenterProtocol {
         interactor.filteredCity = data
         return data
     }
-    
-    func getFilteredCity() -> [String] {
-        guard let model = interactor?.filteredCity else { return [String]() }
-        return model
-    }
-    
+        
     //MARK: Save selected city
     func saveSelectedCity(name: String) {
         interactor?.saveCurrentCityToCD(city: name)
@@ -48,5 +48,5 @@ final class CityListPresenter: CityListPresenterProtocol {
 
 //MARK: - Extension CityListInteractorOutputProtocol
 extension CityListPresenter: CityListInteractorOutputProtocol {
-
+    
 }

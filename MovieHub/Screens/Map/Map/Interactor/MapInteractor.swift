@@ -24,15 +24,17 @@ final class MapInteractor: MapInteractorInputProtocol {
         self.getCity(with: currentCity)
     }
     
+    //MARK: Get cinema from current city
     func getCity(with name: String) {
         networkService.getCityList(city: name) { [weak self] (result: (Result<CinemaModel, RequestError>)) in
+    
             switch result {
-                
             case .success(let cinema):
                 self?.cityList = cinema.data
                 self?.presenter?.addPins()
+                print(cinema.data)
             case .failure(let error):
-                print(error.localizedDescription)
+                self?.presenter?.getError(error.customMessage)
             }
         }
     }

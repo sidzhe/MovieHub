@@ -52,7 +52,7 @@ final class MainViewController: UIViewController {
         
     }
     
-    //MARK: Set Views
+    //MARK: Setup Views
     private func setupView() {
         view.backgroundColor = .primaryDark
         view.addSubview(accountView)
@@ -79,7 +79,7 @@ final class MainViewController: UIViewController {
         coreLocation.startUpdatingLocation()
     }
     
-    //MARK: Set Categories
+    //MARK: Setup Categories
     private func setCategories() {
         let indexPath = IndexPath(row: 0, section: 2)
         collectionView(collectionView, didSelectItemAt: indexPath)
@@ -117,7 +117,7 @@ private extension MainViewController {
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 10, bottom: 15, trailing: 10)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.65))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.6))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
                 
                 section = NSCollectionLayoutSection(group: group)
@@ -202,32 +202,28 @@ private extension MainViewController {
     
     //MARK: Regisration
     func registrationSearch() -> UICollectionView.CellRegistration<PopularCell, Doc> {
-        return UICollectionView.CellRegistration<PopularCell, Doc> { [weak self] cell, indexPath, itemIdentifier in
-            guard let model = self?.presenter?.getSearchData() else { return }
-            cell.configure(category: model[indexPath.row])
+        return UICollectionView.CellRegistration<PopularCell, Doc> { cell, indexPath, searchModel in
+            cell.configure(category: searchModel)
         }
     }
     
     func registrationCollection() -> UICollectionView.CellRegistration<CollectionCell, DocCollect> {
-        return UICollectionView.CellRegistration<CollectionCell, DocCollect> { [weak self] cell, indexPath, itemIdentifier in
-            guard let model = self?.presenter?.getColletionModel() else { return }
-            cell.configure(model[indexPath.row])
+        return UICollectionView.CellRegistration<CollectionCell, DocCollect> { cell, indexPath, collectionItem in
+            cell.configure(collectionItem)
         }
     }
     
     func registrationCategories() -> UICollectionView.CellRegistration<CategoriesCell, CategoryModel> {
-        return UICollectionView.CellRegistration<CategoriesCell, CategoryModel> { [weak self] cell, indexPath, itemIdentifier in
-            guard let model = self?.presenter?.getCategories() else { return }
-            cell.configure(category: model[indexPath.row])
+        return UICollectionView.CellRegistration<CategoriesCell, CategoryModel> { cell, indexPath, categoriesModel in
+            cell.configure(category: categoriesModel)
             cell.clipsToBounds = true
             cell.layer.cornerRadius = 8
         }
     }
     
     func registrationMostPopular() -> UICollectionView.CellRegistration<PopularCell, Doc> {
-        return UICollectionView.CellRegistration<PopularCell, Doc> { [weak self] cell, indexPath, itemIdentifier in
-            guard let model = self?.presenter?.getMostPopular() else { return }
-            cell.configure(category: model[indexPath.row])
+        return UICollectionView.CellRegistration<PopularCell, Doc> { cell, indexPath, popularModel in
+            cell.configure(category: popularModel)
         }
     }
     

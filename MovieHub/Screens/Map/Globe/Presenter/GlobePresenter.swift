@@ -49,6 +49,7 @@ final class GlobePresenter: GlobePresenterProtocol {
         return globeCinemaModel.sorted(by: { $0.distance < $1.distance })
     }
     
+    //MARK: Load current city
     func loadCurrentCity() {
         interactor?.loadCurrentCity()
     }
@@ -93,6 +94,7 @@ final class GlobePresenter: GlobePresenterProtocol {
 
 //MARK: - Extension GlobeInteractorOutputProtocol
 extension GlobePresenter: GlobeInteractorOutputProtocol {
+    
     func updateUI() {
         view?.updateUI()
     }

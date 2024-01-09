@@ -45,6 +45,7 @@ final class GlobeViewController: UIViewController {
         
     }
     
+    //MARK: ViewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -64,15 +65,15 @@ final class GlobeViewController: UIViewController {
     //MARK: - Search text filter
     private func performQuery(with filter: String?) {
         let text = presenter?.filteredText(with: filter)
-        let cinemaItem = text?.compactMap { GlobeItem(cinema: $0) }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, GlobeItem>()
-        snapshot.appendSections([0, 1, 2])
         let firstSectionItem = GlobeItem(city: "")
         let secondSectionItem = GlobeItem(city: "")
+        let cinemaItem = text?.compactMap { GlobeItem(cinema: $0) } ?? [GlobeItem()]
+        var snapshot = NSDiffableDataSourceSnapshot<Int, GlobeItem>()
+       
+        snapshot.appendSections([0, 1, 2])
         snapshot.appendItems([firstSectionItem], toSection: 0)
         snapshot.appendItems([secondSectionItem], toSection: 1)
-        snapshot.appendItems(cinemaItem!, toSection: 2)
+        snapshot.appendItems(cinemaItem, toSection: 2)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
@@ -120,7 +121,6 @@ private extension GlobeViewController {
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = spacing
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-                
                 return section
                 
             case 1:
@@ -133,7 +133,6 @@ private extension GlobeViewController {
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = spacing
                 section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-                
                 return section
                 
             case 2:
@@ -192,10 +191,10 @@ private extension GlobeViewController {
         snapshot.appendSections([0, 1, 2])
         let firstSectionItem = GlobeItem(city: "")
         let secondSectionItem = GlobeItem(city: "")
-        let cinemaItem = presenter?.getCinemaData().compactMap { GlobeItem(cinema: $0) }
+        let cinemaItem = presenter?.getCinemaData().compactMap { GlobeItem(cinema: $0) } ?? [GlobeItem()]
         snapshot.appendItems([firstSectionItem], toSection: 0)
         snapshot.appendItems([secondSectionItem], toSection: 1)
-        snapshot.appendItems(cinemaItem!, toSection: 2)
+        snapshot.appendItems(cinemaItem, toSection: 2)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
@@ -204,8 +203,8 @@ private extension GlobeViewController {
 //MARK: - Extension UICollectionViewDelegate
 extension GlobeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         switch indexPath.section {
-            
         case 0:
             presenter?.routeToCityList()
         case 1:
@@ -221,6 +220,7 @@ extension GlobeViewController: UICollectionViewDelegate {
 
 //MARK: - Extension UITextFieldDelegate
 extension GlobeViewController: UITextFieldDelegate {
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         performQuery(with: textField.text)
     }
@@ -232,6 +232,7 @@ extension GlobeViewController: UITextFieldDelegate {
 
 //MARK: - Extension MovieListViewProtocol
 extension GlobeViewController: GlobeViewProtocol {
+    
     func updateUI() {
         Task { applyInitialSnapshots() }
     }

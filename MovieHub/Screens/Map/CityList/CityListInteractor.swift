@@ -16,12 +16,13 @@ final class CityListInteractor: CityListInteractorInputProtocol {
     var cityList = CityListModel.allCases.map { $0.rawValue }
     var filteredCity: [String]?
     
+    //MARK: Init
     init(networkService: NetworkServiceProtool, storageService: StorageServiceProtool) {
         self.networkService = networkService
         self.storageService = storageService
     }
     
-    //MARK: Methods
+    //MARK: Saving the current city to CoreData
     func saveCurrentCityToCD(city: String) {
         storageService.saveCurrentCity(name: city)
     }

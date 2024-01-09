@@ -14,10 +14,10 @@ final class TabBarViewController: UITabBarController {
     private let tapGesture = UITapGestureRecognizer()
     
     //MARK: UI Elements
-    private let tabBarHomeView = TabBarView(icon: UIImage(systemName: "play.tv")!, title: "Home", tag: 0)
-    private let tabBarSearchView = TabBarView(icon: UIImage(systemName: "magnifyingglass")!, title: "Search", tag: 1)
-    private let tabBarTreeView = TabBarView(icon: UIImage(systemName: "puzzlepiece.extension.fill")!, title: "Tree", tag: 2)
-    private let tabBarProfileView = TabBarView(icon: UIImage(systemName: "person.fill")!, title: "Profile", tag: 3)
+    private let tabBarHomeView = TabBarView(icon: UIImage(systemName: "play.tv") ?? UIImage(), title: "Home", tag: 0)
+    private let tabBarSearchView = TabBarView(icon: UIImage(systemName: "magnifyingglass") ?? UIImage(), title: "Search", tag: 1)
+    private let tabBarTreeView = TabBarView(icon: UIImage(systemName: "puzzlepiece.extension.fill") ?? UIImage(), title: "Tree", tag: 2)
+    private let tabBarProfileView = TabBarView(icon: UIImage(systemName: "person.fill") ?? UIImage(), title: "Profile", tag: 3)
     
     private lazy var selectedView: UIView = {
         let view = UIView()

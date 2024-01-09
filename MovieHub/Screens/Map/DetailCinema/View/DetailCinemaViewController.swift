@@ -17,7 +17,6 @@ final class DetailCinemaViewController: UIViewController {
     //MARK: UI Elements
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
@@ -80,6 +79,7 @@ final class DetailCinemaViewController: UIViewController {
     //MARK: Setup UI
     private func setupViews() {
         view.backgroundColor = .primaryDark
+        navigationController?.navigationBar.barTintColor = .primaryDark
         
         generalStackView.addArrangedSubview(nameLabel)
         generalStackView.addArrangedSubview(adressLabel)
@@ -100,7 +100,7 @@ final class DetailCinemaViewController: UIViewController {
         }
     }
     
-    //MARK: Add cimena images
+    //MARK: Add cinema images
     private func addImageObjectToStack() {
         guard let presenter = presenter else { return }
         

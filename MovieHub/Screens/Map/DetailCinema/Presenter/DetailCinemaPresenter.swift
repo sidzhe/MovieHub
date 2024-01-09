@@ -24,6 +24,7 @@ final class DetailCinemaPresenter: DetailCinemaPresenterProtocol {
         return model
     }
     
+    //MARK: Remuve HTML Elements
     private func removingHTMLEscapes(text: String?) -> String? {
         guard let text = text else { return nil }
         

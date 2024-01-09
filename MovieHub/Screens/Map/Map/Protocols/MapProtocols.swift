@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import YandexMapsMobile
 
 /// PRESENTER -> VIEW
 protocol MapViewProtocol: AnyObject {
     var presenter: MapPresenterProtocol? { get set }
     func addPinsToMap()
+    func displayError(_ error: String)
 }
 
 /// VIEW -> PRESENTER
@@ -20,6 +22,8 @@ protocol MapPresenterProtocol: AnyObject {
     func getUserLocation() -> Location
     func makePinsData() -> [Datum]
     func convertCinema(name: String?) -> String
+    func createPoints() -> [YMKPoint]
+    func clusterImage(_ clusterSize: UInt) -> UIImage
 }
 
 /// PRESENTER -> INTERACTOR
@@ -33,9 +37,10 @@ protocol MapInteractorInputProtocol: AnyObject {
 /// INTERACTOR -> PRESENTER
 protocol MapInteractorOutputProtocol: AnyObject {
     func addPins()
+    func getError(_ error: String)
 }
 
 /// PRESENTER -> ROUTER
 protocol MapRouterProtocol: AnyObject {
-
+    
 }

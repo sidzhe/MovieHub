@@ -31,8 +31,8 @@ final class GlobeInteractor: GlobeInteractorInputProtocol {
     //MARK: City list request
     func cityListRequest() {
         networkService.getCityList(city: currentCity) { [weak self] (result: (Result<CinemaModel, RequestError>)) in
+            
             switch result{
-                
             case .success(let cinema):
                 self?.cinemaData = cinema.data
                 self?.presenter?.updateUI()
@@ -45,8 +45,8 @@ final class GlobeInteractor: GlobeInteractorInputProtocol {
     //MARK: Get coordinate from selected or current city
     func getCityCoordinate() {
         networkService.getCurrentCity(city: currentCity) { [weak self] (result: (Result<CurrentCityModel, RequestError>)) in
+            
             switch result {
-                
             case .success(let data):
                 let data = data.response?.geoObjectCollection?.featureMember?.first?.geoObject?.point?.pos
                 let newLocation = data?.components(separatedBy: " ")
@@ -61,9 +61,9 @@ final class GlobeInteractor: GlobeInteractorInputProtocol {
     
     //MARK: Load from CoreData
     func loadCurrentCity() {
-            self.currentCity = storageService.loadCurrnetCity()
-            cityListRequest()
-            getCityCoordinate()
+        self.currentCity = storageService.loadCurrnetCity()
+        cityListRequest()
+        getCityCoordinate()
     }
     
     //MARK: Saving the current city to CoreData

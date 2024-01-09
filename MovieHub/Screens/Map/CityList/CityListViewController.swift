@@ -15,7 +15,6 @@ final class CityListViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<Int, String>?
     
     //MARK: - UI Elements
-    
     private lazy var seatchTextField: UISearchTextField = {
         let text = UISearchTextField()
         text.backgroundColor = .primarySoft
@@ -112,7 +111,7 @@ private extension CityListViewController {
             cell.layer.cornerRadius = 5
             content.text = city
             content.textProperties.alignment = .justified
-            content.textProperties.font = UIFont.montserratMedium(size: 14)!
+            content.textProperties.font = UIFont.montserratMedium(size: 14) ?? .boldSystemFont(ofSize: 14)
             content.textProperties.color = .white
             cell.contentConfiguration = content
         }
@@ -153,6 +152,7 @@ extension CityListViewController: UICollectionViewDelegate {
 
 //MARK: - UISearchBarDelegate
 extension CityListViewController: UITextFieldDelegate {
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         performQuery(with: textField.text)
     }
