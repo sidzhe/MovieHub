@@ -1,5 +1,14 @@
 # Xcode
 #
+# Ignore Pods directory
+/Pods/
+
+# Ignore Podfile and Podfile.lock
+/Podfile
+/Podfile.lock
+
+# Ignore Xcode workspace
+/MovieHub.xcworkspace/
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 .DS_Store
 ## User settings
