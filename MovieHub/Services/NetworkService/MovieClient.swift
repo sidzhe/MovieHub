@@ -32,7 +32,7 @@ extension MovieClient {
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let response = response as? HTTPURLResponse else { return .failure(.noResponse)}
-            
+          
             switch response.statusCode {
                 
             case 200...299:
