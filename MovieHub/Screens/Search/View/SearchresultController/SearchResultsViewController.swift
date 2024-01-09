@@ -11,16 +11,13 @@ final class SearchResultsViewController: UIViewController {
     
     var searchedMovie: [Doc]?
     var searchedPerson: [DocPerson]?
-    
-    let sections = SearchResultSectionData.shared.sectionsArray
+    let sections = SearchResultSection.AllCases()
     
     // MARK: - UI
-
     private lazy var infoImageView: UIImageView = _infoImageView
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
@@ -43,7 +40,6 @@ final class SearchResultsViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(infoImageView)
         collectionView.backgroundColor = .primaryDark
-
     }
     
     // MARK: - Setup
@@ -69,11 +65,9 @@ final class SearchResultsViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SearchHeader.identifier
         )
-     //   collectionView.collectionViewLayout = createLayout()
     }
     
     private func setConstraints() {
-        
         infoImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
@@ -96,11 +90,13 @@ final class SearchResultsViewController: UIViewController {
     }
     
     func updateInfoImageViewVisibility() {
-      if searchedMovie?.isEmpty ?? true || searchedPerson?.isEmpty ?? true {
-        infoImageView.isHidden = false
-      } else {
-        infoImageView.isHidden = true
-      }
+        guard let searchedMovie = searchedMovie, let searchedPerson = searchedPerson else { return }
+        if searchedMovie.isEmpty || searchedPerson.isEmpty {
+            infoImageView.isHidden = false
+        } else {
+            infoImageView.isHidden = true
+            Task { collectionView.reloadData() }
+        }
     }
 }
 // MARK: - UICollectionViewCompositionalLayout

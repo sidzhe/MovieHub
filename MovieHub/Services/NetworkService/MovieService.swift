@@ -186,9 +186,16 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.path = endpoint.path
         let items = [URLQueryItem(name: "page", value: "1"),
                      URLQueryItem(name: "limit", value: "10"),
+                     URLQueryItem(name: "selectFields", value: "year"),
+                     URLQueryItem(name: "selectFields", value: "rating"),
                      URLQueryItem(name: "selectFields", value: "movieLength"),
                      URLQueryItem(name: "selectFields", value: "sequelsAndPrequels"),
                      URLQueryItem(name: "notNullFields", value: "sequelsAndPrequels.id"),
+                     URLQueryItem(name: "notNullFields", value: "year"),
+                     URLQueryItem(name: "notNullFields", value: "rating.kp"),
+                     URLQueryItem(name: "notNullFields", value: "movieLength"),
+                     URLQueryItem(name: "notNullFields", value: "poster.url"),
+                     URLQueryItem(name: "rating.kp", value: "5-10"),
                      URLQueryItem(name: "genres.name", value: genre)]
         urlComponents.queryItems = items
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.upcoming, responseModel: T.self)

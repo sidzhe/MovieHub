@@ -15,18 +15,15 @@ final class SearchViewController: UIViewController {
     
     var searchController: UISearchController!
     let sections = SearchSectionData.shared.sectionsArray
-    
     var selectedCategory = "биография"
-    
     var searchDelayTimer: Timer?
     let searchDelayInterval: TimeInterval = 2
     
     // MARK: - UI
-
     private lazy var categoriesMenuCollectionView: CategoriesMenuCollectionView = {
         let collectionView = CategoriesMenuCollectionView(categories: presenter?.getCategories() ?? [])
-           return collectionView
-       }()
+        return collectionView
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
@@ -45,8 +42,8 @@ final class SearchViewController: UIViewController {
         setConstraints()
         setDelegates()
         registerCollectionsCells()
-        
         presenter?.fetchUpcomingMovie(with: selectedCategory)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,8 +97,10 @@ final class SearchViewController: UIViewController {
             forCellWithReuseIdentifier: PopularCell.identifier
         )
         
-        collectionView.register(SearchHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeader.identifier)
-       // collectionView.collectionViewLayout = createLayout()
+        collectionView.register(
+            SearchHeader.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SearchHeader.identifier)
     }
     
     private func setConstraints() {
@@ -203,8 +202,8 @@ extension SearchViewController {
             interGroupSpacing: 5,
             supplementaryItems: [supplementaryHeaderItem()],
             contentInsets: false
-         )
-       // section.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: -10)
+        )
+
         return section
     }
     

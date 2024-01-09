@@ -8,12 +8,12 @@
 import Foundation
 
 final class SearchPresenter: SearchPresenterProtocol {
-
+    
     //MARK: Properties
     weak var view: SearchViewProtocol?
     var interactor: SearchInteractorInputProtocol?
     var router: SearchRouterProtocol?
-   
+    
     
     //MARK: - Fetch
     func fetchUpcomingMovie(with genre: String) {
@@ -39,7 +39,7 @@ final class SearchPresenter: SearchPresenterProtocol {
         guard let model = interactor?.upcomingMovie?.docs else { return [UpcomingDoc]() }
         return model
     }
-
+    
     func getRecentMovie() -> [Doc] {
 #warning("добавить логику")
         let recent:[Doc] = []
@@ -55,7 +55,7 @@ final class SearchPresenter: SearchPresenterProtocol {
         guard let model = interactor?.searchPerson?.docs else { return [DocPerson]() }
         return model
     }
-
+    
 }
 
 
