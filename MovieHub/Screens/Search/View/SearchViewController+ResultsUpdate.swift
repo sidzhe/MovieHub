@@ -13,8 +13,8 @@ extension SearchViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text, searchText.count >= 2,
               let resultController = searchController.searchResultsController as? SearchResultsViewController else { return }
  
-//        searchDelayTimer?.invalidate()
-        
+       searchDelayTimer?.invalidate()
+        collectionView.isHidden = true
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: searchDelayInterval, repeats: false, block: { [weak self] _ in
             guard self != nil else { return }
 

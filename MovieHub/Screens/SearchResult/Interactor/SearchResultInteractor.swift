@@ -29,6 +29,7 @@ final class SearchResultInteractor: SearchResultInteractorInputProtocol {
                 
             case .success(let person):
                 self.searchPerson = person
+                 print(person)
                 self.presenter?.updateUI()
             case .failure(let error):
                 self.presenter?.getError(error: error)

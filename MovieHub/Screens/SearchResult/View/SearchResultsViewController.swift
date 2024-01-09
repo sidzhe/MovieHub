@@ -28,6 +28,7 @@ final class SearchResultsViewController: UIViewController {
         setDelegates()
         setConstraints()
         registerCollectionsCells()
+        collectionView.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -174,6 +175,7 @@ extension SearchResultsViewController {
     var _infoImageView: UIImageView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "searchInfo")
+        imageView.isHidden = true
         return imageView
     }
 }
@@ -186,15 +188,14 @@ extension SearchResultsViewController: SearchResultViewProtocol {
     }
     
     func updateUI() {
-        if presenter?.getSearchMovie().isEmpty ?? true 
-        || presenter?.getSearchPerson().isEmpty ?? true {
-            infoImageView.isHidden = false
-            collectionView.isHidden = true
-          } else {
-            infoImageView.isHidden = true
-          }
-        Task {
-            collectionView.reloadData()
+        let isSearchMovieEmpty = presenter?.getSearchMovie().isEmpty ?? true
+        let isSearchPersonEmpty = presenter?.getSearchPerson().isEmpty ?? true
+        
+        infoImageView.isHidden = !isSearchMovieEmpty || !isSearchPersonEmpty
+        collectionView.isHidden = isSearchMovieEmpty && isSearchPersonEmpty
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
         }
     }
 }
