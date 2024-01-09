@@ -32,7 +32,6 @@ final class MapInteractor: MapInteractorInputProtocol {
             case .success(let cinema):
                 self?.cityList = cinema.data
                 self?.presenter?.addPins()
-                print(cinema.data)
             case .failure(let error):
                 self?.presenter?.getError(error.customMessage)
             }
