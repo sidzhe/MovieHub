@@ -1,24 +1,25 @@
 //
-//  SearchViewController + UICollectionView.swift
+//  SearchResultController+.swift
 //  MovieHub
 //
-//  Created by Келлер Дмитрий on 28.12.2023.
+//  Created by Келлер Дмитрий on 07.01.2024.
 //
+
 import UIKit
 
 // MARK: - UICollectionViewDataSource
-extension SearchViewController: UICollectionViewDataSource {
+extension SearchResultsViewController: UICollectionViewDataSource {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         switch section {
         case 0:
-            return presenter?.getUpcomingMovie().count ?? 0
+            return presenter?.getSearchPerson().count ?? 0
         case 1:
-            return presenter?.getRecentMovie().count ?? 0
+            return presenter?.getSearchMovie().count ?? 0
         default:
             return 0
         }
@@ -27,20 +28,24 @@ extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch sections[indexPath.section] {
             
-        case .upcomingMovies:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCell.identifier, for: indexPath) as? UpcomingMovieCell else { return UICollectionViewCell() }
+        case .person:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PersonCell.identifier, for: indexPath) as? PersonCell
+            else {
+                return UICollectionViewCell()
+            }
             
-            guard let model = self.presenter?.getUpcomingMovie() else { return UICollectionViewCell() }
-            
-            cell.configure(with: model[indexPath.row])
+            guard let person = presenter?.getSearchPerson()[indexPath.row] else { return cell }
+            cell.configure(person: person)
             return cell
             
-        case .recentMovies:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.identifier, for: indexPath) as? PopularCell else { return UICollectionViewCell() }
+        case .movie:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCell.identifier, for: indexPath) as? UpcomingMovieCell
+            else {
+                return UICollectionViewCell()
+            }
             
-            guard let model = self.presenter?.getSearchData() else { return UICollectionViewCell() }
-            cell.configure(category: model[indexPath.row])
-            
+            guard let searchData = presenter?.getSearchMovie()[indexPath.row] else { return cell }
+            cell.configure(for: searchData)
             return cell
         }
     }
@@ -59,11 +64,12 @@ extension SearchViewController: UICollectionViewDataSource {
             return UICollectionReusableView()
         }
     }
+    
 }
 
-// MARK: -  UICollectionViewDelegate,
-extension SearchViewController: UICollectionViewDelegate {
+extension SearchResultsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //
     }
 }
+

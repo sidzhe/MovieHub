@@ -8,10 +8,10 @@
 import UIKit
 
 final class SearchResultsViewController: UIViewController {
+
+    let sections = SearchResultSectionData.shared.sectionsArray
     
-    var searchedMovie: [Doc]?
-    var searchedPerson: [DocPerson]?
-    let sections = SearchResultSection.AllCases()
+    var presenter: SearchResultPresenterProtocol?
     
     // MARK: - UI
     private lazy var infoImageView: UIImageView = _infoImageView
@@ -30,9 +30,9 @@ final class SearchResultsViewController: UIViewController {
         registerCollectionsCells()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     // MARK: - Private methods
@@ -40,6 +40,15 @@ final class SearchResultsViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(infoImageView)
         collectionView.backgroundColor = .primaryDark
+    }
+    
+    
+    //MARK: - Display network error
+    private func alertError(_ error: RequestError) {
+        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive)
+        alert.addAction(action)
+        present(alert, animated: true)
     }
     
     // MARK: - Setup
@@ -79,26 +88,8 @@ final class SearchResultsViewController: UIViewController {
             make.bottom.equalTo(view.snp.bottom)
         }
     }
-    
-    //MARK: - Public Methods
-    func updateSearchData(searchedMovie: [Doc]?, searchedPerson: [DocPerson]?) {
-        self.searchedMovie = searchedMovie
-        self.searchedPerson = searchedPerson
-        Task {
-            collectionView.reloadData()
-        }
-    }
-    
-    func updateInfoImageViewVisibility() {
-        guard let searchedMovie = searchedMovie, let searchedPerson = searchedPerson else { return }
-        if searchedMovie.isEmpty || searchedPerson.isEmpty {
-            infoImageView.isHidden = false
-        } else {
-            infoImageView.isHidden = true
-            Task { collectionView.reloadData() }
-        }
-    }
 }
+
 // MARK: - UICollectionViewCompositionalLayout
 extension SearchResultsViewController {
     
@@ -168,7 +159,6 @@ extension SearchResultsViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-        
         return section
     }
     
@@ -185,5 +175,26 @@ extension SearchResultsViewController {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "searchInfo")
         return imageView
+    }
+}
+
+extension SearchResultsViewController: SearchResultViewProtocol {
+    func displayRequestError(error: RequestError) {
+        Task {
+            alertError(_:error)
+        }
+    }
+    
+    func updateUI() {
+        if presenter?.getSearchMovie().isEmpty ?? true 
+        || presenter?.getSearchPerson().isEmpty ?? true {
+            infoImageView.isHidden = false
+            collectionView.isHidden = true
+          } else {
+            infoImageView.isHidden = true
+          }
+        Task {
+            collectionView.reloadData()
+        }
     }
 }

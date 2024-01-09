@@ -16,16 +16,9 @@ extension SearchViewController: UISearchResultsUpdating {
 //        searchDelayTimer?.invalidate()
         
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: searchDelayInterval, repeats: false, block: { [weak self] _ in
-            guard let self = self else { return }
-            self.presenter?.fetchSearchedMovie(with: searchText)
-            self.presenter?.fetchSearchedPerson(with: searchText)
-            
-            resultController.updateSearchData(
-                searchedMovie: self.presenter?.getSearchData(),
-                searchedPerson: self.presenter?.getSearchPerson()
-            )
+            guard self != nil else { return }
+
+            resultController.presenter?.updateSearchResults(with: searchText)
         })
-        
-        resultController.updateInfoImageViewVisibility()
     }
 }

@@ -20,15 +20,6 @@ final class SearchPresenter: SearchPresenterProtocol {
         interactor?.requestUpcomingMovie(category: MovieGenre(rawValue: genre) ?? .all)
     }
     
-    func fetchSearchedPerson(with namePerson: String) {
-        interactor?.requestPerson(name: namePerson)
-    }
-    
-    func fetchSearchedMovie(with searchText: String) {
-        interactor?.requestSearch(searchText)
-        
-    }
-    
     //MARK: - Get models
     func getCategories() -> [String] {
         guard let model = interactor?.categories else { return [] }
@@ -45,19 +36,7 @@ final class SearchPresenter: SearchPresenterProtocol {
         let recent:[Doc] = []
         return recent
     }
-    
-    func getSearchData() -> [Doc] {
-        guard let model = interactor?.searchMovie?.docs else { return [Doc]() }
-        return model
-    }
-    
-    func getSearchPerson() -> [DocPerson] {
-        guard let model = interactor?.searchPerson?.docs else { return [DocPerson]() }
-        return model
-    }
-    
 }
-
 
 //MARK: - Extension SearchInteractorOutputProtocol
 extension SearchPresenter: SearchInteractorOutputProtocol {
