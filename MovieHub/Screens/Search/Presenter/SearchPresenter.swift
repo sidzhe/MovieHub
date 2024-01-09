@@ -26,6 +26,7 @@ final class SearchPresenter: SearchPresenterProtocol {
     
     func fetchSearchedMovie(with searchText: String) {
         interactor?.requestSearch(searchText)
+        
     }
     
     //MARK: - Get models

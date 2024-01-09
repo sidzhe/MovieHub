@@ -8,10 +8,7 @@
 import Foundation
 
 final class SearchInteractor: SearchInteractorInputProtocol {
-    
 
-    
-    
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
     var networkService: NetworkServiceProtocol
@@ -40,7 +37,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
             case .success(let person):
                 self.searchPerson = person
             case .failure(let error):
-                print(error.customMessage)
+                self.presenter?.getError(error: error)
             }
         }
     }
@@ -52,9 +49,8 @@ final class SearchInteractor: SearchInteractorInputProtocol {
                 
             case .success(let search):
                 self.searchMovie = search
-                
             case .failure(let error):
-                print(error.customMessage)
+                self.presenter?.getError(error: error)
             }
         }
     }
@@ -69,7 +65,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
                     self.presenter?.updateUI()
               
             case .failure(let error):
-                print(error.customMessage)
+                self.presenter?.getError(error: error)
             }
         }
     }

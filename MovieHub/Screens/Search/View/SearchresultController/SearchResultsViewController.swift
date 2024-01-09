@@ -35,9 +35,7 @@ final class SearchResultsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
-        print(searchedMovie)
-        print(searchedPerson)
+
     }
     
     // MARK: - Private methods
@@ -71,7 +69,7 @@ final class SearchResultsViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SearchHeader.identifier
         )
-        collectionView.collectionViewLayout = createLayout()
+     //   collectionView.collectionViewLayout = createLayout()
     }
     
     private func setConstraints() {
@@ -85,6 +83,15 @@ final class SearchResultsViewController: UIViewController {
             make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
             make.bottom.equalTo(view.snp.bottom)
+        }
+    }
+    
+    //MARK: - Public Methods
+    func updateSearchData(searchedMovie: [Doc]?, searchedPerson: [DocPerson]?) {
+        self.searchedMovie = searchedMovie
+        self.searchedPerson = searchedPerson
+        Task {
+            collectionView.reloadData()
         }
     }
     
@@ -128,9 +135,16 @@ extension SearchResultsViewController {
         }
     
     private func createPersonSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+        let item = NSCollectionLayoutItem(layoutSize: .init(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        )
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.3)), subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(
+            widthDimension: .fractionalWidth(0.9),
+            heightDimension: .fractionalHeight(0.2)), 
+            subitems: [item]
+        )
         
         let section = createLayoutSection(group: group,
                                           behavior: .continuous,
@@ -143,11 +157,17 @@ extension SearchResultsViewController {
     }
     
     private func createMoviesSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(200)
+        )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(200)
+        )
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)

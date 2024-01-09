@@ -122,9 +122,9 @@ final class UpcomingMovieCell: UICollectionViewCell {
         
         nameLabel.text = searchedMovie.name ?? searchedMovie.alternativeName
         yearLabel.text = String("\(searchedMovie.year)")
-        movieLengthLabel.text = "\(String(describing: searchedMovie.rating)) Minutes"
+        movieLengthLabel.text = "\(String(describing: searchedMovie.movieLength)) Minutes"
         categoryLabel.text = searchedMovie.type?.capitalized
-        ratingLabel.text = String(format: "Rating: %.1f", searchedMovie.rating?.kp ?? 0.0)
+        ratingLabel.text = String(format: "%.1f", searchedMovie.rating?.kp ?? 0.0)
     }
     
     // MARK: - Private methods

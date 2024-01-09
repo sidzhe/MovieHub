@@ -101,7 +101,7 @@ final class SearchViewController: UIViewController {
         )
         
         collectionView.register(SearchHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchHeader.identifier)
-        collectionView.collectionViewLayout = createLayout()
+       // collectionView.collectionViewLayout = createLayout()
     }
     
     private func setConstraints() {

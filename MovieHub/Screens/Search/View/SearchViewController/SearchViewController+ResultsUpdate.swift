@@ -20,12 +20,12 @@ extension SearchViewController: UISearchResultsUpdating {
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: searchDelayInterval, repeats: false, block: { [weak self] _ in
             
             self?.presenter?.fetchSearchedMovie(with: searchText)
-            resultController.searchedMovie = self?.presenter?.getSearchData() ?? []
-            
             self?.presenter?.fetchSearchedPerson(with: searchText)
-            resultController.searchedPerson = self?.presenter?.getSearchPerson() ?? []
             
-            resultController.collectionView.reloadData()
+            resultController.updateSearchData(
+                searchedMovie: self?.presenter?.getSearchData(),
+                searchedPerson: self?.presenter?.getSearchPerson()
+            )
         })
     }
 }
