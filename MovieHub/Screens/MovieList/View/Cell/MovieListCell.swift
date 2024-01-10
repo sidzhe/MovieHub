@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class MovieListCell: UICollectionViewCell {
         
@@ -66,6 +67,17 @@ final class MovieListCell: UICollectionViewCell {
     func configure(_ doc: Doc) {
         titleLabel.text = doc.name
         guard let url = URL(string: doc.backdrop?.url ?? "") else { return }
-        posterImage.kf.setImage(with: url)
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 400, height: 400))
+            |> ResizingImageProcessor(referenceSize: CGSize(width: 400, height: 400), mode: .aspectFill)
+
+        posterImage.kf.setImage(
+            with: url,
+            options: [
+                .processor(processor),
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+                .cacheOriginalImage
+            ]
+        )
     }
 }

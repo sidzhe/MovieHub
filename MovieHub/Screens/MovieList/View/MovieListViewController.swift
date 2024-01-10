@@ -38,6 +38,7 @@ final class MovieListViewController: UIViewController {
     
     //MARK: SetupViews
     private func setupViews() {
+        title = "Список фильмов"
         view.backgroundColor = .primaryDark
         navigationController?.navigationBar.barTintColor = .primaryDark
     }

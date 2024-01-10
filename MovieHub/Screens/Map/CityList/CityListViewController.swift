@@ -80,6 +80,7 @@ private extension CityListViewController {
     
     //MARK: Setup UI
     func setupViews() {
+        title = "Выбор города"
         view.backgroundColor = .primaryDark
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())

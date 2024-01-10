@@ -78,6 +78,7 @@ final class DetailCinemaViewController: UIViewController {
     
     //MARK: Setup UI
     private func setupViews() {
+        title = "О кинотеатре"
         view.backgroundColor = .primaryDark
         navigationController?.navigationBar.barTintColor = .primaryDark
         

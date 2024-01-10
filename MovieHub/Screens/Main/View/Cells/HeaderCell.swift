@@ -22,7 +22,7 @@ final class HeaderCell: UICollectionReusableView {
     
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitle(button.isSelected ? "Hide" : "See All", for: .normal)
+        button.setTitle("Все", for: .normal)
         button.titleLabel?.font = UIFont.montserratRegular(size: 14)
         button.setTitleColor(.primaryBlue, for: .normal)
         button.addTarget(self, action: #selector(tapSee), for: .touchUpInside)

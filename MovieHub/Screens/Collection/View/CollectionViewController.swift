@@ -26,6 +26,12 @@ final class CollectionViewController: UIViewController {
         return view
     }()
     
+    private lazy var movieNavigationBar: MovieNavigationBar = {
+        let navigationBar = MovieNavigationBar(title: "Movie Lists")
+        navigationBar.navigationController = self.navigationController
+        return navigationBar
+    }()
+    
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +42,20 @@ final class CollectionViewController: UIViewController {
     
     //MARK: SetupViews
     private func setupViews() {
-        navigationController?.navigationBar.barTintColor = .primaryDark
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        view.addSubview(movieNavigationBar)
         view.backgroundColor = .primaryDark
+        view.addSubview(movieNavigationBar)
         view.addSubview(collectionView)
         
-        collectionView.snp.makeConstraints { make in
+        movieNavigationBar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(45)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(movieNavigationBar.snp.bottom)
             make.horizontalEdges.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(90)
         }
@@ -53,6 +67,10 @@ final class CollectionViewController: UIViewController {
         let action = UIAlertAction(title: "OK", style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
+    }
+    
+    @objc private func tapBack() {
+        
     }
 }
 

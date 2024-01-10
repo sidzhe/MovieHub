@@ -135,10 +135,10 @@ final class PopularCell: UICollectionViewCell {
     }
     
     func configure(category: Doc) {
-        guard let url = URL(string: category.poster?.url ?? category.poster?.previewURL ?? "") else { return }
-        Task(priority: .userInitiated) { [weak self] in self?.posterImage.kf.setImage(with: url) }
         nameLabel.text = category.name ?? category.alternativeName
         categoryLabel.text = category.genres?.first?.name
         ratingLabel.text = String(format: "%.1f", category.rating?.kp ?? 0.0)
+        guard let url = URL(string: category.poster?.url ?? category.poster?.previewURL ?? "") else { return }
+        posterImage.kf.setImage(with: url, options: [.transition(.fade(1))])
     }
 }

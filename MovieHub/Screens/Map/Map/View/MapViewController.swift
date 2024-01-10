@@ -26,6 +26,7 @@ final class MapViewController: UIViewController {
     
     //MARK: Setup map
     private func setupMap() {
+        title = "Кинотеатры на карте"
         view.addSubview(mapView)
         
         mapView.snp.makeConstraints {

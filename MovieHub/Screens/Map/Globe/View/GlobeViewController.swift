@@ -84,6 +84,7 @@ private extension GlobeViewController {
     
     //MARK: - UI
     private func setupUI() {
+        title = "Кинотеатры"
         view.backgroundColor = .primaryDark
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())

@@ -28,7 +28,7 @@ final class MainViewController: UIViewController {
         text.font = UIFont.montserratMedium(size: 15)
         text.textColor = .primaryGray
         let placeholderAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.primaryGray, .font: UIFont.montserratMedium(size: 15)!]
-        text.attributedPlaceholder = NSAttributedString(string: "Search a title..", attributes: placeholderAttributes)
+        text.attributedPlaceholder = NSAttributedString(string: "Поиск по названию..", attributes: placeholderAttributes)
         text.leftView?.tintColor = .primaryGray
         if let clearButton = text.value(forKey: "clearButton") as? UIButton {
             clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -113,7 +113,7 @@ private extension MainViewController {
             let section: NSCollectionLayoutSection
             
             if sectionKind == .search {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.45), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 10, bottom: 15, trailing: 10)
                 
@@ -161,7 +161,7 @@ private extension MainViewController {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(0.5))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(0.45))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
@@ -231,14 +231,14 @@ private extension MainViewController {
     func registrationCagegoryHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
             header.callBackButton = { [weak self] in self?.presenter?.routeToMovieList() }
-            header.configure(header: "Categories")
+            header.configure(header: "Категории")
         }
     }
     
     func registrationPopularHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
             header.callBackButton = { [weak self] in self?.presenter?.routeToPupularMovie() }
-            header.configure(header: "Most popular")
+            header.configure(header: "Высокий рейтинг")
         }
     }
     
