@@ -125,6 +125,7 @@ private extension MainViewController {
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .collection {
+                
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
@@ -137,10 +138,10 @@ private extension MainViewController {
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .categories {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(150), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(150), heightDimension: .estimated(31))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .estimated(31))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
@@ -325,8 +326,8 @@ extension MainViewController: UICollectionViewDelegate {
         
         switch sectionKind {
         case .categories:
-            let value = presenter?.getCategories()[indexPath.row].category ?? ""
-            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
+            let categoryElement = presenter?.getCategories()[indexPath.row].category ?? ""
+            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: categoryElement) ?? .all)
         default:
             presenter?.routeToDetail()
         }

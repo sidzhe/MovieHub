@@ -63,6 +63,6 @@ final class MovieListCell: UICollectionViewCell {
     func configure(_ doc: Doc) {
         titleLabel.text = doc.name
         guard let url = URL(string: doc.backdrop?.url ?? "") else { return }
-        Task { posterImage.kf.setImage(with: url) }
+        posterImage.kf.setImage(with: url)
     }
 }

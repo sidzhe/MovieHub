@@ -18,12 +18,13 @@ final class MovieListInteractor: MovieListInteractorInputProtocol {
     //MARK: Init
     init(networkService: NetworkServiceProtool) {
         self.networkService = networkService
-        self.requestMovies(genre: .all)
     }
     
     //MARK: Select category
     func selectedCategory(_ index: Int) {
-        
+        cagegoriesData.enumerated().forEach { cagegoriesData[$0.offset].isSelected = false }
+        cagegoriesData[index].isSelected = !cagegoriesData[index].isSelected
+        presenter?.updateUI()
     }
     
     //MARK: Movies request

@@ -39,7 +39,7 @@ final class MovieListViewController: UIViewController {
     //MARK: SetupViews
     private func setupViews() {
         view.backgroundColor = .primaryDark
-        title = "Movie List"
+        navigationController?.navigationBar.barTintColor = .primaryDark
     }
     
     //MARK: Setup Categories
@@ -69,7 +69,7 @@ private extension MovieListViewController {
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                section.contentInsets = .init(top: 8, leading: 16, bottom: 8, trailing: 16)
+                section.contentInsets = .init(top: 8, leading: 16, bottom: 16, trailing: 16)
                 
             } else if sectionKind == .movies {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
@@ -165,8 +165,8 @@ extension MovieListViewController: UICollectionViewDelegate {
         switch sectionKind {
         case .categories:
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-//            let value = presenter?.getCategories()[indexPath.row].category ?? ""
-//            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
+            let categoryElement = presenter?.getCategories()[indexPath.row].category ?? ""
+            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: categoryElement) ?? .all)
         default:
             presenter?.routeToDetail()
         }

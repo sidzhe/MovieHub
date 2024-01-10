@@ -33,7 +33,7 @@ final class MovieListPresenter: MovieListPresenterProtocol {
     
     //MARK: Route to
     func routeToDetail() {
-        
+        router?.pushToDetail(from: view)
     }
 }
 

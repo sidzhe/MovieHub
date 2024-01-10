@@ -41,5 +41,5 @@ protocol MovieListInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol MovieListRouterProtocol: AnyObject {
-    
+    func pushToDetail(from view: MovieListViewProtocol?)
 }
