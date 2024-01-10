@@ -42,7 +42,6 @@ final class CollectionViewController: UIViewController {
     
     //MARK: SetupViews
     private func setupViews() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
         view.addSubview(movieNavigationBar)
         view.backgroundColor = .primaryDark
         view.addSubview(movieNavigationBar)
