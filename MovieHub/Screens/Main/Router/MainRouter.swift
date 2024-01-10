@@ -43,4 +43,11 @@ final class MainRouter: MainRouterProtocol {
         let mapVC = Builder.createGlobe(lat: lat, lon: lon, city: currentCity)
         view.navigationController?.pushViewController(mapVC, animated: true)
     }
+    
+    //MARK: Route to collection
+    func pushToCollection(from view: MainViewProtocol?, slug: String) {
+        guard let view = view as? UIViewController else { return }
+        let collectionVC = Builder.createCollection(slug: slug)
+        view.navigationController?.pushViewController(collectionVC, animated: true)
+    }
 }

@@ -10,6 +10,9 @@ import SnapKit
 
 final class MovieListCell: UICollectionViewCell {
         
+    //MARK: Identifier
+    static let identifier = "cellMovieId"
+    
     //MARK: UI Elements
     private let posterImage = UIImageView()
     

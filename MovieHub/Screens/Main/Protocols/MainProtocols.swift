@@ -29,6 +29,7 @@ protocol MainPresenterProtocol: AnyObject {
     func routeToDetail()
     func routeToWishList()
     func routeToGlobe()
+    func routeToCollection(_ index: Int)
     func sendMyLocation(lat: Double, lon: Double, cityName: String)
 }
 
@@ -60,4 +61,5 @@ protocol MainRouterProtocol: AnyObject {
     func pushToDetail(from view: MainViewProtocol?)
     func pushToWishList(from view: MainViewProtocol?)
     func pushToGlobe(from view: MainViewProtocol?, lat: Double, lon: Double, currentCity: String)
+    func pushToCollection(from view: MainViewProtocol?, slug: String)
 }

@@ -63,6 +63,11 @@
 		EBA5FE192B4E7B7100E85872 /* SectionMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE182B4E7B7100E85872 /* SectionMovie.swift */; };
 		EBA5FE1B2B4E7B7700E85872 /* ItemMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE1A2B4E7B7700E85872 /* ItemMovie.swift */; };
 		EBA5FE1E2B4E7E9300E85872 /* MovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE1D2B4E7E9300E85872 /* MovieListCell.swift */; };
+		EBA5FE262B4EB6C400E85872 /* CollectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE252B4EB6C400E85872 /* CollectionRouter.swift */; };
+		EBA5FE282B4EB6CD00E85872 /* CollectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE272B4EB6CD00E85872 /* CollectionInteractor.swift */; };
+		EBA5FE2A2B4EB6D100E85872 /* CollectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE292B4EB6D100E85872 /* CollectionPresenter.swift */; };
+		EBA5FE2C2B4EB6D700E85872 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE2B2B4EB6D700E85872 /* CollectionViewController.swift */; };
+		EBA5FE2E2B4EB6DC00E85872 /* CollectionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE2D2B4EB6DC00E85872 /* CollectionProtocols.swift */; };
 		EBBA2B2E2B4D8A0800D55EF6 /* CinemaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B2D2B4D8A0800D55EF6 /* CinemaModel.swift */; };
 		EBBA2B302B4D8A2400D55EF6 /* CurrentCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B2F2B4D8A2400D55EF6 /* CurrentCityModel.swift */; };
 		EBBA2B332B4D8ABC00D55EF6 /* CinemaEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B322B4D8ABC00D55EF6 /* CinemaEndpoints.swift */; };
@@ -206,6 +211,11 @@
 		EBA5FE182B4E7B7100E85872 /* SectionMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionMovie.swift; sourceTree = "<group>"; };
 		EBA5FE1A2B4E7B7700E85872 /* ItemMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemMovie.swift; sourceTree = "<group>"; };
 		EBA5FE1D2B4E7E9300E85872 /* MovieListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCell.swift; sourceTree = "<group>"; };
+		EBA5FE252B4EB6C400E85872 /* CollectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRouter.swift; sourceTree = "<group>"; };
+		EBA5FE272B4EB6CD00E85872 /* CollectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionInteractor.swift; sourceTree = "<group>"; };
+		EBA5FE292B4EB6D100E85872 /* CollectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPresenter.swift; sourceTree = "<group>"; };
+		EBA5FE2B2B4EB6D700E85872 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		EBA5FE2D2B4EB6DC00E85872 /* CollectionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionProtocols.swift; sourceTree = "<group>"; };
 		EBBA2B2D2B4D8A0800D55EF6 /* CinemaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaModel.swift; sourceTree = "<group>"; };
 		EBBA2B2F2B4D8A2400D55EF6 /* CurrentCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCityModel.swift; sourceTree = "<group>"; };
 		EBBA2B322B4D8ABC00D55EF6 /* CinemaEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaEndpoints.swift; sourceTree = "<group>"; };
@@ -532,6 +542,7 @@
 		EB8267762B38A2E80024BAAE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				EBA5FE1F2B4EB69300E85872 /* Collection */,
 				EBBA2B3C2B4D965C00D55EF6 /* Map */,
 				EB03F59A2B440C57004BAE47 /* PersonDetail */,
 				EBE76C942B3979170053E522 /* TabBar */,
@@ -748,6 +759,58 @@
 				EBA5FE1D2B4E7E9300E85872 /* MovieListCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		EBA5FE1F2B4EB69300E85872 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				EBA5FE242B4EB6B400E85872 /* Protocols */,
+				EBA5FE232B4EB6AF00E85872 /* View */,
+				EBA5FE222B4EB6AA00E85872 /* Presenter */,
+				EBA5FE212B4EB6A600E85872 /* Interactor */,
+				EBA5FE202B4EB69A00E85872 /* Router */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		EBA5FE202B4EB69A00E85872 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				EBA5FE252B4EB6C400E85872 /* CollectionRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		EBA5FE212B4EB6A600E85872 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				EBA5FE272B4EB6CD00E85872 /* CollectionInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		EBA5FE222B4EB6AA00E85872 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				EBA5FE292B4EB6D100E85872 /* CollectionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		EBA5FE232B4EB6AF00E85872 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EBA5FE2B2B4EB6D700E85872 /* CollectionViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EBA5FE242B4EB6B400E85872 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EBA5FE2D2B4EB6DC00E85872 /* CollectionProtocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		EBBA2B312B4D8AA100D55EF6 /* Endpoints */ = {
@@ -1525,6 +1588,7 @@
 				EBDFCFB02B457AD000B1FE5E /* UpcomingModel.swift in Sources */,
 				EBBA2B5E2B4D979800D55EF6 /* DetailCinemaPresenter.swift in Sources */,
 				EBE76C512B3971CA0053E522 /* DetailViewController.swift in Sources */,
+				EBA5FE2C2B4EB6D700E85872 /* CollectionViewController.swift in Sources */,
 				EBE76C552B3972300053E522 /* DetailInteractor.swift in Sources */,
 				EB03F5A52B440C9F004BAE47 /* PersonDetailPresenter.swift in Sources */,
 				EBE76C642B39732C0053E522 /* WishlistInteractor.swift in Sources */,
@@ -1538,6 +1602,7 @@
 				EBBA2B7D2B4D98A900D55EF6 /* MapRouter.swift in Sources */,
 				EBE76C9A2B3979B00053E522 /* TabBarProtocols.swift in Sources */,
 				EBBA2B6F2B4D982E00D55EF6 /* CityListPresenter.swift in Sources */,
+				EBA5FE2A2B4EB6D100E85872 /* CollectionPresenter.swift in Sources */,
 				EBCA67DD2B3C74B7008B59B9 /* PopularCell.swift in Sources */,
 				EBE76C7C2B39749F0053E522 /* ProfileProtocols.swift in Sources */,
 				EBE76C572B3972500053E522 /* DetailRouter.swift in Sources */,
@@ -1547,6 +1612,8 @@
 				EBBA2B732B4D984C00D55EF6 /* CityListProtocols.swift in Sources */,
 				EBE76C602B3972B50053E522 /* WishlistViewController.swift in Sources */,
 				EBE76C372B396F7F0053E522 /* MovieListInteractor.swift in Sources */,
+				EBA5FE2E2B4EB6DC00E85872 /* CollectionProtocols.swift in Sources */,
+				EBA5FE282B4EB6CD00E85872 /* CollectionInteractor.swift in Sources */,
 				EBBA2B472B4D96C900D55EF6 /* GlobeInteractor.swift in Sources */,
 				EBE76C222B396D550053E522 /* MainProtocols.swift in Sources */,
 				EBE76C832B3974C30053E522 /* ChristmasProtocols.swift in Sources */,
@@ -1559,6 +1626,7 @@
 				EBBA2B852B4D98E800D55EF6 /* MapProtocols.swift in Sources */,
 				EBE76C6F2B3973D10053E522 /* SearchViewController.swift in Sources */,
 				EBBA2B3B2B4D963A00D55EF6 /* MovieHubStorage.xcdatamodeld in Sources */,
+				EBA5FE262B4EB6C400E85872 /* CollectionRouter.swift in Sources */,
 				EBBA2B382B4D962800D55EF6 /* StorageService.swift in Sources */,
 				EB6CB2BF2B3C1AFE00DC30BC /* Extension + UIColor.swift in Sources */,
 				EBBA2B6D2B4D981E00D55EF6 /* CityListInteractor.swift in Sources */,

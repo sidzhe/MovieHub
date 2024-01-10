@@ -25,7 +25,7 @@ enum MovieEndpoints {
 //MARK: - Extension MovieEndpoints
 extension MovieEndpoints: Endpoint {
 
-    var header: [String : String]? { ["X-API-KEY": "PS2CH02-M8W4WWW-JSKN52C-CEB0JZK"] }
+    var header: [String : String]? { ["X-API-KEY": "G1BHFY8-F6GM1KG-J1G2VGJ-4M7N24N"] }
     
     //Path
     var path: String {
@@ -70,7 +70,8 @@ extension MovieEndpoints: Endpoint {
         case .searchDetailById:          return [URLQueryItem(name: "limit", value: "10")]
         case .slugList:                  return [URLQueryItem(name: "pages", value: String(Int.random(in: 1...9))),
                                                  URLQueryItem(name: "limit", value: "10"),
-                                                 URLQueryItem(name: "notNullFields", value: "cover.url")]
+                                                 URLQueryItem(name: "notNullFields", value: "cover.url"),
+                                                 URLQueryItem(name: "category", value: "Фильмы")]
         case .movieFilter:               return .none
         case .personFilter:              return .none
         case .movieWithPerson:           return .none

@@ -223,4 +223,19 @@ final class Builder {
         interactor.presenter = presenter
         return view
     }
+    
+    /// CollectionVC
+    static func createCollection(slug: String) -> UIViewController {
+        let view = CollectionViewController()
+        let presenter = CollectionPresenter()
+        let networkService = NetworkService()
+        let interactor = CollectionInteractor(networkService: networkService, slug: slug)
+        let router = CollectionRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
 }

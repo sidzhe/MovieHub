@@ -21,7 +21,6 @@ protocol MovieListPresenterProtocol: AnyObject {
     func getCategories() -> [CategoryModel]
     func selectedCategory(_ index: Int, genre: MovieGenre)
     func routeToDetail()
-    
 }
 
 /// PRESENTER -> INTERACTOR

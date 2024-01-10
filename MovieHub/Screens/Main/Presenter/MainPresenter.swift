@@ -72,6 +72,11 @@ final class MainPresenter: MainPresenterProtocol {
         router?.pushToGlobe(from: view, lat: coordinate.lat, lon: coordinate.lon, currentCity: coordinate.currentCity)
     }
     
+    func routeToCollection(_ index: Int) {
+        let slug = getColletionModel()[index].slug
+        router?.pushToCollection(from: view, slug: slug)
+    }
+    
     //MARK: Send current user location
     func sendMyLocation(lat: Double, lon: Double, cityName: String) {
         interactor?.saveCurrentLocation(lat: lat, lon: lon, cityName: cityName)

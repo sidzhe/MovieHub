@@ -328,6 +328,8 @@ extension MainViewController: UICollectionViewDelegate {
         case .categories:
             let categoryElement = presenter?.getCategories()[indexPath.row].category ?? ""
             presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: categoryElement) ?? .all)
+        case .collection:
+            presenter?.routeToCollection(indexPath.row)
         default:
             presenter?.routeToDetail()
         }
