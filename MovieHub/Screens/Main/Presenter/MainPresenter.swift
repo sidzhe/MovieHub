@@ -47,7 +47,7 @@ final class MainPresenter: MainPresenterProtocol {
     //MARK: Select category
     func selectedCategory(_ index: Int, genre: MovieGenre) {
         interactor?.selectedCategory(index)
-        interactor?.requestMostRating(genre: genre)
+//        interactor?.requestMostRating(genre: genre)
     }
     
     //MARK: Route to

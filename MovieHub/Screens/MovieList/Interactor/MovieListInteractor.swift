@@ -23,7 +23,7 @@ final class MovieListInteractor: MovieListInteractorInputProtocol {
     
     //MARK: Select category
     func selectedCategory(_ index: Int) {
-        cagegoriesData
+        
     }
     
     //MARK: Movies request

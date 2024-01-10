@@ -137,10 +137,10 @@ private extension MainViewController {
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .categories {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(150), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .absolute(31))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(150), heightDimension: .estimated(31))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
@@ -160,7 +160,7 @@ private extension MainViewController {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.65))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(0.5))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
@@ -308,7 +308,11 @@ private extension MainViewController {
             let itemSearch = presenter.getSearchData().map { ItemMain(search: $0)}
             snapshot.appendItems(itemSearch, toSection: .search)
         }
-        dataSource?.apply(snapshot, animatingDifferences: true)
+        
+        collectionView.performBatchUpdates {
+            dataSource?.apply(snapshot, animatingDifferences: true)
+        }
+        
     }
 }
 
@@ -316,11 +320,11 @@ private extension MainViewController {
 extension MainViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         guard let sectionKind = Section(rawValue: indexPath.section) else { return }
         
         switch sectionKind {
         case .categories:
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .right)
             let value = presenter?.getCategories()[indexPath.row].category ?? ""
             presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
         default:
