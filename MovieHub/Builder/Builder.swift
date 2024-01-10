@@ -53,7 +53,8 @@ final class Builder {
     static func createMovieList() -> UIViewController {
         let view = MovieListViewController()
         let presenter = MovieListPresenter()
-        let interactor = MovieListInteractor()
+        let networkService = NetworkService()
+        let interactor = MovieListInteractor(networkService: networkService)
         let router = MovieListRouter()
         view.presenter = presenter
         presenter.view = view
