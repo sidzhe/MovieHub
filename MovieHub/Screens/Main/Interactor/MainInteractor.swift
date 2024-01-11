@@ -11,7 +11,7 @@ final class MainInteractor: MainInteractorInputProtocol {
 
     //MARK: - Properties
     weak var presenter: MainInteractorOutputProtocol?
-    var networkService: NetworkServiceProtocol
+    var networkService: NetworkServiceProtool
     var collectionData: ColletionModel?
     var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue) }
     var mostPopular: CollectionDetailModel?
@@ -21,7 +21,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     var currentCity: String?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtocol) {
+    init(networkService: NetworkServiceProtool) {
         self.networkService = networkService
     }
     

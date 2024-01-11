@@ -10,13 +10,13 @@ final class SearchResultInteractor: SearchResultInteractorInputProtocol {
 
     //MARK: - Properties
     weak var presenter: SearchResultInteractorOutputProtocol?
-    var networkService: NetworkServiceProtocol
+    var networkService: NetworkServiceProtool
     
     var searchPerson: PersonModel?
     var searchMovie: SearchModel?
 
     //MARK: Init
-    init(networkService: NetworkServiceProtocol) {
+    init(networkService: NetworkServiceProtool) {
         self.networkService = networkService
     }
     
@@ -37,7 +37,7 @@ final class SearchResultInteractor: SearchResultInteractorInputProtocol {
     }
     
     func requestSearch(_ title: String) {
-        networkService.searchTitle(title) { [weak self] (result: (Result<SearchModel, RequestError>)) in
+        networkService.searchMovieByTitle(title) { [weak self] (result: (Result<SearchModel, RequestError>)) in
             guard let self = self else { return }
             switch result {
             case .success(let search):
