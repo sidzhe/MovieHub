@@ -120,6 +120,21 @@ final class Builder {
         return view
     }
     
+    /// SearchResultVC
+    static func createSearchResult() -> UIViewController {
+        let view = SearchResultsViewController()
+        let presenter = SearchResultPresenter()
+        let networkService = NetworkService()
+        let interactor = SearchResultInteractor(networkService: networkService)
+        let router = SearchResultRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
     /// ProfileVC
     static func createProfile() -> UIViewController {
         let view = ProfileViewController()

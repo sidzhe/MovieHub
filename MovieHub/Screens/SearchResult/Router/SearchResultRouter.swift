@@ -7,6 +7,6 @@
 
 import Foundation
 
-final class SearchResultRouter: SearchRouterProtocol {
+final class SearchResultRouter: SearchResultRouterProtocol {
     
 }

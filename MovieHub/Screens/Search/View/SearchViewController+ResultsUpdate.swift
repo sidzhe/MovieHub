@@ -17,7 +17,6 @@ extension SearchViewController: UISearchResultsUpdating {
         collectionView.isHidden = true
         searchDelayTimer = Timer.scheduledTimer(withTimeInterval: searchDelayInterval, repeats: false, block: { [weak self] _ in
             guard self != nil else { return }
-
             resultController.presenter?.updateSearchResults(with: searchText)
         })
     }

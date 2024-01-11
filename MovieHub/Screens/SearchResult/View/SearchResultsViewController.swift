@@ -31,11 +31,6 @@ final class SearchResultsViewController: UIViewController {
         collectionView.isHidden = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     // MARK: - Private methods
     private func setupUI() {
         view.addSubview(collectionView)
@@ -96,13 +91,22 @@ extension SearchResultsViewController {
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
-            guard let self  else { return nil }
+            guard let self = self else { return nil }
             let section = self.sections[sectionIndex]
+            
             switch section {
             case .person:
-                return createPersonSection()
+                if self.presenter?.getSearchPerson().isEmpty == true {
+                    return nil
+                } else {
+                    return self.createPersonSection()
+                }
             case .movie:
-                return createMoviesSection()
+                if self.presenter?.getSearchMovie().isEmpty == true {
+                    return nil
+                } else {
+                    return self.createMoviesSection()
+                }
             }
         }
     }
@@ -129,37 +133,39 @@ extension SearchResultsViewController {
         )
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(
-            widthDimension: .fractionalWidth(0.9),
-            heightDimension: .fractionalHeight(0.2)), 
+            widthDimension: .fractionalWidth(0.35),
+            heightDimension: .fractionalHeight(0.2)),
             subitems: [item]
         )
         
         let section = createLayoutSection(group: group,
-                                          behavior: .continuous,
-                                          interGroupSpacing: 20,
+                                          behavior: .groupPaging,
+                                          interGroupSpacing: 10,
                                           supplementaryItems: [supplementaryHeaderItem()],
                                           contentInsets: false)
-        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = .init(top: 0, leading: 8, bottom: 0, trailing: 20)
         
         return section
     }
     
     private func createMoviesSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
+        let item = NSCollectionLayoutItem(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(200)
+            heightDimension: .fractionalHeight(1))
         )
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0)
         
-        let groupSize = NSCollectionLayoutSize(
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(200)
+            heightDimension: .fractionalHeight(0.25)),
+            subitems: [item]
         )
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+        let section = createLayoutSection(group: group,
+                                          behavior: .none,
+                                          interGroupSpacing: 16,
+                                          supplementaryItems: [supplementaryHeaderItem()],
+                                          contentInsets: false)
+        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         return section
     }
     
@@ -170,13 +176,6 @@ extension SearchResultsViewController {
               elementKind: UICollectionView.elementKindSectionHeader,
               alignment: .top
         )
-    }
-    
-    var _infoImageView: UIImageView {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "searchInfo")
-        imageView.isHidden = true
-        return imageView
     }
 }
 
@@ -191,11 +190,20 @@ extension SearchResultsViewController: SearchResultViewProtocol {
         let isSearchMovieEmpty = presenter?.getSearchMovie().isEmpty ?? true
         let isSearchPersonEmpty = presenter?.getSearchPerson().isEmpty ?? true
         
-        infoImageView.isHidden = !isSearchMovieEmpty || !isSearchPersonEmpty
-        collectionView.isHidden = isSearchMovieEmpty && isSearchPersonEmpty
         
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.infoImageView.isHidden = !isSearchMovieEmpty || !isSearchPersonEmpty
+            self?.collectionView.isHidden = isSearchMovieEmpty && isSearchPersonEmpty
+            self?.collectionView.reloadData()
         }
+    }
+}
+
+extension SearchResultsViewController {
+    var _infoImageView: UIImageView {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "searchInfo")
+        imageView.isHidden = true
+        return imageView
     }
 }

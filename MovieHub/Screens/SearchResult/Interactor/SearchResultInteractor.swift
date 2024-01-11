@@ -29,7 +29,6 @@ final class SearchResultInteractor: SearchResultInteractorInputProtocol {
                 
             case .success(let person):
                 self.searchPerson = person
-                 print(person)
                 self.presenter?.updateUI()
             case .failure(let error):
                 self.presenter?.getError(error: error)
@@ -41,7 +40,6 @@ final class SearchResultInteractor: SearchResultInteractorInputProtocol {
         networkService.searchTitle(title) { [weak self] (result: (Result<SearchModel, RequestError>)) in
             guard let self = self else { return }
             switch result {
-                
             case .success(let search):
                 self.searchMovie = search
                 self.presenter?.updateUI()

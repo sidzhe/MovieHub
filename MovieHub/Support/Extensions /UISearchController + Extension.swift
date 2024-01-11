@@ -12,7 +12,7 @@ extension UISearchController {
         placeholder: String,
         delegate: UISearchResultsUpdating) -> UISearchController {
         
-        let searchResultsController = SearchResultsViewController()
+            let searchResultsController = Builder.createSearchResult()
         let searchController = UISearchController(searchResultsController: searchResultsController)
         searchController.searchResultsUpdater = delegate
         searchController.obscuresBackgroundDuringPresentation = false

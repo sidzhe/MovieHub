@@ -15,6 +15,7 @@ final class PersonCell: UICollectionViewCell {
     // MARK: - Views
     private lazy var personImageView: UIImageView = _personImageView
     private lazy var personName: UILabel = _personName
+    private lazy var activityIndicator: UIActivityIndicatorView = _activityIndicator
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -30,11 +31,13 @@ final class PersonCell: UICollectionViewCell {
     
     // MARK: - Method for setup data to elements in every cell
     func configure(person: DocPerson) {
-        let urlString = person.photo
-        let url = URL(string: urlString)
-        Task(priority: .userInitiated) { [weak self] in
-            self?.personImageView.kf.setImage(with: url)
-        }
+        let urlString = URL(string: person.photo)
+        
+        personImageView.kf.setImage(with: urlString, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: { [weak self] (_, _) in
+              self?.activityIndicator.startAnimating()
+            }, completionHandler: { [weak self] (_) in
+              self?.activityIndicator.stopAnimating()
+            })
         
         personName.text = "\(person.name)"
     }
@@ -43,13 +46,14 @@ final class PersonCell: UICollectionViewCell {
     private func addSubviews() {
         contentView.addSubview(personImageView)
         contentView.addSubview(personName)
+        personImageView.addSubview(activityIndicator)
     }
     
     // MARK: - Constraints
     private func setConstraints() {
         
         personImageView.snp.makeConstraints { make in
-            make.width.height.equalTo(150)
+            make.width.height.equalTo(100)
             make.top.centerX.equalToSuperview()
         }
         
@@ -57,6 +61,10 @@ final class PersonCell: UICollectionViewCell {
             make.leading.trailing.equalToSuperview().inset(10)
             make.top.equalTo(personImageView.snp.bottom).offset(10)
         }
+        activityIndicator.center = personImageView.center
+        
+        personImageView.layer.cornerRadius = 50
+        personImageView.layer.masksToBounds = true
     }
 }
 
@@ -65,9 +73,8 @@ private extension PersonCell {
     
     var _personImageView: UIImageView {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 75
         return imageView
     }
     
@@ -78,4 +85,10 @@ private extension PersonCell {
         label.textColor = .white
         return label
     }
+    
+    var _activityIndicator: UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+      }
 }

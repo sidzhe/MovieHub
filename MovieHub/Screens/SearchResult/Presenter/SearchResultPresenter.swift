@@ -15,9 +15,9 @@ final class SearchResultPresenter: SearchResultPresenterProtocol {
     var router: SearchResultRouterProtocol?
     
     //MARK: - updateSearchResults
-    func updateSearchResults(with searchText: String?) {
-        interactor?.requestPerson(name: searchText ?? "")
-        interactor?.requestSearch( searchText ?? "")
+    func updateSearchResults(with searchText: String) {
+        interactor?.requestPerson(name: searchText)
+        interactor?.requestSearch(searchText)
     }
     
     //MARK: - Get models

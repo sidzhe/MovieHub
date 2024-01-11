@@ -15,6 +15,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
     // MARK: - Views
     
     private lazy var posterImageView: UIImageView = _posterImageView
+    private lazy var activityIndicator: UIActivityIndicatorView = _activityIndicator
     private lazy var movieContentView: UIView = _movieContentView
     private lazy var blurView: UIVisualEffectView = _blurView
     private lazy var starImage: UIImageView = _starImage
@@ -96,12 +97,14 @@ final class UpcomingMovieCell: UICollectionViewCell {
     // MARK: - For UpcomingMovie
     func configure(with upcomingMovie: UpcomingDoc) {
         guard let model = upcomingMovie.sequelsAndPrequels?.first,
-              let urlString = model.poster?.url ?? model.poster?.previewURL,
-              let url = URL(string: urlString) else { return }
+              let url = model.poster?.url ?? model.poster?.previewURL,
+              let urlString = URL(string: url) else { return }
         
-        Task(priority: .userInitiated) { [weak self] in
-            self?.posterImageView.kf.setImage(with: url)
-        }
+        posterImageView.kf.setImage(with: urlString, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: { [weak self] (_, _) in
+              self?.activityIndicator.startAnimating()
+            }, completionHandler: { [weak self] (_) in
+              self?.activityIndicator.stopAnimating()
+            })
         
         nameLabel.text = model.name ?? model.alternativeName
         yearLabel.text = model.year != nil ? "\(model.year!)" : "No Data"
@@ -113,26 +116,33 @@ final class UpcomingMovieCell: UICollectionViewCell {
     // MARK: - For SearchedMovie
     func configure(for searchedMovie: Doc) {
         
-        let url = URL(string: searchedMovie.poster?.url ?? "")
+        guard let url = searchedMovie.poster?.url
+                ?? searchedMovie.poster?.previewURL else  { return }
         
-        Task(priority: .userInitiated) { [weak self] in self?.posterImageView.kf.setImage(with: url) }
+        let urlString = URL(string: url)
+        
+        posterImageView.kf.setImage(with: urlString, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: { [weak self] (_, _) in
+              self?.activityIndicator.startAnimating()
+            }, completionHandler: { [weak self] (_) in
+              self?.activityIndicator.stopAnimating()
+            })
         
         nameLabel.text = searchedMovie.name ?? searchedMovie.alternativeName
-        yearLabel.text = String("\(searchedMovie.year)")
-        movieLengthLabel.text = "\(String(describing: searchedMovie.movieLength)) Minutes"
-        categoryLabel.text = searchedMovie.type?.capitalized
-        ratingLabel.text = String(format: "%.1f", searchedMovie.rating?.kp ?? 0.0)
+        yearLabel.text = searchedMovie.year != nil ? "\(searchedMovie.year!)" : "No Data"
+        movieLengthLabel.text = "\(searchedMovie.movieLength ?? 0) Minutes"
+        categoryLabel.text = searchedMovie.type?.capitalized ?? ""
+        ratingLabel.text = String(format: "%.1f", (searchedMovie.rating?.kp ?? searchedMovie.rating?.imdb) as Double? ?? 0.0)
     }
     
     // MARK: - Private methods
     private func setupView() {
-        posterImageView.clipsToBounds = true
-        posterImageView.layer.cornerRadius = 8
+
         addSubview(movieContentView)
         movieContentView.addSubview(posterImageView)
         movieContentView.addSubview(nameLabel)
         movieContentView.addSubview(infoStackView)
         posterImageView.addSubview(blurView)
+        posterImageView.addSubview(activityIndicator)
         blurView.contentView.addSubview(starImage)
         blurView.contentView.addSubview(ratingLabel)
     }
@@ -154,7 +164,7 @@ final class UpcomingMovieCell: UICollectionViewCell {
         posterImageView.snp.makeConstraints { make in
             make.top.equalTo(movieContentView.snp.top)
             make.leading.equalTo(movieContentView.snp.leading)
-            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 2.5)
+            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 2.7)
             make.height.equalTo(movieContentView.snp.height)
         }
         
@@ -182,6 +192,8 @@ final class UpcomingMovieCell: UICollectionViewCell {
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().inset(5)
         }
+        
+        activityIndicator.center = posterImageView.center
     }
 }
 
@@ -193,6 +205,12 @@ private extension UpcomingMovieCell {
         view.clipsToBounds = true
         return view
     }
+    
+    var _activityIndicator: UIActivityIndicatorView {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+      }
     
     var _movieContentView: UIView {
         let view = UIView()

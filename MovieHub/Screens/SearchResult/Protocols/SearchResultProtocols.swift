@@ -18,7 +18,7 @@ protocol SearchResultViewProtocol: AnyObject {
 protocol SearchResultPresenterProtocol: AnyObject {
     var view: SearchResultViewProtocol? { get set }
     
-    func updateSearchResults(with searchText: String?)
+    func updateSearchResults(with searchText: String)
     
     func getSearchPerson() -> [DocPerson]
     func getSearchMovie() -> [Doc]
