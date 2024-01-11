@@ -39,7 +39,12 @@ final class PersonCell: UICollectionViewCell {
               self?.activityIndicator.stopAnimating()
             })
         
-        personName.text = "\(person.name)"
+        if person.name == "" {
+            personName.text = person.enName
+        } else {
+            personName.text = person.name
+        }
+       
     }
     
     // MARK: - Subviews
