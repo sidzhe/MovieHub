@@ -10,7 +10,12 @@ import UIKit
 final class WishlistViewController: UIViewController {
     //TODO: - Delete later
     let movieNamesArray = ["Spider-Man", "Spider-Man Spider-Man", "Spider-Man Spider-Man Spider-ManSpider-Man Spider-Man Spider-Man"]
-    
+    private var wishListModel: [SearchModel]? {
+        didSet {
+            print("wishListModel: ", wishListModel)
+            wishTableView.reloadData()
+        }
+    }
     //MARK: Properties
     var presenter: WishlistPresenterProtocol?
     private lazy var wishTableView: UITableView = {
@@ -31,9 +36,14 @@ final class WishlistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
+        getWishListData()
     }
     
     //MARK: - Methods
+    
+    private func getWishListData() {
+        presenter?.getWishListData()
+    }
     private func setViews() {
         view.backgroundColor = .primaryDark
         view.addSubview(wishTableView)
@@ -46,6 +56,17 @@ final class WishlistViewController: UIViewController {
 
 //MARK: - Extension WishlistViewProtocol
 extension WishlistViewController: WishlistViewProtocol {
+    func updateUI(model: [SearchModel]?) {
+        wishListModel = model
+    }
+    
+    func displayRequestError(error: String) {
+        let alert = UIAlertController(title: "Request error", message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
+    
     
 }
 

@@ -8,6 +8,10 @@
 import Foundation
 
 final class WishlistPresenter: WishlistPresenterProtocol {
+    func getWishListData() {
+        <#code#>
+    }
+    
     
     //MARK: Properties
     weak var view: WishlistViewProtocol?
@@ -20,5 +24,11 @@ final class WishlistPresenter: WishlistPresenterProtocol {
 
 //MARK: - Extension WishlistInteractorOutputProtocol
 extension WishlistPresenter: WishlistInteractorOutputProtocol {
+    func updateUI() {
+        view?.updateUI(model: interactor?.wishListMovieData)
+    }
     
+    func getData() -> SearchModel {
+        
+    }
 }

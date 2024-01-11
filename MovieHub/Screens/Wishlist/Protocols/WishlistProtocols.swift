@@ -10,23 +10,27 @@ import Foundation
 /// PRESENTER -> VIEW
 protocol WishlistViewProtocol: AnyObject {
     var presenter: WishlistPresenterProtocol? { get set }
+    func updateUI(model: [SearchModel]?)
+    func displayRequestError(error: String)
 }
 
 /// VIEW -> PRESENTER
 protocol WishlistPresenterProtocol: AnyObject {
     var view: WishlistViewProtocol? { get set }
+    func getWishListData()
 }
 
 /// PRESENTER -> INTERACTOR
 protocol WishlistInteractorInputProtocol: AnyObject {
     var presenter: WishlistInteractorOutputProtocol? { get set }
-    var favoriteMoviesID: [Int] {get}
-    func requestFavoriteMovies()
+    var wishListMovieData: [SearchModel]? {get}
+    func startFetchWishListData()
 }
 
 /// INTERACTOR -> PRESENTER
 protocol WishlistInteractorOutputProtocol: AnyObject {
-    
+    func updateUI(model: [SearchModel]?)
+    func showError(error: Error)
 }
 
 /// PRESENTER -> ROUTER
