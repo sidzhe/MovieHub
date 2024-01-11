@@ -26,7 +26,8 @@ final class MainRouter: MainRouterProtocol {
     //MARK: Route to Detail
     func pushToDetail(from view: MainViewProtocol?) {
         guard let view = view as? UIViewController else { return }
-        let detailVC = Builder.createDetail()
+        let detailID = "462682"
+        let detailVC = Builder.createDetail(detailID: detailID)
         view.navigationController?.pushViewController(detailVC, animated: true)
     }
     

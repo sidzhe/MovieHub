@@ -12,17 +12,29 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: DetailInteractorOutputProtocol?
-    var networkManager = NetworkService()
     var detailData: DetailModel?
+    private var detailID: String
+    private let networkService: NetworkService
     
-    func fetch(_ id: String) {
-        networkManager.searchDetailID(id) {(result: Result<DetailModel, RequestError>) in
+    //MARK: Init
+    init(networkService: NetworkService, detailID: String) {
+        self.networkService = networkService
+        self.detailID = detailID
+        detailRequest()
+    }
+    
+    func detailRequest() {
+        networkService.searchDetailID(detailID) { [weak self] (result: (Result<DetailModel, RequestError>)) in
             switch result {
-            case .success(let data):
-                self.detailData = data
+                
+            case .success(let detail):
+                self?.detailData = detail
+                self?.presenter?.updateUI()
+                print(detail)
             case .failure(let error):
-                print(error.customMessage)
+                self?.presenter?.getRequestError(error)
             }
         }
     }
+
 }

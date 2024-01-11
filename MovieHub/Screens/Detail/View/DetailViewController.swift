@@ -11,7 +11,21 @@ final class DetailViewController: UIViewController {
     
     //MARK: Properties
     var presenter: DetailPresenterProtocol?
-//    let movie = DetailModel
+    var tabBar = TabBarViewController()
+    
+    private lazy var scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.isScrollEnabled = true
+        sv.contentInsetAdjustmentBehavior = .automatic
+        sv.translatesAutoresizingMaskIntoConstraints = false
+//        sv.
+        return sv
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
     
     private lazy var backgroundImageView: UIImageView = {
         let iv = UIImageView()
@@ -117,11 +131,14 @@ final class DetailViewController: UIViewController {
         lb.font = .montserratSemiBold(size: 16)
         lb.textColor = .white
         lb.text = "Cast and Crew"
+        lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
     
     private lazy var castCollectionView: UICollectionView = {
-        let cv = UICollectionView()
+        let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), collectionViewLayout: UICollectionViewLayout())
+        cv.register(CastViewCell.self, forCellWithReuseIdentifier: CastViewCell.reuseID)
+        cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
     
@@ -141,23 +158,29 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupLayout()
-        
+        castCollectionView.dataSource = self
+        castCollectionView.delegate = self
         
         
     }
     //MARK: Methods
     private func setupView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
         view.backgroundColor = .primaryDark
-        view.addSubview(backgroundImageView)
-        view.addSubview(backgroundMaskedView)
-        view.addSubview(posterImageView)
-        view.addSubview(infoBigStack)
-        view.addSubview(rateStack)
-        view.addSubview(trailerButton)
-        view.addSubview(shareButton)
-        view.addSubview(descriptionHeaderLabel)
-        view.addSubview(descriptionTextLabel)
-        view.addSubview(castHeaderLabel)
+        contentView.backgroundColor = .primaryDark
+        scrollView.backgroundColor = .primaryDark
+        contentView.addSubview(backgroundImageView)
+        contentView.addSubview(backgroundMaskedView)
+        contentView.addSubview(posterImageView)
+        contentView.addSubview(infoBigStack)
+        contentView.addSubview(rateStack)
+        contentView.addSubview(trailerButton)
+        contentView.addSubview(shareButton)
+        contentView.addSubview(descriptionHeaderLabel)
+        contentView.addSubview(descriptionTextLabel)
+        contentView.addSubview(castHeaderLabel)
+        contentView.addSubview(castCollectionView)
         infoBigStack.addArrangedSubview(yearStack)
         infoBigStack.addArrangedSubview(firstStroke)
         infoBigStack.addArrangedSubview(durationStack)
@@ -179,6 +202,15 @@ final class DetailViewController: UIViewController {
     }
     
     private func setupLayout() {
+        scrollView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+            
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.width.equalToSuperview()
+        }
+        
         backgroundImageView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
             make.width.equalToSuperview()
@@ -240,6 +272,12 @@ final class DetailViewController: UIViewController {
             make.top.equalTo(descriptionTextLabel.snp.bottom).offset(24)
             make.leading.equalToSuperview().offset(24)
         }
+        
+        castCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(castHeaderLabel.snp.bottom).offset(24)
+            make.leading.equalToSuperview().offset(24)
+            make.bottom.equalTo(contentView.snp.bottom).inset(50)
+        }
     }
     
     // Создание разделительной линии между годом, продолжитенльностью и жанром
@@ -254,14 +292,87 @@ final class DetailViewController: UIViewController {
         stroke.layer.borderColor = UIColor(red: 0.412, green: 0.412, blue: 0.455, alpha: 1).cgColor
         return view
     }
+    
+    func setTitles() {
+        guard let presenter = presenter, let model = presenter.getDetailData() else { return }
+        
+        let year = String(model.year ?? 0)
+        let lenght = String(model.movieLength ?? 0)
+        let genre = model.genres?.first?.name ?? ""
+        let rating = String(model.rating?.kp ?? 0)
+        let description = model.description ?? ""
+        guard let url = URL(string: model.poster?.url ?? "") else { return }
+        
+        yearLabel.text = year
+        durationLabel.text = "\(lenght) minutes"
+        genreLabel.text = genre
+        rateLabel.text = rating
+        descriptionTextLabel.text = description
+        backgroundImageView.kf.setImage(with: url)
+        posterImageView.kf.setImage(with: url)
+                
+    }
+    
+    //MARK: - Display network error
+    private func alertError(_ error: RequestError) {
+        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .destructive)
+        alert.addAction(action)
+        present(alert, animated: true)
+    }
 }
+    
+extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let presenter = presenter, let model = presenter.getDetailData() else { return 0 }
+        return model.persons?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            guard 
+                    let presenter = presenter,
+                    let model = presenter.getDetailData(),
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastViewCell.reuseID, for: indexPath) as? CastViewCell else { fatalError() }
+        cell.configure(person: model.persons![indexPath.item])
+            return cell
+        }
+    
+    
+    private func createLayoutForCollection() -> UICollectionViewFlowLayout {
+
+        let layout = UICollectionViewFlowLayout()
+        let basicSpacing: CGFloat = 20
+        let itemsPerRow: CGFloat = 2
+        let paddingWidth = basicSpacing * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingWidth
+        let widthPerItem = availableWidth / itemsPerRow
+        layout.minimumLineSpacing = basicSpacing
+        layout.minimumInteritemSpacing = basicSpacing
+        layout.sectionInset = UIEdgeInsets(top: 0, left: basicSpacing, bottom: 0, right: basicSpacing)
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: widthPerItem, height: widthPerItem * 0.66)
+        return layout
+    }
+    }
+
+
 
 
 
 
 //MARK: - Extension DetailViewProtocol
 extension DetailViewController: DetailViewProtocol {
+    func updateUI() {
+        Task {setTitles()}
+    }
+    
+    func displayRequestError(_ error: RequestError) {
+        Task { alertError(error) }
+    }
+    
+    
+    
     
 }
 
-#Preview { DetailViewController()}
+#Preview { DetailViewController() }
