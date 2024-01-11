@@ -11,7 +11,7 @@ import UIKit
 protocol MovieServiceProtool {
     func searchMovie<T: Decodable>(searchTitle: String) async -> Result<T, RequestError>
     func searchPerson<T: Decodable>(person: String) async -> Result<T, RequestError>
-    func searchDetailWithId<T: Decodable>(identifier: String) async -> Result<T, RequestError>
+    func searchWithId<T: Decodable>(identifier: String) async -> Result<T, RequestError>
     func searchCollection<T: Decodable>() async -> Result<T, RequestError>
     func movieFilterSlug<T: Decodable>(slugTag: String) async -> Result<T, RequestError>
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
@@ -20,6 +20,9 @@ protocol MovieServiceProtool {
     func movieWirhPerosn<T: Decodable>(actorsId: Int) async -> Result<T, RequestError>
     func awardsPerson<T: Decodable>(actorsId: Int) async -> Result<T, RequestError>
     func movieUpcomingGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
+    func getCinimaList<T: Decodable>(city: String) async -> Result<T, RequestError>
+    func getCurrentCity<T: Decodable>(cityName: String) async -> Result<T, RequestError>
+    func searchMovieById<T: Decodable>(identifier: String) async -> Result<T, RequestError> 
 }
 
 
@@ -50,15 +53,15 @@ struct MovieService: MovieServiceProtool, MovieClient {
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchPerson, responseModel: T.self)
     }
     
-    //MARK: Search detail movie with id
-    func searchDetailWithId<T: Decodable>(identifier: String) async -> Result<T, RequestError> {
-        let endpoint = MovieEndpoints.searchDetailId
+    //MARK: Search movie with id
+    func searchWithId<T: Decodable>(identifier: String) async -> Result<T, RequestError> {
+        let endpoint = MovieEndpoints.searchDetailById
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path + identifier
         urlComponents.queryItems = endpoint.item
-        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchDetailId, responseModel: T.self)
+        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchDetailById, responseModel: T.self)
     }
     
     //MARK: Get slug collection
@@ -185,25 +188,51 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
         let items = [URLQueryItem(name: "page", value: "1"),
-                     URLQueryItem(name: "limit", value: "10"),
-                     URLQueryItem(name: "selectFields", value: "year"),
-                     URLQueryItem(name: "selectFields", value: "rating"),
-                     URLQueryItem(name: "selectFields", value: "movieLength"),
-                     URLQueryItem(name: "selectFields", value: "sequelsAndPrequels"),
-                     URLQueryItem(name: "notNullFields", value: "sequelsAndPrequels.id"),
-                     URLQueryItem(name: "notNullFields", value: "year"),
-                     URLQueryItem(name: "notNullFields", value: "rating.kp"),
-                     URLQueryItem(name: "notNullFields", value: "movieLength"),
-                     URLQueryItem(name: "notNullFields", value: "poster.url"),
-                     URLQueryItem(name: "rating.kp", value: "5-10"),
-                     URLQueryItem(name: "genres.name", value: genre)]
+                              URLQueryItem(name: "limit", value: "10"),
+                              URLQueryItem(name: "selectFields", value: "year"),
+                              URLQueryItem(name: "selectFields", value: "rating"),
+                              URLQueryItem(name: "selectFields", value: "movieLength"),
+                              URLQueryItem(name: "selectFields", value: "sequelsAndPrequels"),
+                              URLQueryItem(name: "notNullFields", value: "sequelsAndPrequels.id"),
+                              URLQueryItem(name: "notNullFields", value: "year"),
+                              URLQueryItem(name: "notNullFields", value: "rating.kp"),
+                              URLQueryItem(name: "notNullFields", value: "movieLength"),
+                              URLQueryItem(name: "notNullFields", value: "poster.url"),
+                              URLQueryItem(name: "rating.kp", value: "5-10"),
+                              URLQueryItem(name: "genres.name", value: genre)]
         urlComponents.queryItems = items
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.upcoming, responseModel: T.self)
     }
     
-    //MARK: Search person by id
+    //MARK: Get cinema list
+    func getCinimaList<T: Decodable>(city: String) async -> Result<T, RequestError> {
+        let endpoint = CinemaEndpoints.getMovieList
+        var urlComponents = URLComponents()
+        urlComponents.scheme = endpoint.scheme
+        urlComponents.host = "opendata.mkrf.ru"
+        urlComponents.path = endpoint.path
+        let items = [URLQueryItem(name: "f", value: "{\"data.general.locale.name\":{\"$eq\":\"\(city)\"}}")]
+        urlComponents.queryItems = items
+        return await sendRequest(urlComponents: urlComponents, endpoint: CinemaEndpoints.getMovieList, responseModel: T.self)
+    }
+    
+    //MARK: Get current city
+    func getCurrentCity<T: Decodable>(cityName: String) async -> Result<T, RequestError> {
+        let endpoint = CurrentCityEndpoints.getCurrentCity
+        var urlComponents = URLComponents()
+        urlComponents.scheme = endpoint.scheme
+        urlComponents.host = "geocode-maps.yandex.ru"
+        urlComponents.path = endpoint.path
+        let items = [URLQueryItem(name: "apikey", value: "bbd6c3a0-90a5-48c4-9903-d375e1f53b2c"),
+                     URLQueryItem(name: "geocode", value: "\(cityName)"),
+                     URLQueryItem(name: "format", value: "json")]
+        urlComponents.queryItems = items
+        return await sendRequest(urlComponents: urlComponents, endpoint: CurrentCityEndpoints.getCurrentCity, responseModel: T.self)
+    }
+    
+    //MARK: Search movie by id
     func searchMovieById<T: Decodable>(identifier: String) async -> Result<T, RequestError> {
-        let endpoint = MovieEndpoints.searchMovieWithId
+        let endpoint = MovieEndpoints.searchMovieById
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
@@ -211,8 +240,6 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.queryItems = [URLQueryItem(name: "page", value: "1"),
                                     URLQueryItem(name: "limit", value: "10"),
                                     URLQueryItem(name: "persons.id", value: identifier)]
-        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchMovieWithId, responseModel: T.self)
+        return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchMovieById, responseModel: T.self)
     }
 }
-
-

@@ -53,7 +53,8 @@ final class Builder {
     static func createMovieList() -> UIViewController {
         let view = MovieListViewController()
         let presenter = MovieListPresenter()
-        let interactor = MovieListInteractor()
+        let networkService = NetworkService()
+        let interactor = MovieListInteractor(networkService: networkService)
         let router = MovieListRouter()
         view.presenter = presenter
         presenter.view = view
@@ -171,6 +172,81 @@ final class Builder {
         let networkService = NetworkService()
         let interactor = PersonDetailInteractor(networkService: networkService, personId: personId)
         let router = PersonDetailRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
+    /// MapVC
+    static func createMap(currentCity: String, userLocation: Location, selectedCityLocation: Location) -> UIViewController {
+        let view = MapViewController()
+        let presenter = MapPresenter()
+        let networkService = NetworkService()
+        let interactor = MapInteractor(
+            networkService: networkService,
+            currentCity: currentCity,
+            userLocation: userLocation,
+            selectedCityLocation: selectedCityLocation)
+        let router = MapRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
+    /// GlobeVC
+    static func createGlobe(lat: Double, lon: Double, city: String) -> UIViewController {
+        let view = GlobeViewController()
+        let networkService = NetworkService()
+        let storageService = StorageService()
+        let presenter = GlobePresenter()
+        let interactor = GlobeInteractor(networkService: networkService, storageService: storageService, lat: lat, lon: lon, city: city)
+        let router = GlobeRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
+    /// DetailCinemaVC
+    static func createDetailCinema(globeCinema: GlobeCinema) -> UIViewController {
+        let view = DetailCinemaViewController()
+        let presenter = DetailCinemaPresenter(cinema: globeCinema)
+        view.presenter = presenter
+        presenter.view = view
+        return view
+    }
+    
+    /// CityListVC
+    static func createCityList() -> UIViewController {
+        let view = CityListViewController()
+        let presenter = CityListPresenter()
+        let networkService = NetworkService()
+        let storageService = StorageService()
+        let interactor = CityListInteractor(networkService: networkService, storageService: storageService)
+        let router = CityListRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
+    /// CollectionVC
+    static func createCollection(slug: String) -> UIViewController {
+        let view = CollectionViewController()
+        let presenter = CollectionPresenter()
+        let networkService = NetworkService()
+        let interactor = CollectionInteractor(networkService: networkService, slug: slug)
+        let router = CollectionRouter()
         view.presenter = presenter
         presenter.view = view
         presenter.interactor = interactor

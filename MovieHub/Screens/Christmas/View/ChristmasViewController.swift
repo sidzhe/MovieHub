@@ -253,6 +253,7 @@ final class ChristmasViewController: UIViewController {
     
     //MARK: Create MovieView
     private func createMovieView() {
+        movieView?.removeFromSuperview()
         let model = presenter?.getLoadedMovie()
         guard let model = model else { return }
         movieView = MovieView(model: model)
@@ -266,7 +267,10 @@ final class ChristmasViewController: UIViewController {
             make.center.equalToSuperview()
         }
         
-        movieView?.callBackButton = { [weak self] in self?.presenter?.routeToDetailVC() }
+        movieView?.callBackButton = { [weak self] in
+            self?.movieView?.alpha = 0
+            self?.presenter?.routeToDetailVC()
+        }
     }
     
     //MARK: Create close button
