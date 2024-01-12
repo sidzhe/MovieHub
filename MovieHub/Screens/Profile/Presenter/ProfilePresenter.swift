@@ -14,6 +14,16 @@ final class ProfilePresenter: ProfilePresenterProtocol {
     var interactor: ProfileInteractorInputProtocol?
     var router: ProfileRouterProtocol?
     
+    func routeToPolicies() {
+        guard let view = view else { return }
+        router?.pushToPolicies(from: view)
+    }
+    
+    func routeToAboutUs() {
+        guard let view = view else { return }
+        router?.pushToAboutUs(from: view)
+    }
+    
     
 }
 

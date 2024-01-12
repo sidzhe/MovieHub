@@ -212,6 +212,7 @@ final class ProfileViewController: UIViewController {
         var policyButton = UIButton()
         policyButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
         policyButton.tintColor = .white
+        policyButton.addTarget(self, action: #selector(policyButtonTap), for: .touchUpInside)
         policyButton.translatesAutoresizingMaskIntoConstraints = false
         return policyButton
     }()
@@ -237,6 +238,7 @@ final class ProfileViewController: UIViewController {
         var infoButton = UIButton()
         infoButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
         infoButton.tintColor = .white
+        infoButton.addTarget(self, action: #selector(aboutUsButtonTap), for: .touchUpInside)
         infoButton.translatesAutoresizingMaskIntoConstraints = false
         return infoButton
     }()
@@ -247,6 +249,13 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         drawSelf()
+    }
+    @objc private func policyButtonTap() {
+        presenter?.routeToPolicies()
+    }
+    
+    @objc private func aboutUsButtonTap() {
+        presenter?.routeToAboutUs()
     }
 }
 

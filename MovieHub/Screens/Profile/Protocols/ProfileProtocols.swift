@@ -15,6 +15,8 @@ protocol ProfileViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol ProfilePresenterProtocol: AnyObject {
     var view: ProfileViewProtocol? { get set }
+    func routeToPolicies()
+    func routeToAboutUs()
 }
 
 /// PRESENTER -> INTERACTOR
@@ -29,5 +31,7 @@ protocol ProfileInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol ProfileRouterProtocol: AnyObject {
+    func pushToPolicies(from view: ProfileViewProtocol)
+    func pushToAboutUs(from view: ProfileViewProtocol)
     
 }
