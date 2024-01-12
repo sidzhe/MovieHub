@@ -29,6 +29,9 @@ final class SearchPresenter: SearchPresenterProtocol {
     
     func getUpcomingMovie() -> [Doc] {
         guard let model = interactor?.upcomingMovie?.docs else { return [Doc]() }
+        let filteredModel = model.filter { $0.poster?.url != "" || (($0.poster?.previewURL) != nil) }
+        
+        return filteredModel
         return model
     }
     

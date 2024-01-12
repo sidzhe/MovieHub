@@ -22,12 +22,14 @@ final class SearchResultPresenter: SearchResultPresenterProtocol {
     //MARK: - Get models
     func getSearchMovie() -> [Doc] {
         guard let model = interactor?.searchMovie?.docs else { return [Doc]() }
-        return model
+        let filteredModel = model.filter { $0.poster?.url != "" || (($0.poster?.previewURL) != nil) }
+        return filteredModel
     }
     
     func getSearchPerson() -> [DocPerson] {
         guard let model = interactor?.searchPerson?.docs else { return [DocPerson]() }
-        return model
+        let filteredModel = model.filter { $0.name != "" || $0.photo != "" }
+        return filteredModel
     }
     
     //MARK: - RouteTo
