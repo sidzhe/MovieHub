@@ -9,4 +9,7 @@ import UIKit
 
 final class DetailRouter: DetailRouterProtocol {
     
+    func pushTrailer() {
+        
+    }
 }

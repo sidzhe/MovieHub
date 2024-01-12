@@ -14,11 +14,23 @@ final class DetailPresenter: DetailPresenterProtocol {
     var interactor: DetailInteractorInputProtocol?
     var router: DetailRouterProtocol?
     
-    
+    //MARK: Get detail data
+    func getDetailData() -> DetailModel? {
+        guard let model = interactor?.detailData else { return nil }
+        return model
+    }
 }
 
 
 //MARK: - Extension DetailInteractorOutputProtocol
 extension DetailPresenter: DetailInteractorOutputProtocol {
+    
+    func updateUI() {
+        view?.updateUI()
+    }
+    
+    func getRequestError(_ error: RequestError) {
+        view?.displayRequestError(error)
+    }
     
 }

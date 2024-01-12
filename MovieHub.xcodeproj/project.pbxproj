@@ -11,6 +11,9 @@
 		0A030F792B4DCB2000D40940 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */; };
 		0AEB78232B4DD302009637D1 /* WishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB78222B4DD301009637D1 /* WishListTableViewCell.swift */; };
 		10F2EC503162D1756FC570F7 /* Pods_MovieHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */; };
+		15BF8FC62B4DFD3C00532550 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FC52B4DFD3C00532550 /* Extension + UILabel.swift */; };
+		15BF8FC92B4DFD7900532550 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FC82B4DFD7900532550 /* Extension + UIStackView.swift */; };
+		15BF8FCB2B4DFE0D00532550 /* DetailGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
 		EB03F5A52B440C9F004BAE47 /* PersonDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */; };
@@ -159,6 +162,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15BF8FC52B4DFD3C00532550 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
+		15BF8FC82B4DFD7900532550 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
+		15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGradient.swift; sourceTree = "<group>"; };
 		0A030F762B4DCB2000D40940 /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView + Extension.swift"; path = "MovieHub/Extension/UIView + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView + Extension.swift"; path = "MovieHub/Extension/UIStackView + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		0AEB78222B4DD301009637D1 /* WishListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewCell.swift; sourceTree = "<group>"; };
@@ -339,6 +345,8 @@
 		0AEB78212B4DD301009637D1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				15BF8FCE2B4DFE6D00532550 /* Extensions */,
+				15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */,
 				0AEB78222B4DD301009637D1 /* WishListTableViewCell.swift */,
 			);
 			path = Cell;
