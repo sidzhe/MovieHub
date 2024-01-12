@@ -12,7 +12,7 @@ final class MovieListRouter: MovieListRouterProtocol {
     //MARK: Route to Detail
     func pushToDetail(from view: MovieListViewProtocol?) {
         guard let view = view as? UIViewController else { return }
-        let detailVC = Builder.createDetail()
+        let detailVC = Builder.createDetail(detailID: "")
         view.navigationController?.pushViewController(detailVC, animated: true)
     }
 }

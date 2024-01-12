@@ -26,7 +26,7 @@ protocol MainPresenterProtocol: AnyObject {
     func fetchSearchRequest(_ title: String)
     func routeToMovieList()
     func routeToPupularMovie()
-    func routeToDetail()
+    func routeToDetail(index: Int)
     func routeToWishList()
     func routeToGlobe()
     func routeToCollection(_ index: Int)
@@ -58,7 +58,7 @@ protocol MainInteractorOutputProtocol: AnyObject {
 protocol MainRouterProtocol: AnyObject {
     func pushToMovieList(from view: MainViewProtocol?)
     func pushToPopularMovie(from view: MainViewProtocol?)
-    func pushToDetail(from view: MainViewProtocol?)
+    func pushToDetail(from view: MainViewProtocol?, detailId: Int)
     func pushToWishList(from view: MainViewProtocol?)
     func pushToGlobe(from view: MainViewProtocol?, lat: Double, lon: Double, currentCity: String)
     func pushToCollection(from view: MainViewProtocol?, slug: String)

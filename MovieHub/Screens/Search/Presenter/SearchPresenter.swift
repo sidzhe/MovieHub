@@ -9,7 +9,6 @@ import Foundation
 
 final class SearchPresenter: SearchPresenterProtocol {
     
-    
     //MARK: Properties
     weak var view: SearchViewProtocol?
     var interactor: SearchInteractorInputProtocol?
@@ -44,7 +43,7 @@ final class SearchPresenter: SearchPresenterProtocol {
     }
     
     //MARK: - Route
-    func routeToDetail(with movieId: Int ) {
+    func routeToDetail(with movieId: String ) {
         router?.pushToDetail(from: view, movieId: movieId)
     }
 }

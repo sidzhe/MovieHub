@@ -33,7 +33,7 @@ final class SearchResultPresenter: SearchResultPresenterProtocol {
     }
     
     //MARK: - RouteTo
-    func routeToDetail(with movieId: Int) {
+    func routeToDetail(with movieId: String) {
         router?.pushToDetail(from: view, movieId: movieId)
     }
     

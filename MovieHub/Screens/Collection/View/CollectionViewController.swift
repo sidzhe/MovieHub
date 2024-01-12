@@ -58,6 +58,7 @@ final class CollectionViewController: UIViewController {
             make.horizontalEdges.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(90)
         }
+        
     }
     
     //MARK: - Display network error
@@ -66,10 +67,6 @@ final class CollectionViewController: UIViewController {
         let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
-    }
-    
-    @objc private func tapBack() {
-        
     }
 }
 

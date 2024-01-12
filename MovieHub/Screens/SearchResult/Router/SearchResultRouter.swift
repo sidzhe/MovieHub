@@ -8,10 +8,10 @@
 import UIKit
 
 final class SearchResultRouter: SearchResultRouterProtocol {
-    func pushToDetail(from view: SearchResultViewProtocol?, movieId: Int) {
+    func pushToDetail(from view: SearchResultViewProtocol?, movieId: String) {
         guard let view = view as? SearchResultsViewController else { return }
         guard let parentNC = view.parentNavigationController else { return }
-        let detailVC = Builder.createDetail()
+        let detailVC = Builder.createDetail(detailID: movieId)
         parentNC.pushViewController(detailVC, animated: true)
     }
     

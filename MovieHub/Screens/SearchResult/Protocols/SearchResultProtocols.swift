@@ -25,7 +25,7 @@ protocol SearchResultPresenterProtocol: AnyObject {
     func getSearchPerson() -> [DocPerson]
     func getSearchMovie() -> [Doc]
     
-    func routeToDetail(with movieId: Int)
+    func routeToDetail(with movieId: String)
     func routeToPersonDetail(with personId: Int)
 }
 
@@ -48,6 +48,6 @@ protocol SearchResultInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol SearchResultRouterProtocol: AnyObject {
-    func pushToDetail(from view: SearchResultViewProtocol?, movieId: Int)
+    func pushToDetail(from view: SearchResultViewProtocol?, movieId: String)
     func pushToPersonDetail(from view: SearchResultViewProtocol?, personId: Int)
 }

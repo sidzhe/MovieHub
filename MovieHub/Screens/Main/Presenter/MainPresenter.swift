@@ -59,8 +59,9 @@ final class MainPresenter: MainPresenterProtocol {
         router?.pushToPopularMovie(from: view)
     }
     
-    func routeToDetail() {
-        router?.pushToDetail(from: view)
+    func routeToDetail(index: Int) {
+        guard let id = getMostPopular()[index].id else { return }
+        router?.pushToDetail(from: view, detailId: id)
     }
     
     func routeToWishList() {
