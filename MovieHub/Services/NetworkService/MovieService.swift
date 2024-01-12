@@ -22,7 +22,7 @@ protocol MovieServiceProtool {
     func movieUpcomingGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func getCinimaList<T: Decodable>(city: String) async -> Result<T, RequestError>
     func getCurrentCity<T: Decodable>(cityName: String) async -> Result<T, RequestError>
-    func searchMovieById<T: Decodable>(identifier: String) async -> Result<T, RequestError> 
+    func searchMovieById<T: Decodable>(identifiers: [String]) async -> Result<T, RequestError>
 }
 
 
@@ -231,15 +231,15 @@ struct MovieService: MovieServiceProtool, MovieClient {
     }
     
     //MARK: Search movie by id
-    func searchMovieById<T: Decodable>(identifier: String) async -> Result<T, RequestError> {
+    func searchMovieById<T: Decodable>(identifiers: [String]) async -> Result<T, RequestError> {
         let endpoint = MovieEndpoints.searchMovieById
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
-        urlComponents.queryItems = [URLQueryItem(name: "page", value: "1"),
-                                    URLQueryItem(name: "limit", value: "10"),
-                                    URLQueryItem(name: "persons.id", value: identifier)]
+        var items = [URLQueryItem(name: "page", value: "1"), URLQueryItem(name: "limit", value: "10")]
+        identifiers.forEach { items.append(URLQueryItem(name: "id", value: $0))}
+        urlComponents.queryItems = items
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchMovieById, responseModel: T.self)
     }
 }

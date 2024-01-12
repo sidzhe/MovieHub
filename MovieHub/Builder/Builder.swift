@@ -97,8 +97,8 @@ final class Builder {
         let view = WishlistViewController()
         let presenter = WishlistPresenter()
         let networkService = NetworkService()
-        let wishListService = WishListService()
-        let interactor = WishlistInteractor(networkService: networkService, wishListService: wishListService)
+        let storageService = StorageService()
+        let interactor = WishlistInteractor(networkService: networkService, storageService: storageService)
         let router = WishlistRouter()
         view.presenter = presenter
         presenter.view = view

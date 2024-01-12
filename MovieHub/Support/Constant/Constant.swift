@@ -26,6 +26,7 @@ enum Constant {
     static let animation = "animation"
     static let animation81 = "animation81"
     static let confetti = "confetti-27-"
+    static let star = "★"
 
     static let keyClearButton = "clearButton"
     static let keyName = "name"
@@ -46,6 +47,8 @@ enum Constant {
     static let yellowBall = "yellowBall"
     static let greenBall = "greenBall"
     static let xmarkCircleFill = "xmark.circle.fill"
+    static let heartFill = "heart.fill"
+    static let photoArtframe = "photo.artframe"
 
     static let movieListCellID = "MovieListCellID"
     static let persistentContainerName = "MovieHubStorage"
@@ -89,4 +92,5 @@ enum Constant {
     static let topRate = "Высокий рейтинг".localized()
     static let moviesCollection = "фильмов".localized()
     static let searchByTitle = "Поиск по названию..".localized()
+    static let wishList = "Избранное".localized()
 }
