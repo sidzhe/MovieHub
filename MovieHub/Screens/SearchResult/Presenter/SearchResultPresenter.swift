@@ -28,7 +28,7 @@ final class SearchResultPresenter: SearchResultPresenterProtocol {
     
     func getSearchPerson() -> [DocPerson] {
         guard let model = interactor?.searchPerson?.docs else { return [DocPerson]() }
-        let filteredModel = model.filter { $0.name != "" || $0.photo != "" }
+        let filteredModel = model.filter { $0.name != "" && $0.photo != "" }
         return filteredModel
     }
     
