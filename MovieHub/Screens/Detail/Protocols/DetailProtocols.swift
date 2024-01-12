@@ -18,12 +18,14 @@ protocol DetailViewProtocol: AnyObject {
 protocol DetailPresenterProtocol: AnyObject {
     var view: DetailViewProtocol? { get set }
     func getDetailData() -> DetailModel?
+    func checkFavorites()
 }
 
 /// PRESENTER -> INTERACTOR
 protocol DetailInteractorInputProtocol: AnyObject {
     var presenter: DetailInteractorOutputProtocol? { get set }
     var detailData: DetailModel? { get }
+    func checkFavorites(id: Int)
 }
 
 /// INTERACTOR -> PRESENTER

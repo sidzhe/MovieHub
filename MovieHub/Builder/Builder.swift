@@ -83,7 +83,8 @@ final class Builder {
         let view = DetailViewController()
         let presenter = DetailPresenter()
         let networkService = NetworkService()
-        let interactor = DetailInteractor(networkService: networkService, detailID: detailID)
+        let storageService = StorageService()
+        let interactor = DetailInteractor(networkService: networkService, storageService: storageService, detailID: detailID)
         let router = DetailRouter()
         view.presenter = presenter
         presenter.view = view

@@ -22,18 +22,24 @@ final class DetailViewController: UIViewController {
     private let genreStack = UIStackView.moviewInfoStack(spacing: 4)
     private let rateStack = UIStackView.moviewInfoStack(spacing: 4)
     
-    private let calendarImage = UIImageView(image: UIImage(named: "calendarIcon.svg"))
-    private let durationImage = UIImageView(image: UIImage(named: "clockIcon.svg"))
-    private let genreImage = UIImageView(image: UIImage(named: "filmIcon.svg"))
-    private let shareImage = UIImageView(image: UIImage(named: "shareIcon.svg"))
+    private let calendarImage = UIImageView(image: .calendarIcon)
+    private let durationImage = UIImageView(image: .clockIcon)
+    private let genreImage = UIImageView(image: .filmIcon)
+    private let shareImage = UIImageView(image: .shareIcon)
+    private let rateImage = UIImageView(image: .starIcon)
     
-    private let yearLabel: UILabel = .movieInfoLabel("2021")
-    private let durationLabel = UILabel.movieInfoLabel("146 Minutes")
-    private let genreLabel = UILabel.movieInfoLabel("Action")
+    private let yearLabel: UILabel = .movieInfoLabel()
+    private let durationLabel = UILabel.movieInfoLabel()
+    private let genreLabel = UILabel.movieInfoLabel()
     
     private lazy var firstStroke: UIView = createStroke()
     private lazy var  secondStroke: UIView = createStroke()
-    private let rateImage = UIImageView(image: UIImage(named: "starIcon.svg"))
+    
+    private lazy var movieNavigationBar: MovieNavigationBar = {
+        let navigationBar = MovieNavigationBar(title: Constant.movieList, stateHeartButton: true)
+        navigationBar.navigationController = self.navigationController
+        return navigationBar
+    }()
     
     private lazy var descriptionStack: UIStackView = {
         let view = UIStackView()
@@ -52,7 +58,6 @@ final class DetailViewController: UIViewController {
     private lazy var backgroundImageView: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = .white
-        image.image = UIImage(named: "poster.jpeg")
         image.contentMode = .scaleAspectFit
         image.alpha = 0.24
         image.clipsToBounds = true
@@ -61,7 +66,6 @@ final class DetailViewController: UIViewController {
     
     private lazy var posterImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "poster.jpeg")
         image.contentMode = .scaleAspectFit
         image.layer.cornerRadius = 12
         image.clipsToBounds = true
@@ -72,22 +76,21 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = .montserratSemiBold(size: 12)
         label.textColor = .primaryOrange
-        label.text = "4.5"
         return label
     }()
-        
+    
     private lazy var descriptionHeaderLabel: UILabel = {
         let label = UILabel()
         label.font = .montserratSemiBold(size: 16)
         label.textColor = .white
-        label.text = "Story Line"
+        label.text = Constant.storyLine
         return label
     }()
     
     private lazy var trailerButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "playIcon.svg"), for: .normal)
-        button.setTitle("Trailer", for: .normal)
+        button.setImage(.playIcon, for: .normal)
+        button.setTitle(Constant.trailer, for: .normal)
         button.titleLabel?.font = UIFont.montserratMedium(size: 16)
         button.layer.cornerRadius = 24
         button.clipsToBounds = true
@@ -109,7 +112,6 @@ final class DetailViewController: UIViewController {
         button.textColor = .white
         button.numberOfLines = 0
         button.lineBreakMode = .byWordWrapping
-        button.text = "For the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. More"
         return button
     }()
     
@@ -119,10 +121,12 @@ final class DetailViewController: UIViewController {
         
         setupView()
         setupLayout()
+        tapHeartButton()
         
     }
     //MARK: Methods
     private func setupView() {
+        view.addSubview(movieNavigationBar)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         view.backgroundColor = .primaryDark
@@ -156,8 +160,15 @@ final class DetailViewController: UIViewController {
     }
     
     private func setupLayout() {
+        movieNavigationBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(45)
+        }
+        
         scrollView.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+            make.top.equalTo(movieNavigationBar.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         contentView.snp.makeConstraints { make in
@@ -232,13 +243,13 @@ final class DetailViewController: UIViewController {
         
         let year = String(model.year ?? 0)
         let lenght = String(model.movieLength ?? 0)
-        let genre = model.genres?.first?.name ?? ""
+        let genre = model.genres?.first?.name ?? Constant.none
         let rating = String(model.rating?.kp ?? 0)
-        let description = model.description ?? ""
-        guard let url = URL(string: model.poster?.url ?? "") else { return }
+        let description = model.description ?? Constant.none
+        guard let url = URL(string: model.poster?.url ?? Constant.none) else { return }
         
         yearLabel.text = year
-        durationLabel.text = "\(lenght) minutes"
+        durationLabel.text = "\(lenght) \(Constant.minutes)"
         genreLabel.text = genre
         rateLabel.text = rating
         descriptionTextLabel.text = description
@@ -249,10 +260,15 @@ final class DetailViewController: UIViewController {
     
     //MARK: - Display network error
     private func alertError(_ error: RequestError) {
-        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
+    }
+    
+    //MARK: Target heart button
+    private func tapHeartButton() {
+        movieNavigationBar.callBackButton = { [weak self] in self?.presenter?.checkFavorites() }
     }
 }
 

@@ -19,6 +19,12 @@ final class DetailPresenter: DetailPresenterProtocol {
         guard let model = interactor?.detailData else { return nil }
         return model
     }
+    
+    //MARK: Check favorites
+    func checkFavorites() {
+        guard let id = getDetailData()?.id else { return }
+        interactor?.checkFavorites(id: id)
+    }
 }
 
 

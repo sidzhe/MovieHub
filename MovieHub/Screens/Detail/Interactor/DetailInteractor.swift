@@ -14,10 +14,12 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     var detailData: DetailModel?
     private var detailID: String
     private let networkService: NetworkService
+    private let storageService: StorageServiceProtool
     
     //MARK: Init
-    init(networkService: NetworkService, detailID: String) {
+    init(networkService: NetworkService, storageService: StorageServiceProtool, detailID: String) {
         self.networkService = networkService
+        self.storageService = storageService
         self.detailID = detailID
         detailRequest()
     }
@@ -35,5 +37,9 @@ final class DetailInteractor: DetailInteractorInputProtocol {
             }
         }
     }
-
+    
+    //MARK: Check favorites from CD
+    func checkFavorites(id: Int) {
+        storageService.checkWish(id: id)
+    }
 }

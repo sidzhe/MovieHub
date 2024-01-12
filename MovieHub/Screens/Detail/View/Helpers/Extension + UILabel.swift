@@ -8,7 +8,7 @@
 import UIKit
 
 extension UILabel {
-    static func movieInfoLabel(_ text: String) -> UILabel {
+    static func movieInfoLabel(_ text: String? = nil) -> UILabel {
         let view = UILabel()
         view.font = .montserratMedium(size: 12)
         view.textColor = .primaryGray

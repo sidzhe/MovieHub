@@ -22,19 +22,19 @@ enum Constant {
     static let dataFormatOutput = "d MMMM yyyy"
     static let dataFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     static let regularPattern = "Кинотеатр |Киноцентр |«|»"
-
+    
     static let animation = "animation"
     static let animation81 = "animation81"
     static let confetti = "confetti-27-"
     static let star = "★"
-
+    
     static let keyClearButton = "clearButton"
     static let keyName = "name"
     static let keyAdress = "adress"
     static let oscarRu = "Оскар"
     static let cannFest = "Каннский кинофестиваль"
     static let goldGlobe = "Золотой глобус"
-
+    
     static let mappinCircle = "mappin.circle"
     static let playTV = "play.tv"
     static let mapCircle = "map.circle"
@@ -48,11 +48,12 @@ enum Constant {
     static let greenBall = "greenBall"
     static let xmarkCircleFill = "xmark.circle.fill"
     static let heartFill = "heart.fill"
+    static let heart = "heart"
     static let photoArtframe = "photo.artframe"
-
+    
     static let movieListCellID = "MovieListCellID"
     static let persistentContainerName = "MovieHubStorage"
-
+    
     static let fatalError = "Fatal Error"
     static let unknownSection = "Unknown section"
     static let requestError = "Ошибка запроса".localized()
@@ -93,4 +94,7 @@ enum Constant {
     static let moviesCollection = "фильмов".localized()
     static let searchByTitle = "Поиск по названию..".localized()
     static let wishList = "Избранное".localized()
+    static let storyLine = "Сюжетная линия".localized()
+    static let trailer = "Трейлер".localized()
+    static let minutes = "минут".localized()
 }

@@ -12,19 +12,13 @@ final class MovieNavigationBar: UIView {
     
     //MARK: Properties
     var navigationController: UINavigationController?
+    var callBackButton: (() -> Void)?
     
     private lazy var navigationTitle: UILabel = {
         let label = UILabel()
         label.font = UIFont.montserratSemiBold(size: 16)
         label.textColor = .white
         return label
-    }()
-    
-    private lazy var backgroungView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 12
-        view.backgroundColor = .primarySoft
-        return view
     }()
     
     private lazy var backButton: UIButton = {
@@ -35,15 +29,44 @@ final class MovieNavigationBar: UIView {
         return button
     }()
     
+    private lazy var heartButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: Constant.heart), for: .normal)
+        button.setImage(UIImage(systemName: Constant.heartFill), for: .selected)
+        button.tintColor = .red
+        button.addTarget(self, action: #selector(tapHeart), for: .touchUpInside)
+        return button
+    }()
+    
+    private let blurViewBack: UIVisualEffectView = {
+        let view = UIVisualEffectView()
+        let effect = UIBlurEffect(style: .dark)
+        view.effect = effect
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 12
+        return view
+    }()
+    
+    private let blurViewButton: UIVisualEffectView = {
+        let view = UIVisualEffectView()
+        let effect = UIBlurEffect(style: .dark)
+        view.effect = effect
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 12
+        return view
+    }()
+    
     //MARK: Inits
-    init(title: String) {
+    init(title: String, stateHeartButton: Bool = false) {
         super.init(frame: .zero)
         self.navigationTitle.text = title
+        self.blurViewButton.isHidden = !stateHeartButton
+        self.heartButton.isHidden = !stateHeartButton
         self.setupViews()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     //MARK: Target back
@@ -55,16 +78,18 @@ final class MovieNavigationBar: UIView {
     private func setupViews() {
         navigationTitle.textAlignment = .center
         
-        backgroungView.addSubview(backButton)
-        
+        blurViewBack.contentView.addSubview(backButton)
+        blurViewButton.contentView.addSubview(heartButton)
+
         addSubview(navigationTitle)
-        addSubview(backgroungView)
+        addSubview(blurViewBack)
+        addSubview(blurViewButton)
 
         navigationTitle.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
         
-        backgroungView.snp.makeConstraints { make in
+        blurViewBack.snp.makeConstraints { make in
             make.size.equalTo(32)
             make.centerY.equalToSuperview()
             make.left.equalToSuperview().inset(24)
@@ -73,6 +98,22 @@ final class MovieNavigationBar: UIView {
         backButton.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
+        
+        heartButton.snp.makeConstraints { make in
+            make.size.equalTo(24)
+            make.center.equalToSuperview()
+        }
+        
+        blurViewButton.snp.makeConstraints { make in
+            make.size.equalTo(32)
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().inset(24)
+        }
+    }
+    
+    @objc private func tapHeart() {
+        heartButton.isSelected.toggle()
+        callBackButton?()
     }
 }
 
