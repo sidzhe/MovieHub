@@ -12,7 +12,8 @@ final class PersonDetailRouter: PersonDetailRouterProtocol {
     //MARK: Route to Detail
     func pushToDetail(from view: PersonDetailViewProtocol?) {
         guard let view = view as? UIViewController else { return }
-        let detailVC = Builder.createDetail()
+        let detailID = ""
+        let detailVC = Builder.createDetail(detailID: detailID)
         view.navigationController?.pushViewController(detailVC, animated: true)
     }
     
