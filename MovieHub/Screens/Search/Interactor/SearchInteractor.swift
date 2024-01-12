@@ -55,7 +55,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     
     //MARK: Storage
     func getRecentMovieIds() -> [String] {
-        var recentMovieIds = storageService.loadRecentModel()
+        let recentMovieIds = storageService.loadRecentModel()
         return recentMovieIds
     }
     

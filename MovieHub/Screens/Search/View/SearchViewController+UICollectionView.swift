@@ -54,7 +54,6 @@ extension SearchViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? SearchHeader else { return UICollectionReusableView() }
             header.configure(header: sections[indexPath.section].title)
-            header.callBackAllButton
             return header
         default:
             return UICollectionReusableView()
