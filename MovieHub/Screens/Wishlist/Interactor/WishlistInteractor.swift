@@ -22,7 +22,10 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
                     switch result {
                     case .failure(_) :
                         self.wishListMovieData.append(self.createEmptySearchModel(text: "Фильм больше не доступен"))
-                    case .success(let searchModel): self.wishListMovieData.append(searchModel)
+                    case .success(let searchModel): 
+                        print(searchModel)
+                        self.wishListMovieData.append(searchModel)
+                        
                     }
                 }
             }

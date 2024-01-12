@@ -95,7 +95,7 @@ final class WishListTableViewCell: UITableViewCell {
         //imageView
         let url = model?.poster?.url ?? ""
         leftImageView.kf.indicatorType = .activity
-        let placeholder = UIImage(systemName: "photo.artframe")
+        let placeholder = UIImage(systemName: "photo.artframe")?.withRenderingMode(.alwaysOriginal).withTintColor(.gray)
         leftImageView.kf.setImage(with: URL(string: url), placeholder: placeholder)
     }
     
