@@ -14,7 +14,7 @@ protocol StorageServiceProtool: AnyObject {
 }
 
 final class StorageService: StorageServiceProtool {
-
+    
     //MARK: Properies
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: Constant.persistentContainerName)
@@ -59,6 +59,42 @@ final class StorageService: StorageServiceProtool {
         } catch let error {
             print("CurrnetCity load error \(error.localizedDescription)")
             return ""
+        }
+    }
+    
+    func saveRecentModel(id: Int) {
+        let fetchRequest = RecentModel.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", id.description)
+        
+        do {
+            let existingId = try viewContext.fetch(fetchRequest)
+            if let existingId = existingId.first {
+                deleteRecent(id: existingId)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+            
+        let recentElement = RecentModel(context: viewContext)
+        recentElement.recentId = id.description
+        saveContext()
+    }
+    
+    func deleteRecent(id: RecentModel) {
+        viewContext.delete(id)
+        saveContext()
+    }
+    
+    func loadRecentModel() -> [String] {
+        let recentModel = RecentModel.fetchRequest()
+        
+        do {
+            let result = try viewContext.fetch(recentModel)
+            let output = result.map { $0.recentId ?? "" }
+            return output
+        } catch let error {
+            print("CurrnetCity load error \(error.localizedDescription)")
+            return [String]()
         }
     }
 }

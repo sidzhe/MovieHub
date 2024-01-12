@@ -187,19 +187,19 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
-        let items = [URLQueryItem(name: "page", value: "1"),
+        var items = [URLQueryItem(name: "page", value: "1"),
                               URLQueryItem(name: "limit", value: "10"),
-                              URLQueryItem(name: "selectFields", value: "year"),
-                              URLQueryItem(name: "selectFields", value: "rating"),
-                              URLQueryItem(name: "selectFields", value: "movieLength"),
-                              URLQueryItem(name: "selectFields", value: "sequelsAndPrequels"),
-                              URLQueryItem(name: "notNullFields", value: "sequelsAndPrequels.id"),
+                              URLQueryItem(name: "notNullFields", value: "name"),
                               URLQueryItem(name: "notNullFields", value: "year"),
-                              URLQueryItem(name: "notNullFields", value: "rating.kp"),
-                              URLQueryItem(name: "notNullFields", value: "movieLength"),
                               URLQueryItem(name: "notNullFields", value: "poster.url"),
-                              URLQueryItem(name: "rating.kp", value: "5-10"),
-                              URLQueryItem(name: "genres.name", value: genre)]
+                              URLQueryItem(name: "status", value: "announced"),
+                              URLQueryItem(name: "status", value: "filming"),
+                              URLQueryItem(name: "status", value: "post-production"),
+                              URLQueryItem(name: "status", value: "pre-production")]
+        if genre != "все" {
+            let item = URLQueryItem(name: "genres.name", value: genre)
+            items.append(item)
+        }
         urlComponents.queryItems = items
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.upcoming, responseModel: T.self)
     }
