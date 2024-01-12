@@ -10,8 +10,9 @@ import UIKit
 final class WishlistViewController: UIViewController {
     //TODO: - Delete later
     let movieNamesArray = ["Spider-Man", "Spider-Man Spider-Man", "Spider-Man Spider-Man Spider-ManSpider-Man Spider-Man Spider-Man"]
-    private var wishListModel: [SearchModel]? {
+    private var wishListModel: [Doc]? {
         didSet {
+            guard let wishListModel, wishListModel.count > 0 else {return}
             print("wishListModel: ", wishListModel)
             wishTableView.reloadData()
         }
@@ -19,7 +20,7 @@ final class WishlistViewController: UIViewController {
     //MARK: Properties
     var presenter: WishlistPresenterProtocol?
     private lazy var wishTableView: UITableView = {
-       let table = UITableView()
+        let table = UITableView()
         table.delegate = self
         table.dataSource = self
         table.register(WishListTableViewCell.self, forCellReuseIdentifier: WishListTableViewCell.reuseId)
@@ -31,11 +32,15 @@ final class WishlistViewController: UIViewController {
     }()
     
     
-    //MARK: ViewDidLoad
+    //MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getWishListData()
     }
     
@@ -56,8 +61,10 @@ final class WishlistViewController: UIViewController {
 
 //MARK: - Extension WishlistViewProtocol
 extension WishlistViewController: WishlistViewProtocol {
-    func updateUI(model: [SearchModel]?) {
-        wishListModel = model
+    func updateUI(model: [Doc]?) {
+        DispatchQueue.main.async {
+            self.wishListModel = model
+        }
     }
     
     func displayRequestError(error: String) {
@@ -76,7 +83,7 @@ extension WishlistViewController: UITableViewDelegate {
 
 extension WishlistViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        wishListModel?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -10,7 +10,7 @@ import Foundation
 /// PRESENTER -> VIEW
 protocol WishlistViewProtocol: AnyObject {
     var presenter: WishlistPresenterProtocol? { get set }
-    func updateUI(model: [SearchModel]?)
+    func updateUI(model: [Doc]?)
     func displayRequestError(error: String)
 }
 
@@ -23,7 +23,7 @@ protocol WishlistPresenterProtocol: AnyObject {
 /// PRESENTER -> INTERACTOR
 protocol WishlistInteractorInputProtocol: AnyObject {
     var presenter: WishlistInteractorOutputProtocol? { get set }
-    var wishListMovieData: [SearchModel]? {get}
+    //var wishListMovieData: [SearchModel]? {get}
     func startFetchWishListData()
 }
 

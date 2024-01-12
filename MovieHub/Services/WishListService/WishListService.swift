@@ -26,7 +26,7 @@ final class WishListService: WishListServiceProtocol {
     }
     
     func getAllFavoriteMovie() -> [Int] {
-        [3,4,5]
+        [258636, 10074, 42664]
     }
     
     

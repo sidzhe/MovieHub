@@ -8,9 +8,7 @@
 import Foundation
 
 final class WishlistPresenter: WishlistPresenterProtocol {
-    func getWishListData() {
-        <#code#>
-    }
+    
     
     
     //MARK: Properties
@@ -18,17 +16,29 @@ final class WishlistPresenter: WishlistPresenterProtocol {
     var interactor: WishlistInteractorInputProtocol?
     var router: WishlistRouterProtocol?
     
+    private var wishListMovieData: [SearchModel]? {
+        didSet {
+            guard let wishListMovieData else {return}
+            let convertedtoDocData = wishListMovieData.compactMap {$0.docs.first}
+            view?.updateUI(model: convertedtoDocData)
+        }
+    }
+    
+    //MARK: - WishlistPresenterProtocol
+    func getWishListData() {
+        interactor?.startFetchWishListData()
+    }
     
 }
 
 
 //MARK: - Extension WishlistInteractorOutputProtocol
 extension WishlistPresenter: WishlistInteractorOutputProtocol {
-    func updateUI() {
-        view?.updateUI(model: interactor?.wishListMovieData)
+    func updateUI(model: [SearchModel]?) {
+        self.wishListMovieData = model
     }
     
-    func getData() -> SearchModel {
-        
+    func showError(error: Error) {
+        //some code here
     }
 }
