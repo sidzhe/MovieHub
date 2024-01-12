@@ -27,7 +27,7 @@ final class FactsCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     //MARK: Setup UI

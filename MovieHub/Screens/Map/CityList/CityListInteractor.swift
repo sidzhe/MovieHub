@@ -13,7 +13,7 @@ final class CityListInteractor: CityListInteractorInputProtocol {
     weak var presenter: CityListInteractorOutputProtocol?
     private let networkService: NetworkServiceProtool
     private let storageService: StorageServiceProtool
-    var cityList = CityListModel.allCases.map { $0.rawValue }
+    var cityList = CityListModel.allCases.map { $0.rawValue.localized() }
     var filteredCity: [String]?
     
     //MARK: Init

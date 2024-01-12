@@ -24,9 +24,9 @@ final class GlobeViewController: UIViewController {
         text.font = UIFont.montserratMedium(size: 15)
         text.textColor = .white
         let placeholderAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.primaryGray, .font: UIFont.montserratMedium(size: 15)!]
-        text.attributedPlaceholder = NSAttributedString(string: "Кинотеатр, улица", attributes: placeholderAttributes)
+        text.attributedPlaceholder = NSAttributedString(string: Constant.cinemaStreet, attributes: placeholderAttributes)
         text.leftView?.tintColor = .primaryGray
-        if let clearButton = text.value(forKey: "clearButton") as? UIButton {
+        if let clearButton = text.value(forKey: Constant.keyClearButton) as? UIButton {
             clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
             clearButton.tintColor = .primaryBlue
         }
@@ -56,8 +56,8 @@ final class GlobeViewController: UIViewController {
     
     //MARK: - Display network error
     private func alertError(_ error: String) {
-        let alert = UIAlertController(title: "Request error", message: error, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }
@@ -65,8 +65,8 @@ final class GlobeViewController: UIViewController {
     //MARK: - Search text filter
     private func performQuery(with filter: String?) {
         let text = presenter?.filteredText(with: filter)
-        let firstSectionItem = GlobeItem(city: "")
-        let secondSectionItem = GlobeItem(city: "")
+        let firstSectionItem = GlobeItem(city: Constant.none)
+        let secondSectionItem = GlobeItem(city: Constant.none)
         let cinemaItem = text?.compactMap { GlobeItem(cinema: $0) } ?? [GlobeItem()]
         var snapshot = NSDiffableDataSourceSnapshot<Int, GlobeItem>()
        
@@ -84,7 +84,7 @@ private extension GlobeViewController {
     
     //MARK: - UI
     private func setupUI() {
-        title = "Кинотеатры"
+        title = Constant.cinemas
         view.backgroundColor = .primaryDark
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -159,11 +159,11 @@ private extension GlobeViewController {
     private func configureDataSource() {
         let cellCityRegistration = UICollectionView.CellRegistration<GlobeCustomCell, GlobeItem> { [weak self] (cell, indexPath, item) in
             guard let city = self?.presenter?.getCurrentCity() else { return }
-            cell.configure(nameLabel: "Город", city: city, imageName: "mappin.circle")
+            cell.configure(nameLabel: Constant.city, city: city, imageName: Constant.mappinCircle)
         }
         
         let cellMapRegistration = UICollectionView.CellRegistration<GlobeCustomCell, GlobeItem> { (cell, indexPath, item) in
-            cell.configure(nameLabel: "Кинотеатры на карте", city: "", imageName: "map.circle")
+            cell.configure(nameLabel: Constant.cityOnTheMap, city: Constant.none, imageName: Constant.mapCircle)
         }
         
         let cellRegistration = UICollectionView.CellRegistration<CinemaCell, GlobeItem> { (cell, indexPath, item) in
@@ -190,8 +190,8 @@ private extension GlobeViewController {
     private func applyInitialSnapshots() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, GlobeItem>()
         snapshot.appendSections([0, 1, 2])
-        let firstSectionItem = GlobeItem(city: "")
-        let secondSectionItem = GlobeItem(city: "")
+        let firstSectionItem = GlobeItem(city: Constant.none)
+        let secondSectionItem = GlobeItem(city: Constant.none)
         let cinemaItem = presenter?.getCinemaData().compactMap { GlobeItem(cinema: $0) } ?? [GlobeItem()]
         snapshot.appendItems([firstSectionItem], toSection: 0)
         snapshot.appendItems([secondSectionItem], toSection: 1)

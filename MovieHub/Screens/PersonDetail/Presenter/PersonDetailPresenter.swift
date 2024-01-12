@@ -38,34 +38,34 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
     
     //MARK: Conver methods
     func convertModel(model: [BirthPlace]?) -> String {
-        model?.compactMap { "• " + ($0.value ?? "") }.joined(separator: "\n") ?? ""
+        model?.compactMap { Constant.pinSpace + ($0.value ?? Constant.none) }.joined(separator: Constant.separatorN) ?? Constant.none
     }
     
     func dateFormatter(_ convertDate: String?) -> String {
-        guard let convertDate = convertDate else { return "" }
-        var resultString = ""
+        guard let convertDate = convertDate else { return Constant.none }
+        var resultString = Constant.none
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        dateFormatter.dateFormat = Constant.dataFormat
+        dateFormatter.timeZone = TimeZone(identifier: Constant.utc)
         
         if let date = dateFormatter.date(from: convertDate) {
             let outputDateFormatter = DateFormatter()
-            outputDateFormatter.dateFormat = "d MMMM yyyy"
-            outputDateFormatter.locale = Locale(identifier: "ru_RU")
-            resultString = " • " + outputDateFormatter.string(from: date)
+            outputDateFormatter.dateFormat = Constant.dataFormatOutput
+            outputDateFormatter.locale = Locale(identifier: Constant.locale)
+            resultString = Constant.spacePinSpace + outputDateFormatter.string(from: date)
         }
         
         return resultString
     }
     
     func formatAgeString(age: Int?) -> String {
-        guard let age = age else { return "" }
+        guard let age = age else { return Constant.none }
         if age % 10 == 1 && age % 100 != 11 {
-            return "\(age) год"
+            return "\(age) \(Constant.age)"
         } else if age % 10 >= 2 && age % 10 <= 4 && (age % 100 < 10 || age % 100 >= 20) {
-            return "\(age) года"
+            return "\(age) \(Constant.age2)"
         } else {
-            return "\(age) лет"
+            return "\(age) \(Constant.age3)"
         }
     }
     
@@ -73,7 +73,7 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
         guard let text = text else { return nil }
         
         do {
-            let regex = try NSRegularExpression(pattern: "<[^>]+>", options: .caseInsensitive)
+            let regex = try NSRegularExpression(pattern: Constant.htmlSymbols, options: .caseInsensitive)
             let range = NSRange(location: 0, length: text.utf16.count)
             let htmlFreeString = regex.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "")
             return htmlFreeString

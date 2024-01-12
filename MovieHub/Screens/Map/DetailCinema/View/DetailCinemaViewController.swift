@@ -78,7 +78,7 @@ final class DetailCinemaViewController: UIViewController {
     
     //MARK: Setup UI
     private func setupViews() {
-        title = "О кинотеатре"
+        title = Constant.aboutCinema
         view.backgroundColor = .primaryDark
         navigationController?.navigationBar.barTintColor = .primaryDark
         
@@ -121,17 +121,17 @@ final class DetailCinemaViewController: UIViewController {
     private func setLabelsName() {
         nameLabel.text = presenter?.cinemaModel.name
         
-        let adressLabelText = "• Ардес \n\n\(presenter?.cinemaModel.adress ?? "")"
+        let adressLabelText = "\(Constant.adress) \n\n\(presenter?.cinemaModel.adress ?? Constant.none)"
         let attributedAdress = NSMutableAttributedString(string: adressLabelText)
         attributedAdress.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 7))
         adressLabel.attributedText = attributedAdress
         
-        let descriptionLabelText = "• О кинотеатре \n\n\(presenter?.getCinemaDescription() ?? "")"
+        let descriptionLabelText = "\(Constant.aboutCinemaDeailt) \n\n\(presenter?.getCinemaDescription() ?? Constant.none)"
         let attributedDescription = NSMutableAttributedString(string: descriptionLabelText)
         attributedDescription.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 14))
         descriptionLabel.attributedText = attributedDescription
         
-        let contactLabelText = "• Телефон \n\n+\(presenter?.cinemaModel.phone ?? "")"
+        let contactLabelText = "\(Constant.phone) \n\n\(presenter?.cinemaModel.phone ?? Constant.none)"
         let attributedContact = NSMutableAttributedString(string: contactLabelText)
         attributedContact.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 9))
         guard contactLabelText.count > 13 else { return }

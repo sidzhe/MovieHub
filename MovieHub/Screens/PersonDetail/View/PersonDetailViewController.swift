@@ -117,31 +117,31 @@ final class PersonDetailViewController: UIViewController {
         
         nameLabel.text = model.name
         
-        let birdDayLabelText = "Дата рождения\n\(birthDay)\n • \(age)\n • \(model.birthPlace?.last?.value ?? "")"
+        let birdDayLabelText = "\(Constant.birdDay)\n\(birthDay)\n • \(age)\n • \(model.birthPlace?.last?.value ?? Constant.none)"
         let attributedDirdDay = NSMutableAttributedString(string: birdDayLabelText)
         attributedDirdDay.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 13))
         birdDayLabel.attributedText = attributedDirdDay
         
-        let growthLabelLabelText = "Рост\n\(growth) см."
+        let growthLabelLabelText = "\(Constant.height)\n\(growth) \(Constant.sm)"
         let attributedGrowthLabel = NSMutableAttributedString(string: growthLabelLabelText)
-        attributedGrowthLabel.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 4))
+        attributedGrowthLabel.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 6))
         growthLabel.attributedText = attributedGrowthLabel
         
-        let careerLabelText = "Карьера\n\(career)"
+        let careerLabelText = "\(Constant.career)\n\(career)"
         let attributedString = NSMutableAttributedString(string: careerLabelText)
         attributedString.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 7))
         careerLabel.attributedText = attributedString
         
         Task {
-            guard let url = URL(string: model.photo ?? "") else { return }
+            guard let url = URL(string: model.photo ?? Constant.none) else { return }
             avatar.kf.setImage(with: url)
         }
     }
     
     //MARK: - Display network error
     private func alertError(_ error: RequestError) {
-        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }
@@ -219,7 +219,7 @@ private extension PersonDetailViewController {
                 section.boundarySupplementaryItems = [sectionHeader]
                 
             } else {
-                fatalError("Unkown section")
+                fatalError(Constant.unknownSection)
             }
             
             return section
@@ -268,19 +268,19 @@ private extension PersonDetailViewController {
     func registrationMovieHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
             header.callBackButton = { [weak self] in self?.presenter?.routeToPopular() }
-            header.configure(header: "Фильмы")
+            header.configure(header: Constant.movies)
         }
     }
     
     func registrationAwardsHeader() -> UICollectionView.SupplementaryRegistration<PersonHeader> {
         return UICollectionView.SupplementaryRegistration<PersonHeader> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
-            header.configure(header: "Награды")
+            header.configure(header: Constant.awards)
         }
     }
     
     func registrationFactsHeader() -> UICollectionView.SupplementaryRegistration<PersonHeader> {
         return UICollectionView.SupplementaryRegistration<PersonHeader> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
-            header.configure(header: "Факты")
+            header.configure(header: Constant.facts)
         }
     }
     

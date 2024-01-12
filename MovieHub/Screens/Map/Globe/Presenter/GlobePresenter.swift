@@ -17,7 +17,7 @@ final class GlobePresenter: GlobePresenterProtocol {
     
     //MARK: Get model methods
     func getCurrentCity() -> String {
-        guard let city = interactor?.currentCity else { return "" }
+        guard let city = interactor?.currentCity else { return Constant.none }
         return city
     }
     
@@ -27,8 +27,8 @@ final class GlobePresenter: GlobePresenterProtocol {
         var globeCinemaModel = [GlobeCinema]()
         
         model.forEach { element in
-            let name = element.data?.general?.name ?? ""
-            let adress = element.data?.general?.address?.street ?? ""
+            let name = element.data?.general?.name ?? Constant.none
+            let adress = element.data?.general?.address?.street ?? Constant.none
             let lat = element.data?.general?.address?.mapPosition?.coordinates?[1] ?? 0.0
             let lon = element.data?.general?.address?.mapPosition?.coordinates?[0] ?? 0.0
             let cinemaLocation = Location(lat: lat, lon: lon)

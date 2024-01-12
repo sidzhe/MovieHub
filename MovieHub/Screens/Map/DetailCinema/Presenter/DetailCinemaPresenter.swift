@@ -20,7 +20,7 @@ final class DetailCinemaPresenter: DetailCinemaPresenterProtocol {
     
     //MARK: Convert string from GlobeCimena
     func getCinemaDescription() -> String {
-        guard let model = removingHTMLEscapes(text: cinemaModel.description) else { return "" }
+        guard let model = removingHTMLEscapes(text: cinemaModel.description) else { return Constant.none }
         return model
     }
     
@@ -29,12 +29,12 @@ final class DetailCinemaPresenter: DetailCinemaPresenterProtocol {
         guard let text = text else { return nil }
         
         do {
-            let regex = try NSRegularExpression(pattern: "<[^>]+>", options: .caseInsensitive)
+            let regex = try NSRegularExpression(pattern: Constant.htmlSymbols, options: .caseInsensitive)
             let range = NSRange(location: 0, length: text.utf16.count)
-            let htmlFreeString = regex.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "")
+            let htmlFreeString = regex.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: Constant.none)
             return htmlFreeString
         } catch {
-            print("Ошибка при удалении HTML-тегов: \(error)")
+            print("\(Constant.errorWithHTML) \(error)")
             return nil
         }
     }

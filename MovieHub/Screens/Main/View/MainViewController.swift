@@ -28,9 +28,9 @@ final class MainViewController: UIViewController {
         text.font = UIFont.montserratMedium(size: 15)
         text.textColor = .primaryGray
         let placeholderAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.primaryGray, .font: UIFont.montserratMedium(size: 15)!]
-        text.attributedPlaceholder = NSAttributedString(string: "Поиск по названию..", attributes: placeholderAttributes)
+        text.attributedPlaceholder = NSAttributedString(string: Constant.searchByTitle, attributes: placeholderAttributes)
         text.leftView?.tintColor = .primaryGray
-        if let clearButton = text.value(forKey: "clearButton") as? UIButton {
+        if let clearButton = text.value(forKey: Constant.keyClearButton) as? UIButton {
             clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
             clearButton.tintColor = .primaryBlue
         }
@@ -94,8 +94,8 @@ final class MainViewController: UIViewController {
     
     //MARK: - Display network error
     private func alertError(_ error: String) {
-        let alert = UIAlertController(title: "Request error", message: error, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }
@@ -178,7 +178,7 @@ private extension MainViewController {
                 section.boundarySupplementaryItems = [sectionHeader]
                 
             } else {
-                fatalError("Unkown section")
+                fatalError(Constant.unknownSection)
             }
             
             return section
@@ -231,14 +231,14 @@ private extension MainViewController {
     func registrationCagegoryHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
             header.callBackButton = { [weak self] in self?.presenter?.routeToMovieList() }
-            header.configure(header: "Категории")
+            header.configure(header: Constant.categories)
         }
     }
     
     func registrationPopularHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
             header.callBackButton = { [weak self] in self?.presenter?.routeToPupularMovie() }
-            header.configure(header: "Высокий рейтинг")
+            header.configure(header: Constant.topRate)
         }
     }
     
@@ -326,7 +326,7 @@ extension MainViewController: UICollectionViewDelegate {
         
         switch sectionKind {
         case .categories:
-            let categoryElement = presenter?.getCategories()[indexPath.row].category ?? ""
+            let categoryElement = presenter?.getCategories()[indexPath.row].category ?? Constant.none
             presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: categoryElement) ?? .all)
         case .collection:
             presenter?.routeToCollection(indexPath.row)
@@ -360,7 +360,7 @@ extension MainViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        presenter?.fetchSearchRequest("")
+        presenter?.fetchSearchRequest(Constant.none)
         return true
     }
 }
@@ -372,25 +372,25 @@ extension MainViewController: CLLocationManagerDelegate {
     //MARK: Get current city name from location
     private func makeGeoDecoderLocation(_ location: CLLocation, completion: @escaping (String) -> Void) {
         let geocoder = CLGeocoder()
-        let locale = Locale(identifier: "ru")
+        let locale = Locale(identifier: Constant.localeID)
         
         geocoder.reverseGeocodeLocation(location, preferredLocale: locale) { [weak self] (placemarks, error) in
             guard let self = self else { return }
             
             if let error = error {
-                self.alertError("Ошибка обратного геокодирования: \(error.localizedDescription)")
+                self.alertError("\(Constant.geoError) \(error.localizedDescription)")
                 return
             }
             
             guard let placemark = placemarks?.first else {
-                self.alertError("Город не найден")
+                self.alertError(Constant.cityNotFoundError)
                 return
             }
             
             if let city = placemark.locality {
                 completion(city)
             } else {
-                self.alertError("Город не найден в ответе геокодирования.")
+                self.alertError(Constant.cityNotFoundError)
             }
         }
     }
@@ -402,7 +402,7 @@ extension MainViewController: CLLocationManagerDelegate {
         coreLocation.startUpdatingLocation()
         let lat = location.coordinate.latitude
         let lon = location.coordinate.longitude
-        var currentCity = ""
+        var currentCity = Constant.none
         makeGeoDecoderLocation(location) { [weak self] in
             currentCity = $0
             self?.presenter?.sendMyLocation(lat: lat, lon: lon, cityName: currentCity)
@@ -411,6 +411,6 @@ extension MainViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        alertError("Ошибка получения текущей локации \(error.localizedDescription)")
+        alertError("\(Constant.localeError) \(error.localizedDescription)")
     }
 }

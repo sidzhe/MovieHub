@@ -35,7 +35,7 @@ final class GlobeCustomCell: UICollectionViewCell {
     
     private lazy var imageChevron: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "chevron.right")
+        image.image = UIImage(systemName: Constant.chevronRight)
         image.tintColor = .primaryGray
         return image
     }()
@@ -49,7 +49,7 @@ final class GlobeCustomCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     //MARK: Setup UI
@@ -94,7 +94,7 @@ final class GlobeCustomCell: UICollectionViewCell {
     //MARK: Configure
     func configure(nameLabel: String, city: String, imageName: String) {
         self.nameLabel.text = nameLabel
-        self.cityLabel.text = city
+        self.cityLabel.text = city.localized()
         self.imageIcon.image = UIImage(systemName: imageName)
     }
 }

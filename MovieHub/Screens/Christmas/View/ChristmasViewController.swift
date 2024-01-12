@@ -19,34 +19,34 @@ final class ChristmasViewController: UIViewController {
     //MARK: - UI Elements
     private var movieView: MovieView?
     private let backgroungImage = UIImageView()
-    private let elkaImage = UIImageView(image:  UIImage(named: "tree")!)
+    private let elkaImage = UIImageView(image: .tree)
     
-    private let yellowBallImage1 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage2 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage3 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage4 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage5 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage6 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage7 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage8 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage9 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage10 = BallView(ballImage: "yellowBall")
-    private let yellowBallImage11 = BallView(ballImage: "yellowBall")
+    private let yellowBallImage1 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage2 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage3 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage4 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage5 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage6 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage7 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage8 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage9 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage10 = BallView(ballImage: Constant.yellowBall)
+    private let yellowBallImage11 = BallView(ballImage: Constant.yellowBall)
     
-    private let greenBallImage1 = BallView(ballImage: "greenBall")
-    private let greenBallImage2 = BallView(ballImage: "greenBall")
-    private let greenBallImage3 = BallView(ballImage: "greenBall")
-    private let greenBallImage4 = BallView(ballImage: "greenBall")
-    private let greenBallImage5 = BallView(ballImage: "greenBall")
-    private let greenBallImage6 = BallView(ballImage: "greenBall")
-    private let greenBallImage7 = BallView(ballImage: "greenBall")
-    private let greenBallImage8 = BallView(ballImage: "greenBall")
-    private let greenBallImage9 = BallView(ballImage: "greenBall")
-    private let greenBallImage10 = BallView(ballImage: "greenBall")
+    private let greenBallImage1 = BallView(ballImage: Constant.greenBall)
+    private let greenBallImage2 = BallView(ballImage: Constant.greenBall)
+    private let greenBallImage3 = BallView(ballImage: Constant.greenBall)
+    private let greenBallImage4 = BallView(ballImage: Constant.greenBall)
+    private let greenBallImage5 = BallView(ballImage: Constant.greenBall)
+    private let greenBallImage6 = BallView(ballImage: Constant.greenBall)
+    private let greenBallImage7 = BallView(ballImage: Constant.greenBall)
+    private let greenBallImage8 = BallView(ballImage: Constant.greenBall)
+    private let greenBallImage9 = BallView(ballImage: Constant.greenBall)
+    private let greenBallImage10 = BallView(ballImage: Constant.greenBall)
     
     private lazy var closeMovieViewButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.setImage(UIImage(systemName: Constant.xmarkCircleFill), for: .normal)
         button.tintColor = .primaryBlue
         button.addTarget(self, action: #selector(tapCloseButton), for: .touchUpInside)
         return button
@@ -307,7 +307,7 @@ final class ChristmasViewController: UIViewController {
             } completion: { [weak self] _ in
                 self?.closeMovieViewButton.alpha = 1.0
                 UIView.animate(withDuration: 0.3, delay: 0) {
-                    tappedSubview.updateImage("animation81")
+                    tappedSubview.updateImage(Constant.animation81)
                     
                     tappedSubview.snp.remakeConstraints {
                         $0.size.equalTo(200)
@@ -319,7 +319,7 @@ final class ChristmasViewController: UIViewController {
                     self?.boomTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
                         guard let self = self, let presenter = presenter else { return }
                         if presenter.boomAnimationCount < 85 {
-                            Task { tappedSubview.updateImage("animation\(presenter.boomAnimationCount)") }
+                            Task { tappedSubview.updateImage("\(Constant.animation)\(presenter.boomAnimationCount)") }
                             presenter.boomAnimationCount += 1
                         } else {
                             self.movieView?.alpha = 1.0
@@ -337,7 +337,7 @@ final class ChristmasViewController: UIViewController {
     @objc private func updateAnimation() {
         guard let presenter = presenter else { return }
         if presenter.backgroundAnimationCount < 99 {
-            Task { self.backgroungImage.image = UIImage(named: "confetti-27-\(presenter.backgroundAnimationCount)") }
+            Task { self.backgroungImage.image = UIImage(named: "\(Constant.confetti)\(presenter.backgroundAnimationCount)") }
             presenter.backgroundAnimationCount += 1
         } else {
             presenter.backgroundAnimationCount = 1
@@ -354,8 +354,8 @@ final class ChristmasViewController: UIViewController {
     
     //MARK: - Alert network error
     private func alertError(_ error: RequestError) {
-        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }
