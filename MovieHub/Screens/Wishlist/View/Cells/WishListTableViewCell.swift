@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class WishListTableViewCell: UITableViewCell {
     
@@ -59,25 +60,9 @@ final class WishListTableViewCell: UITableViewCell {
         label.textColor = .white
         return label
     }()
-    private var ratingLabel: UILabel = {
+    private lazy var ratingLabel: UILabel = {
         let label = UILabel()
-        //beginning
-        let beginningAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 14),
-            .foregroundColor: UIColor.gray
-        ]
-        let beginningAttributeContainer = AttributeContainer(beginningAttributes)
-        let beginningAttString = AttributedString(("Movie "),attributes: beginningAttributeContainer)
-        
-        //end
-        let endAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 12, weight: .semibold),
-            .foregroundColor: UIColor.orange
-        ]
-        let endAttContainer = AttributeContainer(endAttributes)
-        let endAttString = AttributedString("★ 4.5", attributes: endAttContainer)
-        let fullAttText = beginningAttString + endAttString
-        label.attributedText = NSAttributedString(fullAttText)
+        //setRatingLabelText(type: "Movie", rating: 4.5)
         return label
     }()
     private var heartImageView: UIImageView = {
@@ -100,8 +85,18 @@ final class WishListTableViewCell: UITableViewCell {
     
     //MARK: - Methods
     
-    func setMovieName(name: String) {
-        movieNameLabel.text = name
+    func setCellData(with model: Doc?) {
+        genreLabel.text = model?.genres?.first?.name?.capitalized ?? "Нет данных"
+        movieNameLabel.text = model?.name?.capitalized ?? "Нет данных"
+        //rating label
+        let type = model?.type?.capitalized ?? "Нет данных"
+        let rating = model?.rating?.kp ?? 0.0
+        setRatingLabelText(type: type , rating: rating)
+        //imageView
+        let url = model?.poster?.url ?? ""
+        leftImageView.kf.indicatorType = .activity
+        let placeholder = UIImage(systemName: "photo.artframe")
+        leftImageView.kf.setImage(with: URL(string: url), placeholder: placeholder)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -116,9 +111,29 @@ final class WishListTableViewCell: UITableViewCell {
         hStack.addArrangedSubviews(leftImageView, vStack)
         vStack.addArrangedSubviews(genreLabel, movieNameLabel, ratingLabel)
     }
+    private func setRatingLabelText(type: String, rating: Double) {
+        //beginning
+        let beginningAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.gray
+        ]
+        let beginningAttributeContainer = AttributeContainer(beginningAttributes)
+        let beginningAttString = AttributedString(type,attributes: beginningAttributeContainer)
+        
+        //end
+        let endAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 12, weight: .semibold),
+            .foregroundColor: UIColor.orange
+        ]
+        let endAttContainer = AttributeContainer(endAttributes)
+        let ratingString = String(format: "%.1f", rating)
+        let endAttString = AttributedString("★ \(ratingString)", attributes: endAttContainer)
+        let fullAttText = beginningAttString + " " + endAttString
+        ratingLabel.attributedText = NSAttributedString(fullAttText)
+    }
     
 }
-
+//MARK: - Constraints
 extension WishListTableViewCell {
     private func setConstraints() {
         darkBackgroundView.snp.makeConstraints { make in

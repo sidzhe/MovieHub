@@ -30,7 +30,6 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
     }
     private var wishListMovieData = [SearchModel]() {
         didSet {
-            //print("wishListMovieData", wishListMovieData)
             guard wishListMovieData.count == favoriteMoviesID?.count else {return}
             presenter?.updateUI(model: wishListMovieData)
         }
