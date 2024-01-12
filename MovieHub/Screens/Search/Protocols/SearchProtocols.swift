@@ -33,9 +33,12 @@ protocol SearchInteractorInputProtocol: AnyObject {
     
     var categories: [String] { get }
     var upcomingMovie: SearchModel? { get }
-    var recentMovie: [Doc] { get }
+    var recentMovie: SearchModel? { get }
+    
+    func getRecentMovieIds() -> [String]
     
     func requestUpcomingMovie(category: MovieGenre)
+    func requestRecentMovies(with moviesId: [String])
 
 }
 

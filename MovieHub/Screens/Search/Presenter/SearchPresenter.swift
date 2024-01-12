@@ -21,6 +21,11 @@ final class SearchPresenter: SearchPresenterProtocol {
         interactor?.requestUpcomingMovie(category: MovieGenre(rawValue: genre) ?? .all)
     }
     
+    func fetchRecentMovie() {
+        guard let movieIds = interactor?.getRecentMovieIds() else { return }
+        interactor?.requestRecentMovies(with: movieIds)
+    }
+    
     //MARK: - Get models
     func getCategories() -> [String] {
         guard let model = interactor?.categories else { return [] }
@@ -30,16 +35,14 @@ final class SearchPresenter: SearchPresenterProtocol {
     func getUpcomingMovie() -> [Doc] {
         guard let model = interactor?.upcomingMovie?.docs else { return [Doc]() }
         let filteredModel = model.filter { $0.poster?.url != "" || (($0.poster?.previewURL) != nil) }
-        
         return filteredModel
-        return model
     }
     
     func getRecentMovie() -> [Doc] {
-#warning("добавить логику")
-        let recent:[Doc] = []
-        return recent
+        guard let model = interactor?.recentMovie?.docs else { return [Doc]() }
+        return model
     }
+    
     //MARK: - Route
     func routeToDetail(with movieId: Int ) {
         router?.pushToDetail(from: view, movieId: movieId)

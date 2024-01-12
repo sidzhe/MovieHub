@@ -12,16 +12,17 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
-    
+    let storageService: StorageServiceProtool
     var categories = MovieGenre.allCases.map { $0.rawValue }
     
     var upcomingMovie: SearchModel?
-    var recentMovie: [Doc] = []
+    var recentMovie: SearchModel?
     
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool) {
+    init(networkService: NetworkServiceProtool, storageService: StorageServiceProtool) {
         self.networkService = networkService
+        self.storageService = storageService
     }
     
     //MARK: Request
@@ -39,4 +40,23 @@ final class SearchInteractor: SearchInteractorInputProtocol {
             }
         }
     }
+    
+    func requestRecentMovies(with moviesId: [String]) {
+        networkService.searchMovieById(identifiers: moviesId) { [weak self] (result: (Result<SearchModel, RequestError>)) in
+            guard let self else { return }
+            switch result {
+            case .success(let recentMovie):
+                self.recentMovie = recentMovie
+            case .failure(let error):
+                self.presenter?.getError(error: error)
+            }
+        }
+    }
+    
+    //MARK: Storage
+    func getRecentMovieIds() -> [String] {
+        var recentMovieIds = storageService.loadRecentModel()
+        return recentMovieIds
+    }
+    
 }

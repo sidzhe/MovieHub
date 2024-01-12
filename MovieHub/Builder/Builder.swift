@@ -113,7 +113,11 @@ final class Builder {
         let view = SearchViewController()
         let presenter = SearchPresenter()
         let networkService = NetworkService()
-        let interactor = SearchInteractor(networkService: networkService)
+        let storageService = StorageService()
+        let interactor = SearchInteractor(
+            networkService: networkService,
+            storageService: storageService
+        )
         let router = SearchRouter()
         view.presenter = presenter
         presenter.view = view
