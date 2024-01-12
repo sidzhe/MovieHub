@@ -15,6 +15,11 @@ final class OnboardingPresenter: OnboardingPresenterProtocol {
     var router: OnboardingRouterProtocol?
     
     
+    func safeUserDefaults() {
+        let state = true
+        UserDefaults.standard.set(state, forKey: "state")
+    }
+    
 }
 
 

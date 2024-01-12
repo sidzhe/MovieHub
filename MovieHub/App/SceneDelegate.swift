@@ -15,7 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = Builder.createTabBar()
+        
+        if UserDefaults.standard.value(forKey: "state") != nil {
+            window?.rootViewController = Builder.createTabBar()
+        } else {
+            window?.rootViewController = Builder.createOnboarding()
+        }
         window?.makeKeyAndVisible()
     }
 }

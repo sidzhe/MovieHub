@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		638B362E2B5024A500D01D8E /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638B362D2B5024A500D01D8E /* TextViewController.swift */; };
+		63D273432B507B560092E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D273422B507B560092E5E3 /* Assets.xcassets */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
 		EB03F5A52B440C9F004BAE47 /* PersonDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */; };
@@ -51,7 +53,6 @@
 		EB7610552B402EB200B4D5B2 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7610542B402EB200B4D5B2 /* TabBarView.swift */; };
 		EB8267612B38A1D50024BAAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267602B38A1D50024BAAE /* AppDelegate.swift */; };
 		EB8267632B38A1D50024BAAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267622B38A1D50024BAAE /* SceneDelegate.swift */; };
-		EB82676A2B38A1D50024BAAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8267692B38A1D50024BAAE /* Assets.xcassets */; };
 		EB82676D2B38A1D50024BAAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB82676B2B38A1D50024BAAE /* LaunchScreen.storyboard */; };
 		EB8267882B38AB110024BAAE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267872B38AB110024BAAE /* OnboardingViewController.swift */; };
 		EB82678A2B38AB9A0024BAAE /* OnboardingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267892B38AB9A0024BAAE /* OnboardingProtocols.swift */; };
@@ -112,6 +113,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		638B362D2B5024A500D01D8E /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
+		63D273422B507B560092E5E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailRouter.swift; sourceTree = "<group>"; };
 		EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailInteractor.swift; sourceTree = "<group>"; };
 		EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailPresenter.swift; sourceTree = "<group>"; };
@@ -156,7 +159,6 @@
 		EB82675D2B38A1D50024BAAE /* MovieHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8267602B38A1D50024BAAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB8267622B38A1D50024BAAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EB8267692B38A1D50024BAAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB82676C2B38A1D50024BAAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB82676E2B38A1D50024BAAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB8267872B38AB110024BAAE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -429,8 +431,8 @@
 			children = (
 				EB6CB2C22B3C205900DC30BC /* Fonts */,
 				EB6CB2BD2B3C1AEC00DC30BC /* Helpers */,
-				EB8267692B38A1D50024BAAE /* Assets.xcassets */,
 				EB82676B2B38A1D50024BAAE /* LaunchScreen.storyboard */,
+				63D273422B507B560092E5E3 /* Assets.xcassets */,
 				EB82676E2B38A1D50024BAAE /* Info.plist */,
 			);
 			path = Support;
@@ -615,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				EB8267872B38AB110024BAAE /* OnboardingViewController.swift */,
+				638B362D2B5024A500D01D8E /* TextViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1069,6 +1072,7 @@
 			files = (
 				EB6CB2DA2B3C250600DC30BC /* Montserrat-Regular.ttf in Resources */,
 				EB6CB2D72B3C250600DC30BC /* Montserrat-Light.ttf in Resources */,
+				63D273432B507B560092E5E3 /* Assets.xcassets in Resources */,
 				EB6CB2D92B3C250600DC30BC /* Montserrat-Black.ttf in Resources */,
 				EB6CB2D62B3C250600DC30BC /* Montserrat-Bold.ttf in Resources */,
 				EB82676D2B38A1D50024BAAE /* LaunchScreen.storyboard in Resources */,
@@ -1076,7 +1080,6 @@
 				EB6CB2DB2B3C250600DC30BC /* Montserrat-SemiBold.ttf in Resources */,
 				EB6CB2DD2B3C250600DC30BC /* Montserrat-Thin.ttf in Resources */,
 				EB6CB2D82B3C250600DC30BC /* Montserrat-Medium.ttf in Resources */,
-				EB82676A2B38A1D50024BAAE /* Assets.xcassets in Resources */,
 				EB6CB2DC2B3C250600DC30BC /* Montserrat-ExtraLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1099,6 +1102,7 @@
 				EB369B242B3AC51D00BB4275 /* ColletionModel.swift in Sources */,
 				EBE76C712B3974080053E522 /* SearchPresenter.swift in Sources */,
 				EB369B202B39D00F00BB4275 /* DetailModel.swift in Sources */,
+				638B362E2B5024A500D01D8E /* TextViewController.swift in Sources */,
 				EBE76C622B3972DB0053E522 /* WishlistPresenter.swift in Sources */,
 				EBDFCFB02B457AD000B1FE5E /* UpcomingModel.swift in Sources */,
 				EBE76C512B3971CA0053E522 /* DetailViewController.swift in Sources */,
