@@ -8,10 +8,11 @@
 import UIKit
 
 final class SearchResultsViewController: UIViewController {
-
+    
     let sections = SearchResultSectionData.shared.sectionsArray
     
     var presenter: SearchResultPresenterProtocol?
+    var parentNavigationController: UINavigationController?
     
     // MARK: - UI
     private lazy var infoImageView: UIImageView = _infoImageView
@@ -20,6 +21,15 @@ final class SearchResultsViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         return collectionView
     }()
+    
+    init(navigationController: UINavigationController) {
+           self.parentNavigationController = navigationController
+           super.init(nibName: nil, bundle: nil)
+       }
+       
+       required init?(coder aDecoder: NSCoder) {
+           super.init(coder: aDecoder)
+       }
     
     // MARK: - Life View Cycle
     override func viewDidLoad() {
@@ -135,7 +145,7 @@ extension SearchResultsViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(
             widthDimension: .fractionalWidth(0.35),
             heightDimension: .fractionalHeight(0.2)),
-            subitems: [item]
+                                                       subitems: [item]
         )
         
         let section = createLayoutSection(group: group,
@@ -157,7 +167,7 @@ extension SearchResultsViewController {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(0.25)),
-            subitems: [item]
+                                                     subitems: [item]
         )
         
         let section = createLayoutSection(group: group,

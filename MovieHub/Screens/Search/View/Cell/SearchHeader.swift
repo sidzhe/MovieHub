@@ -10,6 +10,8 @@ import UIKit
 final class SearchHeader: UICollectionReusableView {
     static let identifier = "SearchHeader"
     
+    var callBackAllButton: (() -> Void)?
+    
     private let headerLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.montserratBold(size: 14)
@@ -21,7 +23,7 @@ final class SearchHeader: UICollectionReusableView {
 
     private lazy var seeAllButton: UIButton = {
         let button = UIButton()
-        button.setTitle(button.isSelected ? "Hide" : "See All", for: .normal)
+        button.setTitle(button.isSelected ? "Hide" : "", for: .normal)
         button.titleLabel?.font = UIFont.montserratRegular(size: 14)
         button.setTitleColor(.primaryBlue, for: .normal)
         button.addTarget(self, action: #selector(tapSeeAll), for: .touchUpInside)
@@ -59,7 +61,7 @@ final class SearchHeader: UICollectionReusableView {
     }
     
     @objc private func tapSeeAll() {
-       // callBackButton?()
+        callBackAllButton?()
     }
     
     func configure(header: String) {

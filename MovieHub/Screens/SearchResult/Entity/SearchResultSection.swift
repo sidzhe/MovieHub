@@ -14,9 +14,9 @@ enum SearchResultSection: Int {
     var title: String {
         switch self {
         case .person:
-            return "Actors"
+            return "Актеры"
         case .movie:
-            return "Movie Related"
+            return "Фмльмы"
         }
     }
 }

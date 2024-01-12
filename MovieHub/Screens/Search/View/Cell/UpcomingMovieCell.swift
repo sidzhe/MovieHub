@@ -16,7 +16,6 @@ final class UpcomingMovieCell: UICollectionViewCell {
     
     private lazy var posterImageView: UIImageView = _posterImageView
     private lazy var activityIndicator: UIActivityIndicatorView = _activityIndicator
-    private lazy var movieContentView: UIView = _movieContentView
     private lazy var blurView: UIVisualEffectView = _blurView
     private lazy var starImage: UIImageView = _starImage
     
@@ -95,26 +94,26 @@ final class UpcomingMovieCell: UICollectionViewCell {
     }
     
     // MARK: - For UpcomingMovie
-    func configure(with upcomingMovie: UpcomingDoc) {
-        guard let model = upcomingMovie.sequelsAndPrequels?.first,
-              let url = model.poster?.url ?? model.poster?.previewURL,
-              let urlString = URL(string: url) else { return }
-        
-        posterImageView.kf.setImage(with: urlString, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: { [weak self] (_, _) in
-              self?.activityIndicator.startAnimating()
-            }, completionHandler: { [weak self] (_) in
-              self?.activityIndicator.stopAnimating()
-            })
-        
-        nameLabel.text = model.name ?? model.alternativeName
-        yearLabel.text = model.year != nil ? "\(model.year!)" : "No Data"
-        movieLengthLabel.text = "\(upcomingMovie.movieLength ?? 0) Minutes"
-        categoryLabel.text = model.type?.capitalized ?? ""
-        ratingLabel.text = String(format: "%.1f", (model.rating?.kp ?? model.rating?.imdb) as Double? ?? 0.0)
-    }
+//    func configure(with upcomingMovie: Doc) {
+//
+//              let url = model.poster?.url ?? model.poster?.previewURL,
+//              let urlString = URL(string: url) else { return }
+//        
+//        posterImageView.kf.setImage(with: urlString, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: { [weak self] (_, _) in
+//              self?.activityIndicator.startAnimating()
+//            }, completionHandler: { [weak self] (_) in
+//              self?.activityIndicator.stopAnimating()
+//            })
+//        
+//        nameLabel.text = model.name ?? model.alternativeName
+//        yearLabel.text = model.year != nil ? "\(model.year!)" : "No Date"
+//        movieLengthLabel.text = "\(upcomingMovie.movieLength ?? 0) Minutes"
+//        categoryLabel.text = model.type?.capitalized ?? ""
+//        ratingLabel.text = String(format: "%.1f", (model.rating?.kp ?? model.rating?.imdb) as Double? ?? 0.0)
+//    }
     
     // MARK: - For SearchedMovie
-    func configure(for searchedMovie: Doc) {
+    func configure(with searchedMovie: Doc) {
         
         guard let url = searchedMovie.poster?.url
                 ?? searchedMovie.poster?.previewURL else  { return }
@@ -136,11 +135,9 @@ final class UpcomingMovieCell: UICollectionViewCell {
     
     // MARK: - Private methods
     private func setupView() {
-
-        addSubview(movieContentView)
-        movieContentView.addSubview(posterImageView)
-        movieContentView.addSubview(nameLabel)
-        movieContentView.addSubview(infoStackView)
+       contentView.addSubview(posterImageView)
+       contentView.addSubview(nameLabel)
+       contentView.addSubview(infoStackView)
         posterImageView.addSubview(blurView)
         posterImageView.addSubview(activityIndicator)
         blurView.contentView.addSubview(starImage)
@@ -148,31 +145,24 @@ final class UpcomingMovieCell: UICollectionViewCell {
     }
     
     private func setConstraints() {
-        movieContentView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-        
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(movieContentView.snp.top).offset(Constants.verticalSpacing * 2)
+            make.top.equalTo(contentView.snp.top).offset(Constants.verticalSpacing * 2)
             make.leading.equalTo(posterImageView.snp.trailing).offset(Constants.interSpacing)
             make.trailing.equalToSuperview().inset(24)
         }
         
         posterImageView.snp.makeConstraints { make in
-            make.top.equalTo(movieContentView.snp.top)
-            make.leading.equalTo(movieContentView.snp.leading)
-            make.width.equalTo(movieContentView.snp.width).multipliedBy(1.0 / 2.7)
-            make.height.equalTo(movieContentView.snp.height)
+            make.top.equalTo(contentView.snp.top)
+            make.leading.equalTo(contentView.snp.leading)
+            make.width.equalTo(contentView.snp.width).multipliedBy(1.0 / 2.7)
+            make.height.equalTo(contentView.snp.height)
         }
         
         infoStackView.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(Constants.verticalSpacing * 3)
             make.leading.equalTo(posterImageView.snp.trailing).offset(Constants.interSpacing)
-            make.trailing.equalTo(movieContentView.snp.trailing)
-            make.bottom.lessThanOrEqualTo(movieContentView.snp.bottom).offset(-Constants.interSpacing)
+            make.trailing.equalTo(contentView.snp.trailing)
+            make.bottom.lessThanOrEqualTo(contentView.snp.bottom).offset(-Constants.interSpacing)
         }
         
         blurView.snp.makeConstraints { make in
@@ -202,6 +192,7 @@ private extension UpcomingMovieCell {
     
     var _posterImageView: UIImageView {
         let view = UIImageView()
+        view.layer.cornerRadius = 8
         view.clipsToBounds = true
         return view
     }
@@ -211,12 +202,6 @@ private extension UpcomingMovieCell {
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
       }
-    
-    var _movieContentView: UIView {
-        let view = UIView()
-        view.backgroundColor = .primaryDark
-        return view
-    }
     
     var _blurView: UIVisualEffectView  {
         let view = UIVisualEffectView()

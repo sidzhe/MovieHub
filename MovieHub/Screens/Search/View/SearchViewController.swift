@@ -64,9 +64,9 @@ final class SearchViewController: UIViewController {
     
     // MARK: - UISearchController
     private func setupSearchBar() {
-        
+        guard let navigationController else { return }
         searchController = UISearchController.makeCustomSearchController(
-            placeholder: "Type title, categories, years, etc",
+            navigationController: navigationController, placeholder: "Поиск по актерам и названию фильма...",
             delegate: self
         )
         navigationItem.searchController = searchController

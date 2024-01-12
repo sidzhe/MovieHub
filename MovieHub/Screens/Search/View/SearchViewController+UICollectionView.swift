@@ -54,6 +54,7 @@ extension SearchViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? SearchHeader else { return UICollectionReusableView() }
             header.configure(header: sections[indexPath.section].title)
+            header.callBackAllButton
             return header
         default:
             return UICollectionReusableView()
@@ -64,6 +65,13 @@ extension SearchViewController: UICollectionViewDataSource {
 // MARK: -  UICollectionViewDelegate,
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
+        guard let sectionKind = SearchSection(rawValue: indexPath.section) else { return }
+        
+        switch sectionKind {
+        case .upcomingMovies:
+            presenter?.routeToDetail(with: indexPath.row)
+        case .recentMovies:
+            presenter?.routeToDetail(with: indexPath.row)
+        }
     }
 }

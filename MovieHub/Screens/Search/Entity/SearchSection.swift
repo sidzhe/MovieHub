@@ -14,9 +14,9 @@ enum SearchSection: Int {
     var title: String {
         switch self {
         case .upcomingMovies:
-            return "Upcoming Movie"
+            return "Премьеры"
         case .recentMovies:
-            return "Recent movie"
+            return "Просмотренное"
         }
     }
 }

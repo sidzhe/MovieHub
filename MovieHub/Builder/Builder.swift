@@ -122,8 +122,8 @@ final class Builder {
     }
     
     /// SearchResultVC
-    static func createSearchResult() -> UIViewController {
-        let view = SearchResultsViewController()
+    static func createSearchResult(with navigationController: UINavigationController) -> UIViewController {
+        let view = SearchResultsViewController(navigationController: navigationController)
         let presenter = SearchResultPresenter()
         let networkService = NetworkService()
         let interactor = SearchResultInteractor(networkService: networkService)

@@ -18,11 +18,13 @@ protocol SearchViewProtocol: AnyObject {
 protocol SearchPresenterProtocol: AnyObject {
     var view: SearchViewProtocol? { get set }
    
-    func getUpcomingMovie() -> [UpcomingDoc]
+    func getUpcomingMovie() -> [Doc]
     func getRecentMovie() -> [Doc]
     func getCategories() -> [String]
     
     func fetchUpcomingMovie(with genre: String)
+    
+    func routeToDetail(with movieId: Int)
 }
 
 /// PRESENTER -> INTERACTOR
@@ -30,7 +32,7 @@ protocol SearchInteractorInputProtocol: AnyObject {
     var presenter: SearchInteractorOutputProtocol? { get set }
     
     var categories: [String] { get }
-    var upcomingMovie: UpcomingModel? { get }
+    var upcomingMovie: SearchModel? { get }
     var recentMovie: [Doc] { get }
     
     func requestUpcomingMovie(category: MovieGenre)
@@ -45,5 +47,6 @@ protocol SearchInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol SearchRouterProtocol: AnyObject {
-    
+    func pushToDetail(from view: SearchViewProtocol?, movieId: Int)
+
 }

@@ -5,13 +5,15 @@
 //  Created by Келлер Дмитрий on 09.01.2024.
 //
 
-import Foundation
+import UIKit
 
 /// PRESENTER -> VIEW
 protocol SearchResultViewProtocol: AnyObject {
     var presenter: SearchResultPresenterProtocol? { get set }
+    var parentNavigationController: UINavigationController? { get set }
     func updateUI()
     func displayRequestError(error: RequestError)
+    
 }
 
 /// VIEW -> PRESENTER
@@ -22,6 +24,9 @@ protocol SearchResultPresenterProtocol: AnyObject {
     
     func getSearchPerson() -> [DocPerson]
     func getSearchMovie() -> [Doc]
+    
+    func routeToDetail(with movieId: Int)
+    func routeToPersonDetail(with personId: Int)
 }
 
 /// PRESENTER -> INTERACTOR
@@ -43,5 +48,6 @@ protocol SearchResultInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol SearchResultRouterProtocol: AnyObject {
-    
+    func pushToDetail(from view: SearchResultViewProtocol?, movieId: Int)
+    func pushToPersonDetail(from view: SearchResultViewProtocol?, personId: Int)
 }

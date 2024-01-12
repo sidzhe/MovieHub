@@ -15,7 +15,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     
     var categories = MovieGenre.allCases.map { $0.rawValue }
     
-    var upcomingMovie: UpcomingModel?
+    var upcomingMovie: SearchModel?
     var recentMovie: [Doc] = []
     
     
@@ -26,7 +26,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     
     //MARK: Request
     func requestUpcomingMovie(category: MovieGenre) {
-        networkService.getMovieUpcomingByGenres(genre: category) { [weak self] (result: (Result<UpcomingModel, RequestError>)) in
+        networkService.getMovieUpcomingByGenres(genre: category) { [weak self] (result: (Result<SearchModel, RequestError>)) in
             guard let self = self else { return }
             switch result {
             case .success(let upcomingMovie):

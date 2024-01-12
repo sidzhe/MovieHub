@@ -45,7 +45,7 @@ extension SearchResultsViewController: UICollectionViewDataSource {
             }
             
             guard let searchData = presenter?.getSearchMovie()[indexPath.row] else { return cell }
-            cell.configure(for: searchData)
+            cell.configure(with: searchData)
             return cell
         }
     }
@@ -69,7 +69,14 @@ extension SearchResultsViewController: UICollectionViewDataSource {
 
 extension SearchResultsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
+        guard let sectionKind = SearchResultSection(rawValue: indexPath.section) else { return }
+        
+        switch sectionKind {
+            
+        case .person:
+            presenter?.routeToPersonDetail(with: indexPath.row)
+        case .movie:
+            presenter?.routeToDetail(with: indexPath.row)
+        }
     }
 }
-

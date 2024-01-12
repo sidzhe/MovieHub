@@ -428,9 +428,10 @@
 		E1BF09972B5080F700A8B607 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E1BF09A42B50811600A8B607 /* CategoriesMenuCell.swift */,
 				E1BF09982B5080F700A8B607 /* PersonCell.swift */,
-				E1BF09992B5080F700A8B607 /* SearchHeader.swift */,
 				E1BF099A2B5080F700A8B607 /* UpcomingMovieCell.swift */,
+				E1BF09992B5080F700A8B607 /* SearchHeader.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -438,18 +439,9 @@
 		E1BF09A22B50811600A8B607 /* CategoriesMenu */ = {
 			isa = PBXGroup;
 			children = (
-				E1BF09A32B50811600A8B607 /* Cell */,
 				E1BF09A52B50811600A8B607 /* CategoriesMenuCollectionView.swift */,
 			);
 			path = CategoriesMenu;
-			sourceTree = "<group>";
-		};
-		E1BF09A32B50811600A8B607 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				E1BF09A42B50811600A8B607 /* CategoriesMenuCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		E1BF09A82B50813A00A8B607 /* Entity */ = {
@@ -1438,9 +1430,9 @@
 			children = (
 				E1BF09972B5080F700A8B607 /* Cell */,
 				E1BF09A22B50811600A8B607 /* CategoriesMenu */,
-				E1BF099E2B50810E00A8B607 /* SearchViewController+ResultsUpdate.swift */,
-				E1BF099F2B50810E00A8B607 /* SearchViewController+UICollectionView.swift */,
 				EBE76C6E2B3973D10053E522 /* SearchViewController.swift */,
+				E1BF099F2B50810E00A8B607 /* SearchViewController+UICollectionView.swift */,
+				E1BF099E2B50810E00A8B607 /* SearchViewController+ResultsUpdate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

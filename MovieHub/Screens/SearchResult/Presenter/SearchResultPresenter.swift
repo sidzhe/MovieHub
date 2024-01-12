@@ -8,7 +8,6 @@
 import Foundation
 
 final class SearchResultPresenter: SearchResultPresenterProtocol {
-
     //MARK: Properties
     weak var view: SearchResultViewProtocol?
     var interactor: SearchResultInteractorInputProtocol?
@@ -30,6 +29,18 @@ final class SearchResultPresenter: SearchResultPresenterProtocol {
         guard let model = interactor?.searchPerson?.docs else { return [DocPerson]() }
         return model
     }
+    
+    //MARK: - RouteTo
+    func routeToDetail(with movieId: Int) {
+        router?.pushToDetail(from: view, movieId: movieId)
+    }
+    
+    func routeToPersonDetail(with personId: Int) {
+        let personId = getSearchPerson()[personId].id
+        router?.pushToPersonDetail(from: view, personId: personId)
+    }
+    
+
 }
 
 //MARK: - Extension SearchResultInteractorOutputProtocol

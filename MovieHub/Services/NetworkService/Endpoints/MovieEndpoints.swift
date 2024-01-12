@@ -25,7 +25,7 @@ enum MovieEndpoints {
 //MARK: - Extension MovieEndpoints
 extension MovieEndpoints: Endpoint {
 
-    var header: [String : String]? { ["X-API-KEY": "F6QX0P1-FQTMPFY-PWNT126-KXFHWZK"] }
+    var header: [String : String]? { ["X-API-KEY": "6RPBT9S-1R74EQQ-M20AAQK-EFE511M"] }
     
     //Path
     var path: String {

@@ -9,6 +9,7 @@ import Foundation
 
 final class SearchPresenter: SearchPresenterProtocol {
     
+    
     //MARK: Properties
     weak var view: SearchViewProtocol?
     var interactor: SearchInteractorInputProtocol?
@@ -26,8 +27,8 @@ final class SearchPresenter: SearchPresenterProtocol {
         return model
     }
     
-    func getUpcomingMovie() -> [UpcomingDoc] {
-        guard let model = interactor?.upcomingMovie?.docs else { return [UpcomingDoc]() }
+    func getUpcomingMovie() -> [Doc] {
+        guard let model = interactor?.upcomingMovie?.docs else { return [Doc]() }
         return model
     }
     
@@ -35,6 +36,10 @@ final class SearchPresenter: SearchPresenterProtocol {
 #warning("добавить логику")
         let recent:[Doc] = []
         return recent
+    }
+    //MARK: - Route
+    func routeToDetail(with movieId: Int ) {
+        router?.pushToDetail(from: view, movieId: movieId)
     }
 }
 
