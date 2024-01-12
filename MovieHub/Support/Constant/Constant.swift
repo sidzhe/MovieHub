@@ -66,7 +66,7 @@ enum Constant {
     static let age3 = "лет".localized()
     static let tree = "Елка".localized()
     static let city = "Город".localized()
-    static let height = "Рост".localized()
+    static let height = "Рост ".localized()
     static let facts = "Факты".localized()
     static let search = "Поиск".localized()
     static let career = "Карьера".localized()
