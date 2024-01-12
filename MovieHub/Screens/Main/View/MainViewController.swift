@@ -331,7 +331,7 @@ extension MainViewController: UICollectionViewDelegate {
         case .collection:
             presenter?.routeToCollection(indexPath.row)
         default:
-            presenter?.routeToDetail()
+            presenter?.routeToDetail(index: indexPath.row)
         }
     }
 }
