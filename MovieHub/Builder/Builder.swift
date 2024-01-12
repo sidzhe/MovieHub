@@ -79,11 +79,10 @@ final class Builder {
     }
     
     /// DetailVC
-    static func createDetail(detailID: String) -> UIViewController {
+    static func createDetail() -> UIViewController {
         let view = DetailViewController()
         let presenter = DetailPresenter()
-        let networkService = NetworkService()
-        let interactor = DetailInteractor(networkService: networkService, detailID: detailID)
+        let interactor = DetailInteractor()
         let router = DetailRouter()
         view.presenter = presenter
         presenter.view = view
