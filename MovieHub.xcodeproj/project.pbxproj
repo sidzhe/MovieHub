@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A030F782B4DCB2000D40940 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A030F762B4DCB2000D40940 /* UIView + Extension.swift */; };
+		0A030F792B4DCB2000D40940 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */; };
+		0A030F7C2B4DCB6A00D40940 /* WishListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A030F7B2B4DCB6A00D40940 /* WishListService.swift */; };
+		0AEB78232B4DD302009637D1 /* WishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB78222B4DD301009637D1 /* WishListTableViewCell.swift */; };
 		10F2EC503162D1756FC570F7 /* Pods_MovieHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
@@ -156,6 +160,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A030F762B4DCB2000D40940 /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView + Extension.swift"; path = "MovieHub/Extension/UIView + Extension.swift"; sourceTree = SOURCE_ROOT; };
+		0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView + Extension.swift"; path = "MovieHub/Extension/UIStackView + Extension.swift"; sourceTree = SOURCE_ROOT; };
+		0A030F7B2B4DCB6A00D40940 /* WishListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListService.swift; sourceTree = "<group>"; };
+		0AEB78222B4DD301009637D1 /* WishListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewCell.swift; sourceTree = "<group>"; };
 		661DA57DD8ABB2F02BAAC5C3 /* Pods-MovieHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.release.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.release.xcconfig"; sourceTree = "<group>"; };
 		7C2142BA46C1940226C00074 /* Pods-MovieHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.debug.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.debug.xcconfig"; sourceTree = "<group>"; };
 		D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +338,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		0A030F7A2B4DCB6A00D40940 /* WishListService */ = {
+			isa = PBXGroup;
+			children = (
+				0A030F7B2B4DCB6A00D40940 /* WishListService.swift */,
+			);
+			path = WishListService;
+			sourceTree = "<group>";
+		};
+		0AEB78212B4DD301009637D1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0AEB78222B4DD301009637D1 /* WishListTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		875F286AEC91795772AD2913 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +476,8 @@
 		EB6CB2BD2B3C1AEC00DC30BC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */,
+				0A030F762B4DCB2000D40940 /* UIView + Extension.swift */,
 				EB6CB2BE2B3C1AFE00DC30BC /* Extension + UIColor.swift */,
 				EB6CB2C02B3C203A00DC30BC /* Extension + UIFont.swift */,
 				EBA9D2032B4F13BE00A50944 /* MovieNavigationBar.swift */,
@@ -692,6 +718,7 @@
 		EB8267802B38A4230024BAAE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0A030F7A2B4DCB6A00D40940 /* WishListService */,
 				EBBA2B362B4D961C00D55EF6 /* StorageService */,
 				EB369B082B3989B200BB4275 /* NetworkService */,
 			);
@@ -1290,6 +1317,7 @@
 		EBE76C5B2B3972790053E522 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0AEB78212B4DD301009637D1 /* Cells */,
 				EBE76C5F2B3972B50053E522 /* WishlistViewController.swift */,
 			);
 			path = View;
@@ -1618,6 +1646,7 @@
 				EBBA2B492B4D96D800D55EF6 /* GlobePresenter.swift in Sources */,
 				EBDFCFB02B457AD000B1FE5E /* UpcomingModel.swift in Sources */,
 				EBBA2B5E2B4D979800D55EF6 /* DetailCinemaPresenter.swift in Sources */,
+				0A030F792B4DCB2000D40940 /* UIStackView + Extension.swift in Sources */,
 				EBE76C512B3971CA0053E522 /* DetailViewController.swift in Sources */,
 				EBA5FE2C2B4EB6D700E85872 /* CollectionViewController.swift in Sources */,
 				EBE76C552B3972300053E522 /* DetailInteractor.swift in Sources */,
@@ -1677,6 +1706,7 @@
 				EBA5FE192B4E7B7100E85872 /* SectionMovie.swift in Sources */,
 				EB8267932B38B7860024BAAE /* Builder.swift in Sources */,
 				EBE76C462B39707B0053E522 /* PopularInteractor.swift in Sources */,
+				0A030F782B4DCB2000D40940 /* UIView + Extension.swift in Sources */,
 				EB0945F62B46CD0200331EAD /* FactsCell.swift in Sources */,
 				EB03F5A72B440CA5004BAE47 /* PersonDetailViewController.swift in Sources */,
 				EB8267902B38B33E0024BAAE /* OnboardingRouter.swift in Sources */,
@@ -1724,6 +1754,7 @@
 				EBDDEAA92B502C180075ED3F /* Extension + String.swift in Sources */,
 				EBDFCFAE2B455D3A00B1FE5E /* AwardsModel.swift in Sources */,
 				EBE76C912B3977930053E522 /* ChristmasInteractor.swift in Sources */,
+				0A030F7C2B4DCB6A00D40940 /* WishListService.swift in Sources */,
 				EBE76C282B396E140053E522 /* MainInteractor.swift in Sources */,
 				EBBA2B6B2B4D981100D55EF6 /* CityListRouter.swift in Sources */,
 				EBBA2B502B4D970A00D55EF6 /* GlobeCustomCell.swift in Sources */,
@@ -1731,6 +1762,7 @@
 				EB03F5A92B440CAC004BAE47 /* PersonDetailProtocols.swift in Sources */,
 				EBE76C932B3977B40053E522 /* ChristmasRouter.swift in Sources */,
 				EBBA2B7F2B4D98B800D55EF6 /* MapInteractor.swift in Sources */,
+				0AEB78232B4DD302009637D1 /* WishListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1886,7 +1918,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9444ZC259H;
+				DEVELOPMENT_TEAM = 7WN4BA2YG3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieHub/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1915,7 +1947,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9444ZC259H;
+				DEVELOPMENT_TEAM = 7WN4BA2YG3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MovieHub/Support/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
