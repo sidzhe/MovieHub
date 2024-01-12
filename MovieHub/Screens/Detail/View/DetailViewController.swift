@@ -11,156 +11,114 @@ final class DetailViewController: UIViewController {
     
     //MARK: Properties
     var presenter: DetailPresenterProtocol?
-    var tabBar = TabBarViewController()
     
-    private lazy var scrollView: UIScrollView = {
-        let sv = UIScrollView()
-        sv.isScrollEnabled = true
-        sv.contentInsetAdjustmentBehavior = .automatic
-        sv.translatesAutoresizingMaskIntoConstraints = false
-//        sv.
-        return sv
-    }()
+    //MARK: UI Elements
+    private let contentView = UIView()
+    private var backgroundMaskedView = GradientView()
     
-    private lazy var contentView: UIView = {
-        let view = UIView()
+    private let infoBigStack = UIStackView.moviewInfoStack(spacing: 12)
+    private let yearStack = UIStackView.moviewInfoStack(spacing: 4)
+    private let durationStack = UIStackView.moviewInfoStack(spacing: 4)
+    private let genreStack = UIStackView.moviewInfoStack(spacing: 4)
+    private let rateStack = UIStackView.moviewInfoStack(spacing: 4)
+    
+    private let calendarImage = UIImageView(image: UIImage(named: "calendarIcon.svg"))
+    private let durationImage = UIImageView(image: UIImage(named: "clockIcon.svg"))
+    private let genreImage = UIImageView(image: UIImage(named: "filmIcon.svg"))
+    private let shareImage = UIImageView(image: UIImage(named: "shareIcon.svg"))
+    
+    private let yearLabel: UILabel = .movieInfoLabel("2021")
+    private let durationLabel = UILabel.movieInfoLabel("146 Minutes")
+    private let genreLabel = UILabel.movieInfoLabel("Action")
+    
+    private lazy var firstStroke: UIView = createStroke()
+    private lazy var  secondStroke: UIView = createStroke()
+    private let rateImage = UIImageView(image: UIImage(named: "starIcon.svg"))
+    
+    private lazy var descriptionStack: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 8
         return view
     }()
     
-    private lazy var backgroundImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.backgroundColor = .white
-        iv.image = UIImage(named: "poster.jpeg")
-        iv.contentMode = .scaleAspectFit
-        iv.alpha = 0.24
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.clipsToBounds = true
-        return iv
+    private lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.isScrollEnabled = true
+        scroll.contentInsetAdjustmentBehavior = .automatic
+        return scroll
     }()
     
-    private var backgroundMaskedView = GradientView()
+    private lazy var backgroundImageView: UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .white
+        image.image = UIImage(named: "poster.jpeg")
+        image.contentMode = .scaleAspectFit
+        image.alpha = 0.24
+        image.clipsToBounds = true
+        return image
+    }()
     
     private lazy var posterImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "poster.jpeg")
-        iv.contentMode = .scaleAspectFit
-        iv.layer.cornerRadius = 12
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.clipsToBounds = true
-        return iv
+        let image = UIImageView()
+        image.image = UIImage(named: "poster.jpeg")
+        image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 12
+        image.clipsToBounds = true
+        return image
     }()
     
-    private lazy var infoBigStack = UIStackView.moviewInfoStack(spacing: 12)
-    
-    private lazy var yearStack = UIStackView.moviewInfoStack(spacing: 4)
-
-    private lazy var calendarImage = UIImageView(image: UIImage(named: "calendarIcon.svg"))
-    private lazy var yearLabel: UILabel = .movieInfoLabel("2021")
-    
-    private lazy var durationStack = UIStackView.moviewInfoStack(spacing: 4)
-    private lazy var durationImage = UIImageView(image: UIImage(named: "clockIcon.svg"))
-    private lazy var durationLabel = UILabel.movieInfoLabel("146 Minutes")
-    
-    private lazy var firstStroke: UIView = createStroke()
-    private lazy var secondStroke: UIView = createStroke()
-    
-    private lazy var genreStack = UIStackView.moviewInfoStack(spacing: 4)
-    private lazy var genreImage = UIImageView(image: UIImage(named: "filmIcon.svg"))
-    private lazy var genreLabel = UILabel.movieInfoLabel("Action")
-    
-    private lazy var rateStack = UIStackView.moviewInfoStack(spacing: 4)
-    private lazy var rateImage = UIImageView(image: UIImage(named: "starIcon.svg"))
     private lazy var rateLabel: UILabel = {
-        let lb = UILabel()
-        lb.font = .montserratSemiBold(size: 12)
-        lb.textColor = .primaryOrange
-        lb.text = "4.5"
-        return lb
+        let label = UILabel()
+        label.font = .montserratSemiBold(size: 12)
+        label.textColor = .primaryOrange
+        label.text = "4.5"
+        return label
+    }()
+        
+    private lazy var descriptionHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.font = .montserratSemiBold(size: 16)
+        label.textColor = .white
+        label.text = "Story Line"
+        return label
     }()
     
     private lazy var trailerButton: UIButton = {
-        let bt = UIButton()
-        bt.layer.cornerRadius = 24
-        bt.clipsToBounds = true
-        bt.translatesAutoresizingMaskIntoConstraints = false
-        bt.backgroundColor = .primaryOrange
-        return bt
-    }()
-    
-    private lazy var trailerStack = UIStackView.moviewInfoStack(spacing: 8)
-    private lazy var trailerImage = UIImageView(image: UIImage(named: "playIcon.svg"))
-    private lazy var trailerLabel: UILabel = {
-        let lb = UILabel()
-        lb.font = .montserratMedium(size: 16)
-        lb.textColor = .white
-        lb.text = "Trailer"
-        return lb
+        let button = UIButton()
+        button.setImage(UIImage(named: "playIcon.svg"), for: .normal)
+        button.setTitle("Trailer", for: .normal)
+        button.titleLabel?.font = UIFont.montserratMedium(size: 16)
+        button.layer.cornerRadius = 24
+        button.clipsToBounds = true
+        button.backgroundColor = .primaryOrange
+        return button
     }()
     
     private lazy var shareButton: UIButton = {
-        let bt = UIButton()
-        bt.layer.cornerRadius = 24
-        bt.clipsToBounds = true
-        bt.translatesAutoresizingMaskIntoConstraints = false
-        bt.backgroundColor = .primarySoft
-        return bt
-    }()
-    
-    private lazy var shareImage = UIImageView(image: UIImage(named: "shareIcon.svg"))
-    
-    private lazy var descriptionHeaderLabel: UILabel = {
-        let lb = UILabel()
-        lb.font = .montserratSemiBold(size: 16)
-        lb.textColor = .white
-        lb.text = "Story Line"
-        return lb
+        let button = UIButton()
+        button.layer.cornerRadius = 24
+        button.clipsToBounds = true
+        button.backgroundColor = .primarySoft
+        return button
     }()
     
     private lazy var descriptionTextLabel: UILabel = {
-        let lb = UILabel()
-        lb.font = .montserratRegular(size: 14)
-        lb.textColor = .white
-        lb.numberOfLines = 0
-        lb.lineBreakMode = .byWordWrapping
-        lb.text = "For the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. More"
-        return lb
+        let button = UILabel()
+        button.font = .montserratRegular(size: 14)
+        button.textColor = .white
+        button.numberOfLines = 0
+        button.lineBreakMode = .byWordWrapping
+        button.text = "For the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. MoreFor the first time in the cinematic history of Spider-Man, our friendly neighborhood hero's identity is revealed, bringing his Super Hero responsibilities into conflict with his normal life and putting those he cares about most at risk. More"
+        return button
     }()
-    
-    private lazy var castHeaderLabel: UILabel = {
-        let lb = UILabel()
-        lb.font = .montserratSemiBold(size: 16)
-        lb.textColor = .white
-        lb.text = "Cast and Crew"
-        lb.translatesAutoresizingMaskIntoConstraints = false
-        return lb
-    }()
-    
-    private lazy var castCollectionView: UICollectionView = {
-        let cv = UICollectionView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), collectionViewLayout: UICollectionViewLayout())
-        cv.register(CastViewCell.self, forCellWithReuseIdentifier: CastViewCell.reuseID)
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        return cv
-    }()
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupView()
         setupLayout()
-        castCollectionView.dataSource = self
-        castCollectionView.delegate = self
-        
         
     }
     //MARK: Methods
@@ -177,10 +135,7 @@ final class DetailViewController: UIViewController {
         contentView.addSubview(rateStack)
         contentView.addSubview(trailerButton)
         contentView.addSubview(shareButton)
-        contentView.addSubview(descriptionHeaderLabel)
-        contentView.addSubview(descriptionTextLabel)
-        contentView.addSubview(castHeaderLabel)
-        contentView.addSubview(castCollectionView)
+        contentView.addSubview(descriptionStack)
         infoBigStack.addArrangedSubview(yearStack)
         infoBigStack.addArrangedSubview(firstStroke)
         infoBigStack.addArrangedSubview(durationStack)
@@ -194,9 +149,8 @@ final class DetailViewController: UIViewController {
         genreStack.addArrangedSubview(genreLabel)
         rateStack.addArrangedSubview(rateImage)
         rateStack.addArrangedSubview(rateLabel)
-        trailerButton.addSubview(trailerStack)
-        trailerStack.addArrangedSubview(trailerImage)
-        trailerStack.addArrangedSubview(trailerLabel)
+        descriptionStack.addArrangedSubview(descriptionHeaderLabel)
+        descriptionStack.addArrangedSubview(descriptionTextLabel)
         shareButton.addSubview(shareImage)
         
     }
@@ -204,7 +158,6 @@ final class DetailViewController: UIViewController {
     private func setupLayout() {
         scrollView.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalToSuperview()
-            
         }
         
         contentView.snp.makeConstraints { make in
@@ -250,33 +203,14 @@ final class DetailViewController: UIViewController {
             make.width.height.equalTo(48)
         }
         
-        trailerStack.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-        }
-        
         shareImage.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
         
-        descriptionHeaderLabel.snp.makeConstraints { make in
+        descriptionStack.snp.makeConstraints { make in
             make.top.equalTo(trailerButton.snp.bottom).offset(24)
-            make.leading.equalToSuperview().offset(24)
-        }
-        
-        descriptionTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(descriptionHeaderLabel.snp.bottom).offset(8)
-            make.leading.trailing.equalToSuperview().inset(24)
-        }
-        
-        castHeaderLabel.snp.makeConstraints { make in
-            make.top.equalTo(descriptionTextLabel.snp.bottom).offset(24)
-            make.leading.equalToSuperview().offset(24)
-        }
-        
-        castCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(castHeaderLabel.snp.bottom).offset(24)
-            make.leading.equalToSuperview().offset(24)
-            make.bottom.equalTo(contentView.snp.bottom).inset(50)
+            make.horizontalEdges.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(100)
         }
     }
     
@@ -310,7 +244,7 @@ final class DetailViewController: UIViewController {
         descriptionTextLabel.text = description
         backgroundImageView.kf.setImage(with: url)
         posterImageView.kf.setImage(with: url)
-                
+        
     }
     
     //MARK: - Display network error
@@ -321,58 +255,17 @@ final class DetailViewController: UIViewController {
         present(alert, animated: true)
     }
 }
-    
-extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let presenter = presenter, let model = presenter.getDetailData() else { return 0 }
-        return model.persons?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            guard 
-                    let presenter = presenter,
-                    let model = presenter.getDetailData(),
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CastViewCell.reuseID, for: indexPath) as? CastViewCell else { fatalError() }
-        cell.configure(person: model.persons![indexPath.item])
-            return cell
-        }
-    
-    
-    private func createLayoutForCollection() -> UICollectionViewFlowLayout {
-
-        let layout = UICollectionViewFlowLayout()
-        let basicSpacing: CGFloat = 20
-        let itemsPerRow: CGFloat = 2
-        let paddingWidth = basicSpacing * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingWidth
-        let widthPerItem = availableWidth / itemsPerRow
-        layout.minimumLineSpacing = basicSpacing
-        layout.minimumInteritemSpacing = basicSpacing
-        layout.sectionInset = UIEdgeInsets(top: 0, left: basicSpacing, bottom: 0, right: basicSpacing)
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: widthPerItem, height: widthPerItem * 0.66)
-        return layout
-    }
-    }
-
-
-
-
 
 
 //MARK: - Extension DetailViewProtocol
 extension DetailViewController: DetailViewProtocol {
     func updateUI() {
-        Task {setTitles()}
+        Task { setTitles() }
     }
     
     func displayRequestError(_ error: RequestError) {
         Task { alertError(error) }
     }
-    
-    
-    
-    
 }
 
 #Preview { DetailViewController() }

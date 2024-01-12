@@ -11,7 +11,6 @@
 		15BF8FC62B4DFD3C00532550 /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FC52B4DFD3C00532550 /* Extension + UILabel.swift */; };
 		15BF8FC92B4DFD7900532550 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FC82B4DFD7900532550 /* Extension + UIStackView.swift */; };
 		15BF8FCB2B4DFE0D00532550 /* DetailGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */; };
-		15BF8FCD2B4DFE5500532550 /* CastViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF8FCC2B4DFE5500532550 /* CastViewCell.swift */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
 		EB03F5A52B440C9F004BAE47 /* PersonDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */; };
@@ -151,7 +150,6 @@
 		15BF8FC52B4DFD3C00532550 /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 		15BF8FC82B4DFD7900532550 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
 		15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGradient.swift; sourceTree = "<group>"; };
-		15BF8FCC2B4DFE5500532550 /* CastViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastViewCell.swift; sourceTree = "<group>"; };
 		661DA57DD8ABB2F02BAAC5C3 /* Pods-MovieHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.release.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.release.xcconfig"; sourceTree = "<group>"; };
 		7C2142BA46C1940226C00074 /* Pods-MovieHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.debug.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.debug.xcconfig"; sourceTree = "<group>"; };
 		D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,7 +316,6 @@
 			children = (
 				15BF8FCE2B4DFE6D00532550 /* Extensions */,
 				15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */,
-				15BF8FCC2B4DFE5500532550 /* CastViewCell.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1577,7 +1574,6 @@
 				EBBA2B602B4D97A700D55EF6 /* DetailCinemaViewController.swift in Sources */,
 				EB0945F82B46D9A200331EAD /* AwardCell.swift in Sources */,
 				EBBA2B452B4D96B300D55EF6 /* GlobeRouter.swift in Sources */,
-				15BF8FCD2B4DFE5500532550 /* CastViewCell.swift in Sources */,
 				EB8267932B38B7860024BAAE /* Builder.swift in Sources */,
 				EBE76C462B39707B0053E522 /* PopularInteractor.swift in Sources */,
 				EB0945F62B46CD0200331EAD /* FactsCell.swift in Sources */,
