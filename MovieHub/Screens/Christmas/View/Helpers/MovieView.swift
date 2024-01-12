@@ -76,7 +76,7 @@ final class MovieView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     //MARK: Methods
@@ -147,10 +147,10 @@ final class MovieView: UIView {
     
     //MARK: configure
     func configure(movieModel: DetailModel) {
-        guard let url = URL(string: movieModel.poster?.url ?? movieModel.poster?.previewURL ?? "") else { return }
+        guard let url = URL(string: movieModel.poster?.url ?? movieModel.poster?.previewURL ?? Constant.none) else { return }
         Task { posterImage.kf.setImage(with: url) }
         nameLabel.text = movieModel.name ?? movieModel.alternativeName
         categoryLabel.text = movieModel.genres?.first?.name
-        ratingLabel.text = String(format: "%.1f", movieModel.rating?.kp ?? 0.0)
+        ratingLabel.text = String(format: Constant.format, movieModel.rating?.kp ?? 0.0)
     }
 }

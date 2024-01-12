@@ -20,14 +20,14 @@ final class CollectionViewController: UIViewController {
         layout.itemSize = .init(width: view.frame.width, height: view.frame.height / 3.5)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = .clear
-        view.register(MovieListCell.self, forCellWithReuseIdentifier: MovieListCell.identifier)
+        view.register(MovieListCell.self, forCellWithReuseIdentifier: Constant.movieListCellID)
         view.dataSource = self
         view.delegate = self
         return view
     }()
     
     private lazy var movieNavigationBar: MovieNavigationBar = {
-        let navigationBar = MovieNavigationBar(title: "Movie Lists")
+        let navigationBar = MovieNavigationBar(title: Constant.movieList)
         navigationBar.navigationController = self.navigationController
         return navigationBar
     }()
@@ -62,8 +62,8 @@ final class CollectionViewController: UIViewController {
     
     //MARK: - Display network error
     private func alertError(_ error: String) {
-        let alert = UIAlertController(title: "Request error", message: error, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }
@@ -82,7 +82,7 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieListCell.identifier, for: indexPath) as? MovieListCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.movieListCellID, for: indexPath) as? MovieListCell
         guard let model = presenter?.getCollectionModel() else { return UICollectionViewCell () }
         cell?.configure(model[indexPath.row])
         return cell ?? UICollectionViewCell()

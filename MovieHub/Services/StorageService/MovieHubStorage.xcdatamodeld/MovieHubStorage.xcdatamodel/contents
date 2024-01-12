@@ -3,4 +3,10 @@
     <entity name="CurrentCity" representedClassName="CurrentCity" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="RecentModel" representedClassName="RecentModel" syncable="YES" codeGenerationType="class">
+        <attribute name="recentId" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="WishModel" representedClassName="WishModel" syncable="YES" codeGenerationType="class">
+        <attribute name="wishId" optional="YES" attributeType="String"/>
+    </entity>
 </model>

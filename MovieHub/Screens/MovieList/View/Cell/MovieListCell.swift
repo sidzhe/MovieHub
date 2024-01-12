@@ -10,9 +10,6 @@ import SnapKit
 import Kingfisher
 
 final class MovieListCell: UICollectionViewCell {
-        
-    //MARK: Identifier
-    static let identifier = "cellMovieId"
     
     //MARK: UI Elements
     private let posterImage = UIImageView()
@@ -33,7 +30,7 @@ final class MovieListCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     override func prepareForReuse() {
@@ -66,7 +63,7 @@ final class MovieListCell: UICollectionViewCell {
     //MARK: Configure
     func configure(_ doc: Doc) {
         titleLabel.text = doc.name
-        guard let url = URL(string: doc.backdrop?.url ?? "") else { return }
+        guard let url = URL(string: doc.backdrop?.url ?? Constant.none) else { return }
         let processor = DownsamplingImageProcessor(size: CGSize(width: 400, height: 400))
             |> ResizingImageProcessor(referenceSize: CGSize(width: 400, height: 400), mode: .aspectFill)
 

@@ -26,7 +26,7 @@ final class MapViewController: UIViewController {
     
     //MARK: Setup map
     private func setupMap() {
-        title = "Кинотеатры на карте"
+        title = Constant.cityOnTheMap
         view.addSubview(mapView)
         
         mapView.snp.makeConstraints {
@@ -50,7 +50,7 @@ final class MapViewController: UIViewController {
     func createAnimatedPlacemark() {
         guard let location = presenter?.getUserLocation() else { return }
         let animatedImageProvider = YRTAnimatedImageProviderFactory.fromFile(
-            Bundle.main.path(forResource: "animation", ofType: "png")) as! YRTAnimatedImageProvider
+            Bundle.main.path(forResource: Constant.animation, ofType: Constant.png)) as! YRTAnimatedImageProvider
         let animatedPlacemark = mapView.mapWindow.map.mapObjects.addPlacemark()
         animatedPlacemark.geometry = YMKPoint(latitude: location.lat, longitude: location.lon)
         let animation = animatedPlacemark.useAnimation()
@@ -62,15 +62,15 @@ final class MapViewController: UIViewController {
     //MARK: - Display alert
     private func alert(cinemaName: String, adress: String) {
         let alert = UIAlertController(title: cinemaName, message: adress, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }
     
     //MARK: - Display network error
     private func alertError(_ error: String) {
-        let alert = UIAlertController(title: "Request error", message: error, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }
@@ -97,8 +97,8 @@ extension MapViewController: YMKMapObjectTapListener {
     func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool {
         if let placemark = mapObject as? YMKPlacemarkMapObject {
             if let userData = placemark.userData as? [String: Any] {
-                if let name = userData["name"] as? String,
-                   let adress = userData["adress"] as? String {
+                if let name = userData[Constant.keyName] as? String,
+                   let adress = userData[Constant.adress] as? String {
                     alert(cinemaName: name, adress: adress)
                 }
             }
@@ -121,15 +121,15 @@ extension MapViewController: MapViewProtocol {
             guard let self = self, let presenter = presenter else { return }
             let collection = mapView.mapWindow.map.mapObjects.addClusterizedPlacemarkCollection(with: self)
             let points = presenter.createPoints()
-            let placemarks = collection.addPlacemarks(with: points, image: UIImage(named: "cinemaIcon") ?? UIImage(), style: YMKIconStyle())
+            let placemarks = collection.addPlacemarks(with: points, image: .cinemaIcon, style: YMKIconStyle())
             
             placemarks.enumerated().forEach { (index, placemark) in
                 guard let presenter = self.presenter else { return }
                 let data = presenter.makePinsData()
                 let name = presenter.convertCinema(name: data[index].data?.general?.name)
-                let adress = data[index].data?.general?.address?.street ?? ""
+                let adress = data[index].data?.general?.address?.street ?? Constant.none
                 placemark.addTapListener(with: self)
-                placemark.userData = ["name": name, "adress": adress]
+                placemark.userData = [Constant.keyName: name, Constant.keyAdress: adress]
                 placemark.setTextWithText(
                     name,
                     style: {

@@ -30,15 +30,15 @@ final class MovieListViewController: UIViewController {
     
     //MARK: - Display network error
     private func alertError(_ error: String) {
-        let alert = UIAlertController(title: "Request error", message: error, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }
     
     //MARK: SetupViews
     private func setupViews() {
-        title = "Список фильмов"
+        title = Constant.movieList
         view.backgroundColor = .primaryDark
         navigationController?.navigationBar.barTintColor = .primaryDark
     }
@@ -83,7 +83,7 @@ private extension MovieListViewController {
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
                 
             } else {
-                fatalError("Unkown section")
+                fatalError(Constant.unknownSection)
             }
             
             return section
@@ -166,7 +166,7 @@ extension MovieListViewController: UICollectionViewDelegate {
         switch sectionKind {
         case .categories:
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            let categoryElement = presenter?.getCategories()[indexPath.row].category ?? ""
+            let categoryElement = presenter?.getCategories()[indexPath.row].category ?? Constant.none
             presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: categoryElement) ?? .all)
         default:
             presenter?.routeToDetail()

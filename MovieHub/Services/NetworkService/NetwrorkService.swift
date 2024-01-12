@@ -22,7 +22,7 @@ protocol NetworkServiceProtool: AnyObject {
     func getMovieUpcomingByGenres(genre: MovieGenre, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func getCityList(city: String, completion: @escaping (Result<CinemaModel, RequestError>) -> Void)
     func getCurrentCity(city: String, completion: @escaping (Result<CurrentCityModel, RequestError>) -> Void)
-    func searchMovieById(identifier: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
+    func searchMovieById(identifiers: [String], completion: @escaping (Result<SearchModel, RequestError>) -> Void)
 }
 
 
@@ -137,9 +137,9 @@ final class NetworkService: NetworkServiceProtool {
     }
     
     //MARK: Search movie by identificator
-    func searchMovieById(identifier: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
+    func searchMovieById(identifiers: [String], completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
            Task {
-               let result: Result<SearchModel, RequestError> = await movieService.searchMovieById(identifier: identifier)
+               let result: Result<SearchModel, RequestError> = await movieService.searchMovieById(identifiers: identifiers)
                completion(result)
            }
        }

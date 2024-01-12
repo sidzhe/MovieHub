@@ -24,9 +24,9 @@ final class CityListViewController: UIViewController {
         text.font = UIFont.montserratMedium(size: 15)
         text.textColor = .white
         let placeholderAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.primaryGray, .font: UIFont.montserratMedium(size: 15)!]
-        text.attributedPlaceholder = NSAttributedString(string: "Где вы сейчас?", attributes: placeholderAttributes)
+        text.attributedPlaceholder = NSAttributedString(string: Constant.whereAreYou, attributes: placeholderAttributes)
         text.leftView?.tintColor = .primaryGray
-        if let clearButton = text.value(forKey: "clearButton") as? UIButton {
+        if let clearButton = text.value(forKey: Constant.keyClearButton) as? UIButton {
             clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
             clearButton.tintColor = .primaryBlue
         }
@@ -80,7 +80,7 @@ private extension CityListViewController {
     
     //MARK: Setup UI
     func setupViews() {
-        title = "Выбор города"
+        title = Constant.selectCity
         view.backgroundColor = .primaryDark
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())

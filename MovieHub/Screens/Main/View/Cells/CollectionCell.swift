@@ -43,7 +43,7 @@ final class CollectionCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     override func prepareForReuse() {
@@ -80,8 +80,8 @@ final class CollectionCell: UICollectionViewCell {
     //MARK: Configure
     func configure(_ model: DocCollect) {
         nameLabel.text = model.name
-        countLabel.text = "\(model.moviesCount ?? 0) фильмов"
-        guard let url = URL(string: model.cover?.url ?? model.cover?.previewUrl ?? "") else { return }
-        backgroundImage.kf.setImage(with: url) 
+        countLabel.text = "\(model.moviesCount ?? 0) \(Constant.moviesCollection)"
+        guard let url = URL(string: model.cover?.url ?? model.cover?.previewUrl ?? Constant.none) else { return }
+        backgroundImage.kf.setImage(with: url)
     }
 }

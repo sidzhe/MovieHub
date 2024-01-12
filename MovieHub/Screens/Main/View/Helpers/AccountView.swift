@@ -25,7 +25,7 @@ final class AccountView: UIView {
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hello, Smith"
+        label.text = "Привет, Смит".localized()
         label.font = UIFont.montserratSemiBold(size: 16)
         label.textColor = .white
         return label

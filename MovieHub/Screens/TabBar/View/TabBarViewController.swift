@@ -14,10 +14,10 @@ final class TabBarViewController: UITabBarController {
     private let tapGesture = UITapGestureRecognizer()
     
     //MARK: UI Elements
-    private let tabBarHomeView = TabBarView(icon: UIImage(systemName: "play.tv") ?? UIImage(), title: "Home", tag: 0)
-    private let tabBarSearchView = TabBarView(icon: UIImage(systemName: "magnifyingglass") ?? UIImage(), title: "Search", tag: 1)
-    private let tabBarTreeView = TabBarView(icon: UIImage(systemName: "puzzlepiece.extension.fill") ?? UIImage(), title: "Tree", tag: 2)
-    private let tabBarProfileView = TabBarView(icon: UIImage(systemName: "person.fill") ?? UIImage(), title: "Profile", tag: 3)
+    private let tabBarHomeView = TabBarView(icon: UIImage(systemName: Constant.playTV) ?? UIImage(), title: Constant.movies, tag: 0)
+    private let tabBarSearchView = TabBarView(icon: UIImage(systemName: Constant.magnifyingglass) ?? UIImage(), title: Constant.search, tag: 1)
+    private let tabBarTreeView = TabBarView(icon: UIImage(systemName: Constant.puzzleFill) ?? UIImage(), title: Constant.tree, tag: 2)
+    private let tabBarProfileView = TabBarView(icon: UIImage(systemName: Constant.personFill) ?? UIImage(), title: Constant.profile, tag: 3)
     
     private lazy var selectedView: UIView = {
         let view = UIView()
@@ -56,9 +56,7 @@ final class TabBarViewController: UITabBarController {
     }
     
     //MARK: - GenerateVC
-    private func generateVC(_ viewController: UIViewController, _ title: String?, _ image: UIImage?) -> UIViewController {
-        viewController.tabBarItem.title = title
-        viewController.tabBarItem.image = image
+    private func generateVC(_ viewController: UIViewController) -> UIViewController {
         let vc = UINavigationController(rootViewController: viewController)
         return vc
     }
@@ -112,10 +110,10 @@ final class TabBarViewController: UITabBarController {
         let profileVC = Builder.createProfile()
         
         viewControllers = [
-            generateVC(homeVC, "Home", UIImage(systemName: "house")),
-            generateVC(searchVC, "Search", UIImage(systemName: "magnifyingglass")),
-            generateVC(christmasVC, "Tree", UIImage(systemName: "puzzlepiece.extension")),
-            generateVC(profileVC, "Account", UIImage(systemName: "person.circle.fill"))
+            generateVC(homeVC),
+            generateVC(searchVC),
+            generateVC(christmasVC),
+            generateVC(profileVC)
         ]
     }
     

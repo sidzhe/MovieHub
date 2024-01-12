@@ -29,7 +29,7 @@ final class AwardCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     //MARK: Setup UI
@@ -58,9 +58,9 @@ final class AwardCell: UICollectionViewCell {
     
     //MARK: Configure
     func configure(_ model: DocAwards) {
-        let awards = model.nomination?.award?.title ?? ""
-        let awardNomination = model.nomination?.title ?? ""
-        let awardMovie = model.movie?.name ?? ""
+        let awards = model.nomination?.award?.title ?? Constant.none
+        let awardNomination = model.nomination?.title ?? Constant.none
+        let awardMovie = model.movie?.name ?? Constant.none
         awardLabel.text = "\(awards) \n\(awardNomination) \n\(awardMovie)"
         awardIcon.image = awardLoad(awards)
     }
@@ -68,14 +68,14 @@ final class AwardCell: UICollectionViewCell {
     //MARK: Load award image
     private func awardLoad(_ imageName: String) -> UIImage {
         switch imageName {
-        case "Оскар":
-            return UIImage(named: "oscar") ?? UIImage()
-        case "Каннский кинофестиваль":
-            return UIImage(named: "cann") ?? UIImage()
-        case "Золотой глобус":
-            return UIImage(named: "globe") ?? UIImage()
+        case Constant.oscarRu:
+            return .oscar
+        case Constant.cannFest:
+            return .cann
+        case Constant.goldGlobe:
+            return .globe
         default:
-            return UIImage(named: "award") ?? UIImage()
+            return .award
         }
     }
 }

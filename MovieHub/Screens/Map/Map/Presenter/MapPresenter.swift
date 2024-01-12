@@ -33,10 +33,10 @@ final class MapPresenter: MapPresenterProtocol {
     
     //MARK: Deleting some elements
     func convertCinema(name: String?) -> String {
-        guard let name = name else { return "" }
-        let regex = try? NSRegularExpression(pattern: "Кинотеатр |Киноцентр |«|»", options: .caseInsensitive)
+        guard let name = name else { return Constant.none }
+        let regex = try? NSRegularExpression(pattern: Constant.regularPattern, options: .caseInsensitive)
         let range = NSRange(location: 0, length: name.utf16.count)
-        let cleanedCinema = regex?.stringByReplacingMatches(in: name, options: [], range: range, withTemplate: "")
+        let cleanedCinema = regex?.stringByReplacingMatches(in: name, options: [], range: range, withTemplate: Constant.none)
         return cleanedCinema ?? name
     }
     

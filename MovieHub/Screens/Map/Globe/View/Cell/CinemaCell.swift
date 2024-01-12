@@ -34,7 +34,7 @@ final class CinemaCell: UICollectionViewCell {
     
     private lazy var imageChevron: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "chevron.right")
+        image.image = UIImage(systemName: Constant.chevronRight)
         image.tintColor = .primaryGray
         return image
     }()
@@ -48,7 +48,7 @@ final class CinemaCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     //MARK: Setup UI
@@ -91,6 +91,6 @@ final class CinemaCell: UICollectionViewCell {
     func configure(model: GlobeCinema) {
         nameLabel.text = model.name
         adressLabel.text = model.adress
-        distanceLabel.text = "Расстояние \(String(format: "%.1f", model.distance)) км."
+        distanceLabel.text = "\(Constant.distance) \(String(format: Constant.format, model.distance)) \(Constant.km)"
     }
 }

@@ -13,7 +13,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     weak var presenter: MainInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
     var collectionData: ColletionModel?
-    var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue) }
+    var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue.localized()) }
     var mostPopular: CollectionDetailModel?
     var searchData: SearchModel?
     var lat: Double?

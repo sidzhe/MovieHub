@@ -58,7 +58,7 @@ final class PopularCell: UICollectionViewCell {
     
     private lazy var starImage: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(systemName: "star.fill")
+        view.image = UIImage(systemName: Constant.starFill)
         view.tintColor = .primaryOrange
         return view
     }()
@@ -72,7 +72,7 @@ final class PopularCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     override func prepareForReuse() {
@@ -139,8 +139,8 @@ final class PopularCell: UICollectionViewCell {
     func configure(category: Doc) {
         nameLabel.text = category.name ?? category.alternativeName
         categoryLabel.text = category.genres?.first?.name
-        ratingLabel.text = String(format: "%.1f", category.rating?.kp ?? 0.0)
-        guard let url = URL(string: category.poster?.url ?? category.poster?.previewURL ?? "") else { return }
+        ratingLabel.text = String(format: Constant.format, category.rating?.kp ?? 0.0)
+        guard let url = URL(string: category.poster?.url ?? category.poster?.previewURL ?? Constant.none) else { return }
         posterImage.kf.setImage(with: url, options: [.transition(.fade(1))])
     }
 }
