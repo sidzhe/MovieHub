@@ -12,6 +12,7 @@ final class AccountView: UIView {
     
     //MARK: Propeties
     var callBackButton: (() -> Void)?
+    var callBackGlobe: (() -> Void)?
     
     //MARK: UI Elements
     private lazy var avatar: UIImageView = {
@@ -24,7 +25,7 @@ final class AccountView: UIView {
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hello, Smith"
+        label.text = "Привет, Смит".localized()
         label.font = UIFont.montserratSemiBold(size: 16)
         label.textColor = .white
         return label
@@ -38,11 +39,27 @@ final class AccountView: UIView {
         return view
     }()
     
+    private var movieButtonView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 12
+        view.backgroundColor = .primarySoft
+        return view
+    }()
+    
     private lazy var heartButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         button.tintColor = .red
         button.addTarget(self, action: #selector(tapHeart), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var globeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "globe"), for: .normal)
+        button.tintColor = .primaryBlue
+        button.addTarget(self, action: #selector(tapGlobe), for: .touchUpInside)
         return button
     }()
     
@@ -61,10 +78,12 @@ final class AccountView: UIView {
     //MARK: Methods
     private func setupViews() {
         buttonsView.addSubview(heartButton)
+        movieButtonView.addSubview(globeButton)
         
         addSubview(avatar)
         addSubview(nameLabel)
         addSubview(buttonsView)
+        addSubview(movieButtonView)
         
         avatar.snp.makeConstraints { make in
             make.size.equalTo(40)
@@ -83,7 +102,18 @@ final class AccountView: UIView {
             make.right.equalToSuperview().inset(30)
         }
         
+        movieButtonView.snp.makeConstraints { make in
+            make.size.equalTo(32)
+            make.centerY.equalToSuperview()
+            make.right.equalTo(buttonsView.snp.left).inset(-15)
+        }
+        
         heartButton.snp.makeConstraints { make in
+            make.size.equalTo(25)
+            make.center.equalToSuperview()
+        }
+        
+        globeButton.snp.makeConstraints { make in
             make.size.equalTo(25)
             make.center.equalToSuperview()
         }
@@ -91,5 +121,9 @@ final class AccountView: UIView {
     
     @objc private func tapHeart() {
         callBackButton?()
+    }
+    
+    @objc private func tapGlobe() {
+        callBackGlobe?()
     }
 }

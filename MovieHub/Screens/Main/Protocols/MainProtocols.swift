@@ -11,7 +11,7 @@ import UIKit
 protocol MainViewProtocol: AnyObject {
     var presenter: MainPresenterProtocol? { get set }
     func updateUI()
-    func displayRequestError(error: RequestError)
+    func displayRequestError(error: String)
 }
 
 /// VIEW -> PRESENTER
@@ -26,8 +26,11 @@ protocol MainPresenterProtocol: AnyObject {
     func fetchSearchRequest(_ title: String)
     func routeToMovieList()
     func routeToPupularMovie()
-    func routeToDetail()
+    func routeToDetail(index: Int)
     func routeToWishList()
+    func routeToGlobe()
+    func routeToCollection(_ index: Int)
+    func sendMyLocation(lat: Double, lon: Double, cityName: String)
 }
 
 /// PRESENTER -> INTERACTOR
@@ -41,18 +44,22 @@ protocol MainInteractorInputProtocol: AnyObject {
     func requestMostRating(genre: MovieGenre)
     func requestSearch(_ title: String)
     func selectedCategory(_ index: Int)
+    func saveCurrentLocation(lat: Double, lon: Double, cityName: String)
+    func getUserLocation() -> (lat: Double, lon: Double, currentCity: String)
 }
 
 /// INTERACTOR -> PRESENTER
 protocol MainInteractorOutputProtocol: AnyObject {
     func updateUI()
-    func getError(error: RequestError)
+    func getError(error: String)
 }
 
 /// PRESENTER -> ROUTER
 protocol MainRouterProtocol: AnyObject {
-    func pushToMovieList(from view: MainViewProtocol)
-    func pushToPopularMovie(from view: MainViewProtocol)
-    func pushToDetail(from view: MainViewProtocol)
-    func pushToWishList(from view: MainViewProtocol)
+    func pushToMovieList(from view: MainViewProtocol?)
+    func pushToPopularMovie(from view: MainViewProtocol?)
+    func pushToDetail(from view: MainViewProtocol?, detailId: Int)
+    func pushToWishList(from view: MainViewProtocol?)
+    func pushToGlobe(from view: MainViewProtocol?, lat: Double, lon: Double, currentCity: String)
+    func pushToCollection(from view: MainViewProtocol?, slug: String)
 }

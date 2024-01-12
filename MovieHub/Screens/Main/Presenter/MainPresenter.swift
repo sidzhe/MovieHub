@@ -52,23 +52,35 @@ final class MainPresenter: MainPresenterProtocol {
     
     //MARK: Route to
     func routeToMovieList() {
-        guard let view = view else { return }
         router?.pushToMovieList(from: view)
     }
     
     func routeToPupularMovie() {
-        guard let view = view else { return }
         router?.pushToPopularMovie(from: view)
     }
     
-    func routeToDetail() {
-        guard let view = view else { return }
-        router?.pushToDetail(from: view)
+    func routeToDetail(index: Int) {
+        guard let id = getMostPopular()[index].id else { return }
+        router?.pushToDetail(from: view, detailId: id)
     }
     
     func routeToWishList() {
-        guard let view = view else { return }
         router?.pushToWishList(from: view)
+    }
+    
+    func routeToGlobe() {
+        guard let coordinate = interactor?.getUserLocation() else { return }
+        router?.pushToGlobe(from: view, lat: coordinate.lat, lon: coordinate.lon, currentCity: coordinate.currentCity)
+    }
+    
+    func routeToCollection(_ index: Int) {
+        let slug = getColletionModel()[index].slug
+        router?.pushToCollection(from: view, slug: slug)
+    }
+    
+    //MARK: Send current user location
+    func sendMyLocation(lat: Double, lon: Double, cityName: String) {
+        interactor?.saveCurrentLocation(lat: lat, lon: lon, cityName: cityName)
     }
 }
 
@@ -79,7 +91,7 @@ extension MainPresenter: MainInteractorOutputProtocol {
         view?.updateUI()
     }
     
-    func getError(error: RequestError) {
+    func getError(error: String) {
         view?.displayRequestError(error: error)
     }
 }

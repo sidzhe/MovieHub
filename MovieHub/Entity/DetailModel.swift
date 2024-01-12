@@ -27,11 +27,11 @@ struct DetailModel: Decodable {
     let persons: [Person]?
     let budget: Budget?
     let fees: Fees?
-    let sequelsAndPrequels: [SequelsAndPrequel]?
+    let sequelsAndPrequels: [SequelsPrequel]?
     let watchability: Watchability?
     let top10, top250: Int?
     let facts: [Fact]?
-    let similarMovies: [SequelsAndPrequel]?
+    let similarMovies: [SequelsPrequel]?
     let createdAt, updatedAt: String?
     let videos: Videos?
     let premiere: Premiere?
@@ -46,76 +46,76 @@ struct DetailModel: Decodable {
 
 // MARK: - Audience
 struct Audience: Decodable {
-    let count: Int
-    let country: String
+    let count: Int?
+    let country: String?
 }
 
 // MARK: - Budget
 struct Budget: Decodable {
-    let value: Int
-    let currency: String
+    let value: Int?
+    let currency: String?
 }
 
 // MARK: - Fact
 struct Fact: Decodable {
-    let value, type: String
-    let spoiler: Bool
+    let value, type: String?
+    let spoiler: Bool?
 }
 
 // MARK: - Fees
 struct Fees: Decodable {
-    let world, usa: Budget
+    let world, usa: Budget?
 }
 
 // MARK: - Logo
 struct Logo: Hashable, Decodable {
-    let url: String
+    let url: String?
 }
 
 // MARK: - Person
 struct Person: Decodable {
-    let id: Int
-    let photo: String
-    let name: String
+    let id: Int?
+    let photo: String?
+    let name: String?
     let enName, personDescription: String?
-    let profession, enProfession: String
+    let profession, enProfession: String?
 }
 
 // MARK: - Premiere
 struct Premiere: Decodable {
-    let world, russia: String
+    let world, russia: String?
 }
 
 // MARK: - SequelsAndPrequel
-struct SequelsAndPrequel: Decodable {
-    let id: Int
-    let name, alternativeName: String
+struct SequelsPrequel: Hashable, Decodable {
+    let id: Int?
+    let name, alternativeName: String?
     let enName: String?
-    let type: String
-    let poster: Backdrop
-    let rating: Rating
-    let year: Int
+    let type: String?
+    let poster: Backdrop?
+    let rating: Rating?
+    let year: Int?
 }
 
 // MARK: - Videos
-struct Videos: Decodable {
-    let trailers: [Trailer]
+struct Videos: Hashable, Decodable  {
+    let trailers: [Trailer]?
 }
 
 // MARK: - Trailer
-struct Trailer: Decodable {
-    let url: String
-    let name, site, type: String
+struct Trailer: Hashable, Decodable {
+    let url: String?
+    let name, site, type: String?
 }
 
 // MARK: - Watchability
-struct Watchability: Decodable {
-    let items: [Item]
+struct Watchability: Hashable, Decodable {
+    let items: [Item]?
 }
 
 // MARK: - Item
-struct Item: Decodable {
-    let name: String
-    let logo: Logo
-    let url: String
+struct Item: Hashable, Decodable {
+    let name: String?
+    let logo: Logo?
+    let url: String?
 }

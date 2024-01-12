@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class MainViewController: UIViewController {
     
@@ -13,6 +14,7 @@ final class MainViewController: UIViewController {
     var presenter: MainPresenterProtocol?
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, ItemMain>?
+    private let coreLocation = CLLocationManager()
     
     //MARK: UI Elements
     private let accountView = AccountView()
@@ -23,11 +25,12 @@ final class MainViewController: UIViewController {
         text.clipsToBounds = true
         text.layer.cornerRadius = 24
         text.clearButtonMode = .always
+        text.font = UIFont.montserratMedium(size: 15)
         text.textColor = .primaryGray
         let placeholderAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.primaryGray, .font: UIFont.montserratMedium(size: 15)!]
-        text.attributedPlaceholder = NSAttributedString(string: "Search a title..", attributes: placeholderAttributes)
+        text.attributedPlaceholder = NSAttributedString(string: Constant.searchByTitle, attributes: placeholderAttributes)
         text.leftView?.tintColor = .primaryGray
-        if let clearButton = text.value(forKey: "clearButton") as? UIButton {
+        if let clearButton = text.value(forKey: Constant.keyClearButton) as? UIButton {
             clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
             clearButton.tintColor = .primaryBlue
         }
@@ -39,17 +42,17 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter?.fetch()
         setupView()
         configureCollectionView()
         createDataSource()
         applySnapshot()
         setCategories()
-        heartButtonTarget()
+        accountViewButtonsTarget()
+        setLocation()
         
     }
     
-    //MARK: Set Views
+    //MARK: Setup Views
     private func setupView() {
         view.backgroundColor = .primaryDark
         view.addSubview(accountView)
@@ -68,23 +71,33 @@ final class MainViewController: UIViewController {
         }
     }
     
-    //MARK: Set Categories
+    //MARK: Setup user location
+    private func setLocation() {
+        coreLocation.delegate = self
+        coreLocation.desiredAccuracy = .leastNormalMagnitude
+        coreLocation.requestWhenInUseAuthorization()
+        coreLocation.startUpdatingLocation()
+    }
+    
+    //MARK: Setup Categories
     private func setCategories() {
         let indexPath = IndexPath(row: 0, section: 2)
         collectionView(collectionView, didSelectItemAt: indexPath)
+        presenter?.fetch()
     }
     
     //MARK: Target
-    private func heartButtonTarget() {
+    private func accountViewButtonsTarget() {
         accountView.callBackButton = { [weak self] in self?.presenter?.routeToWishList() }
+        accountView.callBackGlobe = { [weak self] in self?.presenter?.routeToGlobe() }
     }
     
     //MARK: - Display network error
-    private func alertError(_ error: RequestError) {
-        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+    private func alertError(_ error: String) {
+        let alert = UIAlertController(title: Constant.requestError, message: error, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
-        Task { present(alert, animated: true) }
+        present(alert, animated: true)
     }
 }
 
@@ -100,11 +113,11 @@ private extension MainViewController {
             let section: NSCollectionLayoutSection
             
             if sectionKind == .search {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.45), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 10, bottom: 15, trailing: 10)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.65))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.6))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
                 
                 section = NSCollectionLayoutSection(group: group)
@@ -112,6 +125,7 @@ private extension MainViewController {
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .collection {
+                
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
@@ -124,10 +138,10 @@ private extension MainViewController {
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .categories {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(115), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(115), heightDimension: .absolute(31))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .estimated(31))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
@@ -147,7 +161,7 @@ private extension MainViewController {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.65))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalHeight(0.45))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
@@ -164,7 +178,7 @@ private extension MainViewController {
                 section.boundarySupplementaryItems = [sectionHeader]
                 
             } else {
-                fatalError("Unkown section")
+                fatalError(Constant.unknownSection)
             }
             
             return section
@@ -189,46 +203,42 @@ private extension MainViewController {
     
     //MARK: Regisration
     func registrationSearch() -> UICollectionView.CellRegistration<PopularCell, Doc> {
-        return UICollectionView.CellRegistration<PopularCell, Doc> { [weak self] cell, indexPath, itemIdentifier in
-            guard let model = self?.presenter?.getSearchData() else { return }
-            cell.configure(category: model[indexPath.row])
+        return UICollectionView.CellRegistration<PopularCell, Doc> { cell, indexPath, searchModel in
+            cell.configure(category: searchModel)
         }
     }
     
     func registrationCollection() -> UICollectionView.CellRegistration<CollectionCell, DocCollect> {
-        return UICollectionView.CellRegistration<CollectionCell, DocCollect> { [weak self] cell, indexPath, itemIdentifier in
-            guard let model = self?.presenter?.getColletionModel() else { return }
-            cell.configure(model[indexPath.row])
+        return UICollectionView.CellRegistration<CollectionCell, DocCollect> { cell, indexPath, collectionItem in
+            cell.configure(collectionItem)
         }
     }
     
     func registrationCategories() -> UICollectionView.CellRegistration<CategoriesCell, CategoryModel> {
-        return UICollectionView.CellRegistration<CategoriesCell, CategoryModel> { [weak self] cell, indexPath, itemIdentifier in
-            guard let model = self?.presenter?.getCategories() else { return }
-            cell.configure(category: model[indexPath.row])
+        return UICollectionView.CellRegistration<CategoriesCell, CategoryModel> { cell, indexPath, categoriesModel in
+            cell.configure(category: categoriesModel)
             cell.clipsToBounds = true
             cell.layer.cornerRadius = 8
         }
     }
     
     func registrationMostPopular() -> UICollectionView.CellRegistration<PopularCell, Doc> {
-        return UICollectionView.CellRegistration<PopularCell, Doc> { [weak self] cell, indexPath, itemIdentifier in
-            guard let model = self?.presenter?.getMostPopular() else { return }
-            cell.configure(category: model[indexPath.row])
+        return UICollectionView.CellRegistration<PopularCell, Doc> { cell, indexPath, popularModel in
+            cell.configure(category: popularModel)
         }
     }
     
     func registrationCagegoryHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
             header.callBackButton = { [weak self] in self?.presenter?.routeToMovieList() }
-            header.configure(header: "Categories")
+            header.configure(header: Constant.categories)
         }
     }
     
     func registrationPopularHeader() -> UICollectionView.SupplementaryRegistration<HeaderCell> {
         return UICollectionView.SupplementaryRegistration<HeaderCell> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
             header.callBackButton = { [weak self] in self?.presenter?.routeToPupularMovie() }
-            header.configure(header: "Most popular")
+            header.configure(header: Constant.topRate)
         }
     }
     
@@ -299,23 +309,29 @@ private extension MainViewController {
             let itemSearch = presenter.getSearchData().map { ItemMain(search: $0)}
             snapshot.appendItems(itemSearch, toSection: .search)
         }
-        dataSource?.apply(snapshot, animatingDifferences: true)
+        
+        collectionView.performBatchUpdates {
+            dataSource?.apply(snapshot, animatingDifferences: true)
+        }
+        
     }
 }
 
 //MARK: - Extension UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         guard let sectionKind = Section(rawValue: indexPath.section) else { return }
         
         switch sectionKind {
         case .categories:
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            let value = presenter?.getCategories()[indexPath.row].category ?? ""
-            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: value)!)
+            let categoryElement = presenter?.getCategories()[indexPath.row].category ?? Constant.none
+            presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: categoryElement) ?? .all)
+        case .collection:
+            presenter?.routeToCollection(indexPath.row)
         default:
-            presenter?.routeToDetail()
+            presenter?.routeToDetail(index: indexPath.row)
         }
     }
 }
@@ -323,18 +339,20 @@ extension MainViewController: UICollectionViewDelegate {
 
 //MARK: - Extension MainViewProtocol
 extension MainViewController: MainViewProtocol {
+    
     func updateUI() {
         Task { applySnapshot() }
     }
     
-    func displayRequestError(error: RequestError) {
-        alertError(error)
+    func displayRequestError(error: String) {
+        Task { alertError(error) }
     }
 }
 
 
 //MARK: - Extension UITextFieldDelegate
 extension MainViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text else { return false }
         presenter?.fetchSearchRequest(text)
@@ -342,7 +360,57 @@ extension MainViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        presenter?.fetchSearchRequest("")
+        presenter?.fetchSearchRequest(Constant.none)
         return true
+    }
+}
+
+
+//MARK: - Extension CLLocationManagerDelegate
+extension MainViewController: CLLocationManagerDelegate {
+    
+    //MARK: Get current city name from location
+    private func makeGeoDecoderLocation(_ location: CLLocation, completion: @escaping (String) -> Void) {
+        let geocoder = CLGeocoder()
+        let locale = Locale(identifier: Constant.localeID)
+        
+        geocoder.reverseGeocodeLocation(location, preferredLocale: locale) { [weak self] (placemarks, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                self.alertError("\(Constant.geoError) \(error.localizedDescription)")
+                return
+            }
+            
+            guard let placemark = placemarks?.first else {
+                self.alertError(Constant.cityNotFoundError)
+                return
+            }
+            
+            if let city = placemark.locality {
+                completion(city)
+            } else {
+                self.alertError(Constant.cityNotFoundError)
+            }
+        }
+    }
+    
+    
+    //MARK: Location default methoods
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        coreLocation.startUpdatingLocation()
+        let lat = location.coordinate.latitude
+        let lon = location.coordinate.longitude
+        var currentCity = Constant.none
+        makeGeoDecoderLocation(location) { [weak self] in
+            currentCity = $0
+            self?.presenter?.sendMyLocation(lat: lat, lon: lon, cityName: currentCity)
+            self?.coreLocation.stopUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        alertError("\(Constant.localeError) \(error.localizedDescription)")
     }
 }

@@ -21,7 +21,7 @@ extension MovieClient {
         guard let url = urlComponents.url else { return .failure(.invalidURL)}
         
         var request = URLRequest(url: url)
-        request.httpMethod = endpoint.method.rawValue
+        request.httpMethod = endpoint.method
         request.allHTTPHeaderFields = endpoint.header
         
         if let body = endpoint.body {
@@ -32,7 +32,7 @@ extension MovieClient {
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let response = response as? HTTPURLResponse else { return .failure(.noResponse)}
-            
+          
             switch response.statusCode {
                 
             case 200...299:
