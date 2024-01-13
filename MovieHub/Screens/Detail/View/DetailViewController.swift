@@ -103,6 +103,7 @@ final class DetailViewController: UIViewController {
         button.layer.cornerRadius = 24
         button.clipsToBounds = true
         button.backgroundColor = .primarySoft
+        button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -270,7 +271,27 @@ final class DetailViewController: UIViewController {
     private func tapHeartButton() {
         movieNavigationBar.callBackButton = { [weak self] in self?.presenter?.checkFavorites() }
     }
+    
+    
+    func showShare() {
+        guard let presenter = presenter, let model = presenter.getDetailData() else { return }
+        let shareView = ShareView(frame: view.bounds, movieID: String(describing: model.id))
+        
+        view.addSubview(shareView)
+        shareView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        shareView.animate()
+    }
+    
+    @objc func shareButtonTapped() {
+        showShare()
+    }
 }
+
+
+
+
 
 
 //MARK: - Extension DetailViewProtocol

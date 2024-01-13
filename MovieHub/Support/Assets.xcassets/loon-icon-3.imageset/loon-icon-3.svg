@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="400" height="400" viewBox="0 0 400 400" xml:space="preserve">
+<desc>Created with Fabric.js 3.6.2</desc>
+<defs>
+</defs>
+<g transform="matrix(3.33 0 0 3.33 200 200)" id="imessage"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(87,187,99); fill-rule: evenodd; opacity: 1;"  transform=" translate(-30, -30)" d="M 30 60 C 46.5685433 60 60 46.5685433 60 30 C 60 13.4314567 46.5685433 0 30 0 C 13.4314567 0 0 13.4314567 0 30 C 0 46.5685433 13.4314567 60 30 60 Z" stroke-linecap="round" />
+</g>
+<g transform="matrix(3.33 0 0 3.33 198.08 200)" id="imessage"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: evenodd; opacity: 1;"  transform=" translate(-29.42, -30)" d="M 29.4230769 16.1538462 C 20.8202421 16.1538462 13.8461538 21.7226379 13.8461538 28.5921472 C 13.8461538 32.0826382 15.6491159 35.2353789 18.5493612 37.494217 C 19.3736159 42.0067437 15.3903771 42.8406691 15.3903771 42.8406691 C 15.3903771 42.8406691 14.8929664 43.4770937 16.1288923 43.7121559 C 21.1033041 44.6187809 25.125764 40.627874 25.125764 40.627874 L 25.1303247 40.5479044 C 26.4945558 40.8596041 27.933581 41.0301453 29.4230769 41.0301453 C 38.0262158 41.0301453 45 35.4613536 45 28.5918443 C 45 21.722335 38.0262158 16.1538462 29.4230769 16.1538462 L 29.4230769 16.1538462 Z" stroke-linecap="round" />
+</g>
+</svg>
