@@ -16,6 +16,7 @@
 		E1DFE63C2B51DA1F00358355 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE63B2B51DA1F00358355 /* EditProfileViewController.swift */; };
 		E1DFE63E2B51DBF000358355 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE63D2B51DBF000358355 /* AboutUsViewController.swift */; };
 		E1DFE6402B51DC0400358355 /* PoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE63F2B51DC0400358355 /* PoliciesViewController.swift */; };
+		E1DFE6422B528B3900358355 /*  CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6412B528B3900358355 /*  CustomTextField.swift */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
 		EB03F5A52B440C9F004BAE47 /* PersonDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */; };
@@ -179,6 +180,7 @@
 		E1DFE63B2B51DA1F00358355 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		E1DFE63D2B51DBF000358355 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		E1DFE63F2B51DC0400358355 /* PoliciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoliciesViewController.swift; sourceTree = "<group>"; };
+		E1DFE6412B528B3900358355 /*  CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " CustomTextField.swift"; sourceTree = "<group>"; };
 		EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailRouter.swift; sourceTree = "<group>"; };
 		EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailInteractor.swift; sourceTree = "<group>"; };
 		EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailPresenter.swift; sourceTree = "<group>"; };
@@ -368,6 +370,14 @@
 				D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E1DFE6432B528B7000358355 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE6412B528B3900358355 /*  CustomTextField.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		EB03F59A2B440C57004BAE47 /* PersonDetail */ = {
@@ -1412,6 +1422,7 @@
 				EBE76C842B39767C0053E522 /* ProfileViewController.swift */,
 				E1DFE63D2B51DBF000358355 /* AboutUsViewController.swift */,
 				E1DFE63F2B51DC0400358355 /* PoliciesViewController.swift */,
+				E1DFE6432B528B7000358355 /* Views */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1729,6 +1740,7 @@
 				EBE76C402B396FDD0053E522 /* PopularProtocols.swift in Sources */,
 				EBE76C8D2B3977430053E522 /* ChristmasViewController.swift in Sources */,
 				EBBA2B602B4D97A700D55EF6 /* DetailCinemaViewController.swift in Sources */,
+				E1DFE6422B528B3900358355 /*  CustomTextField.swift in Sources */,
 				EB0945F82B46D9A200331EAD /* AwardCell.swift in Sources */,
 				EBBA2B452B4D96B300D55EF6 /* GlobeRouter.swift in Sources */,
 				EBA5FE192B4E7B7100E85872 /* SectionMovie.swift in Sources */,
