@@ -56,7 +56,7 @@ final class SearchViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .primaryDark
-        
+        navigationController?.setupNavigationBar()
         setupSearchBar()
         view.addSubview(collectionView)
         view.addSubview(categoriesMenuCollectionView)
@@ -64,9 +64,9 @@ final class SearchViewController: UIViewController {
     
     // MARK: - UISearchController
     private func setupSearchBar() {
-        guard let navigationController else { return }
+        
         searchController = UISearchController.makeCustomSearchController(
-            navigationController: navigationController, placeholder: "Поиск по актерам и названию фильма...",
+            placeholder: "Type title, categories, years, etc",
             delegate: self
         )
         navigationItem.searchController = searchController
