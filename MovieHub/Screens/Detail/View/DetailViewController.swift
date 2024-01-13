@@ -221,7 +221,7 @@ final class DetailViewController: UIViewController {
         descriptionStack.snp.makeConstraints { make in
             make.top.equalTo(trailerButton.snp.bottom).offset(24)
             make.horizontalEdges.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(100)
+            make.bottom.equalToSuperview().inset(90)
         }
     }
     

@@ -91,7 +91,7 @@ extension CollectionViewController: UICollectionViewDataSource {
 extension CollectionViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.routeToDetail()
+        presenter?.routeToDetail(index: indexPath.row)
     }
 }
 

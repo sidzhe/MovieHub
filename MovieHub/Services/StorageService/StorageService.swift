@@ -124,6 +124,7 @@ final class StorageService: StorageServiceProtool {
             let existingId = try viewContext.fetch(fetchRequest)
             if let existingId = existingId.first {
                 deleteWish(id: existingId)
+                print("TYT")
             } else {
                 addWish(id: id)
             }

@@ -20,7 +20,7 @@ protocol MovieListPresenterProtocol: AnyObject {
     func getMovies() -> [Doc]
     func getCategories() -> [CategoryModel]
     func selectedCategory(_ index: Int, genre: MovieGenre)
-    func routeToDetail()
+    func routeToDetail(index: Int)
 }
 
 /// PRESENTER -> INTERACTOR
@@ -40,5 +40,5 @@ protocol MovieListInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol MovieListRouterProtocol: AnyObject {
-    func pushToDetail(from view: MovieListViewProtocol?)
+    func pushToDetail(from view: MovieListViewProtocol?, detailId: Int)
 }
