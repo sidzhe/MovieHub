@@ -480,7 +480,6 @@ private extension ProfileViewController {
     }
     
     @objc func editProfileAction() {
-        let profileEditVC = EditProfileViewController()
-        navigationController?.pushViewController(profileEditVC, animated: true)
+        presenter?.routeToEditProfile()
     }
 }

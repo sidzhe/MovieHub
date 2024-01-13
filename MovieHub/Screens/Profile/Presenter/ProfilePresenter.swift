@@ -8,11 +8,17 @@
 import Foundation
 
 final class ProfilePresenter: ProfilePresenterProtocol {
-    
+
     //MARK: Properties
     weak var view: ProfileViewProtocol?
     var interactor: ProfileInteractorInputProtocol?
     var router: ProfileRouterProtocol?
+    
+    //MARK: Route
+    func routeToEditProfile() {
+        guard let view = view else { return }
+        router?.pushToEditProfile(from: view)
+    }
     
     func routeToPolicies() {
         guard let view = view else { return }
@@ -23,8 +29,7 @@ final class ProfilePresenter: ProfilePresenterProtocol {
         guard let view = view else { return }
         router?.pushToAboutUs(from: view)
     }
-    
-    
+
 }
 
 

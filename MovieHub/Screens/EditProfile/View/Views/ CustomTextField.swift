@@ -18,7 +18,7 @@ final class  CustomTextField: UIView {
         return view
     }()
     
-    private lazy var textField: UITextField = {
+    lazy var textField: UITextField = {
         let textField = UITextField()
         textField.textColor = .white
         textField.autocorrectionType = .no
@@ -28,7 +28,7 @@ final class  CustomTextField: UIView {
     
     lazy var infoBackgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .primaryDark
+        view.backgroundColor = .red
         view.layer.cornerRadius = 8
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -57,12 +57,12 @@ final class  CustomTextField: UIView {
     }
     
     private func setupSubviews(placeholder: String, labelText: String) {
-        addSubview(backgroundView)
-        backgroundView.addSubview(textField)
-        backgroundView.addSubview(infoBackgroundView)
-        infoBackgroundView.addSubview(infoLabel)
-        textField.placeholder = placeholder
-        infoLabel.text = labelText
+      addSubview(backgroundView)
+      backgroundView.addSubview(infoBackgroundView)
+      backgroundView.addSubview(textField)
+      infoBackgroundView.addSubview(infoLabel)
+      textField.placeholder = placeholder
+      infoLabel.text = labelText
     }
     
     private func setConstraints() {
