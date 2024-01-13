@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A030F782B4DCB2000D40940 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A030F762B4DCB2000D40940 /* UIView + Extension.swift */; };
 		0A030F792B4DCB2000D40940 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */; };
-		0AEB78232B4DD302009637D1 /* WishListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB78222B4DD301009637D1 /* WishListTableViewCell.swift */; };
+		0AEB78232B4DD302009637D1 /* WishListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB78222B4DD301009637D1 /* WishListCell.swift */; };
 		10F2EC503162D1756FC570F7 /* Pods_MovieHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
@@ -164,8 +164,7 @@
 /* Begin PBXFileReference section */
 		0A030F762B4DCB2000D40940 /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView + Extension.swift"; path = "MovieHub/Extension/UIView + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView + Extension.swift"; path = "MovieHub/Extension/UIStackView + Extension.swift"; sourceTree = SOURCE_ROOT; };
-		0AEB78222B4DD301009637D1 /* WishListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListTableViewCell.swift; sourceTree = "<group>"; };
-		15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGradient.swift; sourceTree = "<group>"; };
+		0AEB78222B4DD301009637D1 /* WishListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListCell.swift; sourceTree = "<group>"; };
 		661DA57DD8ABB2F02BAAC5C3 /* Pods-MovieHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.release.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.release.xcconfig"; sourceTree = "<group>"; };
 		7C2142BA46C1940226C00074 /* Pods-MovieHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.debug.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.debug.xcconfig"; sourceTree = "<group>"; };
 		D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,8 +345,7 @@
 		0AEB78212B4DD301009637D1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				15BF8FCA2B4DFE0D00532550 /* DetailGradient.swift */,
-				0AEB78222B4DD301009637D1 /* WishListTableViewCell.swift */,
+				0AEB78222B4DD301009637D1 /* WishListCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1772,7 +1770,7 @@
 				EB03F5A92B440CAC004BAE47 /* PersonDetailProtocols.swift in Sources */,
 				EBE76C932B3977B40053E522 /* ChristmasRouter.swift in Sources */,
 				EBBA2B7F2B4D98B800D55EF6 /* MapInteractor.swift in Sources */,
-				0AEB78232B4DD302009637D1 /* WishListTableViewCell.swift in Sources */,
+				0AEB78232B4DD302009637D1 /* WishListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

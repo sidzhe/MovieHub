@@ -31,6 +31,7 @@ final class DetailInteractor: DetailInteractorInputProtocol {
             switch result {
             case .success(let detail):
                 self?.detailData = detail
+                
                 self?.presenter?.updateUI()
             case .failure(let error):
                 self?.presenter?.getRequestError(error)
@@ -41,5 +42,11 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     //MARK: Check favorites from CD
     func checkFavorites(id: Int) {
         storageService.checkWish(id: id)
+    }
+    
+    //MARK: - Get favorites button state
+    func getFavoritesButtonState() -> Bool {
+        guard let id = Int(detailID) else { return  false }
+        return storageService.wishStateButton(id: id)
     }
 }

@@ -19,6 +19,7 @@ protocol DetailPresenterProtocol: AnyObject {
     var view: DetailViewProtocol? { get set }
     func getDetailData() -> DetailModel?
     func checkFavorites()
+    func getFavoritesButtonState() -> Bool
 }
 
 /// PRESENTER -> INTERACTOR
@@ -26,6 +27,7 @@ protocol DetailInteractorInputProtocol: AnyObject {
     var presenter: DetailInteractorOutputProtocol? { get set }
     var detailData: DetailModel? { get }
     func checkFavorites(id: Int)
+    func getFavoritesButtonState() -> Bool
 }
 
 /// INTERACTOR -> PRESENTER

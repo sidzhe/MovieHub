@@ -122,9 +122,10 @@ final class DetailViewController: UIViewController {
         setupView()
         setupLayout()
         tapHeartButton()
-        
+        setupStateFavoritesButton()
     }
-    //MARK: Methods
+    
+    //MARK: Setup UI
     private func setupView() {
         view.addSubview(movieNavigationBar)
         view.addSubview(scrollView)
@@ -268,7 +269,17 @@ final class DetailViewController: UIViewController {
     
     //MARK: Target heart button
     private func tapHeartButton() {
-        movieNavigationBar.callBackButton = { [weak self] in self?.presenter?.checkFavorites() }
+        movieNavigationBar.callBackButton = { [weak self] in
+            guard let presenter = self?.presenter else { return }
+            presenter.checkFavorites()
+        }
+    }
+    
+    //MARK: Set favorites button state
+    private func setupStateFavoritesButton() {
+        guard let presenter = presenter else { return }
+        let state = presenter.getFavoritesButtonState()
+        movieNavigationBar.stateHeartButton(state: state)
     }
 }
 

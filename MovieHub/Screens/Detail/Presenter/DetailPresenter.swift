@@ -25,6 +25,12 @@ final class DetailPresenter: DetailPresenterProtocol {
         guard let id = getDetailData()?.id else { return }
         interactor?.checkFavorites(id: id)
     }
+    
+    //MARK: - Get favorites button state
+    func getFavoritesButtonState() -> Bool {
+        guard let state = interactor?.getFavoritesButtonState() else { return false }
+        return state
+    }
 }
 
 
@@ -38,5 +44,4 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
     func getRequestError(_ error: RequestError) {
         view?.displayRequestError(error)
     }
-    
 }
