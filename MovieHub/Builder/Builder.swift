@@ -22,7 +22,7 @@ final class Builder {
     
     /// OnboardingVC
     static func createOnboarding() -> UIViewController {
-        let view = OnboardingViewController()
+        let view = OnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         let presenter = OnboardingPresenter()
         let interactor = OnboardingInteractor()
         let router = OnboardingRouter()

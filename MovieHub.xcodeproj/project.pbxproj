@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		638B362E2B5024A500D01D8E /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638B362D2B5024A500D01D8E /* TextViewController.swift */; };
+		63D273432B507B560092E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D273422B507B560092E5E3 /* Assets.xcassets */; };
 		0A030F782B4DCB2000D40940 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A030F762B4DCB2000D40940 /* UIView + Extension.swift */; };
 		0A030F792B4DCB2000D40940 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */; };
 		0AEB78232B4DD302009637D1 /* WishListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEB78222B4DD301009637D1 /* WishListCell.swift */; };
@@ -77,7 +79,6 @@
 		EB7610552B402EB200B4D5B2 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7610542B402EB200B4D5B2 /* TabBarView.swift */; };
 		EB8267612B38A1D50024BAAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267602B38A1D50024BAAE /* AppDelegate.swift */; };
 		EB8267632B38A1D50024BAAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267622B38A1D50024BAAE /* SceneDelegate.swift */; };
-		EB82676A2B38A1D50024BAAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8267692B38A1D50024BAAE /* Assets.xcassets */; };
 		EB82676D2B38A1D50024BAAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB82676B2B38A1D50024BAAE /* LaunchScreen.storyboard */; };
 		EB8267882B38AB110024BAAE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267872B38AB110024BAAE /* OnboardingViewController.swift */; };
 		EB82678A2B38AB9A0024BAAE /* OnboardingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8267892B38AB9A0024BAAE /* OnboardingProtocols.swift */; };
@@ -188,6 +189,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		638B362D2B5024A500D01D8E /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
+		63D273422B507B560092E5E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A030F762B4DCB2000D40940 /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView + Extension.swift"; path = "MovieHub/Extension/UIView + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIStackView + Extension.swift"; path = "MovieHub/Extension/UIStackView + Extension.swift"; sourceTree = SOURCE_ROOT; };
 		0AEB78222B4DD301009637D1 /* WishListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WishListCell.swift; sourceTree = "<group>"; };
@@ -261,7 +264,6 @@
 		EB82675D2B38A1D50024BAAE /* MovieHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8267602B38A1D50024BAAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB8267622B38A1D50024BAAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EB8267692B38A1D50024BAAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB82676C2B38A1D50024BAAE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB82676E2B38A1D50024BAAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB8267872B38AB110024BAAE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -773,8 +775,8 @@
 				EBF0D1582B4D9F650061BEA9 /* Animation */,
 				EB6CB2C22B3C205900DC30BC /* Fonts */,
 				EB6CB2BD2B3C1AEC00DC30BC /* Helpers */,
-				EB8267692B38A1D50024BAAE /* Assets.xcassets */,
 				EB82676B2B38A1D50024BAAE /* LaunchScreen.storyboard */,
+				63D273422B507B560092E5E3 /* Assets.xcassets */,
 				EB82676E2B38A1D50024BAAE /* Info.plist */,
 			);
 			path = Support;
@@ -956,6 +958,7 @@
 			isa = PBXGroup;
 			children = (
 				EB8267872B38AB110024BAAE /* OnboardingViewController.swift */,
+				638B362D2B5024A500D01D8E /* TextViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1787,6 +1790,7 @@
 			files = (
 				EB6CB2DA2B3C250600DC30BC /* Montserrat-Regular.ttf in Resources */,
 				EB6CB2D72B3C250600DC30BC /* Montserrat-Light.ttf in Resources */,
+				63D273432B507B560092E5E3 /* Assets.xcassets in Resources */,
 				EB6CB2D92B3C250600DC30BC /* Montserrat-Black.ttf in Resources */,
 				EB6CB2D62B3C250600DC30BC /* Montserrat-Bold.ttf in Resources */,
 				EBF0D15A2B4D9FA70061BEA9 /* animation.png in Resources */,
@@ -1796,7 +1800,6 @@
 				EB6CB2DD2B3C250600DC30BC /* Montserrat-Thin.ttf in Resources */,
 				EBDDEAB22B502D400075ED3F /* Localizable.strings in Resources */,
 				EB6CB2D82B3C250600DC30BC /* Montserrat-Medium.ttf in Resources */,
-				EB82676A2B38A1D50024BAAE /* Assets.xcassets in Resources */,
 				EB6CB2DC2B3C250600DC30BC /* Montserrat-ExtraLight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1864,6 +1867,7 @@
 				EB0945F42B46CC4100331EAD /* PersonItem.swift in Sources */,
 				EB369B242B3AC51D00BB4275 /* ColletionModel.swift in Sources */,
 				EB369B202B39D00F00BB4275 /* DetailModel.swift in Sources */,
+				638B362E2B5024A500D01D8E /* TextViewController.swift in Sources */,
 				EBE76C622B3972DB0053E522 /* WishlistPresenter.swift in Sources */,
 				EBBA2B752B4D985B00D55EF6 /* CityListModel.swift in Sources */,
 				EB9973DC2B529FF000D9EFC5 /* TrailerPresenter.swift in Sources */,
