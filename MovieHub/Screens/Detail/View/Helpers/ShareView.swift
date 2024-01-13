@@ -11,7 +11,7 @@ class ShareView: UIView {
     
     
     private let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-    private var text = String()
+    private var text: String?
     
     private let stack: UIStackView = {
         let stack = UIStackView()
@@ -62,6 +62,7 @@ class ShareView: UIView {
     
     init(frame: CGRect, movieID: String) {
         super.init(frame: frame)
+        text = movieID
         createShareButtons()
         setupView()
         setupLayout()
@@ -88,19 +89,19 @@ class ShareView: UIView {
         UIView.animate(withDuration: 0.5, animations: { self.alpha = 1 })
     }
     
-    #warning("Поправить отображение иконок приложений для отправки")
+//    #warning("Поправить отображение иконок приложений для отправки")
     func createShareButtons() {
         let shareService = ShareService()
         let apps = shareService.getAvailableApps()
-        apps.forEach {
+        apps.enumerated().forEach {
             let button = UIButton(type: .system)
-            button.setImage($0.icon.withRenderingMode(.alwaysTemplate), for: .normal)
+            button.setImage($0.element.icon.withRenderingMode(.alwaysOriginal), for: .normal)
             button.tintColor = .white
             button.imageView?.contentMode = .scaleAspectFill
             button.snp.makeConstraints {
                 $0.size.equalTo(CGSize(width: 49, height: 49))
             }
-            //            button.tag = $0.
+            button.tag = $0.offset
             button.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
             stack.addArrangedSubview(button)
         }
@@ -108,9 +109,11 @@ class ShareView: UIView {
     #warning("Дописать тут функцию")
     @objc
     private func shareTapped(_ sender: UIButton) {
-//        UIApplication.shared.open(sender.getUrl(text))
+        let shareService = ShareService()
+        let apps = shareService.getAvailableApps()
+        UIApplication.shared.open(apps.first!.getUrl("https://www.kinopoisk.ru/film/" + text!)!)
     }
-    
+                                      
     func setupLayout() {
         blurView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

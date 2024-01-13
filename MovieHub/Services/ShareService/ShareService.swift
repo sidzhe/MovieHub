@@ -13,12 +13,13 @@ final class ShareService {
     }
     
     func getAvailableApps() -> [App] {
-        App.allCases.filter {
-            guard let url = $0.getUrl("Проверка связи") else {
-                return false
-            }
-            return UIApplication.shared.canOpenURL(url)
-        }
+//        App.allCases.filter {
+//            guard let url = $0.getUrl("Проверка связи") else {
+//                return false
+//            }
+//            return UIApplication.shared.canOpenURL(url)
+//        }
+        return App.allCases
     }
 }
 
