@@ -15,7 +15,7 @@ final class SearchViewController: UIViewController {
     
     var searchController: UISearchController!
     let sections = SearchSectionData.shared.sectionsArray
-    var selectedCategory = "биография"
+    var selectedCategory = Constant.biography
     var searchDelayTimer: Timer?
     let searchDelayInterval: TimeInterval = 2
     
@@ -29,7 +29,6 @@ final class SearchViewController: UIViewController {
         let layout = createLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
@@ -66,7 +65,7 @@ final class SearchViewController: UIViewController {
     private func setupSearchBar() {
         guard let navigationController else { return }
         searchController = UISearchController.makeCustomSearchController(
-            navigationController: navigationController, placeholder: "Поиск по актерам и названию фильма...",
+            navigationController: navigationController, placeholder: Constant.searchByActors,
             delegate: self
         )
         navigationItem.searchController = searchController
@@ -74,8 +73,8 @@ final class SearchViewController: UIViewController {
     
     //MARK: - Display network error
     private func alertError(_ error: RequestError) {
-        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }

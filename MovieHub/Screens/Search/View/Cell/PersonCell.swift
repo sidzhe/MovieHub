@@ -10,7 +10,7 @@ import Kingfisher
 
 final class PersonCell: UICollectionViewCell {
     
-    static let identifier = "PersonCell"
+    static let identifier = Constant.personCell
     
     // MARK: - Views
     private lazy var personImageView: UIImageView = _personImageView
@@ -26,25 +26,25 @@ final class PersonCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     // MARK: - Method for setup data to elements in every cell
     func configure(person: DocPerson) {
         let urlString = URL(string: person.photo)
         
-        personImageView.kf.setImage(with: urlString, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: { [weak self] (_, _) in
-              self?.activityIndicator.startAnimating()
-            }, completionHandler: { [weak self] (_) in
-              self?.activityIndicator.stopAnimating()
-            })
+        personImageView.kf.setImage(with: urlString, placeholder: UIImage(named: Constant.placeholder), options: nil, progressBlock: { [weak self] (_, _) in
+            self?.activityIndicator.startAnimating()
+        }, completionHandler: { [weak self] (_) in
+            self?.activityIndicator.stopAnimating()
+        })
         
-        if person.name == "" {
+        if person.name == Constant.none {
             personName.text = person.enName
         } else {
             personName.text = person.name
         }
-       
+        
     }
     
     // MARK: - Subviews
@@ -93,7 +93,6 @@ private extension PersonCell {
     
     var _activityIndicator: UIActivityIndicatorView {
         let indicator = UIActivityIndicatorView(style: .medium)
-        indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
-      }
+    }
 }

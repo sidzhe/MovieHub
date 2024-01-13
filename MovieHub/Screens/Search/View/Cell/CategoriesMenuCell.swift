@@ -10,7 +10,7 @@ import SnapKit
 
 final class CategoriesMenuCell: UICollectionViewCell {
     
-    static let identifier = "CategoryCell"
+    static let identifier = Constant.categoryCell
     
     //MARK: UI Elements
     lazy var categoryLabel: UILabel = {
@@ -18,7 +18,6 @@ final class CategoriesMenuCell: UICollectionViewCell {
         label.textAlignment = .center
         label.textColor = .white
         label.font = UIFont.montserratMedium(size: 14)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -37,7 +36,7 @@ final class CategoriesMenuCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     //MARK: - Methods

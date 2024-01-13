@@ -21,13 +21,11 @@ final class OnboardingViewController: UIPageViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(nextButtonPressed))
         
         let nextImage = UIImageView()
-        nextImage.image = UIImage(systemName: "chevron.right")
+        nextImage.image = UIImage(systemName: Constant.chevronRight)
         nextImage.tintColor = .black
         nextImage.contentMode = .scaleAspectFit
-        nextImage.translatesAutoresizingMaskIntoConstraints = false
         
         let button = UIView()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(red: 0.071, green: 0.804, blue: 0.851, alpha: 1)
         button.layer.cornerRadius = 15
         button.isUserInteractionEnabled = true
@@ -49,9 +47,23 @@ final class OnboardingViewController: UIPageViewController {
         
         pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
         
-        let page1 = TextViewController(imageName: "Onboarding1", titleText: "WELCOME TO BEST MOVIES", buttonImage: "NextButton1", subtitleText: "Watch best movies just from your device without going outside.")
-        let page2 = TextViewController(imageName: "Onboarding2", titleText: "FIND MOVIE", buttonImage: "NextButton2", subtitleText: "Find movies that bring your mood.")
-        let page3 = TextViewController(imageName: "Onboarding3", titleText: "REAL TIME UPDATES", buttonImage: "NextButton3", subtitleText: "Movie information and updates movie trailer")
+        let page1 = TextViewController(
+            imageName: Constant.Onboarding1,
+            titleText: Constant.welcomeTo,
+            buttonImage: Constant.NextButton1,
+            subtitleText: Constant.watchBest)
+        
+        let page2 = TextViewController(
+            imageName: Constant.Onboarding2,
+            titleText: Constant.findMovie,
+            buttonImage: Constant.NextButton2,
+            subtitleText: Constant.findMovieForMood)
+        
+        let page3 = TextViewController(
+            imageName: Constant.Onboarding3,
+            titleText: Constant.realUpdates,
+            buttonImage: Constant.NextButton3,
+            subtitleText: Constant.infoAboutMovie)
         
         pageControl.numberOfPages = myControllers.count
         
@@ -61,7 +73,6 @@ final class OnboardingViewController: UIPageViewController {
         
         setViewControllers([myControllers[initialPage]], direction: .forward, animated: true, completion: nil)
         
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.currentPageIndicatorTintColor = .black
         pageControl.pageIndicatorTintColor = .systemGray2
         pageControl.numberOfPages = myControllers.count

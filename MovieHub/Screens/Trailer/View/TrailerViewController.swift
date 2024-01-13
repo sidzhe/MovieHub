@@ -195,7 +195,7 @@ extension TrailerViewController {
             let section: NSCollectionLayoutSection
             
             if sectionKind == .person {
-                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
                 let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .estimated(31))

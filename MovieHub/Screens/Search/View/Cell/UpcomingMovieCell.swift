@@ -10,15 +10,13 @@ import Kingfisher
 
 final class UpcomingMovieCell: UICollectionViewCell {
     
-    static let identifier = "UpcomingMovieCell"
+    static let identifier = Constant.upcomingMovieCell
     
     // MARK: - Views
-    
     private lazy var posterImageView: UIImageView = _posterImageView
     private lazy var activityIndicator: UIActivityIndicatorView = _activityIndicator
     private lazy var blurView: UIVisualEffectView = _blurView
     private lazy var starImage: UIImageView = _starImage
-    
     private lazy var yearImage: UIImageView = _calendarImage
     private lazy var movieLengthImage: UIImageView = _clockImage
     private lazy var categoryImage: UIImageView = _movieImage
@@ -90,27 +88,8 @@ final class UpcomingMovieCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
-    
-    // MARK: - For UpcomingMovie
-//    func configure(with upcomingMovie: Doc) {
-//
-//              let url = model.poster?.url ?? model.poster?.previewURL,
-//              let urlString = URL(string: url) else { return }
-//        
-//        posterImageView.kf.setImage(with: urlString, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: { [weak self] (_, _) in
-//              self?.activityIndicator.startAnimating()
-//            }, completionHandler: { [weak self] (_) in
-//              self?.activityIndicator.stopAnimating()
-//            })
-//        
-//        nameLabel.text = model.name ?? model.alternativeName
-//        yearLabel.text = model.year != nil ? "\(model.year!)" : "No Date"
-//        movieLengthLabel.text = "\(upcomingMovie.movieLength ?? 0) Minutes"
-//        categoryLabel.text = model.type?.capitalized ?? ""
-//        ratingLabel.text = String(format: "%.1f", (model.rating?.kp ?? model.rating?.imdb) as Double? ?? 0.0)
-//    }
     
     // MARK: - For SearchedMovie
     func configure(with searchedMovie: Doc) {
@@ -120,17 +99,17 @@ final class UpcomingMovieCell: UICollectionViewCell {
         
         let urlString = URL(string: url)
         
-        posterImageView.kf.setImage(with: urlString, placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: { [weak self] (_, _) in
+        posterImageView.kf.setImage(with: urlString, placeholder: UIImage(named: Constant.placeholder), options: nil, progressBlock: { [weak self] (_, _) in
               self?.activityIndicator.startAnimating()
             }, completionHandler: { [weak self] (_) in
               self?.activityIndicator.stopAnimating()
             })
         
         nameLabel.text = searchedMovie.name ?? searchedMovie.alternativeName
-        yearLabel.text = searchedMovie.year != nil ? "\(searchedMovie.year!)" : "No Data"
-        movieLengthLabel.text = "\(searchedMovie.movieLength ?? 0) Minutes"
-        categoryLabel.text = searchedMovie.type?.capitalized ?? ""
-        ratingLabel.text = String(format: "%.1f", (searchedMovie.rating?.kp ?? searchedMovie.rating?.imdb) as Double? ?? 0.0)
+        yearLabel.text = searchedMovie.year != nil ? "\(searchedMovie.year!)" : Constant.notData
+        movieLengthLabel.text = "\(searchedMovie.movieLength ?? 0) \(Constant.minutesBig)"
+        categoryLabel.text = searchedMovie.type?.capitalized ?? Constant.none
+        ratingLabel.text = String(format: Constant.format, (searchedMovie.rating?.kp ?? searchedMovie.rating?.imdb) as Double? ?? 0.0)
     }
     
     // MARK: - Private methods
@@ -199,7 +178,6 @@ private extension UpcomingMovieCell {
     
     var _activityIndicator: UIActivityIndicatorView {
         let indicator = UIActivityIndicatorView(style: .medium)
-        indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
       }
     
@@ -214,32 +192,31 @@ private extension UpcomingMovieCell {
     
     var _starImage: UIImageView {
         let view = UIImageView()
-        view.image = UIImage(systemName: "star.fill")
+        view.image = UIImage(systemName: Constant.starFill)
         view.tintColor = .primaryOrange
         return view
     }
     
     var _calendarImage: UIImageView {
         let view = UIImageView()
-        view.image = UIImage(named: "calendar")
+        view.image = .calendar
         return view
     }
     
     var _clockImage: UIImageView {
         let view = UIImageView()
-        view.image = UIImage(named: "clock")
+        view.image = .clock
         return view
     }
     
     var _movieImage: UIImageView {
         let view = UIImageView()
-        view.image = UIImage(named: "movie")
+        view.image = .movie
         return view
     }
     
     static func makeLabel(fontSize: CGFloat, textColor: UIColor) -> UILabel {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.textColor = textColor
         label.font = UIFont.montserratSemiBold(size: fontSize)

@@ -9,8 +9,8 @@ import UIKit
 
 final class SearchResultsViewController: UIViewController {
     
-    let sections = SearchResultSectionData.shared.sectionsArray
     
+    let sections = SearchResultSectionData.shared.sectionsArray
     var presenter: SearchResultPresenterProtocol?
     var parentNavigationController: UINavigationController?
     
@@ -23,13 +23,13 @@ final class SearchResultsViewController: UIViewController {
     }()
     
     init(navigationController: UINavigationController) {
-           self.parentNavigationController = navigationController
-           super.init(nibName: nil, bundle: nil)
-       }
-       
-       required init?(coder aDecoder: NSCoder) {
-           super.init(coder: aDecoder)
-       }
+        self.parentNavigationController = navigationController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     // MARK: - Life View Cycle
     override func viewDidLoad() {
@@ -51,8 +51,8 @@ final class SearchResultsViewController: UIViewController {
     
     //MARK: - Display network error
     private func alertError(_ error: RequestError) {
-        let alert = UIAlertController(title: "Request error", message: error.customMessage, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .destructive)
+        let alert = UIAlertController(title: Constant.requestError, message: error.customMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: Constant.ok, style: .destructive)
         alert.addAction(action)
         present(alert, animated: true)
     }
@@ -212,7 +212,7 @@ extension SearchResultsViewController: SearchResultViewProtocol {
 extension SearchResultsViewController {
     var _infoImageView: UIImageView {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "searchInfo")
+        imageView.image = .searchInfo
         imageView.isHidden = true
         return imageView
     }

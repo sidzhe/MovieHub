@@ -31,6 +31,7 @@ enum Constant {
     static let keyClearButton = "clearButton"
     static let keyName = "name"
     static let keyAdress = "adress"
+    static let keyState = "state"
     static let oscarRu = "Оскар"
     static let cannFest = "Каннский кинофестиваль"
     static let goldGlobe = "Золотой глобус"
@@ -50,10 +51,24 @@ enum Constant {
     static let heartFill = "heart.fill"
     static let heart = "heart"
     static let photoArtframe = "photo.artframe"
+    static let placeholder = "placeholder"
+    static let welcomeImage = "welcomeImage"
     
     static let movieListCellID = "MovieListCellID"
     static let traileCellId = "traileCellId"
+    static let personCell = "PersonCell"
+    static let categoryCell = "CategoryCell"
+    static let searchHeader = "SearchHeader"
+    static let upcomingMovieCell = "UpcomingMovieCell"
     static let persistentContainerName = "MovieHubStorage"
+    static let hide = "hide"
+    static let notData = "Not Data"
+    static let Onboarding1 = "Onboarding1"
+    static let Onboarding2 = "Onboarding2"
+    static let Onboarding3 = "Onboarding3"
+    static let NextButton1 = "NextButton1"
+    static let NextButton2 = "NextButton2"
+    static let NextButton3 = "NextButton3"
     
     static let fatalError = "Fatal Error"
     static let unknownSection = "Unknown section"
@@ -98,6 +113,15 @@ enum Constant {
     static let storyLine = "Сюжетная линия".localized()
     static let trailer = "Трейлер".localized()
     static let minutes = "минут".localized()
+    static let minutesBig = "Минут".localized()
     static let castAndCrew = "Актерский состав".localized()
     static let galery = "Галерея".localized()
+    static let biography = "Биография".localized()
+    static let searchByActors = "Поиск по актерам и названию фильма...".localized()
+    static let welcomeTo = "ДОБРО ПОЖАЛОВАТЬ В МИР КИНО".localized()
+    static let watchBest = "Смотрите лучшие фильмы прямо со своего устройства, не выходя на улицу".localized()
+    static let findMovie = "НАЙТИ ФИЛЬМ".localized()
+    static let findMovieForMood = "Найдите фильмы, которые поднимают вам настроение".localized()
+    static let realUpdates = "ОБНОВЛЕНИЯ В РЕАЛЬНОМ ВРЕМЕНИ".localized()
+    static let infoAboutMovie = "Информация о фильме и обновления трейлера фильма".localized()
 }

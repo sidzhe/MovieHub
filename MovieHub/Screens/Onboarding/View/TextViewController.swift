@@ -30,7 +30,7 @@ class TextViewController: UIViewController {
     
     let welcomeImage: UIImageView = {
         let image = UIImageView(frame: .zero)
-        image.image = UIImage(named: "welcomeImage")
+        image.image = UIImage(named: Constant.welcomeImage)
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -44,7 +44,7 @@ class TextViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constant.fatalError)
     }
     
     override func viewDidLoad() {

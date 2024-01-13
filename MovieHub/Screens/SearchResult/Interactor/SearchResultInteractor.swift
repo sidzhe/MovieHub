@@ -7,14 +7,14 @@
 import Foundation
 
 final class SearchResultInteractor: SearchResultInteractorInputProtocol {
-
+    
     //MARK: - Properties
     weak var presenter: SearchResultInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
     
     var searchPerson: PersonModel?
     var searchMovie: SearchModel?
-
+    
     //MARK: Init
     init(networkService: NetworkServiceProtool) {
         self.networkService = networkService
@@ -23,7 +23,7 @@ final class SearchResultInteractor: SearchResultInteractorInputProtocol {
     //MARK: Methods
     func requestPerson(name: String) {
         networkService.searchPerson(name) { [weak self] (result: (Result<PersonModel, RequestError>)) in
-                                                                  
+            
             guard let self else { return }
             switch result {
                 
