@@ -23,11 +23,11 @@ final class OnboardingViewController: UIPageViewController {
         
         let nextImage = UIImageView()
         nextImage.image = UIImage(systemName: "chevron.right")
-        nextImage.tintColor = .white
+        nextImage.tintColor = .black
         nextImage.contentMode = .scaleAspectFit
         nextImage.translatesAutoresizingMaskIntoConstraints = false
-        nextImage.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        nextImage.heightAnchor.constraint(equalToConstant: 25).isActive = true
+      //  nextImage.widthAnchor.constraint(equalToConstant: 25).isActive = true
+     //   nextImage.heightAnchor.constraint(equalToConstant: 25).isActive = true
         
         let button = UIView()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -70,9 +70,9 @@ final class OnboardingViewController: UIPageViewController {
         
         pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
         
-        let page1 = TextViewController(imageName: "Onboarding1", titleText: "Onboarding1", buttonImage: "NextButton1")
-        let page2 = TextViewController(imageName: "Onboarding2", titleText: "Onboarding2", buttonImage: "NextButton2")
-        let page3 = TextViewController(imageName: "Onboarding3", titleText: "Onboarding3", buttonImage: "NextButton3")
+        let page1 = TextViewController(imageName: "Onboarding1", titleText: "WELCOME TO BEST MOVIES", buttonImage: "NextButton1", subtitleText: "Watch best movies just from your device without going outside.")
+        let page2 = TextViewController(imageName: "Onboarding2", titleText: "FIND MOVIE", buttonImage: "NextButton2", subtitleText: "Find movies that bring your mood.")
+        let page3 = TextViewController(imageName: "Onboarding3", titleText: "REAL TIME UPDATES", buttonImage: "NextButton3", subtitleText: "Movie information and updates movie trailer")
         
         pageControl.numberOfPages = myControllers.count
         

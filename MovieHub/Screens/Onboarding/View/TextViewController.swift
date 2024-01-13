@@ -19,9 +19,20 @@ class TextViewController: UIViewController {
 //        button.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
 //        return button
 //    }()
+    let textLabel: UILabel = {
+        let view = UILabel()
+       // view.backgroundColor = .blue
+        view.numberOfLines = 0
+        view.backgroundColor = UIColor(red: 23/255, green: 24/255, blue: 36/255, alpha: 1)
+        view.textColor = .white
+        view.textAlignment = .center
+        view.font = .montserratRegular(size: 14)
+        return view
+    }()
     
     let label: UILabel = {
         let view = UILabel()
+      //  view.backgroundColor = .yellow
         view.backgroundColor = UIColor(red: 23/255, green: 24/255, blue: 36/255, alpha: 1)
         view.textColor = .white
         view.textAlignment = .center
@@ -31,6 +42,7 @@ class TextViewController: UIViewController {
     
      let welcomeImage: UIImageView = {
         let image = UIImageView(frame: .zero)
+      //   image.backgroundColor = .red
         image.image = UIImage(named: "welcomeImage")
         image.contentMode = .scaleAspectFit
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -43,10 +55,11 @@ class TextViewController: UIViewController {
 //        super.init(nibName: nil, bundle: nil)
 //    }
     
-    init(imageName: String, titleText: String, buttonImage: String) {
+    init(imageName: String, titleText: String, buttonImage: String, subtitleText: String) {
             super.init(nibName: nil, bundle: nil)
             welcomeImage.image = UIImage(named: imageName)
             label.text = titleText
+            textLabel.text = subtitleText
            // nextButton.setImage(UIImage(named: buttonImage), for: .normal)
         }
     
@@ -58,7 +71,7 @@ class TextViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(self.welcomeImage)
         view.addSubview(self.label)
-        //view.addSubview(self.nextButton)
+        view.addSubview(self.textLabel)
     }
     
     override func viewDidLayoutSubviews() {
@@ -74,17 +87,22 @@ class TextViewController: UIViewController {
 //                make.bottom.equalToSuperview().inset(80)
 //                make.height.width.equalTo(60)
 //            }
+        textLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview().inset(150)
+            make.height.equalTo(50)
+        }
     
             label.snp.makeConstraints { make in
                 make.horizontalEdges.equalToSuperview()
-            //    make.bottom.equalTo(nextButton).inset(70)
-                make.bottom.equalToSuperview().inset(170)
-                make.height.equalTo(100)
+                make.bottom.equalTo(textLabel).inset(50)
+            //    make.bottom.equalToSuperview().inset(200)
+                make.height.equalTo(50)
             }
     
             welcomeImage.snp.makeConstraints { make in
                 make.horizontalEdges.equalToSuperview()
-                make.bottom.equalTo(label).inset(120)
+                make.bottom.equalTo(label).inset(50)
                 make.top.equalToSuperview()
             }
         }
