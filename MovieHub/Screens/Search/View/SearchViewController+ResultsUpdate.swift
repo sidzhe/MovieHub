@@ -22,9 +22,8 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
-//        searchController.isActive = false
-//        collectionView.reloadData()
+        //        searchController.isActive = false
+        //        collectionView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
