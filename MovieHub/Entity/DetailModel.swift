@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - DetailModel
-struct DetailModel: Decodable {
+struct DetailModel: Hashable, Decodable {
     let id: Int?
     let externalId: ExternalID?
     let name, alternativeName: String?
@@ -45,25 +45,25 @@ struct DetailModel: Decodable {
 }
 
 // MARK: - Audience
-struct Audience: Decodable {
+struct Audience: Hashable, Decodable {
     let count: Int?
     let country: String?
 }
 
 // MARK: - Budget
-struct Budget: Decodable {
+struct Budget: Hashable, Decodable {
     let value: Int?
     let currency: String?
 }
 
 // MARK: - Fact
-struct Fact: Decodable {
+struct Fact: Hashable, Decodable {
     let value, type: String?
     let spoiler: Bool?
 }
 
 // MARK: - Fees
-struct Fees: Decodable {
+struct Fees: Hashable, Decodable {
     let world, usa: Budget?
 }
 
@@ -73,7 +73,7 @@ struct Logo: Hashable, Decodable {
 }
 
 // MARK: - Person
-struct Person: Decodable {
+struct Person: Hashable, Decodable {
     let id: Int?
     let photo: String?
     let name: String?
@@ -82,7 +82,7 @@ struct Person: Decodable {
 }
 
 // MARK: - Premiere
-struct Premiere: Decodable {
+struct Premiere: Hashable, Decodable {
     let world, russia: String?
 }
 

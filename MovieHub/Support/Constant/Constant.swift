@@ -52,6 +52,7 @@ enum Constant {
     static let photoArtframe = "photo.artframe"
     
     static let movieListCellID = "MovieListCellID"
+    static let traileCellId = "traileCellId"
     static let persistentContainerName = "MovieHubStorage"
     
     static let fatalError = "Fatal Error"
@@ -97,4 +98,6 @@ enum Constant {
     static let storyLine = "Сюжетная линия".localized()
     static let trailer = "Трейлер".localized()
     static let minutes = "минут".localized()
+    static let castAndCrew = "Актерский состав".localized()
+    static let galery = "Галерея".localized()
 }

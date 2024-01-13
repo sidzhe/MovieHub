@@ -95,6 +95,7 @@ final class DetailViewController: UIViewController {
         button.layer.cornerRadius = 24
         button.clipsToBounds = true
         button.backgroundColor = .primaryOrange
+        button.addTarget(self, action: #selector(tapTrailer), for: .touchUpInside)
         return button
     }()
     
@@ -280,6 +281,11 @@ final class DetailViewController: UIViewController {
         guard let presenter = presenter else { return }
         let state = presenter.getFavoritesButtonState()
         movieNavigationBar.stateHeartButton(state: state)
+    }
+    
+    //MARK: Tap trailer
+    @objc private func tapTrailer() {
+        presenter?.routeToTrailer()
     }
 }
 

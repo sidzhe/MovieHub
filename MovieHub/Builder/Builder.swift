@@ -242,4 +242,19 @@ final class Builder {
         interactor.presenter = presenter
         return view
     }
+    
+    /// TrailerVC
+    static func createTrailer(detailModel: DetailModel) -> UIViewController {
+        let view = TrailerViewController()
+        let presenter = TrailerPresenter()
+        let networkService = NetworkService()
+        let interactor = TrailerInteractor(networkService: networkService, detailModel: detailModel)
+//        let router = Trai()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+//        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
 }

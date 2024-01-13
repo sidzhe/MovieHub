@@ -31,6 +31,12 @@ final class DetailPresenter: DetailPresenterProtocol {
         guard let state = interactor?.getFavoritesButtonState() else { return false }
         return state
     }
+    
+    //MARK: Route to trailer
+    func routeToTrailer() {
+        guard let detailModel = interactor?.detailData else { return }
+        router?.pushToTrailer(from: view, detailModel: detailModel)
+    }
 }
 
 

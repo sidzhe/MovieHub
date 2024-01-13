@@ -20,6 +20,7 @@ protocol DetailPresenterProtocol: AnyObject {
     func getDetailData() -> DetailModel?
     func checkFavorites()
     func getFavoritesButtonState() -> Bool
+    func routeToTrailer()
 }
 
 /// PRESENTER -> INTERACTOR
@@ -38,5 +39,5 @@ protocol DetailInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol DetailRouterProtocol: AnyObject {
-    
+    func pushToTrailer(from view: DetailViewProtocol?, detailModel: DetailModel)
 }
