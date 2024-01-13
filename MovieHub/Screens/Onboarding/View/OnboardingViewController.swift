@@ -18,13 +18,53 @@ final class OnboardingViewController: UIPageViewController {
     let pageControl = UIPageControl() // external - not part of underlying pages
     let initialPage = 0
     
+    lazy var nextButton: UIView = {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(nextButtonPressed))
+        
+        let nextImage = UIImageView()
+        nextImage.image = UIImage(systemName: "chevron.right")
+        nextImage.tintColor = .white
+        nextImage.contentMode = .scaleAspectFit
+        nextImage.translatesAutoresizingMaskIntoConstraints = false
+        nextImage.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        nextImage.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        
+        let button = UIView()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        button.backgroundColor = UIColor(red: 0.071, green: 0.804, blue: 0.851, alpha: 1)
+        button.layer.cornerRadius = 15
+        button.isUserInteractionEnabled = true
+        
+        button.addGestureRecognizer(tapGesture)
+        button.addSubview(nextImage)
+        
+        nextImage.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
+        nextImage.centerYAnchor.constraint(equalTo: button.centerYAnchor).isActive = true
+        
+        return button
+    }()
+    
+//    let nextButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(UIImage(named: "NextButton1.png"), for: .normal)
+//        button.imageView?.contentMode = .scaleAspectFit
+//       // button.translatesAutoresizingMaskIntoConstraints = false
+//        button.backgroundColor = .black
+//        button.layer.cornerRadius = 10
+//        button.clipsToBounds = true
+//        button.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
+//        return button
+//    }()
+    
     //MARK: UI Elements
 
     
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //   transitionStyle = .scroll
         dataSource = self
         delegate = self
         
@@ -51,10 +91,17 @@ final class OnboardingViewController: UIPageViewController {
         pageControl.currentPage = initialPage
         
         view.addSubview(pageControl)
+        view.addSubview(nextButton)
         
         pageControl.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(45)
             make.bottom.equalToSuperview().inset(80)
+        }
+        
+        nextButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(45)
+            make.bottom.equalToSuperview().inset(80)
+            make.height.width.equalTo(60)
         }
                 
         
@@ -176,6 +223,18 @@ extension OnboardingViewController: UIPageViewControllerDelegate {
 }
 
 extension OnboardingViewController {
+    
+    @objc func nextButtonPressed() {
+        if pageControl.currentPage < 2 {
+            pageControl.currentPage += 1
+            goToNextPage()
+        } else {
+            let homeVC = Builder.createTabBar()
+            homeVC.modalPresentationStyle = .fullScreen
+            homeVC.modalTransitionStyle = .crossDissolve
+            present(homeVC, animated: true)
+        }
+    }
     
     @objc func pageControlTapped(_ sender: UIPageControl) {
         setViewControllers([myControllers[sender.currentPage]], direction: .forward, animated: true, completion: nil)
