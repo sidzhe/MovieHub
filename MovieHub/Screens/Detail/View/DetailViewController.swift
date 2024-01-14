@@ -131,11 +131,10 @@ final class DetailViewController: UIViewController {
         setupView()
         setupLayout()
         tapHeartButton()
+        presenter?.addRecentMovie()
         navigationController?.setupNavigationBar()
         navigationItem.title = Constant.movieList
         setupNavigationBarButton()
-        
-        presenter?.addRecentMovie()
 
     }
     

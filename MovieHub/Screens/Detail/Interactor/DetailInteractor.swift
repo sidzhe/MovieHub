@@ -41,6 +41,7 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     
     //MARK: Check favorites from CD
     func checkFavorites(id: Int) {
+        print(id)
         storageService.checkWish(id: id)
     }
     
