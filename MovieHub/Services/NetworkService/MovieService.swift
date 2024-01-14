@@ -213,6 +213,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.path = endpoint.path
         let items = [URLQueryItem(name: "f", value: "{\"data.general.locale.name\":{\"$eq\":\"\(city)\"}}")]
         urlComponents.queryItems = items
+        print(urlComponents.url)
         return await sendRequest(urlComponents: urlComponents, endpoint: CinemaEndpoints.getMovieList, responseModel: T.self)
     }
     

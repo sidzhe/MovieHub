@@ -8,7 +8,7 @@
 import Foundation
 
 final class DetailPresenter: DetailPresenterProtocol {
-    
+
     //MARK: Properties
     weak var view: DetailViewProtocol?
     var interactor: DetailInteractorInputProtocol?
@@ -18,6 +18,11 @@ final class DetailPresenter: DetailPresenterProtocol {
     func getDetailData() -> DetailModel? {
         guard let model = interactor?.detailData else { return nil }
         return model
+    }
+    
+    func addRecentMovie() {
+        guard let id = getDetailData()?.id else { return }
+        interactor?.addRecentMovie(id: id)
     }
     
     //MARK: Check favorites

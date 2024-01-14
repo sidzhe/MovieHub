@@ -158,6 +158,18 @@ final class Builder {
         return view
     }
     
+    /// EditProfileVC
+    static func createEditProfile() -> UIViewController {
+        let view = EditProfileViewController()
+        let presenter = EditProfilePresenter()
+        let interactor = EditProfileInteractor()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        interactor.presenter = presenter
+        return view
+    }
+    
     /// ChristmasVC
     static func createChristmas() -> UIViewController {
         let view = ChristmasViewController()
@@ -269,11 +281,11 @@ final class Builder {
         let presenter = TrailerPresenter()
         let networkService = NetworkService()
         let interactor = TrailerInteractor(networkService: networkService, detailModel: detailModel)
-//        let router = Trai()
+        let router = TrailerRouter()
         view.presenter = presenter
         presenter.view = view
         presenter.interactor = interactor
-//        presenter.router = router
+        presenter.router = router
         interactor.presenter = presenter
         return view
     }

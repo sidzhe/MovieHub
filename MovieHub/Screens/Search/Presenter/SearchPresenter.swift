@@ -41,10 +41,11 @@ final class SearchPresenter: SearchPresenterProtocol {
         guard let model = interactor?.recentMovie?.docs else { return [Doc]() }
         return model
     }
-    
+
     //MARK: - Route
-    func routeToDetail(with movieId: String ) {
-        router?.pushToDetail(from: view, movieId: movieId)
+    func routeToDetail(with index: Int ) {
+        guard let id = getUpcomingMovie()[index].id else { return }
+        router?.pushToDetail(from: view, Id: id)
     }
 }
 

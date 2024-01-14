@@ -21,9 +21,8 @@ final class CollectionPresenter: CollectionPresenterProtocol {
     }
     
     //MARK: Route to
-    func routeToDetail(index: Int) {
-        guard let id = getCollectionModel()[index].id else { return }
-        router?.pushToDetail(from: view, detailId: id)
+    func routeToDetail() {
+        router?.pushToDetail(from: view)
     }
 }
 

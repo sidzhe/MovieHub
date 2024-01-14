@@ -68,9 +68,9 @@ extension SearchViewController: UICollectionViewDelegate {
         
         switch sectionKind {
         case .upcomingMovies:
-            presenter?.routeToDetail(with: String(indexPath.row))
+            presenter?.routeToDetail(with: indexPath.row)
         case .recentMovies:
-            presenter?.routeToDetail(with: String(indexPath.row))
+            presenter?.routeToDetail(with: indexPath.row)
         }
     }
 }

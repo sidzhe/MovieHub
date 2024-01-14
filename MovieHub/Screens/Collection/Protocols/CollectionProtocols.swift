@@ -18,7 +18,7 @@ protocol CollectionViewProtocol: AnyObject {
 protocol CollectionPresenterProtocol: AnyObject {
     var view: CollectionViewProtocol? { get set }
     func getCollectionModel() -> [Doc]
-    func routeToDetail(index: Int)
+    func routeToDetail()
 }
 
 /// PRESENTER -> INTERACTOR
@@ -35,5 +35,5 @@ protocol CollectionInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol CollectionRouterProtocol: AnyObject {
-    func pushToDetail(from view: CollectionViewProtocol?, detailId: Int)
+    func pushToDetail(from view: CollectionViewProtocol?)
 }

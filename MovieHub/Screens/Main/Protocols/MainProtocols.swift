@@ -27,6 +27,7 @@ protocol MainPresenterProtocol: AnyObject {
     func routeToMovieList()
     func routeToPupularMovie()
     func routeToDetail(index: Int)
+    func routeToDetailFromSearch(index: Int)
     func routeToWishList()
     func routeToGlobe()
     func routeToCollection(_ index: Int)
