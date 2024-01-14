@@ -10,9 +10,9 @@ import UIKit
 final class CollectionRouter: CollectionRouterProtocol {
    
     //MARK: Route to Detail
-    func pushToDetail(from view: CollectionViewProtocol?, detailId: Int) {
+    func pushToDetail(from view: CollectionViewProtocol?) {
         guard let view = view as? UIViewController else { return }
-        let detailVC = Builder.createDetail(detailID: detailId.description)
+        let detailVC = Builder.createDetail(detailID: "")
         view.navigationController?.pushViewController(detailVC, animated: true)
     }
 }

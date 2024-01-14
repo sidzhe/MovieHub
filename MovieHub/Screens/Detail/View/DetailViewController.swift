@@ -35,12 +35,6 @@ final class DetailViewController: UIViewController {
     private lazy var firstStroke: UIView = createStroke()
     private lazy var  secondStroke: UIView = createStroke()
     
-    private lazy var movieNavigationBar: MovieNavigationBar = {
-        let navigationBar = MovieNavigationBar(title: Constant.movieList, stateHeartButton: true)
-        navigationBar.navigationController = self.navigationController
-        return navigationBar
-    }()
-    
     private lazy var descriptionStack: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
@@ -116,19 +110,36 @@ final class DetailViewController: UIViewController {
         return button
     }()
     
+    private lazy var heartButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: Constant.heart), for: .normal)
+        button.setImage(UIImage(systemName: Constant.heartFill), for: .selected)
+        button.tintColor = .red
+        button.addTarget(self, action: #selector(tapHeart), for: .touchUpInside)
+        return button
+    }()
+    
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         setupLayout()
-        tapHeartButton()
-        setupStateFavoritesButton()
+        navigationController?.setupNavigationBar()
+        navigationItem.title = Constant.movieList
+        setupNavigationBarButton()
+        
+        presenter?.addRecentMovie()
+
     }
     
-    //MARK: Setup UI
+    private func setupNavigationBarButton() {
+        let heartBarButton = UIBarButtonItem(image: UIImage(systemName: Constant.heart), style: .plain, target: self, action: #selector(tapHeart))
+        navigationItem.rightBarButtonItem = heartBarButton
+    }
+    
+    //MARK: Methods
     private func setupView() {
-        view.addSubview(movieNavigationBar)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         view.backgroundColor = .primaryDark
@@ -162,15 +173,8 @@ final class DetailViewController: UIViewController {
     }
     
     private func setupLayout() {
-        movieNavigationBar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(45)
-        }
-        
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(movieNavigationBar.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.top.leading.trailing.bottom.equalToSuperview()
         }
         
         contentView.snp.makeConstraints { make in
@@ -223,7 +227,7 @@ final class DetailViewController: UIViewController {
         descriptionStack.snp.makeConstraints { make in
             make.top.equalTo(trailerButton.snp.bottom).offset(24)
             make.horizontalEdges.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(90)
+            make.bottom.equalToSuperview().inset(100)
         }
     }
     
@@ -269,21 +273,19 @@ final class DetailViewController: UIViewController {
     }
     
     //MARK: Target heart button
-    private func tapHeartButton() {
-        movieNavigationBar.callBackButton = { [weak self] in
-            guard let presenter = self?.presenter else { return }
-            presenter.checkFavorites()
+    @objc private func tapHeart() {
+        if let heartBarButton = navigationItem.rightBarButtonItem {
+            if heartBarButton.image == UIImage(systemName: Constant.heart) {
+                heartBarButton.image = UIImage(systemName: Constant.heartFill)
+                heartBarButton.tintColor = .red
+            } else {
+                heartBarButton.image = UIImage(systemName: Constant.heart)
+                heartBarButton.tintColor = .red
+            }
         }
+        presenter?.checkFavorites()
     }
     
-    //MARK: Set favorites button state
-    private func setupStateFavoritesButton() {
-        guard let presenter = presenter else { return }
-        let state = presenter.getFavoritesButtonState()
-        movieNavigationBar.stateHeartButton(state: state)
-    }
-    
-    //MARK: Tap trailer
     @objc private func tapTrailer() {
         presenter?.routeToTrailer()
     }

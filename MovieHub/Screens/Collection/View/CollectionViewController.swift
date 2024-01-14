@@ -37,7 +37,7 @@ final class CollectionViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        
+        navigationController?.setupNavigationBar()
     }
     
     //MARK: SetupViews
@@ -91,7 +91,7 @@ extension CollectionViewController: UICollectionViewDataSource {
 extension CollectionViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.routeToDetail(index: indexPath.row)
+        presenter?.routeToDetail()
     }
 }
 

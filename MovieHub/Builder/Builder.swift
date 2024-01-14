@@ -158,6 +158,18 @@ final class Builder {
         return view
     }
     
+    /// EditProfileVC
+    static func createEditProfile() -> UIViewController {
+        let view = EditProfileViewController()
+        let presenter = EditProfilePresenter()
+        let interactor = EditProfileInteractor()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        interactor.presenter = presenter
+        return view
+    }
+    
     /// ChristmasVC
     static func createChristmas() -> UIViewController {
         let view = ChristmasViewController()

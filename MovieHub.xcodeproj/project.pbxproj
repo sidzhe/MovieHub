@@ -34,6 +34,17 @@
 		E1DFE6332B51D5C200358355 /* SearchResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE62B2B51D5C200358355 /* SearchResultInteractor.swift */; };
 		E1DFE6342B51D5C200358355 /* SearchResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE62D2B51D5C200358355 /* SearchResultRouter.swift */; };
 		E1DFE6362B51D6B300358355 /* UISearchController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6352B51D6B300358355 /* UISearchController + Extension.swift */; };
+		E1DFE6552B53459E00358355 /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6532B53459E00358355 /* Extension + UIView.swift */; };
+		E1DFE6562B53459E00358355 /* Extension +UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6542B53459E00358355 /* Extension +UIStackView.swift */; };
+		E1DFE6642B5345BD00358355 /* EditProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6592B5345BD00358355 /* EditProfileModel.swift */; };
+		E1DFE6652B5345BD00358355 /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE65B2B5345BD00358355 /* EditProfilePresenter.swift */; };
+		E1DFE6662B5345BD00358355 /* EditProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE65D2B5345BD00358355 /* EditProfileInteractor.swift */; };
+		E1DFE6672B5345BD00358355 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE65F2B5345BD00358355 /* EditProfileViewController.swift */; };
+		E1DFE6682B5345BD00358355 /*  CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6612B5345BD00358355 /*  CustomTextField.swift */; };
+		E1DFE6692B5345BD00358355 /* EditProfileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6632B5345BD00358355 /* EditProfileProtocol.swift */; };
+		E1DFE66D2B5345E900358355 /* PoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */; };
+		E1DFE66E2B5345E900358355 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */; };
+		E1DFE6702B53475D00358355 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE66F2B53475D00358355 /* CustomNavigationBar.swift */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
 		EB03F5A52B440C9F004BAE47 /* PersonDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */; };
@@ -219,6 +230,17 @@
 		E1DFE62B2B51D5C200358355 /* SearchResultInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultInteractor.swift; sourceTree = "<group>"; };
 		E1DFE62D2B51D5C200358355 /* SearchResultRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultRouter.swift; sourceTree = "<group>"; };
 		E1DFE6352B51D6B300358355 /* UISearchController + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchController + Extension.swift"; sourceTree = "<group>"; };
+		E1DFE6532B53459E00358355 /* Extension + UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
+		E1DFE6542B53459E00358355 /* Extension +UIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension +UIStackView.swift"; sourceTree = "<group>"; };
+		E1DFE6592B5345BD00358355 /* EditProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileModel.swift; sourceTree = "<group>"; };
+		E1DFE65B2B5345BD00358355 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
+		E1DFE65D2B5345BD00358355 /* EditProfileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileInteractor.swift; sourceTree = "<group>"; };
+		E1DFE65F2B5345BD00358355 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		E1DFE6612B5345BD00358355 /*  CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " CustomTextField.swift"; sourceTree = "<group>"; };
+		E1DFE6632B5345BD00358355 /* EditProfileProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileProtocol.swift; sourceTree = "<group>"; };
+		E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliciesViewController.swift; sourceTree = "<group>"; };
+		E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		E1DFE66F2B53475D00358355 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailRouter.swift; sourceTree = "<group>"; };
 		EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailInteractor.swift; sourceTree = "<group>"; };
 		EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailPresenter.swift; sourceTree = "<group>"; };
@@ -560,6 +582,76 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		E1DFE6572B5345BD00358355 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE6582B5345BD00358355 /* Entity */,
+				E1DFE65A2B5345BD00358355 /* Presenter */,
+				E1DFE65C2B5345BD00358355 /* Inrteractor */,
+				E1DFE65E2B5345BD00358355 /* View */,
+				E1DFE6622B5345BD00358355 /* Protocols */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		E1DFE6582B5345BD00358355 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE6592B5345BD00358355 /* EditProfileModel.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		E1DFE65A2B5345BD00358355 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE65B2B5345BD00358355 /* EditProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E1DFE65C2B5345BD00358355 /* Inrteractor */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE65D2B5345BD00358355 /* EditProfileInteractor.swift */,
+			);
+			path = Inrteractor;
+			sourceTree = "<group>";
+		};
+		E1DFE65E2B5345BD00358355 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE65F2B5345BD00358355 /* EditProfileViewController.swift */,
+				E1DFE6602B5345BD00358355 /* Views */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E1DFE6602B5345BD00358355 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE6612B5345BD00358355 /*  CustomTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E1DFE6622B5345BD00358355 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE6632B5345BD00358355 /* EditProfileProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E1DFE66A2B5345E900358355 /* HelperProfile */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */,
+				E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */,
+			);
+			path = HelperProfile;
+			sourceTree = "<group>";
+		};
 		EB03F59A2B440C57004BAE47 /* PersonDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,12 +766,15 @@
 		EB6CB2BD2B3C1AEC00DC30BC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E1DFE6532B53459E00358355 /* Extension + UIView.swift */,
+				E1DFE6542B53459E00358355 /* Extension +UIStackView.swift */,
 				E1DFE6352B51D6B300358355 /* UISearchController + Extension.swift */,
 				0A030F772B4DCB2000D40940 /* UIStackView + Extension.swift */,
 				0A030F762B4DCB2000D40940 /* UIView + Extension.swift */,
 				EB6CB2BE2B3C1AFE00DC30BC /* Extension + UIColor.swift */,
 				EB6CB2C02B3C203A00DC30BC /* Extension + UIFont.swift */,
 				EBA9D2032B4F13BE00A50944 /* MovieNavigationBar.swift */,
+				E1DFE66F2B53475D00358355 /* CustomNavigationBar.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -801,6 +896,7 @@
 				E1DFE6202B51D5C200358355 /* SearchResult */,
 				EB82677C2B38A3D90024BAAE /* Wishlist */,
 				EB82677E2B38A3E50024BAAE /* Profile */,
+				E1DFE6572B5345BD00358355 /* EditProfile */,
 				EB82677F2B38A40C0024BAAE /* Christmas */,
 			);
 			path = Screens;
@@ -1621,6 +1717,7 @@
 		EBE76C792B3974970053E522 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E1DFE66A2B5345E900358355 /* HelperProfile */,
 				EBE76C842B39767C0053E522 /* ProfileViewController.swift */,
 			);
 			path = View;
@@ -1884,7 +1981,9 @@
 				EB9973F42B53D97B00D9EFC5 /* TrailerRouter.swift in Sources */,
 				EB9973DC2B529FF000D9EFC5 /* TrailerPresenter.swift in Sources */,
 				EBBA2B492B4D96D800D55EF6 /* GlobePresenter.swift in Sources */,
+				E1DFE6662B5345BD00358355 /* EditProfileInteractor.swift in Sources */,
 				EBDFCFB02B457AD000B1FE5E /* UpcomingModel.swift in Sources */,
+				E1DFE6702B53475D00358355 /* CustomNavigationBar.swift in Sources */,
 				EBBA2B5E2B4D979800D55EF6 /* DetailCinemaPresenter.swift in Sources */,
 				0A030F792B4DCB2000D40940 /* UIStackView + Extension.swift in Sources */,
 				E1DFE62F2B51D5C200358355 /* SearchResultPresenter.swift in Sources */,
@@ -1911,6 +2010,7 @@
 				EBCA67DD2B3C74B7008B59B9 /* PopularCell.swift in Sources */,
 				EBE76C7C2B39749F0053E522 /* ProfileProtocols.swift in Sources */,
 				EBE76C572B3972500053E522 /* DetailRouter.swift in Sources */,
+				E1DFE6642B5345BD00358355 /* EditProfileModel.swift in Sources */,
 				EBED14382B51AF230076D79B /* Extension + UIStackView.swift in Sources */,
 				EBA5FE1B2B4E7B7700E85872 /* ItemMovie.swift in Sources */,
 				EB6CB2DF2B3C26FB00DC30BC /* AccountView.swift in Sources */,
@@ -1938,6 +2038,7 @@
 				E1DFE61F2B51D57400358355 /* SearchRouter.swift in Sources */,
 				EBBA2B3B2B4D963A00D55EF6 /* MovieHubStorage.xcdatamodeld in Sources */,
 				EBA5FE262B4EB6C400E85872 /* CollectionRouter.swift in Sources */,
+				E1DFE6552B53459E00358355 /* Extension + UIView.swift in Sources */,
 				EBBA2B382B4D962800D55EF6 /* StorageService.swift in Sources */,
 				EB6CB2BF2B3C1AFE00DC30BC /* Extension + UIColor.swift in Sources */,
 				EBBA2B6D2B4D981E00D55EF6 /* CityListInteractor.swift in Sources */,
@@ -1966,6 +2067,8 @@
 				E1DFE6332B51D5C200358355 /* SearchResultInteractor.swift in Sources */,
 				EBE76C312B396EA20053E522 /* MovieListProtocols.swift in Sources */,
 				EBBA2B352B4D8ACF00D55EF6 /* CurrentCityEndpoints.swift in Sources */,
+				E1DFE6672B5345BD00358355 /* EditProfileViewController.swift in Sources */,
+				E1DFE6562B53459E00358355 /* Extension +UIStackView.swift in Sources */,
 				EBE76C392B396F9E0053E522 /* MovieListRouter.swift in Sources */,
 				E1DFE6132B51D57400358355 /* SearchSection.swift in Sources */,
 				EBE76C8B2B3976F70053E522 /* ProfileRouter.swift in Sources */,
@@ -1975,6 +2078,7 @@
 				EB290E872B512FED00746565 /* Constant.swift in Sources */,
 				EBBA2B4B2B4D96E900D55EF6 /* GlobeViewController.swift in Sources */,
 				EB369B112B398CA100BB4275 /* MovieEndpoints.swift in Sources */,
+				E1DFE6692B5345BD00358355 /* EditProfileProtocol.swift in Sources */,
 				EBE76C262B396DD90053E522 /* MainPresenter.swift in Sources */,
 				EBE76C422B39701C0053E522 /* PopularViewController.swift in Sources */,
 				EBE76C9E2B397A020053E522 /* TabBarPresenter.swift in Sources */,
@@ -2004,11 +2108,14 @@
 				EBE76C8F2B3977680053E522 /* ChristmasPresenter.swift in Sources */,
 				EBE76C872B3976A30053E522 /* ProfilePresenter.swift in Sources */,
 				EBBA2B562B4D973F00D55EF6 /* GlobeCinema.swift in Sources */,
+				E1DFE6652B5345BD00358355 /* EditProfilePresenter.swift in Sources */,
 				EBE76C242B396DA50053E522 /* MainViewController.swift in Sources */,
 				E1DFE61B2B51D57400358355 /* UpcomingMovieCell.swift in Sources */,
+				E1DFE66E2B5345E900358355 /* AboutUsViewController.swift in Sources */,
 				EB20D0812B430C0800B5E094 /* MovieView.swift in Sources */,
 				E1DFE6192B51D57400358355 /* CategoriesMenuCell.swift in Sources */,
 				E1DFE62E2B51D5C200358355 /* SearchResultSection.swift in Sources */,
+				E1DFE6682B5345BD00358355 /*  CustomTextField.swift in Sources */,
 				EBBA2B4E2B4D96FD00D55EF6 /* CinemaCell.swift in Sources */,
 				EBBA2B2E2B4D8A0800D55EF6 /* CinemaModel.swift in Sources */,
 				EBBA2B542B4D972F00D55EF6 /* GlobeItem.swift in Sources */,
@@ -2021,6 +2128,7 @@
 				E1DFE6182B51D57400358355 /* PersonCell.swift in Sources */,
 				EBBA2B6B2B4D981100D55EF6 /* CityListRouter.swift in Sources */,
 				EBBA2B502B4D970A00D55EF6 /* GlobeCustomCell.swift in Sources */,
+				E1DFE66D2B5345E900358355 /* PoliciesViewController.swift in Sources */,
 				EBBA2B522B4D971D00D55EF6 /* GlobeProtocols.swift in Sources */,
 				EB03F5A92B440CAC004BAE47 /* PersonDetailProtocols.swift in Sources */,
 				E1DFE61A2B51D57400358355 /* SearchHeader.swift in Sources */,

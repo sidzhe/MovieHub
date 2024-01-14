@@ -16,8 +16,7 @@ final class ChristmasInteractor: ChristmasInteractorInputProtocol {
                                  "1117379", "104927", "22328", "38905", "79440", "5942", "6133", "1828", "391755", "7114",
                                  "577558", "2737", "10074", "95194", "1646", "9262", "258636", "493768", "77331", "42664"]
     
-    var loadedMovie: DetailModel? { didSet { previousModel = oldValue }}
-    var previousModel: DetailModel?
+    var loadedMovie: DetailModel?
     
     //MARK: Init
     init(networkService: NetworkServiceProtool) {

@@ -64,6 +64,11 @@ final class MainPresenter: MainPresenterProtocol {
         router?.pushToDetail(from: view, detailId: id)
     }
     
+    func routeToDetailFromSearch(index: Int) {
+        guard let id = getSearchData()[index].id else { return }
+        router?.pushToDetail(from: view, detailId: id)
+    }
+    
     func routeToWishList() {
         router?.pushToWishList(from: view)
     }

@@ -24,7 +24,7 @@ protocol SearchPresenterProtocol: AnyObject {
     
     func fetchUpcomingMovie(with genre: String)
     
-    func routeToDetail(with movieId: String)
+    func routeToDetail(with index: Int)
 }
 
 /// PRESENTER -> INTERACTOR
@@ -50,6 +50,6 @@ protocol SearchInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol SearchRouterProtocol: AnyObject {
-    func pushToDetail(from view: SearchViewProtocol?, movieId: String)
+    func pushToDetail(from view: SearchViewProtocol?, Id: Int)
 
 }

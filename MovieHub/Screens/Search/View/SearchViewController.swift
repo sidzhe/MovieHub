@@ -42,7 +42,7 @@ final class SearchViewController: UIViewController {
         setDelegates()
         registerCollectionsCells()
         presenter?.fetchUpcomingMovie(with: selectedCategory)
-        
+        navigationController?.setupNavigationBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,7 +66,7 @@ final class SearchViewController: UIViewController {
         guard let navigationController else { return }
         searchController = UISearchController.makeCustomSearchController(
             navigationController: navigationController, placeholder: Constant.searchByActors,
-            delegate: self
+            delegate: self, searchBarDelegate: self
         )
         navigationItem.searchController = searchController
     }
