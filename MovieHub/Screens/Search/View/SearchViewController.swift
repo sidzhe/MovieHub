@@ -66,20 +66,8 @@ final class SearchViewController: UIViewController {
         guard let navigationController else { return }
         searchController = UISearchController.makeCustomSearchController(
             navigationController: navigationController, placeholder: Constant.searchByActors,
-            delegate: self
+            delegate: self, searchBarDelegate: self
         )
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.backgroundColor = .clear
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-
-        navigationController.navigationBar.standardAppearance = navBarAppearance
-        navigationController.navigationBar.scrollEdgeAppearance = navBarAppearance
-        
-
-        
-        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
     }
     
