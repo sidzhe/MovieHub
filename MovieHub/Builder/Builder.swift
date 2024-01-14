@@ -269,11 +269,11 @@ final class Builder {
         let presenter = TrailerPresenter()
         let networkService = NetworkService()
         let interactor = TrailerInteractor(networkService: networkService, detailModel: detailModel)
-//        let router = Trai()
+        let router = TrailerRouter()
         view.presenter = presenter
         presenter.view = view
         presenter.interactor = interactor
-//        presenter.router = router
+        presenter.router = router
         interactor.presenter = presenter
         return view
     }

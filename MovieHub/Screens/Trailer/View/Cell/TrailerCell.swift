@@ -23,7 +23,7 @@ final class TrailerCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont.montserratSemiBold(size: 14)
-        label.text = "Matt"
+        label.numberOfLines = 0
         return label
     }()
     
@@ -31,7 +31,6 @@ final class TrailerCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .primaryGray
         label.font = UIFont.montserratMedium(size: 10)
-        label.text = "Matt"
         return label
     }()
     
@@ -60,8 +59,8 @@ final class TrailerCell: UICollectionViewCell {
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.right.equalTo(personImage.snp.right).offset(8)
-            make.top.equalTo(personImage.snp.top).inset(3)
+            make.top.equalTo(personImage.snp.bottom).inset(-4)
+            make.center.equalToSuperview()
         }
         
         majorLabel.snp.makeConstraints { make in
@@ -72,9 +71,8 @@ final class TrailerCell: UICollectionViewCell {
     
     //MARK: Configure
     func configure(person: Person) {
-        nameLabel.text = person.name
-        majorLabel.text = person.profession
         guard let url = URL(string: person.photo ?? Constant.none) else { return }
         personImage.kf.setImage(with: url)
+        nameLabel.text = person.name
     }
 }

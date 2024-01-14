@@ -32,6 +32,12 @@ final class TrailerPresenter: TrailerPresenterProtocol {
               let output = model.components(separatedBy: "/").last else { return Constant.none }
         return output
     }
+    
+    //MARK: Route to detail
+    func rotueToDetail(at indexPath: IndexPath) {
+        guard let id = getPerson()?[indexPath.row].id else { return }
+        router?.pushToDetail(from: view, detailId: id)
+    }
 }
 
 

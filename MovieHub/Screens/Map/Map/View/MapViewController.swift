@@ -87,6 +87,7 @@ extension MapViewController: YMKClusterListener, YMKClusterTapListener {
     }
     
     func onClusterTap(with cluster: YMKCluster) -> Bool {
+        print("TPA TAP")
         return true
     }
 }
@@ -97,8 +98,8 @@ extension MapViewController: YMKMapObjectTapListener {
     func onMapObjectTap(with mapObject: YMKMapObject, point: YMKPoint) -> Bool {
         if let placemark = mapObject as? YMKPlacemarkMapObject {
             if let userData = placemark.userData as? [String: Any] {
-                if let name = userData[Constant.keyName] as? String,
-                   let adress = userData[Constant.adress] as? String {
+                if let name = userData["name"] as? String,
+                   let adress = userData["adress"] as? String {
                     alert(cinemaName: name, adress: adress)
                 }
             }
