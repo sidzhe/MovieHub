@@ -8,11 +8,11 @@
 import UIKit
 import Kingfisher
 
-final class WishListTableViewCell: UITableViewCell {
+final class WishListCell: UICollectionViewCell {
     
     //MARK: - Parameters
     var callBackButton: (() -> Void)?
-    static let reuseId = String(String(describing: WishListTableViewCell.self))
+    static let reuseId = String(String(describing: WishListCell.self))
     
     private let darkBackgroundView: UIView = {
         let view = UIView()
@@ -75,10 +75,12 @@ final class WishListTableViewCell: UITableViewCell {
     }()
     
     //MARK: - Init
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
         setViews()
         setConstraints()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -138,7 +140,7 @@ final class WishListTableViewCell: UITableViewCell {
 
 
 //MARK: - Constraints
-extension WishListTableViewCell {
+extension WishListCell {
     private func setConstraints() {
         darkBackgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))

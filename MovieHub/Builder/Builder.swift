@@ -22,7 +22,7 @@ final class Builder {
     
     /// OnboardingVC
     static func createOnboarding() -> UIViewController {
-        let view = OnboardingViewController()
+        let view = OnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         let presenter = OnboardingPresenter()
         let interactor = OnboardingInteractor()
         let router = OnboardingRouter()
@@ -114,8 +114,28 @@ final class Builder {
     static func createSearch() -> UIViewController {
         let view = SearchViewController()
         let presenter = SearchPresenter()
-        let interactor = SearchInteractor()
+        let networkService = NetworkService()
+        let storageService = StorageService()
+        let interactor = SearchInteractor(
+            networkService: networkService,
+            storageService: storageService
+        )
         let router = SearchRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
+    /// SearchResultVC
+    static func createSearchResult(with navigationController: UINavigationController) -> UIViewController {
+        let view = SearchResultsViewController(navigationController: navigationController)
+        let presenter = SearchResultPresenter()
+        let networkService = NetworkService()
+        let interactor = SearchResultInteractor(networkService: networkService)
+        let router = SearchResultRouter()
         view.presenter = presenter
         presenter.view = view
         presenter.interactor = interactor
@@ -251,6 +271,21 @@ final class Builder {
         presenter.view = view
         presenter.interactor = interactor
         presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
+    /// TrailerVC
+    static func createTrailer(detailModel: DetailModel) -> UIViewController {
+        let view = TrailerViewController()
+        let presenter = TrailerPresenter()
+        let networkService = NetworkService()
+        let interactor = TrailerInteractor(networkService: networkService, detailModel: detailModel)
+//        let router = Trai()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+//        presenter.router = router
         interactor.presenter = presenter
         return view
     }

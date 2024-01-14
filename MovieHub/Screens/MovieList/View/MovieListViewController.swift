@@ -169,7 +169,7 @@ extension MovieListViewController: UICollectionViewDelegate {
             let categoryElement = presenter?.getCategories()[indexPath.row].category ?? Constant.none
             presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: categoryElement) ?? .all)
         default:
-            presenter?.routeToDetail()
+            presenter?.routeToDetail(index: indexPath.row)
         }
     }
 }

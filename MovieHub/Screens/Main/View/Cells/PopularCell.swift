@@ -11,6 +11,8 @@ import Kingfisher
 
 final class PopularCell: UICollectionViewCell {
     
+    static let identifier = "PopularCell"
+    
     //MARK: UI Elements
     private lazy var posterImage: UIImageView = {
         let view = UIImageView()

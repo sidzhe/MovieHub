@@ -25,6 +25,18 @@ final class DetailPresenter: DetailPresenterProtocol {
         guard let id = getDetailData()?.id else { return }
         interactor?.checkFavorites(id: id)
     }
+    
+    //MARK: - Get favorites button state
+    func getFavoritesButtonState() -> Bool {
+        guard let state = interactor?.getFavoritesButtonState() else { return false }
+        return state
+    }
+    
+    //MARK: Route to trailer
+    func routeToTrailer() {
+        guard let detailModel = interactor?.detailData else { return }
+        router?.pushToTrailer(from: view, detailModel: detailModel)
+    }
 }
 
 
@@ -38,5 +50,4 @@ extension DetailPresenter: DetailInteractorOutputProtocol {
     func getRequestError(_ error: RequestError) {
         view?.displayRequestError(error)
     }
-    
 }

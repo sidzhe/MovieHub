@@ -32,8 +32,9 @@ final class MovieListPresenter: MovieListPresenterProtocol {
     }
     
     //MARK: Route to
-    func routeToDetail() {
-        router?.pushToDetail(from: view)
+    func routeToDetail(index: Int) {
+        guard let id = getMovies()[index].id else { return }
+        router?.pushToDetail(from: view, detailId: id)
     }
 }
 

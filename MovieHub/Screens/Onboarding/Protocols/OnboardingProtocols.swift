@@ -15,6 +15,7 @@ protocol OnboardingViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol OnboardingPresenterProtocol: AnyObject {
     var view: OnboardingViewProtocol? { get set }
+    func safeUserDefaults()
 }
 
 /// PRESENTER -> INTERACTOR

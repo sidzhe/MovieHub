@@ -14,6 +14,10 @@ final class OnboardingPresenter: OnboardingPresenterProtocol {
     var interactor: OnboardingInteractorInputProtocol?
     var router: OnboardingRouterProtocol?
     
+    func safeUserDefaults() {
+        let state = true
+        UserDefaults.standard.set(state, forKey: Constant.keyState)
+    }
     
 }
 

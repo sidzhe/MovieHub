@@ -19,7 +19,7 @@ protocol NetworkServiceProtool: AnyObject {
     func getDetailPerson(personId: [Int], completion: @escaping (Result<PersonDetalModel, RequestError>) -> Void)
     func getMovieWithPerson(personId: Int, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func getAwardsPerson(personId: Int, completion: @escaping (Result<AwardsModel, RequestError>) -> Void)
-    func getMovieUpcomingByGenres(genre: MovieGenre, completion: @escaping (Result<UpcomingModel, RequestError>) -> Void)
+    func getMovieUpcomingByGenres(genre: MovieGenre, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func getCityList(city: String, completion: @escaping (Result<CinemaModel, RequestError>) -> Void)
     func getCurrentCity(city: String, completion: @escaping (Result<CurrentCityModel, RequestError>) -> Void)
     func searchMovieById(identifiers: [String], completion: @escaping (Result<SearchModel, RequestError>) -> Void)
@@ -113,9 +113,9 @@ final class NetworkService: NetworkServiceProtool {
     }
     
     //MARK: Person awards
-    func getMovieUpcomingByGenres(genre: MovieGenre, completion: @escaping (Result<UpcomingModel, RequestError>) -> Void) {
+    func getMovieUpcomingByGenres(genre: MovieGenre, completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
         Task {
-            let result: Result<UpcomingModel, RequestError> = await movieService.movieUpcomingGenres(genre: genre.rawValue)
+            let result: Result<SearchModel, RequestError> = await movieService.movieUpcomingGenres(genre: genre.rawValue)
             completion(result)
         }
     }
@@ -138,9 +138,9 @@ final class NetworkService: NetworkServiceProtool {
     
     //MARK: Search movie by identificator
     func searchMovieById(identifiers: [String], completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
-           Task {
-               let result: Result<SearchModel, RequestError> = await movieService.searchMovieById(identifiers: identifiers)
-               completion(result)
-           }
-       }
+        Task {
+            let result: Result<SearchModel, RequestError> = await movieService.searchMovieById(identifiers: identifiers)
+            completion(result)
+        }
+    }
 }

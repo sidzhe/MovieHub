@@ -14,13 +14,14 @@ final class WishlistViewController: UIViewController {
     var presenter: WishlistPresenterProtocol?
     
     //MARK: UI Elements
-    private lazy var wishTableView: UITableView = {
-        let table = UITableView()
+    private lazy var wishColectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = .init(width: view.frame.width - 10, height: view.frame.height / 5)
+        let table = UICollectionView(frame: .zero, collectionViewLayout: layout)
         table.delegate = self
         table.dataSource = self
-        table.register(WishListTableViewCell.self, forCellReuseIdentifier: WishListTableViewCell.reuseId)
-        table.rowHeight = 107+16
-        table.separatorStyle = .none
+        table.register(WishListCell.self, forCellWithReuseIdentifier: WishListCell.reuseId)
         table.backgroundColor = .clear
         return table
     }()
@@ -34,20 +35,20 @@ final class WishlistViewController: UIViewController {
     }
     
     //MARK: ViewWillAppear
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         presenter?.updateModel()
         
     }
     
-    //MARK: - Methods
+    //MARK: - Setup UI
     private func setViews() {
         title = Constant.wishList
         view.backgroundColor = .primaryDark
-        view.addSubview(wishTableView)
+        view.addSubview(wishColectionView)
         
-        wishTableView.snp.makeConstraints { make in
+        wishColectionView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.bottom.equalToSuperview().inset(90)
@@ -63,31 +64,30 @@ final class WishlistViewController: UIViewController {
     }
 }
 
-//MARK: - Extension UITableViewDataSource
-extension WishlistViewController: UITableViewDataSource {
+//MARK: - Extension UICollectionViewDataSource
+extension WishlistViewController: UICollectionViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.getWishListData().count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WishListTableViewCell.reuseId, for: indexPath) as? WishListTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WishListCell.reuseId, for: indexPath) as? WishListCell
         let model = presenter?.getWishListData()
+        cell?.setCellData(with: model?[indexPath.row])
         cell?.callBackButton = { [weak self] in
-            self?.presenter?.checkWishElement(id: model?[indexPath.row].id ?? 0)
-            self?.presenter?.updateModel()
+            guard let self = self else { return }
+            self.presenter?.removeItem(at: indexPath)
         }
         
-        cell?.setCellData(with: model?[indexPath.row])
-        return cell ?? UITableViewCell()
+        return cell ?? UICollectionViewCell()
     }
 }
 
 
 //MARK: - Extension UITableViewDataSource
-extension WishlistViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension WishlistViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.routeToDetail(index: indexPath.row)
     }
 }
@@ -97,11 +97,17 @@ extension WishlistViewController: UITableViewDelegate {
 extension WishlistViewController: WishlistViewProtocol {
     
     func updateUI() {
-        Task { wishTableView.reloadData() }
+        Task { wishColectionView.reloadData() }
     }
     
     func displayRequestError(error: String) {
         Task { alertError(error) }
+    }
+    
+    func removeItemFromCollection(at indexPath: IndexPath) {
+        wishColectionView.performBatchUpdates { [weak self] in
+            self?.wishColectionView.deleteItems(at: [indexPath])
+        }
     }
 }
 

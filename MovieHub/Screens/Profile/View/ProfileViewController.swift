@@ -249,7 +249,9 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         drawSelf()
+        navigationController?.setupNavigationBar()
     }
+    
     @objc private func policyButtonTap() {
         presenter?.routeToPolicies()
     }

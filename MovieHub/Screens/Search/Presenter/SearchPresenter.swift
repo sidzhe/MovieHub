@@ -15,10 +15,47 @@ final class SearchPresenter: SearchPresenterProtocol {
     var router: SearchRouterProtocol?
     
     
+    //MARK: - Fetch
+    func fetchUpcomingMovie(with genre: String) {
+        interactor?.requestUpcomingMovie(category: MovieGenre(rawValue: genre) ?? .all)
+    }
+    
+    func fetchRecentMovie() {
+        guard let movieIds = interactor?.getRecentMovieIds() else { return }
+        interactor?.requestRecentMovies(with: movieIds)
+    }
+    
+    //MARK: - Get models
+    func getCategories() -> [String] {
+        guard let model = interactor?.categories else { return [] }
+        return model
+    }
+    
+    func getUpcomingMovie() -> [Doc] {
+        guard let model = interactor?.upcomingMovie?.docs else { return [Doc]() }
+        let filteredModel = model.filter { $0.poster?.url != "" || (($0.poster?.previewURL) != nil) }
+        return filteredModel
+    }
+    
+    func getRecentMovie() -> [Doc] {
+        guard let model = interactor?.recentMovie?.docs else { return [Doc]() }
+        return model
+    }
+    
+    //MARK: - Route
+    func routeToDetail(with movieId: String ) {
+        router?.pushToDetail(from: view, movieId: movieId)
+    }
 }
-
 
 //MARK: - Extension SearchInteractorOutputProtocol
 extension SearchPresenter: SearchInteractorOutputProtocol {
     
+    func getError(error: RequestError) {
+        view?.displayRequestError(error: error)
+    }
+    
+    func updateUI() {
+        view?.updateUI()
+    }
 }

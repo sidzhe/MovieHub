@@ -16,7 +16,7 @@ final class WishlistPresenter: WishlistPresenterProtocol {
     
     //MARK: - WishlistPresenterProtocol
     func getWishListData() -> [Doc] {
-        guard let model = interactor?.favoriteModel?.docs else { return [Doc]() }
+        guard let model = interactor?.favoriteModel else { return [Doc]() }
         return model
     }
     
@@ -25,8 +25,15 @@ final class WishlistPresenter: WishlistPresenterProtocol {
         interactor?.updateWishModel()
     }
     
-    func checkWishElement(id: Int) {
-        interactor?.checkWishElement(id: id)
+    //MARK: Remove item from collection model
+    func removeItem(at indexPath: IndexPath) {
+        var model = getWishListData()
+        guard model.count > indexPath.row else { return }
+        let removedItemId = model[indexPath.row].id ?? 0
+        interactor?.checkWishElement(id: removedItemId)
+        model.remove(at: indexPath.row)
+        interactor?.favoriteModel = model
+        view?.removeItemFromCollection(at: indexPath)
     }
     
     //MARK: Route to

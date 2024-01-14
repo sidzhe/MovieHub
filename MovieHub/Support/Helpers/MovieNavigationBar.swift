@@ -80,11 +80,11 @@ final class MovieNavigationBar: UIView {
         
         blurViewBack.contentView.addSubview(backButton)
         blurViewButton.contentView.addSubview(heartButton)
-
+        
         addSubview(navigationTitle)
         addSubview(blurViewBack)
         addSubview(blurViewButton)
-
+        
         navigationTitle.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
@@ -114,6 +114,10 @@ final class MovieNavigationBar: UIView {
     @objc private func tapHeart() {
         heartButton.isSelected.toggle()
         callBackButton?()
+    }
+    
+    func stateHeartButton(state: Bool) {
+        heartButton.isSelected = state
     }
 }
 

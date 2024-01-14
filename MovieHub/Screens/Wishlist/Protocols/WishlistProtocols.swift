@@ -12,6 +12,7 @@ protocol WishlistViewProtocol: AnyObject {
     var presenter: WishlistPresenterProtocol? { get set }
     func updateUI()
     func displayRequestError(error: String)
+    func removeItemFromCollection(at indexPath: IndexPath)
 }
 
 /// VIEW -> PRESENTER
@@ -19,14 +20,14 @@ protocol WishlistPresenterProtocol: AnyObject {
     var view: WishlistViewProtocol? { get set }
     func getWishListData() -> [Doc]
     func updateModel()
-    func checkWishElement(id: Int)
+    func removeItem(at indexPath: IndexPath) 
     func routeToDetail(index: Int)
 }
 
 /// PRESENTER -> INTERACTOR
 protocol WishlistInteractorInputProtocol: AnyObject {
     var presenter: WishlistInteractorOutputProtocol? { get set }
-    var favoriteModel: SearchModel? { get }
+    var favoriteModel: [Doc]? { get set }
     func updateWishModel()
     func checkWishElement(id: Int)
 }

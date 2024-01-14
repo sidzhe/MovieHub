@@ -14,7 +14,7 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
     private var networkService: NetworkServiceProtool
     private var storageService: StorageServiceProtool
     private var favoriteMoviesID: [String]?
-    var favoriteModel: SearchModel?
+    var favoriteModel: [Doc]?
     
     //MARK: - Init
     init(networkService: NetworkServiceProtool, storageService: StorageServiceProtool) {
@@ -40,7 +40,7 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
             switch result {
                 
             case .success(let movies):
-                self?.favoriteModel = movies
+                self?.favoriteModel = movies.docs
                 self?.presenter?.updateUI()
             case .failure(let eror):
                 self?.presenter?.showError(error: eror)

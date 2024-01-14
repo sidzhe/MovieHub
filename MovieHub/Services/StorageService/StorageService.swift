@@ -15,6 +15,7 @@ protocol StorageServiceProtool: AnyObject {
     func loadRecentModel() -> [String]
     func checkWish(id: Int)
     func getWishModel() -> [String]
+    func wishStateButton(id: Int) -> Bool
 }
 
 final class StorageService: StorageServiceProtool {
@@ -75,7 +76,7 @@ final class StorageService: StorageServiceProtool {
     
     func saveRecentModel(id: Int) {
         let fetchRequest = RecentModel.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "title == %@", id.description)
+        fetchRequest.predicate = NSPredicate(format: "recentId == %@", id.description)
         
         do {
             let existingId = try viewContext.fetch(fetchRequest)
@@ -113,6 +114,7 @@ final class StorageService: StorageServiceProtool {
     private func addWish(id: Int) {
         let wishElement = WishModel(context: viewContext)
         wishElement.wishId = id.description
+        wishElement.isSelected = true
         saveContext()
     }
     
@@ -137,11 +139,27 @@ final class StorageService: StorageServiceProtool {
         
         do {
             let result = try viewContext.fetch(currnetModel)
-            let output = result.map { $0.wishId ?? "" }
+            let output = result.map { $0.wishId ?? Constant.none }
             return output
         } catch let error {
             print("Wish load error \(error.localizedDescription)")
             return [String]()
         }
+    }
+    
+    func wishStateButton(id: Int) -> Bool {
+        let fetchRequest = WishModel.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "wishId == %@", id.description)
+        
+        do {
+            let existingId = try viewContext.fetch(fetchRequest)
+            if let existingId = existingId.first {
+                return existingId.isSelected
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        return false
     }
 }
