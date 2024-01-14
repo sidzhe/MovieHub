@@ -8,7 +8,7 @@
 import Foundation
 
 final class DetailInteractor: DetailInteractorInputProtocol {
-    
+
     //MARK: - Properties
     weak var presenter: DetailInteractorOutputProtocol?
     var detailData: DetailModel?
@@ -48,5 +48,10 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     func getFavoritesButtonState() -> Bool {
         guard let id = Int(detailID) else { return  false }
         return storageService.wishStateButton(id: id)
+    }
+    
+    //MARK: Check favorites from CD
+    func addRecentMovie(id: Int) {
+        storageService.saveRecentModel(id: id)
     }
 }

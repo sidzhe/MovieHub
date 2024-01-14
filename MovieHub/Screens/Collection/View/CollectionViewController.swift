@@ -37,7 +37,7 @@ final class CollectionViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        
+        navigationController?.setupNavigationBar()
     }
     
     //MARK: SetupViews

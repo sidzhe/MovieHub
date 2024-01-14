@@ -20,6 +20,7 @@ protocol DetailPresenterProtocol: AnyObject {
     func getDetailData() -> DetailModel?
     func checkFavorites()
     func getFavoritesButtonState() -> Bool
+    func addRecentMovie()
     func routeToTrailer()
 }
 
@@ -29,6 +30,7 @@ protocol DetailInteractorInputProtocol: AnyObject {
     var detailData: DetailModel? { get }
     func checkFavorites(id: Int)
     func getFavoritesButtonState() -> Bool
+    func addRecentMovie(id: Int)
 }
 
 /// INTERACTOR -> PRESENTER

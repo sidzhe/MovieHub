@@ -34,8 +34,9 @@ final class SearchResultPresenter: SearchResultPresenterProtocol {
     }
     
     //MARK: - RouteTo
-    func routeToDetail(with movieId: String) {
-        router?.pushToDetail(from: view, movieId: movieId)
+    func routeToDetail(index: Int ) {
+        guard let id = getSearchMovie()[index].id else { return }
+        router?.pushToDetail(from: view, id: id)
     }
     
     func routeToPersonDetail(with personId: Int) {

@@ -134,6 +134,8 @@ final class DetailViewController: UIViewController {
         navigationController?.setupNavigationBar()
         navigationItem.title = Constant.movieList
         setupNavigationBarButton()
+        
+        presenter?.addRecentMovie()
 
     }
     
