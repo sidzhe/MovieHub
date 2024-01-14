@@ -115,14 +115,14 @@ private extension MainViewController {
             if sectionKind == .search {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.45), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = .init(top: 0, leading: 10, bottom: 15, trailing: 10)
+                item.contentInsets = .init(top: 0, leading: 10, bottom: 15, trailing: 0)
                 
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.6))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.5))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
                 
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
-                section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
+                section.contentInsets = .init(top: 0, leading: 20, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .collection {
                 
@@ -330,6 +330,8 @@ extension MainViewController: UICollectionViewDelegate {
             presenter?.selectedCategory(indexPath.row, genre: MovieGenre(rawValue: categoryElement) ?? .all)
         case .collection:
             presenter?.routeToCollection(indexPath.row)
+        case .search:
+            presenter?.routeToDetailFromSearch(index: indexPath.row)
         default:
             presenter?.routeToDetail(index: indexPath.row)
         }

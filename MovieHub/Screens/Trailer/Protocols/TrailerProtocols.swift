@@ -20,6 +20,7 @@ protocol TrailerPresenterProtocol: AnyObject {
     func getPerson() -> [Person]?
     func getImages() -> [GaleryDoc]
     func makeTrailerId() -> String 
+    func rotueToDetail(at indexPath: IndexPath)
 }
 
 /// PRESENTER -> INTERACTOR
@@ -37,5 +38,5 @@ protocol TrailerInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol TrailerRouterProtocol: AnyObject {
-    
+    func pushToDetail(from view: TrailerViewProtocol?, detailId: Int)
 }

@@ -198,10 +198,10 @@ extension TrailerViewController {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .estimated(31))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .fractionalHeight(0.5))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 15
+                section.interGroupSpacing = 5
                 section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
                 section.contentInsets = .init(top: 8, leading: 16, bottom: 8, trailing: 16)
                 
@@ -295,7 +295,9 @@ extension TrailerViewController {
 
 //MARK: - UICollectionViewDelegate
 extension TrailerViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.rotueToDetail(at: indexPath)
+    }
 }
 
 

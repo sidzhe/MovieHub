@@ -36,7 +36,7 @@ final class TrailerHeader: UICollectionReusableView {
         
         header.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().inset(24)
+            make.left.equalToSuperview().inset(10)
         }
     }
     

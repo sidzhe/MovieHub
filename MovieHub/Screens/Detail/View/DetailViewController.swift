@@ -34,12 +34,6 @@ final class DetailViewController: UIViewController {
     
     private lazy var firstStroke: UIView = createStroke()
     private lazy var  secondStroke: UIView = createStroke()
-//    
-//    private lazy var movieNavigationBar: MovieNavigationBar = {
-//        let navigationBar = MovieNavigationBar(title: Constant.movieList, stateHeartButton: true)
-//        navigationBar.navigationController = self.navigationController
-//        return navigationBar
-//    }()
     
     private lazy var descriptionStack: UIStackView = {
         let view = UIStackView()
@@ -95,6 +89,7 @@ final class DetailViewController: UIViewController {
         button.layer.cornerRadius = 24
         button.clipsToBounds = true
         button.backgroundColor = .primaryOrange
+        button.addTarget(self, action: #selector(tapTrailer), for: .touchUpInside)
         return button
     }()
     
@@ -130,8 +125,6 @@ final class DetailViewController: UIViewController {
         
         setupView()
         setupLayout()
-        tapHeartButton()
-        presenter?.addRecentMovie()
         navigationController?.setupNavigationBar()
         navigationItem.title = Constant.movieList
         setupNavigationBarButton()
@@ -145,7 +138,6 @@ final class DetailViewController: UIViewController {
     
     //MARK: Methods
     private func setupView() {
-      //  view.addSubview(movieNavigationBar)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         view.backgroundColor = .primaryDark
@@ -179,14 +171,7 @@ final class DetailViewController: UIViewController {
     }
     
     private func setupLayout() {
-//        movieNavigationBar.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-//            make.horizontalEdges.equalToSuperview()
-//            make.height.equalTo(45)
-//        }
-        
         scrollView.snp.makeConstraints { make in
-//            make.top.equalTo(movieNavigationBar.snp.bottom)
             make.top.leading.trailing.bottom.equalToSuperview()
         }
         
@@ -286,20 +271,21 @@ final class DetailViewController: UIViewController {
     }
     
     //MARK: Target heart button
-    private func tapHeartButton() {
-//        movieNavigationBar.callBackButton = { [weak self] in self?.presenter?.checkFavorites() }
-    }
-    
     @objc private func tapHeart() {
         if let heartBarButton = navigationItem.rightBarButtonItem {
             if heartBarButton.image == UIImage(systemName: Constant.heart) {
                 heartBarButton.image = UIImage(systemName: Constant.heartFill)
+                heartBarButton.tintColor = .red
             } else {
                 heartBarButton.image = UIImage(systemName: Constant.heart)
+                heartBarButton.tintColor = .red
             }
         }
         presenter?.checkFavorites()
-      
+    }
+    
+    @objc private func tapTrailer() {
+        presenter?.routeToTrailer()
     }
 }
 
