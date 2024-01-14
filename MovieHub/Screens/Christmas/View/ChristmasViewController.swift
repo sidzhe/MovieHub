@@ -269,7 +269,7 @@ final class ChristmasViewController: UIViewController {
         
         movieView?.callBackButton = { [weak self] in
             self?.movieView?.alpha = 0
-            self?.presenter?.routeToDetailVC()
+            self?.presenter?.routeToDetail()
         }
     }
     

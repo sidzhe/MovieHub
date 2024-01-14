@@ -10,9 +10,9 @@ import UIKit
 final class ChristmasRouter: ChristmasRouterProtocol {
     
     //MARK: Route to Detail
-    func pushToDetailMovie(from view: ChristmasViewProtocol?) {
+    func pushToDetail(from view: ChristmasViewProtocol?, id: Int) {
         guard let view = view as? UIViewController else { return }
-        let detailVC = Builder.createPersonDetail(personId: 30056)
+        let detailVC = Builder.createDetail(detailID: id.description)
         view.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
