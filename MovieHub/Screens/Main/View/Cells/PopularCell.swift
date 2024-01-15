@@ -16,6 +16,7 @@ final class PopularCell: UICollectionViewCell {
     //MARK: UI Elements
     private lazy var posterImage: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleAspectFill
         return view
     }()
     

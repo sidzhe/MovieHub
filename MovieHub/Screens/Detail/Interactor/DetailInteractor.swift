@@ -51,7 +51,9 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     }
     
     //MARK: Check favorites from CD
-    func addRecentMovie(id: Int) {
+    func addRecentMovie() {
+        guard let id = Int(detailID) else { return }
+        print(id)
         storageService.saveRecentModel(id: id)
     }
 }

@@ -243,4 +243,3 @@ struct MovieService: MovieServiceProtool, MovieClient {
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchMovieById, responseModel: T.self)
     }
 }
-
