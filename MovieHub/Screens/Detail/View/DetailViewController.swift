@@ -33,7 +33,7 @@ final class DetailViewController: UIViewController {
     private let genreLabel = UILabel.movieInfoLabel()
     
     private lazy var firstStroke: UIView = createStroke()
-    private lazy var  secondStroke: UIView = createStroke()
+    private lazy var secondStroke: UIView = createStroke()
     
     private lazy var descriptionStack: UIStackView = {
         let view = UIStackView()
@@ -112,9 +112,9 @@ final class DetailViewController: UIViewController {
     
     private lazy var heartButton: UIButton = {
         let button = UIButton()
+        button.tintColor = .red
         button.setImage(UIImage(systemName: Constant.heart), for: .normal)
         button.setImage(UIImage(systemName: Constant.heartFill), for: .selected)
-        button.tintColor = .red
         button.addTarget(self, action: #selector(tapHeart), for: .touchUpInside)
         return button
     }()
@@ -180,7 +180,8 @@ final class DetailViewController: UIViewController {
         }
         
         backgroundImageView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
+            make.top.equalTo(view.snp.top)
+            make.leading.trailing.equalToSuperview()
             make.width.equalToSuperview()
             make.height.equalTo(view.snp.width).multipliedBy(1.5)
             

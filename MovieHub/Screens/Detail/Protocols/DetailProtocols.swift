@@ -30,7 +30,7 @@ protocol DetailInteractorInputProtocol: AnyObject {
     var detailData: DetailModel? { get }
     func checkFavorites(id: Int)
     func getFavoritesButtonState() -> Bool
-    func addRecentMovie(id: Int)
+    func addRecentMovie()
 }
 
 /// INTERACTOR -> PRESENTER

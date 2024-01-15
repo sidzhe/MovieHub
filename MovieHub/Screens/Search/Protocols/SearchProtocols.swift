@@ -23,7 +23,7 @@ protocol SearchPresenterProtocol: AnyObject {
     func getCategories() -> [String]
     
     func fetchUpcomingMovie(with genre: String)
-    
+    func fetchRecentMovie()
     func routeToDetail(with index: Int)
 }
 
