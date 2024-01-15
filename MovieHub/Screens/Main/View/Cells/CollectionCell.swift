@@ -14,9 +14,9 @@ final class CollectionCell: UICollectionViewCell {
     //MARK: UI Elements
     private lazy var backgroundImage: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 16
-        view.contentMode = .scaleToFill
         return view
     }()
     

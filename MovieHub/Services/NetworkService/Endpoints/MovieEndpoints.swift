@@ -19,14 +19,13 @@ enum MovieEndpoints {
     case movieWithPerson
     case awards
     case upcoming
-    case image
 }
 
 
 //MARK: - Extension MovieEndpoints
 extension MovieEndpoints: Endpoint {
-    
-    var header: [String : String]? { ["X-API-KEY": "G1BHFY8-F6GM1KG-J1G2VGJ-4M7N24N"] }
+
+    var header: [String : String]? { ["X-API-KEY": "6RPBT9S-1R74EQQ-M20AAQK-EFE511M"] }
     
     //Path
     var path: String {
@@ -41,8 +40,7 @@ extension MovieEndpoints: Endpoint {
         case .movieWithPerson:             return "/v1.4/movie"
         case .awards:                      return "/v1.4/person/awards"
         case .upcoming:                    return "/v1.4/movie"
-        case .searchMovieById:             return "/v1.4/movie"
-        case .image:                       return "/v1.4/image"
+        case .searchMovieById:           return "/v1.4/movie"
         }
     }
     
@@ -59,8 +57,7 @@ extension MovieEndpoints: Endpoint {
         case .movieWithPerson:            return .none
         case .awards:                     return .none
         case .upcoming:                   return .none
-        case .searchMovieById:            return .none
-        case .image:                      return .none
+        case .searchMovieById:          return .none
         }
     }
     
@@ -80,8 +77,7 @@ extension MovieEndpoints: Endpoint {
         case .movieWithPerson:           return .none
         case .awards:                    return .none
         case .upcoming:                  return .none
-        case .searchMovieById:           return .none
-        case .image:                     return .none
+        case .searchMovieById:         return .none
         }
     }
 }

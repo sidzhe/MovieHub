@@ -42,6 +42,7 @@ final class SearchViewController: UIViewController {
         setDelegates()
         registerCollectionsCells()
         presenter?.fetchUpcomingMovie(with: selectedCategory)
+        presenter?.fetchRecentMovie()
         navigationController?.setupNavigationBar()
     }
     
@@ -115,7 +116,7 @@ final class SearchViewController: UIViewController {
             make.top.equalTo(categoriesMenuCollectionView.snp.bottom).offset(10)
             make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
-            make.bottom.equalTo(view.snp.bottom)
+            make.bottom.equalToSuperview().inset(90)
         }
     }
 }
@@ -167,13 +168,20 @@ extension SearchViewController {
         }
     
     private func createUpcomingMoviesSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+        let item = NSCollectionLayoutItem(layoutSize: .init(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        )
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.3)), subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(
+            widthDimension: .fractionalWidth(0.9),
+            heightDimension: .fractionalHeight(0.3)),
+            subitems: [item]
+        )
         
         let section = createLayoutSection(group: group,
                                           behavior: .groupPagingCentered,
-                                          interGroupSpacing: 10,
+                                          interGroupSpacing: 8,
                                           supplementaryItems: [supplementaryHeaderItem()],
                                           contentInsets: false)
         section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
@@ -189,8 +197,8 @@ extension SearchViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension:  .fractionalWidth(1),
-                heightDimension: .fractionalHeight(0.35)
+                widthDimension:  .fractionalWidth(0.4),
+                heightDimension: .fractionalHeight(0.45)
             ),
             subitems: [item]
         )
@@ -202,7 +210,7 @@ extension SearchViewController {
             supplementaryItems: [supplementaryHeaderItem()],
             contentInsets: false
         )
-
+        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         return section
     }
     
