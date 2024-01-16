@@ -31,7 +31,6 @@ extension SearchViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingMovieCell.identifier, for: indexPath) as? UpcomingMovieCell else { return UICollectionViewCell() }
             
             guard let model = self.presenter?.getUpcomingMovie() else { return UICollectionViewCell() }
-            
             cell.configure(with: model[indexPath.row])
             return cell
             
@@ -68,9 +67,9 @@ extension SearchViewController: UICollectionViewDelegate {
         
         switch sectionKind {
         case .upcomingMovies:
-            presenter?.routeToDetail(with: indexPath.row)
+            presenter?.routeToDetail(with: indexPath.item)
         case .recentMovies:
-            presenter?.routeToDetail(with: indexPath.row)
+            presenter?.routeToDetailFromRecent(with: indexPath.item)
         }
     }
 }

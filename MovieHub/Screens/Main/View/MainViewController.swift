@@ -128,14 +128,29 @@ private extension MainViewController {
                 
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-              //  item.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.63))
+//                item.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.45))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
-                section.orthogonalScrollingBehavior = .groupPaging
+                section.orthogonalScrollingBehavior = .groupPagingCentered
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
+                
+                // Add visibleItemsInvalidationHandler
+                section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                    items.forEach { item in
+                        guard item.representedElementKind == nil else {
+                            return
+                        }
+                        
+                        let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2)
+                        let minScale: CGFloat = 0.8
+                        let maxScale: CGFloat = 1
+                        let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width) * 0.2, minScale)
+                        item.transform = CGAffineTransform(scaleX: 1, y: scale)
+                    }
+                }
                 
             } else if sectionKind == .categories {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(1.0))

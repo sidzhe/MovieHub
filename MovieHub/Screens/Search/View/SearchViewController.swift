@@ -46,14 +46,6 @@ final class SearchViewController: UIViewController {
         navigationController?.setupNavigationBar()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        categoriesMenuCollectionView.callBack = { [weak self] selectedCategory in
-            self?.selectedCategory = selectedCategory
-            self?.presenter?.fetchUpcomingMovie(with: selectedCategory)
-        }
-    }
-    
     private func setupViews() {
         view.backgroundColor = .primaryDark
         
@@ -113,17 +105,16 @@ final class SearchViewController: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(categoriesMenuCollectionView.snp.bottom).offset(10)
+            make.top.equalTo(categoriesMenuCollectionView.snp.bottom).offset(5)
             make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
-            make.bottom.equalToSuperview().inset(90)
+            make.bottom.equalTo(view.snp.bottom)
         }
     }
 }
-
-
 //MARK: - Extension SearchViewProtocol
 extension SearchViewController: SearchViewProtocol {
+    
     func displayRequestError(error: RequestError) {
         Task {
             alertError(_:error)
@@ -133,6 +124,12 @@ extension SearchViewController: SearchViewProtocol {
     func updateUI() {
         Task {
             collectionView.reloadData()
+        }
+    }
+    // MARK: - Gesture Handler
+    @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
+        if gesture.state == .ended {
+            searchController.isActive = false
         }
     }
 }
@@ -174,31 +171,31 @@ extension SearchViewController {
         )
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(
-            widthDimension: .fractionalWidth(0.9),
-            heightDimension: .fractionalHeight(0.3)),
+            widthDimension: .fractionalWidth(0.87),
+            heightDimension: .fractionalHeight(0.33)),
             subitems: [item]
         )
         
         let section = createLayoutSection(group: group,
-                                          behavior: .groupPagingCentered,
+                                          behavior: .paging,
                                           interGroupSpacing: 8,
                                           supplementaryItems: [supplementaryHeaderItem()],
                                           contentInsets: false)
-        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
         
         return section
     }
     
     private func createRecentMoviesSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(
-            widthDimension: .fractionalHeight(1),
+            widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1))
         )
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension:  .fractionalWidth(0.4),
-                heightDimension: .fractionalHeight(0.45)
+                widthDimension:  .fractionalWidth(0.35),
+                heightDimension: .fractionalHeight(0.38)
             ),
             subitems: [item]
         )
@@ -206,11 +203,11 @@ extension SearchViewController {
         let section = createLayoutSection(
             group: group,
             behavior: .groupPaging,
-            interGroupSpacing: 5,
+            interGroupSpacing: 10,
             supplementaryItems: [supplementaryHeaderItem()],
             contentInsets: false
         )
-        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
         return section
     }
     

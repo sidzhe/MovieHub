@@ -9,9 +9,9 @@ import UIKit
 
 final class SearchRouter: SearchRouterProtocol {
     
-    func pushToDetail(from view: SearchViewProtocol?, Id: Int) {
+    func pushToDetail(from view: SearchViewProtocol?, id: Int) {
         guard let view = view as? UIViewController else { return }
-        let detailVC = Builder.createDetail(detailID: Id.description)
+        let detailVC = Builder.createDetail(detailID: id.description)
         view.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
