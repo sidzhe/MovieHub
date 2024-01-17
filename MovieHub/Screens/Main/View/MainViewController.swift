@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
     //MARK: UI Elements
     private let accountView = AccountView()
     
-    private lazy var seatchTextField: UISearchTextField = {
+    private lazy var searchTextField: UISearchTextField = {
         let text = UISearchTextField()
         text.backgroundColor = .primarySoft
         text.clipsToBounds = true
@@ -56,7 +56,7 @@ final class MainViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .primaryDark
         view.addSubview(accountView)
-        view.addSubview(seatchTextField)
+        view.addSubview(searchTextField)
         
         accountView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -64,7 +64,7 @@ final class MainViewController: UIViewController {
             make.height.equalTo(40)
         }
         
-        seatchTextField.snp.makeConstraints { make in
+        searchTextField.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(25)
             make.top.equalTo(accountView.snp.bottom).offset(15)
             make.height.equalTo(48)
@@ -102,10 +102,10 @@ final class MainViewController: UIViewController {
 }
 
 
-//MARK: - Extension Set CollactionView
+//MARK: - Extension Set CollectionView
 private extension MainViewController {
     
-    //MARK: Create Laouyt
+    //MARK: Create Layout
     func createLayout() -> UICollectionViewLayout {
         let sectionProvider = {(sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
@@ -128,29 +128,29 @@ private extension MainViewController {
                 
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//                item.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.45))
+                item.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85), heightDimension: .fractionalHeight(0.55))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
                 section.orthogonalScrollingBehavior = .groupPagingCentered
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
-                
-                // Add visibleItemsInvalidationHandler
-                section.visibleItemsInvalidationHandler = { (items, offset, environment) in
-                    items.forEach { item in
-                        guard item.representedElementKind == nil else {
-                            return
-                        }
-                        
-                        let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2)
-                        let minScale: CGFloat = 0.8
-                        let maxScale: CGFloat = 1
-                        let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width) * 0.2, minScale)
-                        item.transform = CGAffineTransform(scaleX: 1, y: scale)
-                    }
-                }
+                 section.visibleItemsInvalidationHandler = {
+                     (items, offset, environment) in
+                     
+                     items.forEach { item in
+                         guard item.representedElementKind == nil else {
+                             return
+                         }
+                         
+                         let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 1)
+                         let minScale: CGFloat = 0.8
+                         let maxScale: CGFloat = 1
+                         let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width) * 0.2, minScale)
+                         item.transform = CGAffineTransform(scaleX: 1, y: scale)
+                     }
+                 }
                 
             } else if sectionKind == .categories {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(1.0))
@@ -210,7 +210,7 @@ private extension MainViewController {
         view.addSubview(collectionView)
         
         collectionView?.snp.makeConstraints({ make in
-            make.top.equalTo(seatchTextField.snp.bottom).offset(20)
+            make.top.equalTo(searchTextField.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview().inset(90)
         })

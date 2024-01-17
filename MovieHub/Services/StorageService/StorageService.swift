@@ -94,11 +94,11 @@ final class StorageService: StorageServiceProtool {
     
     func loadRecentModel() -> [String] {
         let recentModel = RecentModel.fetchRequest()
-        
+         
         do {
             let result = try viewContext.fetch(recentModel)
-            let output = result.map { $0.recentId ?? "" }
-            return output
+            let output = result.map { $0.recentId ?? "" }.reversed()
+            return Array(output) 
         } catch let error {
             print("CurrnetCity load error \(error.localizedDescription)")
             return [String]()

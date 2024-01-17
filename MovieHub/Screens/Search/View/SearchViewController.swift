@@ -41,9 +41,14 @@ final class SearchViewController: UIViewController {
         setConstraints()
         setDelegates()
         registerCollectionsCells()
+
+        navigationController?.setupNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         presenter?.fetchUpcomingMovie(with: selectedCategory)
         presenter?.fetchRecentMovie()
-        navigationController?.setupNavigationBar()
     }
     
     private func setupViews() {

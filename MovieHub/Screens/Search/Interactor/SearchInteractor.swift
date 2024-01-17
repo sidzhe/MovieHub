@@ -47,6 +47,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
             switch result {
             case .success(let recentMovie):
                 self.recentMovie = recentMovie
+                print(recentMovie.docs)
                 self.presenter?.updateUI()
             case .failure(let error):
                 self.presenter?.getError(error: error)
@@ -57,6 +58,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     //MARK: Storage
     func getRecentMovieIds() -> [String] {
         let recentMovieIds = storageService.loadRecentModel()
+        print(recentMovieIds)
         return recentMovieIds
     }
 }
