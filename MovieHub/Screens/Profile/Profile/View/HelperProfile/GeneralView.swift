@@ -31,10 +31,10 @@ final class GeneralView: UIView {
         return button
     }()
     
-    private lazy var firstArrowImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "arrowBut")
-        return img
+    private lazy var firstArrowButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "arrowBut"), for: .normal)
+        return button
     }()
     
     private lazy var lineView: UIView = {
@@ -57,10 +57,10 @@ final class GeneralView: UIView {
         return image
     }()
     
-    private lazy var secondArrowImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "arrowBut")
-        return img
+    private lazy var secondArrowButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "arrowBut"), for: .normal)
+        return button
     }()
     
     //   MARK: - Initialize
@@ -102,11 +102,11 @@ final class GeneralView: UIView {
             viewLabel,
             firstButton,
             firstImage,
-            firstArrowImage,
+            firstArrowButton,
             lineView,
             secondButton,
             secondImage,
-            secondArrowImage
+            firstArrowButton
         )
         
         self.layer.cornerRadius = 12
@@ -147,7 +147,7 @@ extension GeneralView {
             make.centerY.equalTo(firstButton)
         }
         
-        firstArrowImage.snp.makeConstraints { make in
+        firstArrowButton.snp.makeConstraints { make in
             make.leading.equalTo(firstButton.snp.trailing).offset(Constants.tenPoints)
             make.centerY.equalTo(firstButton)
             make.height.width.equalTo(Constants.thiryPoints)
@@ -173,7 +173,7 @@ extension GeneralView {
             make.centerY.equalTo(secondButton)
         }
         
-        secondArrowImage.snp.makeConstraints { make in
+        firstArrowButton.snp.makeConstraints { make in
             make.leading.equalTo(secondButton.snp.trailing).offset(Constants.tenPoints)
             make.centerY.equalTo(secondButton)
             make.height.width.equalTo(Constants.thiryPoints)

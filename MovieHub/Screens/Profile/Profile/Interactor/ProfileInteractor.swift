@@ -11,6 +11,4 @@ final class ProfileInteractor: ProfileInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: ProfileInteractorOutputProtocol?
-    
-    
 }

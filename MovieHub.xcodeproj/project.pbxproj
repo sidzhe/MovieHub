@@ -646,8 +646,6 @@
 		E1DFE66A2B5345E900358355 /* HelperProfile */ = {
 			isa = PBXGroup;
 			children = (
-				E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */,
-				E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */,
 				E1F898922B593055004B1E9A /* GeneralView.swift */,
 			);
 			path = HelperProfile;
@@ -669,6 +667,15 @@
 				E1DFE6202B51D5C200358355 /* SearchResult */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		E1F8989B2B59C9F5004B1E9A /* SubVC */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */,
+				E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */,
+			);
+			path = SubVC;
 			sourceTree = "<group>";
 		};
 		EB03F59A2B440C57004BAE47 /* PersonDetail */ = {
@@ -1733,6 +1740,7 @@
 		EBE76C792B3974970053E522 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E1F8989B2B59C9F5004B1E9A /* SubVC */,
 				E1DFE66A2B5345E900358355 /* HelperProfile */,
 				EBE76C842B39767C0053E522 /* ProfileViewController.swift */,
 			);
