@@ -45,6 +45,7 @@
 		E1DFE66D2B5345E900358355 /* PoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */; };
 		E1DFE66E2B5345E900358355 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */; };
 		E1DFE6702B53475D00358355 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE66F2B53475D00358355 /* CustomNavigationBar.swift */; };
+		E1F898932B593055004B1E9A /* GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F898922B593055004B1E9A /* GeneralView.swift */; };
 		EB03F5A12B440C90004BAE47 /* PersonDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */; };
 		EB03F5A32B440C99004BAE47 /* PersonDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */; };
 		EB03F5A52B440C9F004BAE47 /* PersonDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */; };
@@ -240,6 +241,7 @@
 		E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliciesViewController.swift; sourceTree = "<group>"; };
 		E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		E1DFE66F2B53475D00358355 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		E1F898922B593055004B1E9A /* GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralView.swift; sourceTree = "<group>"; };
 		EB03F5A02B440C90004BAE47 /* PersonDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailRouter.swift; sourceTree = "<group>"; };
 		EB03F5A22B440C99004BAE47 /* PersonDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailInteractor.swift; sourceTree = "<group>"; };
 		EB03F5A42B440C9F004BAE47 /* PersonDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailPresenter.swift; sourceTree = "<group>"; };
@@ -646,8 +648,27 @@
 			children = (
 				E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */,
 				E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */,
+				E1F898922B593055004B1E9A /* GeneralView.swift */,
 			);
 			path = HelperProfile;
+			sourceTree = "<group>";
+		};
+		E1F898912B592F8B004B1E9A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				EB82677E2B38A3E50024BAAE /* Profile */,
+				E1DFE6572B5345BD00358355 /* EditProfile */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E1F898972B5995B7004B1E9A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE5FD2B51D57400358355 /* Search */,
+				E1DFE6202B51D5C200358355 /* SearchResult */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		EB03F59A2B440C57004BAE47 /* PersonDetail */ = {
@@ -879,22 +900,20 @@
 		EB8267762B38A2E80024BAAE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				EBE76C942B3979170053E522 /* TabBar */,
+				EB8267772B38A30A0024BAAE /* Onboarding */,
+				EB8267782B38A3390024BAAE /* Main */,
 				EB9973D22B529F4800D9EFC5 /* Trailer */,
 				EBA5FE1F2B4EB69300E85872 /* Collection */,
 				EBBA2B3C2B4D965C00D55EF6 /* Map */,
 				EB03F59A2B440C57004BAE47 /* PersonDetail */,
-				EBE76C942B3979170053E522 /* TabBar */,
-				EB8267772B38A30A0024BAAE /* Onboarding */,
-				EB8267782B38A3390024BAAE /* Main */,
 				EB8267792B38A3B40024BAAE /* MovieList */,
+				EB82677C2B38A3D90024BAAE /* Wishlist */,
 				EB82677A2B38A3BE0024BAAE /* Popular */,
 				EB82677B2B38A3CE0024BAAE /* Detail */,
-				E1DFE5FD2B51D57400358355 /* Search */,
-				E1DFE6202B51D5C200358355 /* SearchResult */,
-				EB82677C2B38A3D90024BAAE /* Wishlist */,
-				EB82677E2B38A3E50024BAAE /* Profile */,
-				E1DFE6572B5345BD00358355 /* EditProfile */,
+				E1F898972B5995B7004B1E9A /* Search */,
 				EB82677F2B38A40C0024BAAE /* Christmas */,
+				E1F898912B592F8B004B1E9A /* Profile */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1997,6 +2016,7 @@
 				E1DFE6362B51D6B300358355 /* UISearchController + Extension.swift in Sources */,
 				EB6CB2E22B3C31D100DC30BC /* Section.swift in Sources */,
 				EB369B1E2B39CA1700BB4275 /* PersonModel.swift in Sources */,
+				E1F898932B593055004B1E9A /* GeneralView.swift in Sources */,
 				EB369B282B3B15D300BB4275 /* MovieGenre.swift in Sources */,
 				EBBA2B7D2B4D98A900D55EF6 /* MapRouter.swift in Sources */,
 				EBE76C9A2B3979B00053E522 /* TabBarProtocols.swift in Sources */,

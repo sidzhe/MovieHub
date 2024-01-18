@@ -140,15 +140,12 @@ private extension MainViewController {
                      (items, offset, environment) in
                      
                      items.forEach { item in
-                         guard item.representedElementKind == nil else {
-                             return
-                         }
                          
-                         let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 1)
+                         let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
                          let minScale: CGFloat = 0.8
                          let maxScale: CGFloat = 1
-                         let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width) * 0.2, minScale)
-                         item.transform = CGAffineTransform(scaleX: 1, y: scale)
+                         let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                         item.transform = CGAffineTransform(scaleX: scale, y: scale)
                      }
                  }
                 

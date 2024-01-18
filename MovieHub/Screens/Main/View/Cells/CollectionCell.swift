@@ -79,8 +79,8 @@ final class CollectionCell: UICollectionViewCell {
     
     //MARK: Configure
     func configure(_ model: DocCollect) {
-//        nameLabel.text = model.name
-//        countLabel.text = "\(model.moviesCount ?? 0) \(Constant.moviesCollection)"
+        nameLabel.text = model.name
+        countLabel.text = "\(model.moviesCount ?? 0) \(Constant.moviesCollection)"
         guard let url = URL(string: model.cover?.url ?? model.cover?.previewUrl ?? Constant.none) else { return }
         backgroundImage.kf.setImage(with: url)
     }

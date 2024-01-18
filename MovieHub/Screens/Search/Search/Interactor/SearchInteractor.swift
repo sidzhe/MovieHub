@@ -42,12 +42,14 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     }
     
     func requestRecentMovies(with moviesId: [String]) {
+        guard !moviesId.isEmpty else { return }
         networkService.searchMovieById(identifiers: moviesId) { [weak self] (result: (Result<SearchModel, RequestError>)) in
+            print(moviesId)
             guard let self else { return }
             switch result {
             case .success(let recentMovie):
                 self.recentMovie = recentMovie
-                print(recentMovie.docs)
+                print(recentMovie.docs.first?.id)
                 self.presenter?.updateUI()
             case .failure(let error):
                 self.presenter?.getError(error: error)
@@ -58,7 +60,6 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     //MARK: Storage
     func getRecentMovieIds() -> [String] {
         let recentMovieIds = storageService.loadRecentModel()
-        print(recentMovieIds)
         return recentMovieIds
     }
 }
