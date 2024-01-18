@@ -15,6 +15,7 @@ final class MainViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, ItemMain>?
     private let coreLocation = CLLocationManager()
+    private var gesture: UITapGestureRecognizer!
     
     //MARK: UI Elements
     private let accountView = AccountView()
@@ -43,6 +44,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        setGesture()
         configureCollectionView()
         createDataSource()
         applySnapshot()
@@ -102,6 +104,30 @@ final class MainViewController: UIViewController {
 }
 
 
+//MARK: - Extension setup gesture
+extension MainViewController: UIGestureRecognizerDelegate {
+    
+    //MARK: Set tap gesture
+    private func setGesture() {
+        gesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        gesture.delegate = self
+        view.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func tapGesture() {
+        view.endEditing(true)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if let view = touch.view, view.isDescendant(of: collectionView) {
+            return false
+        }
+        
+        return true
+    }
+}
+
+
 //MARK: - Extension Set CollactionView
 private extension MainViewController {
     
@@ -128,7 +154,6 @@ private extension MainViewController {
                 
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-              //  item.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.63))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 
@@ -356,6 +381,7 @@ extension MainViewController: MainViewProtocol {
 extension MainViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         guard let text = textField.text else { return false }
         presenter?.fetchSearchRequest(text)
         return true
