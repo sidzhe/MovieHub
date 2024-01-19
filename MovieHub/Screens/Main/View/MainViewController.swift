@@ -143,7 +143,7 @@ private extension MainViewController {
                          
                          let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
                          let minScale: CGFloat = 0.8
-                         let maxScale: CGFloat = 1
+                         let maxScale: CGFloat = 1.2
                          let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
                          item.transform = CGAffineTransform(scaleX: scale, y: scale)
                      }

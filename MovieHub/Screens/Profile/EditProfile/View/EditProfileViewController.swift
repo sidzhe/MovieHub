@@ -53,7 +53,7 @@ final class EditProfileViewController: UIViewController {
     
     private lazy var saveButton: UIButton = {
         var saveButton = UIButton()
-        saveButton.setTitle("Save changes", for: .normal)
+        saveButton.setTitle("Сохранить изменения", for: .normal)
         saveButton.titleLabel?.font = .montserratMedium(size: 20)
         saveButton.layer.cornerRadius = 27
         saveButton.backgroundColor = .primaryBlue
@@ -63,7 +63,7 @@ final class EditProfileViewController: UIViewController {
     }()
     
     private lazy var nameView: CustomTextField = {
-        let view = CustomTextField(placeholder: "ваше имя...", labelText: "Полное имя")
+        let view = CustomTextField(placeholder: "ваше имя...", labelText: "Ваше имя")
         view.textField.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingDidEnd)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -99,8 +99,10 @@ final class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Редактировать профиль"
+        
         setupView()
         setConstraint()
+        navigationController?.navigationBar.topItem?.title = ""
     }
     
     private func chooseImage(source: UIImagePickerController.SourceType) {
@@ -241,11 +243,13 @@ private extension EditProfileViewController {
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(avatarImageView.snp.bottom).offset(21)
             make.centerX.equalTo(avatarImageView)
+            make.width.equalTo(80)
         }
         
         emailLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
             make.centerX.equalTo(nameLabel)
+            make.width.equalTo(180)
         }
         
         nameView.snp.makeConstraints { make in

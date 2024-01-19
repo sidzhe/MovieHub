@@ -26,21 +26,13 @@ final class  CustomTextField: UIView {
         return textField
     }()
     
-    lazy var infoBackgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
-        view.layer.cornerRadius = 8
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.font = .montserratMedium(size: 13)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
         label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
+        label.backgroundColor = .primaryDark
         return label
     }()
     
@@ -57,12 +49,11 @@ final class  CustomTextField: UIView {
     }
     
     private func setupSubviews(placeholder: String, labelText: String) {
-      addSubview(backgroundView)
-      backgroundView.addSubview(infoBackgroundView)
-      backgroundView.addSubview(textField)
-      infoBackgroundView.addSubview(infoLabel)
-      textField.placeholder = placeholder
-      infoLabel.text = labelText
+        addSubview(backgroundView)
+        backgroundView.addSubview(textField)
+        addSubview(infoLabel)
+        textField.placeholder = placeholder
+        infoLabel.text = labelText
     }
     
     private func setConstraints() {
@@ -73,14 +64,10 @@ final class  CustomTextField: UIView {
             make.height.equalTo(53)
         }
         
-        infoBackgroundView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
+        infoLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(45)
             make.centerY.equalToSuperview().offset(-27)
             make.width.equalTo(100)
-        }
-        
-        infoLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
         }
         
         textField.snp.makeConstraints { make in

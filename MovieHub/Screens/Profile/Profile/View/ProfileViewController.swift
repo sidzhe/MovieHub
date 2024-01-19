@@ -11,6 +11,40 @@ final class ProfileViewController: UIViewController {
         return view
     }()
     
+    private lazy var avatarImageView: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "git")
+        img.layer.cornerRadius = 27
+        img.contentMode = .scaleAspectFill
+        img.clipsToBounds = true
+        return img
+    }()
+    
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Tiffany"
+        label.font = UIFont.montserratSemiBold(size: 16)
+        label.textColor = .white
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private lazy var emailLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.montserratMedium(size: 14)
+        label.text = "Tiffanyjearsey@gmail.com"
+        label.textColor = .lightGray
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private lazy var editProfileButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "avatarEditButton"), for: .normal)
+        button.addTarget(self, action: #selector(editProfileAction), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var generalView = GeneralView(
         labelText: "Настройки",
         firstButtonTitle: "Уведомления",
@@ -32,11 +66,12 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setupView()
         setupConstraints()
         addTargetForButtons()
+        
         navigationController?.setupNavigationBar()
+        navigationItem.title = "Профиль"
     }
     
     func addTargetForButtons() {
@@ -48,9 +83,16 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setupView() {
-        navigationItem.title = "Профиль"
+       
         view.backgroundColor = .primaryDark
+        
         view.addSubview(profileView)
+        
+        profileView.addSubview(avatarImageView)
+        profileView.addSubview(nameLabel)
+        profileView.addSubview(emailLabel)
+        profileView.addSubview(editProfileButton)
+        
         view.addSubview(generalView)
         view.addSubview(moreView)
     }
@@ -61,6 +103,30 @@ final class ProfileViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(86)
         }
+        
+        avatarImageView.snp.makeConstraints { make in
+            make.top.leading.bottom.equalToSuperview().inset(16)
+            make.height.width.equalTo(54)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(profileView.snp.top).offset(21)
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(16)
+            make.trailing.equalTo(editProfileButton).offset(8)
+        }
+        
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(16)
+            make.trailing.equalTo(editProfileButton).offset(8)
+            make.bottom.equalToSuperview().inset(20)
+        }
+        
+        editProfileButton.snp.makeConstraints { make in
+            make.top.trailing.bottom.equalToSuperview().inset(16)
+            make.height.width.equalTo(54)
+        }
+        
         generalView.snp.makeConstraints { make in
             make.top.equalTo(profileView.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(20)
