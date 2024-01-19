@@ -12,18 +12,18 @@ final class ProfileViewController: UIViewController {
     }()
     
     private lazy var generalView = GeneralView(
-        labelText: "General",
-        firstButtonTitle: "Notification",
+        labelText: "Настройки",
+        firstButtonTitle: "Уведомления",
         firstImage: "notif",
-        secondButtonTitle: "Language",
+        secondButtonTitle: "Выбор языка",
         secondImage: "lang"
     )
     
     private lazy var moreView = GeneralView(
-        labelText: "More",
-        firstButtonTitle: "Legal and Policies",
+        labelText: "Информация",
+        firstButtonTitle: "Правила",
         firstImage: "legal",
-        secondButtonTitle: "About Us",
+        secondButtonTitle: "О нас",
         secondImage: "about"
     )
     
@@ -31,11 +31,12 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setupNavigationBar()
+        
         
         setupView()
         setupConstraints()
         addTargetForButtons()
+        navigationController?.setupNavigationBar()
     }
     
     func addTargetForButtons() {
@@ -73,6 +74,7 @@ final class ProfileViewController: UIViewController {
         }
     }
 }
+
 extension ProfileViewController: ProfileViewProtocol {
     
     //MARK: - Objective-C methods

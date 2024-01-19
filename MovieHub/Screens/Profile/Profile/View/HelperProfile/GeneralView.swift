@@ -88,11 +88,13 @@ final class GeneralView: UIView {
     
     //MARK: - Public method
     func addTargetForFirstButton(target: Any?, action: Selector, for event: UIControl.Event) {
-      firstButton.addTarget(target, action: action, for: event)
+        firstButton.addTarget(target, action: action, for: event)
+        firstArrowButton.addTarget(target, action: action, for: event)
     }
-
+    
     func addTargetForSecondButton(target: Any?, action: Selector, for event: UIControl.Event) {
-      secondButton.addTarget(target, action: action, for: event)
+        secondButton.addTarget(target, action: action, for: event)
+        secondArrowButton.addTarget(target, action: action, for: event)
     }
     
     //MARK: - Private method
@@ -106,7 +108,7 @@ final class GeneralView: UIView {
             lineView,
             secondButton,
             secondImage,
-            firstArrowButton
+            secondArrowButton
         )
         
         self.layer.cornerRadius = 12
@@ -115,68 +117,57 @@ final class GeneralView: UIView {
     }
 }
 extension GeneralView {
-    enum Constants {
-        static let twoPoints: CGFloat = 2
-        static let tenPoints: CGFloat = 10
-        static let twentyPoints: CGFloat = 20
-        static let thiryPoints: CGFloat = 30
-        static let fiftyFivePoints: CGFloat = 55
-        static let sixtyPoints: CGFloat = 60
-        static let ninetyPoints: CGFloat = 90
-        static let twoHundredPoints: CGFloat = 200
-    }
     
     func setupConstraints() {
         viewLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Constants.tenPoints)
-            make.leading.equalToSuperview().offset(Constants.tenPoints)
-            make.height.equalTo(Constants.twentyPoints)
-            make.width.equalTo(Constants.ninetyPoints)
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.height.equalTo(20)
         }
         
         firstButton.snp.makeConstraints { make in
-            make.top.equalTo(viewLabel.snp.bottom).offset(Constants.twentyPoints)
-            make.leading.equalTo(firstImage.snp.trailing).offset(Constants.tenPoints)
-            make.trailing.equalToSuperview().offset(-Constants.fiftyFivePoints)
-            make.height.equalTo(Constants.fiftyFivePoints)
+            make.top.equalTo(viewLabel.snp.bottom).offset(20)
+            make.leading.equalTo(firstImage.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().offset(-55)
+            make.height.equalTo(55)
         }
         
         firstImage.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(Constants.thiryPoints)
-            make.width.height.equalTo(Constants.thiryPoints)
+            make.leading.equalToSuperview().offset(30)
+            make.width.height.equalTo(30)
             make.centerY.equalTo(firstButton)
         }
         
         firstArrowButton.snp.makeConstraints { make in
-            make.leading.equalTo(firstButton.snp.trailing).offset(Constants.tenPoints)
+            make.leading.equalTo(firstButton.snp.trailing).offset(10)
             make.centerY.equalTo(firstButton)
-            make.height.width.equalTo(Constants.thiryPoints)
+            make.height.width.equalTo(30)
         }
         
         lineView.snp.makeConstraints { make in
-            make.top.equalTo(firstButton.snp.bottom).offset(Constants.tenPoints)
-            make.leading.equalToSuperview().offset(Constants.thiryPoints)
-            make.trailing.equalToSuperview().offset(-Constants.fiftyFivePoints)
-            make.height.equalTo(Constants.twoPoints)
+            make.top.equalTo(firstButton.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().offset(-30)
+            make.height.equalTo(2)
         }
         
         secondButton.snp.makeConstraints { make in
-            make.top.equalTo(lineView.snp.bottom).offset(Constants.tenPoints)
+            make.top.equalTo(lineView.snp.bottom).offset(10)
             make.leading.equalTo(firstButton)
-            make.trailing.equalToSuperview().offset(-Constants.fiftyFivePoints)
-            make.height.equalTo(Constants.fiftyFivePoints)
+            make.trailing.equalToSuperview().offset(-55)
+            make.height.equalTo(55)
         }
         
         secondImage.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(Constants.thiryPoints)
-            make.width.height.equalTo(Constants.thiryPoints)
+            make.leading.equalToSuperview().offset(30)
+            make.width.height.equalTo(30)
             make.centerY.equalTo(secondButton)
         }
         
-        firstArrowButton.snp.makeConstraints { make in
-            make.leading.equalTo(secondButton.snp.trailing).offset(Constants.tenPoints)
+        secondArrowButton.snp.makeConstraints { make in
+            make.leading.equalTo(secondButton.snp.trailing).offset(10)
             make.centerY.equalTo(secondButton)
-            make.height.width.equalTo(Constants.thiryPoints)
+            make.height.width.equalTo(30)
         }
     }
 }
