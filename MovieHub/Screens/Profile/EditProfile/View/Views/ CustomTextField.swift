@@ -22,6 +22,7 @@ final class  CustomTextField: UIView {
         let textField = UITextField()
         textField.textColor = .white
         textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()

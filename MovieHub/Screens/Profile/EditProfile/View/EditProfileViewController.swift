@@ -128,7 +128,7 @@ final class EditProfileViewController: UIViewController {
                 self.chooseImage(source: .photoLibrary)
             }
         case .cancel:
-            action = UIAlertAction(title: imageLoad.rawValue, style: .cancel, handler: nil)
+            action = UIAlertAction(title: imageLoad.rawValue, style: .destructive, handler: nil)
         }
         
         action.setValue(UIColor.darkGray, forKey: "titleTextColor")

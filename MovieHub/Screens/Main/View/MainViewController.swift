@@ -126,28 +126,30 @@ private extension MainViewController {
                 
             } else if sectionKind == .collection {
                 
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85), heightDimension: .fractionalHeight(0.55))
+                
+                    let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.79), heightDimension: .fractionalWidth(0.41))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 
                 section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 15
                 section.orthogonalScrollingBehavior = .groupPagingCentered
-                section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
-                 section.visibleItemsInvalidationHandler = {
-                     (items, offset, environment) in
-                     
-                     items.forEach { item in
-                         
-                         let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-                         let minScale: CGFloat = 0.8
-                         let maxScale: CGFloat = 1.2
-                         let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-                         item.transform = CGAffineTransform(scaleX: scale, y: scale)
-                     }
-                 }
+                       section.interGroupSpacing = 12
+                section.visibleItemsInvalidationHandler = {
+                    (items, offset, environment) in
+                    
+                    items.forEach { item in
+                        guard item.representedElementKind == nil else {
+                            return
+                        }
+                        
+                        let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2)
+                        let minScale: CGFloat = 0.9
+                        let maxScale: CGFloat = 1
+                        let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width) * 0.2, minScale)
+                        item.transform = CGAffineTransform(scaleX: 1, y: scale)
+                    }
+                }
                 
             } else if sectionKind == .categories {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .fractionalHeight(1.0))
@@ -203,6 +205,7 @@ private extension MainViewController {
     func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = .clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         view.addSubview(collectionView)
         

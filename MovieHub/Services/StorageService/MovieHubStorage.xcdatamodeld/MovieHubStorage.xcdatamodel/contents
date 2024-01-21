@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="22G90" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="CurrentCity" representedClassName="CurrentCity" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <entity name="RecentModel" representedClassName="RecentModel" syncable="YES" codeGenerationType="class">
         <attribute name="recentId" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="UserModel" representedClassName="UserModel" syncable="YES" codeGenerationType="class">
+        <attribute name="userAvatar" optional="YES" attributeType="Binary"/>
+        <attribute name="userEmail" attributeType="String"/>
+        <attribute name="userName" attributeType="String"/>
     </entity>
     <entity name="WishModel" representedClassName="WishModel" syncable="YES" codeGenerationType="class">
         <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

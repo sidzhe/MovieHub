@@ -17,7 +17,7 @@ final class SearchPresenter: SearchPresenterProtocol {
     
     //MARK: - Fetch
     func fetchUpcomingMovie(with genre: String) {
-        interactor?.requestUpcomingMovie(category: MovieGenre(rawValue: genre) ?? .all)
+        interactor?.requestUpcomingMovie(category: MovieGenre(rawValue: genre) ?? .biografiya)
     }
     
     func fetchRecentMovie() {

@@ -12,6 +12,7 @@ protocol SearchViewProtocol: AnyObject {
     var presenter: SearchPresenterProtocol? { get set }
     func updateUI()
     func displayRequestError(error: RequestError)
+    func hideKeyboard()
 }
 
 /// VIEW -> PRESENTER

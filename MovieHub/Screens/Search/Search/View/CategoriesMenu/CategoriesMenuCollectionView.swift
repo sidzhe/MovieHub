@@ -18,7 +18,7 @@ final class CategoriesMenuCollectionView: UICollectionView {
         self.categories = categories
         super.init(frame: .zero, collectionViewLayout: categoryLayout)
         configure()
-        
+        selectItem(at: IndexPath(item: 2, section: 0), animated: true, scrollPosition: [])
     }
     
     required init?(coder: NSCoder) {
@@ -37,18 +37,6 @@ final class CategoriesMenuCollectionView: UICollectionView {
             CategoriesMenuCell.self,
             forCellWithReuseIdentifier: CategoriesMenuCell.identifier
         )
-        selectItem(at: [0,2], animated: true, scrollPosition: [])
-    }
-    
-    //MARK: Set Categories
-    private func setCategories() {
-        let indexPath = IndexPath(row: 0, section: 4)
-        handleSelection(at: indexPath)
-    }
-    
-    private func handleSelection(at indexPath: IndexPath) {
-        let model = categories[indexPath.row]
-        callBack?(model)
     }
 }
 
@@ -71,7 +59,7 @@ extension CategoriesMenuCollectionView: UICollectionViewDataSource {
 extension CategoriesMenuCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        let model = categories[indexPath.row]
+        let model = categories[indexPath.item]
         callBack?(model)
     }
 }

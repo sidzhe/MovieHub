@@ -15,7 +15,7 @@ final class SearchViewController: UIViewController {
     
     var searchController: UISearchController!
     let sections = SearchSectionData.shared.sectionsArray
-    var selectedCategory = Constant.biography
+    var selectedCategory = ""
     var searchDelayTimer: Timer?
     let searchDelayInterval: TimeInterval = 2
     
@@ -41,13 +41,17 @@ final class SearchViewController: UIViewController {
         setConstraints()
         setDelegates()
         registerCollectionsCells()
-
+        
         navigationController?.setupNavigationBar()
+        presenter?.fetchUpcomingMovie(with: selectedCategory)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter?.fetchUpcomingMovie(with: selectedCategory)
+        categoriesMenuCollectionView.callBack = { [weak self] selectedCategory in
+            self?.selectedCategory = selectedCategory
+            self?.presenter?.fetchUpcomingMovie(with: selectedCategory)
+        }
         presenter?.fetchRecentMovie()
     }
     
@@ -119,6 +123,20 @@ final class SearchViewController: UIViewController {
 }
 //MARK: - Extension SearchViewProtocol
 extension SearchViewController: SearchViewProtocol {
+    //MARK: - HideKeyboard
+    
+   func hideKeyboard() {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.singleTap(sender:)))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.isEnabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+    
+    @objc func singleTap(sender: UITapGestureRecognizer) {
+        self.searchController.searchBar.resignFirstResponder()
+        self.searchController.isActive = false
+    }
     
     func displayRequestError(error: RequestError) {
         Task {

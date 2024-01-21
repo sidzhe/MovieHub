@@ -16,10 +16,12 @@ protocol StorageServiceProtool: AnyObject {
     func checkWish(id: Int)
     func getWishModel() -> [String]
     func wishStateButton(id: Int) -> Bool
+    func saveUser(name: String, email: String, avatar: Data)
 }
 
 final class StorageService: StorageServiceProtool {
-    
+
+
     //MARK: Properies
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: Constant.persistentContainerName)
@@ -104,6 +106,16 @@ final class StorageService: StorageServiceProtool {
             return [String]()
         }
     }
+    
+    //MARK: Profile Methods
+    func saveUser(name: String, email: String, avatar: Data) {
+        let user = UserModel(context: viewContext)
+        user.userName = name
+        user.userEmail = email
+        user.userAvatar = avatar
+        saveContext()
+    }
+    
     
     //MARK: Wish methods
     private func deleteWish(id: WishModel) {

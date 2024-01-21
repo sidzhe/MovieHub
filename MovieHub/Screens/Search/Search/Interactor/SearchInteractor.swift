@@ -27,6 +27,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     
     //MARK: Request
     func requestUpcomingMovie(category: MovieGenre) {
+        print(category)
         networkService.getMovieUpcomingByGenres(genre: category) { [weak self] (result: (Result<SearchModel, RequestError>)) in
             guard let self = self else { return }
             switch result {
