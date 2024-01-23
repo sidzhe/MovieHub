@@ -8,13 +8,26 @@
 import Foundation
 
 final class EditProfilePresenter: EditProfilePresenterProtocol {
-    
+
     //MARK: Properties
     weak var view: EditProfileViewProtocol?
     var interactor: EditProfileInteractorInputProtocol?
     
+    func updateUserInfo(userName: String, userEmail: String, userAvatar: Data?) {
+        interactor?.saveUser(
+            userName: userName,
+            userEmail: userEmail,
+            userAvatar: userAvatar
+        )
+    }
     
-    
+    func getUserInfo() {
+        if let userInfo = interactor?.getUserInfo() {
+            view?.updateProfileInfo(user: userInfo)
+        } else {
+            print("ошибка получения данных для профиля")
+        }
+    }
 }
 
 //MARK: - Extension EditProfileInteractorOutputProtocol

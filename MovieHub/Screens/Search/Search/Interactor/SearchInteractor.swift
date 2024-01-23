@@ -50,7 +50,6 @@ final class SearchInteractor: SearchInteractorInputProtocol {
             switch result {
             case .success(let recentMovie):
                 self.recentMovie = recentMovie
-                print(recentMovie.docs.first?.id)
                 self.presenter?.updateUI()
             case .failure(let error):
                 self.presenter?.getError(error: error)

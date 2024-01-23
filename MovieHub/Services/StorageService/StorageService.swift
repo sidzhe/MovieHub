@@ -16,7 +16,8 @@ protocol StorageServiceProtool: AnyObject {
     func checkWish(id: Int)
     func getWishModel() -> [String]
     func wishStateButton(id: Int) -> Bool
-    func saveUser(name: String, email: String, avatar: Data)
+    func saveUser(userName: String, userEmail: String, userAvatar: Data?)
+    func getUserInfo() -> UserModel?
 }
 
 final class StorageService: StorageServiceProtool {
@@ -108,14 +109,25 @@ final class StorageService: StorageServiceProtool {
     }
     
     //MARK: Profile Methods
-    func saveUser(name: String, email: String, avatar: Data) {
-        let user = UserModel(context: viewContext)
-        user.userName = name
-        user.userEmail = email
-        user.userAvatar = avatar
+    func saveUser(userName: String, userEmail: String, userAvatar: Data?) {
+        let newUser = UserModel(context: viewContext)
+        newUser.userName = userName
+        newUser.userEmail = userEmail
+        newUser.userAvatar = userAvatar
         saveContext()
     }
     
+    func getUserInfo() -> UserModel? {
+        let currentUserRequest = UserModel.fetchRequest()
+
+        do {
+            let result = try viewContext.fetch(currentUserRequest)
+            return result.first
+        } catch {
+            print("Current user load error \(error.localizedDescription)")
+            return nil
+        }
+    }
     
     //MARK: Wish methods
     private func deleteWish(id: WishModel) {

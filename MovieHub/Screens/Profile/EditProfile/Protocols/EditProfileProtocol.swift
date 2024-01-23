@@ -10,17 +10,22 @@ import Foundation
 /// PRESENTER -> VIEW
 protocol EditProfileViewProtocol: AnyObject {
     var presenter: EditProfilePresenterProtocol? { get set }
+    func saveButtonTap()
+    func updateProfileInfo(user: UserModel)
 }
 
 /// VIEW -> PRESENTER
 protocol EditProfilePresenterProtocol: AnyObject {
     var view: EditProfileViewProtocol? { get set }
-
+    func updateUserInfo(userName: String, userEmail: String, userAvatar: Data?)
+    func getUserInfo()
 }
 
 /// PRESENTER -> INTERACTOR
 protocol EditProfileInteractorInputProtocol: AnyObject {
     var presenter: EditProfileInteractorOutputProtocol? { get set }
+    func saveUser(userName: String, userEmail: String, userAvatar: Data?)
+    func getUserInfo() -> UserModel?
 }
 
 /// INTERACTOR -> PRESENTER

@@ -18,7 +18,6 @@ extension SearchViewController: UICollectionViewDataSource {
         case 0:
             return presenter?.getUpcomingMovie().count ?? 0
         case 1:
-//            print(" в UICollectionViewDataSource \(presenter?.getRecentMovie().first?.id)")
             return presenter?.getRecentMovie().count ?? 0
         default:
             return 0
@@ -37,9 +36,7 @@ extension SearchViewController: UICollectionViewDataSource {
             
         case .recentMovies:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.identifier, for: indexPath) as? PopularCell else { return UICollectionViewCell() }
-            
             guard let model = self.presenter?.getRecentMovie() else { return UICollectionViewCell() }
-//            print(model)
             cell.configure(category: model[indexPath.row])
             
             return cell

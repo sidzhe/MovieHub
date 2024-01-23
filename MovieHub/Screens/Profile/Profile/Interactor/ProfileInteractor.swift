@@ -15,12 +15,9 @@ final class ProfileInteractor: ProfileInteractorInputProtocol {
     private let storageService: StorageServiceProtool
     
     //MARK: Init
-    init(networkService: NetworkService, storageService: StorageServiceProtool, detailID: String) {
+    init(networkService: NetworkService, storageService: StorageServiceProtool) {
         self.networkService = networkService
         self.storageService = storageService
     }
-    
-    func saveUser(name: String, email: String, avatar: Data) {
-        storageService.saveUser(name: name, email: email, avatar: avatar)
-    }
+
 }

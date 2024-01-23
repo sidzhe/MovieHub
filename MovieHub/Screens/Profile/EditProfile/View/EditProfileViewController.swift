@@ -32,7 +32,6 @@ final class EditProfileViewController: UIViewController {
         return button
     }()
     
-    
     private lazy var nameLabel: UILabel = {
         var nameLabel = UILabel()
         nameLabel.text = "Tiffany"
@@ -145,10 +144,28 @@ final class EditProfileViewController: UIViewController {
     }
     
     // MARK: - Private Actions
-    
-    
-    @objc private func saveButtonTap() {
-     
+ 
+    @objc internal func saveButtonTap() {
+        if let inputName = nameView.textField.text, isValidName(inputName), 
+            let inputEmail = emailView.textField.text, isValidEmail(inputEmail) {
+            let userName = inputName
+            let userEmail = inputEmail
+            var userAvatar: Data?
+            
+            if let avatarImage = avatarImageView.image, let avatarData = avatarImage.pngData() {
+                userAvatar = avatarData
+            } else if let defaultAvatar = UIImage(named: "cinemaIcon"), let avatarData = defaultAvatar.pngData() {
+                userAvatar = avatarData
+            }
+            
+            if let presenter = presenter {
+                presenter.updateUserInfo(
+                    userName: userName,
+                    userEmail: userEmail,
+                    userAvatar: userAvatar
+                )
+            }
+        }
     }
     
     @objc private func avatarEditButtonTap() {
@@ -176,10 +193,10 @@ final class EditProfileViewController: UIViewController {
     }
     
     private func isValidName(_ name: String) -> Bool {
-      guard !name.isEmpty else {
-        return false
-      }
-      return true
+        guard !name.isEmpty else {
+            return false
+        }
+        return true
     }
     
     private func isValidEmail(_ email: String) -> Bool {
@@ -205,6 +222,11 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
 
 extension EditProfileViewController: EditProfileViewProtocol {
     
+    func updateProfileInfo(user: UserModel) {
+        nameLabel.text = user.userName
+        emailLabel.text = user.userEmail
+        avatarImageView.image = UIImage(data: user.userAvatar ?? Data())
+    }
 }
 
 private extension EditProfileViewController {
@@ -259,10 +281,10 @@ private extension EditProfileViewController {
             make.height.equalTo(53)
         }
         
-//        nameErrorLabel.snp.makeConstraints { make in
-//            make.top.equalTo(nameView.snp.bottom).offset(4)
-//          //  make.leading.equalToSuperview().offset(30)
-//        }
+        //        nameErrorLabel.snp.makeConstraints { make in
+        //            make.top.equalTo(nameView.snp.bottom).offset(4)
+        //          //  make.leading.equalToSuperview().offset(30)
+        //        }
         
         emailView.snp.makeConstraints { make in
             make.top.equalTo(nameView.snp.bottom).offset(58)
@@ -271,10 +293,10 @@ private extension EditProfileViewController {
             make.height.equalTo(53)
         }
         
-//        emailErrorLabel.snp.makeConstraints { make in
-//            make.top.equalTo(emailView.snp.bottom).offset(4)
-//            make.leading.equalToSuperview().offset(30)
-//        }
+        //        emailErrorLabel.snp.makeConstraints { make in
+        //            make.top.equalTo(emailView.snp.bottom).offset(4)
+        //            make.leading.equalToSuperview().offset(30)
+        //        }
         
         saveButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-120)
