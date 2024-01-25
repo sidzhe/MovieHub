@@ -70,13 +70,14 @@ final class ProfileViewController: UIViewController {
         setupConstraints()
         addTargetForButtons()
         
+        presenter?.getUserInfo()
         navigationController?.setupNavigationBar()
         navigationItem.title = "Профиль"
     }
     
     func addTargetForButtons() {
-      generalView.addTargetForFirstButton(target: self, action: #selector(policyButtonTap), for: .touchUpInside)
-      generalView.addTargetForSecondButton(target: self, action: #selector(aboutUsButtonTap), for: .touchUpInside)
+      generalView.addTargetForFirstButton(target: self, action: #selector(notificationButtonTap), for: .touchUpInside)
+      generalView.addTargetForSecondButton(target: self, action: #selector(languageButtonTap), for: .touchUpInside)
 
       moreView.addTargetForFirstButton(target: self, action: #selector(policyButtonTap), for: .touchUpInside)
       moreView.addTargetForSecondButton(target: self, action: #selector(aboutUsButtonTap), for: .touchUpInside)
@@ -142,8 +143,22 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewProtocol {
+    func updateProfileInfo(user: UserModel) {
+        nameLabel.text = user.userName
+        emailLabel.text = user.userEmail
+        avatarImageView.image = UIImage(data: user.userAvatar ?? Data())
+    }
+    
     
     //MARK: - Objective-C methods
+    @objc private func languageButtonTap() {
+        presenter?.routeToLanguage()
+    }
+    
+    @objc private func notificationButtonTap() {
+        presenter?.routeToNotification()
+    }
+    
     @objc private func policyButtonTap() {
         presenter?.routeToPolicies()
     }

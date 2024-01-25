@@ -21,12 +21,8 @@ final class EditProfileInteractor: EditProfileInteractorInputProtocol {
         self.storageService = storageService
     }
     
-    func saveUser(userName: String, userEmail: String, userAvatar: Data?) {
-        storageService.saveUser(
-            userName: userName,
-            userEmail: userEmail,
-            userAvatar: userAvatar
-        )
+    func saveUser(user: EditProfileModel) {
+        storageService.saveUser(user: user)
     }
     
     func getUserInfo() -> UserModel? {

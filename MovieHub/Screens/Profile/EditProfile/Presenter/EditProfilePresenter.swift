@@ -13,12 +13,8 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
     weak var view: EditProfileViewProtocol?
     var interactor: EditProfileInteractorInputProtocol?
     
-    func updateUserInfo(userName: String, userEmail: String, userAvatar: Data?) {
-        interactor?.saveUser(
-            userName: userName,
-            userEmail: userEmail,
-            userAvatar: userAvatar
-        )
+    func updateUserInfo(user: EditProfileModel) {
+        interactor?.saveUser(user: user)
     }
     
     func getUserInfo() {

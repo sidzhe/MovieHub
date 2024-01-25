@@ -16,7 +16,7 @@ protocol StorageServiceProtool: AnyObject {
     func checkWish(id: Int)
     func getWishModel() -> [String]
     func wishStateButton(id: Int) -> Bool
-    func saveUser(userName: String, userEmail: String, userAvatar: Data?)
+    func saveUser(user: EditProfileModel)
     func getUserInfo() -> UserModel?
 }
 
@@ -109,11 +109,11 @@ final class StorageService: StorageServiceProtool {
     }
     
     //MARK: Profile Methods
-    func saveUser(userName: String, userEmail: String, userAvatar: Data?) {
+    func saveUser(user: EditProfileModel) {
         let newUser = UserModel(context: viewContext)
-        newUser.userName = userName
-        newUser.userEmail = userEmail
-        newUser.userAvatar = userAvatar
+        newUser.userName = user.name
+        newUser.userEmail = user.email
+        newUser.userAvatar = user.avatar
         saveContext()
     }
     

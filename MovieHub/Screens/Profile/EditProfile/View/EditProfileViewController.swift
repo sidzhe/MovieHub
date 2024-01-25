@@ -101,6 +101,7 @@ final class EditProfileViewController: UIViewController {
         
         setupView()
         setConstraint()
+        presenter?.getUserInfo()
         navigationController?.navigationBar.topItem?.title = ""
     }
     
@@ -144,26 +145,25 @@ final class EditProfileViewController: UIViewController {
     }
     
     // MARK: - Private Actions
- 
-    @objc internal func saveButtonTap() {
-        if let inputName = nameView.textField.text, isValidName(inputName), 
+    
+    @objc func saveButtonTap() {
+        if let inputName = nameView.textField.text, isValidName(inputName),
             let inputEmail = emailView.textField.text, isValidEmail(inputEmail) {
-            let userName = inputName
-            let userEmail = inputEmail
-            var userAvatar: Data?
             
+            var user = EditProfileModel(
+                name: inputName,
+                email: inputEmail,
+                avatar: nil
+            )
+
             if let avatarImage = avatarImageView.image, let avatarData = avatarImage.pngData() {
-                userAvatar = avatarData
+                user.avatar = avatarData
             } else if let defaultAvatar = UIImage(named: "cinemaIcon"), let avatarData = defaultAvatar.pngData() {
-                userAvatar = avatarData
+                user.avatar = avatarData
             }
             
             if let presenter = presenter {
-                presenter.updateUserInfo(
-                    userName: userName,
-                    userEmail: userEmail,
-                    userAvatar: userAvatar
-                )
+                presenter.updateUserInfo(user: user)
             }
         }
     }

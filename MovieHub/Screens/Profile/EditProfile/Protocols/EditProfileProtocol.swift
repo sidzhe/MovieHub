@@ -17,14 +17,14 @@ protocol EditProfileViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol EditProfilePresenterProtocol: AnyObject {
     var view: EditProfileViewProtocol? { get set }
-    func updateUserInfo(userName: String, userEmail: String, userAvatar: Data?)
+    func updateUserInfo(user: EditProfileModel)
     func getUserInfo()
 }
 
 /// PRESENTER -> INTERACTOR
 protocol EditProfileInteractorInputProtocol: AnyObject {
     var presenter: EditProfileInteractorOutputProtocol? { get set }
-    func saveUser(userName: String, userEmail: String, userAvatar: Data?)
+    func saveUser(user: EditProfileModel)
     func getUserInfo() -> UserModel?
 }
 

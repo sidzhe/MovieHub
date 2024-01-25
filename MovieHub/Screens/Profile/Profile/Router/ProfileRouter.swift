@@ -8,16 +8,29 @@
 import UIKit
 
 final class ProfileRouter: ProfileRouterProtocol {
+    func pushToLanguage(from view: ProfileViewProtocol) {
+        guard let view = view as? UIViewController else { return }
+        let languageVC = LanguageViewController()
+        view.navigationController?.pushViewController(languageVC, animated: true)
+    }
+    
+    func pushToNotification(from view: ProfileViewProtocol) {
+        guard let view = view as? UIViewController else { return }
+        let notificationVC = NotificationViewController()
+        view.navigationController?.pushViewController(notificationVC, animated: true)
+    }
+    
     func pushToEditProfile(from view: ProfileViewProtocol) {
         guard let view = view as? UIViewController else { return }
         let editProfileVC = Builder.createEditProfile()
         view.navigationController?.pushViewController(editProfileVC, animated: true)
     }
     
+    
     func pushToAboutUs(from view: ProfileViewProtocol) {
            guard let view = view as? UIViewController else { return }
-           let policiesVC = AboutUsViewController()
-           view.navigationController?.pushViewController(policiesVC, animated: true)
+           let aboutUsVC = AboutUsViewController()
+           view.navigationController?.pushViewController(aboutUsVC, animated: true)
        }
        
        func pushToPolicies(from view: ProfileViewProtocol) {

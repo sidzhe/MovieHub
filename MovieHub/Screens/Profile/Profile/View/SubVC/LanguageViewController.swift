@@ -1,14 +1,13 @@
 //
-//  AboutUsViewController.swift
+//  LanguageViewController.swift
 //  MovieHub
 //
-//  Created by Келлер Дмитрий on 12.01.2024.
+//  Created by Келлер Дмитрий on 25.01.2024.
 //
 
 import UIKit
 
-final class AboutUsViewController: UIViewController {
-    
+final class LanguageViewController: UIViewController {
     //MARK: Properties
 
     
@@ -17,7 +16,7 @@ final class AboutUsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .primaryDark
-        title = "О нас"
+        title = "Выбор языка"
         navigationController?.navigationBar.topItem?.title = ""
     }
 }

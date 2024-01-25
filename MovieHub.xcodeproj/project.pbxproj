@@ -13,6 +13,8 @@
 		10F2EC503162D1756FC570F7 /* Pods_MovieHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */; };
 		638B362E2B5024A500D01D8E /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638B362D2B5024A500D01D8E /* TextViewController.swift */; };
 		63D273432B507B560092E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D273422B507B560092E5E3 /* Assets.xcassets */; };
+		E1DD7E7C2B6232D6006356E8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */; };
+		E1DD7E7E2B623316006356E8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */; };
 		E1DFE6132B51D57400358355 /* SearchSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE5FF2B51D57400358355 /* SearchSection.swift */; };
 		E1DFE6142B51D57400358355 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6012B51D57400358355 /* SearchPresenter.swift */; };
 		E1DFE6152B51D57400358355 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6032B51D57400358355 /* SearchViewController.swift */; };
@@ -209,6 +211,8 @@
 		661DA57DD8ABB2F02BAAC5C3 /* Pods-MovieHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.release.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.release.xcconfig"; sourceTree = "<group>"; };
 		7C2142BA46C1940226C00074 /* Pods-MovieHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.debug.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.debug.xcconfig"; sourceTree = "<group>"; };
 		D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		E1DFE5FF2B51D57400358355 /* SearchSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSection.swift; sourceTree = "<group>"; };
 		E1DFE6012B51D57400358355 /* SearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		E1DFE6032B51D57400358355 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -674,6 +678,8 @@
 			children = (
 				E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */,
 				E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */,
+				E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */,
+				E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */,
 			);
 			path = SubVC;
 			sourceTree = "<group>";
@@ -2019,6 +2025,7 @@
 				EBDD1FCA2B3D700300C1712A /* CategoryModel.swift in Sources */,
 				EB369B0F2B398BB900BB4275 /* RequestError.swift in Sources */,
 				EB0945F22B46CC1200331EAD /* PersonSection.swift in Sources */,
+				E1DD7E7E2B623316006356E8 /* NotificationViewController.swift in Sources */,
 				E1DFE6312B51D5C200358355 /* SearchResultController+UICollectionView.swift in Sources */,
 				EB82678E2B38B2260024BAAE /* OnboardingInteractor.swift in Sources */,
 				E1DFE6362B51D6B300358355 /* UISearchController + Extension.swift in Sources */,
@@ -2130,6 +2137,7 @@
 				E1DFE6152B51D57400358355 /* SearchViewController.swift in Sources */,
 				EBCA67D92B3C699D008B59B9 /* HeaderCell.swift in Sources */,
 				EBE76C8F2B3977680053E522 /* ChristmasPresenter.swift in Sources */,
+				E1DD7E7C2B6232D6006356E8 /* LanguageViewController.swift in Sources */,
 				EBE76C872B3976A30053E522 /* ProfilePresenter.swift in Sources */,
 				EBBA2B562B4D973F00D55EF6 /* GlobeCinema.swift in Sources */,
 				E1DFE6652B5345BD00358355 /* EditProfilePresenter.swift in Sources */,

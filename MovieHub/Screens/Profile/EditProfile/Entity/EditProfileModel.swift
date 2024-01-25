@@ -5,10 +5,10 @@
 //  Created by Келлер Дмитрий on 14.01.2024.
 //
 
-import UIKit
+import Foundation
 
 struct EditProfileModel {
     let name: String
-    let avatar: UIImage
     let email: String
+    var avatar: Data?
 }

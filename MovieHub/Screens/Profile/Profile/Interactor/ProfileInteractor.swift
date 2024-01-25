@@ -8,7 +8,7 @@
 import Foundation
 
 final class ProfileInteractor: ProfileInteractorInputProtocol {
-    
+ 
     //MARK: - Properties
     weak var presenter: ProfileInteractorOutputProtocol?
     private let networkService: NetworkService
@@ -19,5 +19,8 @@ final class ProfileInteractor: ProfileInteractorInputProtocol {
         self.networkService = networkService
         self.storageService = storageService
     }
-
+    func getUserInfo() -> UserModel? {
+       let user =  storageService.getUserInfo()
+        return user
+    }
 }

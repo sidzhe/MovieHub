@@ -17,7 +17,8 @@ final class PoliciesViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .primaryDark
-        title = "Legal and Policies"
+        title = "Правила"
+        navigationController?.navigationBar.topItem?.title = ""
     }
 }
 
