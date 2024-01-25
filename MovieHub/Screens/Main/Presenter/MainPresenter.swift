@@ -8,7 +8,7 @@
 import Foundation
 
 final class MainPresenter: MainPresenterProtocol {
-    
+
     //MARK: Properties
     weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
@@ -27,6 +27,14 @@ final class MainPresenter: MainPresenterProtocol {
     func getColletionModel() -> [DocCollect] {
         guard let model = interactor?.collectionData?.docs else { return [DocCollect]() }
         return model
+    }
+    
+    func getUserInfo() {
+        if let userInfo = interactor?.getUserInfo() {
+            view?.updateProfileInfo(user: userInfo)
+        } else {
+            print("ошибка получения данных пользователя")
+        }
     }
     
     func getCategories() -> [CategoryModel] {

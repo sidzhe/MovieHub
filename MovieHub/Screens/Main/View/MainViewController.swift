@@ -49,7 +49,7 @@ final class MainViewController: UIViewController {
         setCategories()
         accountViewButtonsTarget()
         setLocation()
-        
+        presenter?.getUserInfo()
     }
     
     //MARK: Setup Views
@@ -356,13 +356,17 @@ extension MainViewController: UICollectionViewDelegate {
 
 //MARK: - Extension MainViewProtocol
 extension MainViewController: MainViewProtocol {
-    
     func updateUI() {
         Task { applySnapshot() }
     }
     
     func displayRequestError(error: String) {
         Task { alertError(error) }
+    }
+    
+    func updateProfileInfo(user: UserModel) {
+        accountView.nameLabel.text = "Привет, \(user.userName ?? "гость")"
+        accountView.avatar.image = UIImage(data: user.userAvatar ?? Data()) ??  UIImage(systemName: "person.fill")
     }
 }
 

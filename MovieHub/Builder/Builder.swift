@@ -39,7 +39,8 @@ final class Builder {
         let view = MainViewController()
         let presenter = MainPresenter()
         let networkService = NetworkService()
-        let interactor = MainInteractor(networkService: networkService)
+        let storageService = StorageService()
+        let interactor = MainInteractor(networkService: networkService, storageService: storageService)
         let router = MainRouter()
         view.presenter = presenter
         presenter.view = view

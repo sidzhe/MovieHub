@@ -12,6 +12,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     //MARK: - Properties
     weak var presenter: MainInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
+    private let storageService: StorageServiceProtool
     var collectionData: ColletionModel?
     var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue.localized()) }
     var mostPopular: CollectionDetailModel?
@@ -21,11 +22,18 @@ final class MainInteractor: MainInteractorInputProtocol {
     var currentCity: String?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool) {
+    init(networkService: NetworkServiceProtool, storageService: StorageService) {
         self.networkService = networkService
+        self.storageService = storageService
     }
     
     //MARK: Methods
+    
+    func getUserInfo() -> UserModel? {
+       let user = storageService.getUserInfo()
+        return user
+    }
+    
     func selectedCategory(_ index: Int) {
         cagegoriesData.enumerated().forEach { cagegoriesData[$0.offset].isSelected = false }
         cagegoriesData[index].isSelected = !cagegoriesData[index].isSelected

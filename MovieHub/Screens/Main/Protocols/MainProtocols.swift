@@ -12,11 +12,13 @@ protocol MainViewProtocol: AnyObject {
     var presenter: MainPresenterProtocol? { get set }
     func updateUI()
     func displayRequestError(error: String)
+    func updateProfileInfo(user: UserModel)
 }
 
 /// VIEW -> PRESENTER
 protocol MainPresenterProtocol: AnyObject {
     var view: MainViewProtocol? { get set }
+    func getUserInfo()
     func fetch()
     func getColletionModel() -> [DocCollect]
     func getCategories() -> [CategoryModel]
@@ -37,6 +39,7 @@ protocol MainPresenterProtocol: AnyObject {
 /// PRESENTER -> INTERACTOR
 protocol MainInteractorInputProtocol: AnyObject {
     var presenter: MainInteractorOutputProtocol? { get set }
+    func getUserInfo() -> UserModel?
     var collectionData: ColletionModel? { get }
     var cagegoriesData: [CategoryModel] { get }
     var mostPopular: CollectionDetailModel? { get }
