@@ -33,7 +33,7 @@ final class MainPresenter: MainPresenterProtocol {
         if let userInfo = interactor?.getUserInfo() {
             view?.updateProfileInfo(user: userInfo)
         } else {
-            print("ошибка получения данных пользователя")
+            print("ошибка получения данных пользователя на главном экране")
         }
     }
     

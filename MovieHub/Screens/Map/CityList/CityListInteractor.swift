@@ -12,12 +12,12 @@ final class CityListInteractor: CityListInteractorInputProtocol {
     //MARK: - Properties
     weak var presenter: CityListInteractorOutputProtocol?
     private let networkService: NetworkServiceProtool
-    private let storageService: StorageServiceProtool
+    private let storageService: StorageServiceProtocol
     var cityList = CityListModel.allCases.map { $0.rawValue.localized() }
     var filteredCity: [String]?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool, storageService: StorageServiceProtool) {
+    init(networkService: NetworkServiceProtool, storageService: StorageServiceProtocol) {
         self.networkService = networkService
         self.storageService = storageService
     }

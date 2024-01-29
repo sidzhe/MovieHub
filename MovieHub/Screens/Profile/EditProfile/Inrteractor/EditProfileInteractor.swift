@@ -13,10 +13,12 @@ final class EditProfileInteractor: EditProfileInteractorInputProtocol {
     weak var presenter: EditProfileInteractorOutputProtocol?
     
     private let networkService: NetworkService
-    private let storageService: StorageServiceProtool
+    private let storageService: StorageServiceProtocol
     
+    var user: UserModel?
+
     //MARK: Init
-    init(networkService: NetworkService, storageService: StorageServiceProtool) {
+    init(networkService: NetworkService, storageService: StorageServiceProtocol) {
         self.networkService = networkService
         self.storageService = storageService
     }
@@ -25,8 +27,13 @@ final class EditProfileInteractor: EditProfileInteractorInputProtocol {
         storageService.saveUser(user: user)
     }
     
+    func updateUserInfo(newUserInfo: EditProfileModel) {
+        guard let user else { return }
+        storageService.updateUserInfo(user, newUserInfo: newUserInfo)
+    }
+    
     func getUserInfo() -> UserModel? {
-        let userInfo = storageService.getUserInfo()
-        return userInfo
+        user = storageService.getUserInfo()
+        return user
     }
 }

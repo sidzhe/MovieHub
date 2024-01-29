@@ -12,7 +12,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     //MARK: - Properties
     weak var presenter: MainInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
-    private let storageService: StorageServiceProtool
+    private let storageService: StorageServiceProtocol
     var collectionData: ColletionModel?
     var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue.localized()) }
     var mostPopular: CollectionDetailModel?

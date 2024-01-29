@@ -12,14 +12,14 @@ final class GlobeInteractor: GlobeInteractorInputProtocol {
     //MARK: Properties
     weak var presenter: GlobeInteractorOutputProtocol?
     private let networkService: NetworkServiceProtool
-    private let storageService: StorageServiceProtool
+    private let storageService: StorageServiceProtocol
     var currentCity: String
     var currentLocation: Location
     var selectedCityLocation: Location?
     var cinemaData: [Datum]?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool, storageService: StorageServiceProtool, lat: Double, lon: Double, city: String) {
+    init(networkService: NetworkServiceProtool, storageService: StorageServiceProtocol, lat: Double, lon: Double, city: String) {
         self.networkService = networkService
         self.storageService = storageService
         self.currentCity = city

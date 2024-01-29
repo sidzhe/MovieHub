@@ -24,6 +24,7 @@ final class  CustomTextField: UIView {
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         return textField
     }()
     
@@ -47,6 +48,14 @@ final class  CustomTextField: UIView {
         super.init(coder: coder)
         setupSubviews(placeholder: "", labelText: "")
         setConstraints()
+    }
+    
+    func setValid() {
+        self.backgroundView.layer.borderColor = UIColor.systemGray.cgColor
+    }
+    
+    func setError() {
+        self.backgroundView.layer.borderColor = UIColor.red.cgColor
     }
     
     private func setupSubviews(placeholder: String, labelText: String) {

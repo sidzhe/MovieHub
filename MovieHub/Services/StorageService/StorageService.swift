@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-protocol StorageServiceProtool: AnyObject {
+protocol StorageServiceProtocol: AnyObject {
     func saveCurrentCity(name: String)
     func loadCurrnetCity() -> String
     func saveRecentModel(id: Int)
@@ -17,14 +17,14 @@ protocol StorageServiceProtool: AnyObject {
     func getWishModel() -> [String]
     func wishStateButton(id: Int) -> Bool
     func saveUser(user: EditProfileModel)
+    func updateUserInfo(_ user: UserModel, newUserInfo: EditProfileModel)
     func getUserInfo() -> UserModel?
 }
 
-final class StorageService: StorageServiceProtool {
-
+final class StorageService: StorageServiceProtocol {
 
     //MARK: Properies
-    private lazy var persistentContainer: NSPersistentContainer = {
+    private let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: Constant.persistentContainerName)
         container.loadPersistentStores { _, error in
             if let error = error as? NSError {
@@ -117,12 +117,20 @@ final class StorageService: StorageServiceProtool {
         saveContext()
     }
     
+    func updateUserInfo(_ user: UserModel, newUserInfo: EditProfileModel) {
+        user.userName = newUserInfo.name
+        user.userEmail = newUserInfo.email
+        user.userAvatar = newUserInfo.avatar
+        saveContext()
+    }
+    
+
     func getUserInfo() -> UserModel? {
         let currentUserRequest = UserModel.fetchRequest()
 
         do {
             let result = try viewContext.fetch(currentUserRequest)
-            return result.first
+            return result.last
         } catch {
             print("Current user load error \(error.localizedDescription)")
             return nil
