@@ -97,22 +97,32 @@ final class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Редактировать профиль"
-        
-        let userName = "Tiffany"
-        nameView.textField.text  = userName
-        let userEmail = "tiffany@gmail.com"
-        emailView.textField.text = userEmail
-         let user = EditProfileModel(name: userName, email: userEmail)
-        presenter?.saveUser(user: user)
         setupView()
         setConstraint()
-        presenter?.getUserInfo()
+        addFirstUser()
         navigationController?.navigationBar.topItem?.title = ""
     }
     
-   
+    override func viewDidAppear(_ animated: Bool) {
+        presenter?.getUserInfo()
+    }
     
     // MARK: - Private Actions
+    
+    private func addFirstUser() {
+        let userName = nameLabel.text
+        nameView.textField.text  = userName
+        let userEmail = emailLabel.text
+        emailView.textField.text = userEmail
+        let userAvatar = avatarImageView.image
+        
+        let user = EditProfileModel(
+            name: userName ?? "",
+            email: userEmail ?? "",
+            avatar: userAvatar?.pngData()
+        )
+        presenter?.saveUser(user: user)
+    }
     
     @objc func saveButtonTap() {
         guard let inputName = nameView.textField.text, isValidName(inputName),
@@ -135,7 +145,8 @@ final class EditProfileViewController: UIViewController {
         
         if let avatarImage = avatarImage, let avatarData = avatarImage.pngData() {
             user.avatar = avatarData
-        } else if let defaultAvatar = UIImage(named: "cinemaIcon"), let avatarData = defaultAvatar.pngData() {
+        } else if let defaultAvatar = UIImage(named: "cinemaIcon"), 
+                  let avatarData = defaultAvatar.pngData() {
             user.avatar = avatarData
         }
         
@@ -174,8 +185,6 @@ final class EditProfileViewController: UIViewController {
         return emailPredicate.evaluate(with: email)
     }
 }
-
-
 
 extension EditProfileViewController: EditProfileViewProtocol {
     
@@ -268,7 +277,8 @@ private extension EditProfileViewController {
 extension EditProfileViewProtocol {
     
     var _avatarImageView: UIImageView {
-        var avatarImageView = UIImageView()
+        let avatarImageView = UIImageView()
+        avatarImageView.image = UIImage(named: "cinemaIcon")
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         avatarImageView.backgroundColor = .white
         return avatarImageView

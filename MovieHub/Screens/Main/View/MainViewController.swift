@@ -49,6 +49,11 @@ final class MainViewController: UIViewController {
         setCategories()
         accountViewButtonsTarget()
         setLocation()
+  
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         presenter?.getUserInfo()
     }
     

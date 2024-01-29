@@ -70,9 +70,12 @@ final class ProfileViewController: UIViewController {
         setupConstraints()
         addTargetForButtons()
         
-        presenter?.getUserInfo()
         navigationController?.setupNavigationBar()
         navigationItem.title = "Профиль"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        presenter?.getUserInfo()
     }
     
     func addTargetForButtons() {
