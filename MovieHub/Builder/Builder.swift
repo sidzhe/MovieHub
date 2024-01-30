@@ -34,6 +34,23 @@ final class Builder {
         return view
     }
     
+    /// AuthVC
+    static func createAuth() -> UIViewController {
+        let view = AuthViewController()
+        let presenter = AuthPresenter()
+        let storageService = StorageService()
+        let interactor = AuthInteractor(
+            storageService: storageService
+        )
+        let router = AuthRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
     /// MainVC
     static func createMain() -> UIViewController {
         let view = MainViewController()

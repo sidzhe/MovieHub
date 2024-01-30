@@ -99,7 +99,7 @@ final class EditProfileViewController: UIViewController {
         title = "Редактировать профиль"
         setupView()
         setConstraint()
-        addFirstUser()
+        
         navigationController?.navigationBar.topItem?.title = ""
     }
     
@@ -108,21 +108,6 @@ final class EditProfileViewController: UIViewController {
     }
     
     // MARK: - Private Actions
-    
-    private func addFirstUser() {
-        let userName = nameLabel.text
-        nameView.textField.text  = userName
-        let userEmail = emailLabel.text
-        emailView.textField.text = userEmail
-        let userAvatar = avatarImageView.image
-        
-        let user = EditProfileModel(
-            name: userName ?? "",
-            email: userEmail ?? "",
-            avatar: userAvatar?.pngData()
-        )
-        presenter?.saveUser(user: user)
-    }
     
     @objc func saveButtonTap() {
         guard let inputName = nameView.textField.text, isValidName(inputName),
@@ -136,7 +121,8 @@ final class EditProfileViewController: UIViewController {
             avatarImage: avatarImageView.image
         )
         
-        presenter?.updateUserInfo(user)
+        presenter?.saveUser(user: user)
+        presenter?.getUserInfo()
         dismiss(animated: true)
     }
     

@@ -17,6 +17,7 @@ protocol EditProfileViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol EditProfilePresenterProtocol: AnyObject {
     var view: EditProfileViewProtocol? { get set }
+    func getSavedUser() -> UserModel
     func saveUser(user: EditProfileModel)
     func updateUserInfo(_ user: EditProfileModel)
     func getUserInfo()
@@ -25,6 +26,7 @@ protocol EditProfilePresenterProtocol: AnyObject {
 /// PRESENTER -> INTERACTOR
 protocol EditProfileInteractorInputProtocol: AnyObject {
     var presenter: EditProfileInteractorOutputProtocol? { get set }
+    var user: UserModel? { get set }
     func saveUser(user: EditProfileModel)
     func updateUserInfo(newUserInfo: EditProfileModel)
     func getUserInfo() -> UserModel?

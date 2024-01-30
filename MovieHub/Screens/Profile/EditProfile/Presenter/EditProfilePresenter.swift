@@ -21,6 +21,11 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
         interactor?.saveUser(user: user)
     }
     
+    func getSavedUser() -> UserModel {
+        guard let savedUser = interactor?.user else { return UserModel() }
+      return savedUser
+    }
+    
     func getUserInfo() {
         if let userInfo = interactor?.getUserInfo() {
             view?.updateProfileInfo(user: userInfo)

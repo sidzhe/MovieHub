@@ -13,6 +13,11 @@
 		10F2EC503162D1756FC570F7 /* Pods_MovieHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */; };
 		638B362E2B5024A500D01D8E /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638B362D2B5024A500D01D8E /* TextViewController.swift */; };
 		63D273432B507B560092E5E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D273422B507B560092E5E3 /* Assets.xcassets */; };
+		E15E5D612B69922700A7FDC7 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D602B69922700A7FDC7 /* AuthViewController.swift */; };
+		E15E5D632B69923C00A7FDC7 /* AuthProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D622B69923C00A7FDC7 /* AuthProtocols.swift */; };
+		E15E5D652B69926C00A7FDC7 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D642B69926C00A7FDC7 /* AuthPresenter.swift */; };
+		E15E5D672B69928000A7FDC7 /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D662B69928000A7FDC7 /* AuthInteractor.swift */; };
+		E15E5D6D2B69934B00A7FDC7 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D6C2B69934B00A7FDC7 /* AuthRouter.swift */; };
 		E1DD7E7C2B6232D6006356E8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */; };
 		E1DD7E7E2B623316006356E8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */; };
 		E1DD7E802B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */; };
@@ -212,6 +217,11 @@
 		661DA57DD8ABB2F02BAAC5C3 /* Pods-MovieHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.release.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.release.xcconfig"; sourceTree = "<group>"; };
 		7C2142BA46C1940226C00074 /* Pods-MovieHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.debug.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.debug.xcconfig"; sourceTree = "<group>"; };
 		D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E15E5D602B69922700A7FDC7 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		E15E5D622B69923C00A7FDC7 /* AuthProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProtocols.swift; sourceTree = "<group>"; };
+		E15E5D642B69926C00A7FDC7 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		E15E5D662B69928000A7FDC7 /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
+		E15E5D6C2B69934B00A7FDC7 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileViewController+ImagePickerController.swift"; sourceTree = "<group>"; };
@@ -440,6 +450,58 @@
 				D3AEBE2E22C66FB54F2188A7 /* Pods_MovieHub.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E15E5D5F2B69920900A7FDC7 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				E15E5D682B6992D100A7FDC7 /* View */,
+				E15E5D6B2B6992F000A7FDC7 /* Interactor */,
+				E15E5D692B6992DC00A7FDC7 /* Protocols */,
+				E15E5D6A2B6992E600A7FDC7 /* Presenter */,
+				E15E5D6E2B69952700A7FDC7 /* Router */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		E15E5D682B6992D100A7FDC7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E15E5D602B69922700A7FDC7 /* AuthViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E15E5D692B6992DC00A7FDC7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E15E5D622B69923C00A7FDC7 /* AuthProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E15E5D6A2B6992E600A7FDC7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				E15E5D642B69926C00A7FDC7 /* AuthPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		E15E5D6B2B6992F000A7FDC7 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				E15E5D662B69928000A7FDC7 /* AuthInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		E15E5D6E2B69952700A7FDC7 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E15E5D6C2B69934B00A7FDC7 /* AuthRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		E1DFE5FD2B51D57400358355 /* Search */ = {
@@ -916,6 +978,7 @@
 		EB8267762B38A2E80024BAAE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				E15E5D5F2B69920900A7FDC7 /* Auth */,
 				EBE76C942B3979170053E522 /* TabBar */,
 				EB8267772B38A30A0024BAAE /* Onboarding */,
 				EB8267782B38A3390024BAAE /* Main */,
@@ -2000,6 +2063,7 @@
 				EBBA2B812B4D98CA00D55EF6 /* MapPresenter.swift in Sources */,
 				EB82678A2B38AB9A0024BAAE /* OnboardingProtocols.swift in Sources */,
 				EB369B192B39A2E500BB4275 /* SearchModel.swift in Sources */,
+				E15E5D612B69922700A7FDC7 /* AuthViewController.swift in Sources */,
 				EB369B262B3B085800BB4275 /* CollectionDetailModel.swift in Sources */,
 				EB369B132B39911200BB4275 /* MovieClient.swift in Sources */,
 				E1DFE61C2B51D57400358355 /* SearchViewController+UICollectionView.swift in Sources */,
@@ -2033,6 +2097,7 @@
 				EB82678E2B38B2260024BAAE /* OnboardingInteractor.swift in Sources */,
 				E1DFE6362B51D6B300358355 /* UISearchController + Extension.swift in Sources */,
 				EB6CB2E22B3C31D100DC30BC /* Section.swift in Sources */,
+				E15E5D652B69926C00A7FDC7 /* AuthPresenter.swift in Sources */,
 				EB369B1E2B39CA1700BB4275 /* PersonModel.swift in Sources */,
 				E1F898932B593055004B1E9A /* GeneralView.swift in Sources */,
 				EB369B282B3B15D300BB4275 /* MovieGenre.swift in Sources */,
@@ -2052,6 +2117,7 @@
 				EB8267612B38A1D50024BAAE /* AppDelegate.swift in Sources */,
 				EBBA2B732B4D984C00D55EF6 /* CityListProtocols.swift in Sources */,
 				EBE76C602B3972B50053E522 /* WishlistViewController.swift in Sources */,
+				E15E5D632B69923C00A7FDC7 /* AuthProtocols.swift in Sources */,
 				EBE76C372B396F7F0053E522 /* MovieListInteractor.swift in Sources */,
 				EBA5FE2E2B4EB6DC00E85872 /* CollectionProtocols.swift in Sources */,
 				E1DFE6162B51D57400358355 /* SearchViewController+ResultsUpdate.swift in Sources */,
@@ -2103,6 +2169,7 @@
 				EBE76C312B396EA20053E522 /* MovieListProtocols.swift in Sources */,
 				EBBA2B352B4D8ACF00D55EF6 /* CurrentCityEndpoints.swift in Sources */,
 				E1DFE6672B5345BD00358355 /* EditProfileViewController.swift in Sources */,
+				E15E5D6D2B69934B00A7FDC7 /* AuthRouter.swift in Sources */,
 				E1DFE6562B53459E00358355 /* Extension +UIStackView.swift in Sources */,
 				EBE76C392B396F9E0053E522 /* MovieListRouter.swift in Sources */,
 				E1DFE6132B51D57400358355 /* SearchSection.swift in Sources */,
@@ -2159,6 +2226,7 @@
 				EBDDEAA92B502C180075ED3F /* Extension + String.swift in Sources */,
 				EBDFCFAE2B455D3A00B1FE5E /* AwardsModel.swift in Sources */,
 				EBE76C912B3977930053E522 /* ChristmasInteractor.swift in Sources */,
+				E15E5D672B69928000A7FDC7 /* AuthInteractor.swift in Sources */,
 				EBE76C282B396E140053E522 /* MainInteractor.swift in Sources */,
 				E1DFE6342B51D5C200358355 /* SearchResultRouter.swift in Sources */,
 				E1DFE6182B51D57400358355 /* PersonCell.swift in Sources */,
