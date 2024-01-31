@@ -70,7 +70,7 @@ final class  CustomTextField: UIView {
         backgroundView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().offset(-48)
+            make.width.equalToSuperview()
             make.height.equalTo(53)
         }
         
@@ -82,7 +82,7 @@ final class  CustomTextField: UIView {
         
         textField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().offset(-48)
+            make.width.equalToSuperview().offset(-30)
             make.height.equalTo(53)
         }
     }

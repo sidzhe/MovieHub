@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         if UserDefaults.standard.value(forKey: "state") != nil {
-            window?.rootViewController = Builder.createTabBar()
+            window?.rootViewController = Builder.createAuth() 
         } else {
             window?.rootViewController = Builder.createOnboarding()
         }

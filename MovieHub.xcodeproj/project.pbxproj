@@ -18,6 +18,7 @@
 		E15E5D652B69926C00A7FDC7 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D642B69926C00A7FDC7 /* AuthPresenter.swift */; };
 		E15E5D672B69928000A7FDC7 /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D662B69928000A7FDC7 /* AuthInteractor.swift */; };
 		E15E5D6D2B69934B00A7FDC7 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D6C2B69934B00A7FDC7 /* AuthRouter.swift */; };
+		E15E5D712B6A69B000A7FDC7 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D702B6A69B000A7FDC7 /* ButtonFactory.swift */; };
 		E1DD7E7C2B6232D6006356E8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */; };
 		E1DD7E7E2B623316006356E8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */; };
 		E1DD7E802B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */; };
@@ -48,7 +49,7 @@
 		E1DFE6652B5345BD00358355 /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE65B2B5345BD00358355 /* EditProfilePresenter.swift */; };
 		E1DFE6662B5345BD00358355 /* EditProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE65D2B5345BD00358355 /* EditProfileInteractor.swift */; };
 		E1DFE6672B5345BD00358355 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE65F2B5345BD00358355 /* EditProfileViewController.swift */; };
-		E1DFE6682B5345BD00358355 /*  CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6612B5345BD00358355 /*  CustomTextField.swift */; };
+		E1DFE6682B5345BD00358355 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6612B5345BD00358355 /* CustomTextField.swift */; };
 		E1DFE6692B5345BD00358355 /* EditProfileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE6632B5345BD00358355 /* EditProfileProtocol.swift */; };
 		E1DFE66D2B5345E900358355 /* PoliciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */; };
 		E1DFE66E2B5345E900358355 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */; };
@@ -222,6 +223,7 @@
 		E15E5D642B69926C00A7FDC7 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
 		E15E5D662B69928000A7FDC7 /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 		E15E5D6C2B69934B00A7FDC7 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		E15E5D702B6A69B000A7FDC7 /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileViewController+ImagePickerController.swift"; sourceTree = "<group>"; };
@@ -252,7 +254,7 @@
 		E1DFE65B2B5345BD00358355 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
 		E1DFE65D2B5345BD00358355 /* EditProfileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileInteractor.swift; sourceTree = "<group>"; };
 		E1DFE65F2B5345BD00358355 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		E1DFE6612B5345BD00358355 /*  CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " CustomTextField.swift"; sourceTree = "<group>"; };
+		E1DFE6612B5345BD00358355 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		E1DFE6632B5345BD00358355 /* EditProfileProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileProtocol.swift; sourceTree = "<group>"; };
 		E1DFE66B2B5345E900358355 /* PoliciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliciesViewController.swift; sourceTree = "<group>"; };
 		E1DFE66C2B5345E900358355 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
@@ -504,6 +506,15 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		E15E5D6F2B6A696600A7FDC7 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				E1DFE6612B5345BD00358355 /* CustomTextField.swift */,
+				E15E5D702B6A69B000A7FDC7 /* ButtonFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
 		E1DFE5FD2B51D57400358355 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -691,17 +702,8 @@
 			children = (
 				E1DFE65F2B5345BD00358355 /* EditProfileViewController.swift */,
 				E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */,
-				E1DFE6602B5345BD00358355 /* Views */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		E1DFE6602B5345BD00358355 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E1DFE6612B5345BD00358355 /*  CustomTextField.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		E1DFE6622B5345BD00358355 /* Protocols */ = {
@@ -964,6 +966,7 @@
 			isa = PBXGroup;
 			children = (
 				EB290E852B512FD500746565 /* Constant */,
+				E15E5D6F2B6A696600A7FDC7 /* Factories */,
 				EBDDEAA52B502BF60075ED3F /* Localize */,
 				EBF0D1582B4D9F650061BEA9 /* Animation */,
 				EB6CB2C22B3C205900DC30BC /* Fonts */,
@@ -2192,6 +2195,7 @@
 				EB9973F12B52E12900D9EFC5 /* GaleryModel.swift in Sources */,
 				EBE76C5E2B3972840053E522 /* WishlistProtocols.swift in Sources */,
 				EB9973D82B529F8000D9EFC5 /* TrailerProtocols.swift in Sources */,
+				E15E5D712B6A69B000A7FDC7 /* ButtonFactory.swift in Sources */,
 				EB8267882B38AB110024BAAE /* OnboardingViewController.swift in Sources */,
 				EB369B2A2B3B20F100BB4275 /* PersonDetalModel.swift in Sources */,
 				EB9973EB2B52C33800D9EFC5 /* ItemTrailer.swift in Sources */,
@@ -2218,7 +2222,7 @@
 				EB20D0812B430C0800B5E094 /* MovieView.swift in Sources */,
 				E1DFE6192B51D57400358355 /* CategoriesMenuCell.swift in Sources */,
 				E1DFE62E2B51D5C200358355 /* SearchResultSection.swift in Sources */,
-				E1DFE6682B5345BD00358355 /*  CustomTextField.swift in Sources */,
+				E1DFE6682B5345BD00358355 /* CustomTextField.swift in Sources */,
 				EBBA2B4E2B4D96FD00D55EF6 /* CinemaCell.swift in Sources */,
 				EBBA2B2E2B4D8A0800D55EF6 /* CinemaModel.swift in Sources */,
 				EBBA2B542B4D972F00D55EF6 /* GlobeItem.swift in Sources */,

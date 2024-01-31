@@ -47,23 +47,18 @@ final class EditProfileViewController: UIViewController {
     }()
     
     private lazy var saveButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Сохранить изменения", for: .normal)
-        button.titleLabel?.font = .montserratMedium(size: 20)
-        button.tintColor = .white
-        button.backgroundColor = .primaryBlue
-        button.layer.cornerRadius = 26
-        let action = UIAction() {_ in
-            self.saveButtonTap()
+        return ButtonFactory.makeButton(
+            title: "Сохранить изменения",
+            color: .white,
+            backgroundColor: .primaryBlue,
+            cornerRadius: 26) { [weak self] in
+           self?.saveButtonTap()
         }
-        button.addAction(action, for: .primaryActionTriggered)
-        return button
     }()
     
     private lazy var nameView: CustomTextField = {
         let view = CustomTextField(placeholder: "ваше имя...", labelText: "Ваше имя")
         view.textField.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingDidEnd)
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -80,7 +75,6 @@ final class EditProfileViewController: UIViewController {
     private lazy var emailView: CustomTextField = {
         let view = CustomTextField(placeholder: "ваш email...", labelText: "Email")
         view.textField.addTarget(self, action: #selector(emailTextFieldDidChange), for: .editingDidEnd)
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
