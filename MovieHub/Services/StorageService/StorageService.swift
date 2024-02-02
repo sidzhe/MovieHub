@@ -22,6 +22,7 @@ protocol StorageServiceProtocol: AnyObject {
     func loginUser(email: String, password: String) -> Result<Void, Error>
     func updateUserInfo(_ user: UserModel, newUserInfo: AuthModel)
     func getCurrentUser() -> Result<UserModel, Error>
+    func checkCurrentUser() -> Bool
     func exit()
 }
 
@@ -143,6 +144,20 @@ final class StorageService: StorageServiceProtocol {
             return !result.isEmpty
         } catch {
             print("Ошибка при загрузке информации о пользователе: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
+    //     проверка наличия авторизованного пользователя
+    func checkCurrentUser() -> Bool {
+        let fetchRequest: NSFetchRequest<UserModel> = UserModel.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "isCurrent == true")
+        
+        do {
+            let result = try viewContext.fetch(fetchRequest)
+            return !result.isEmpty
+        } catch {
+            print("Ошибка при проверке текущего пользователя: \(error.localizedDescription)")
             return false
         }
     }
