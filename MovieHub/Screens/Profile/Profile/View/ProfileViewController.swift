@@ -146,6 +146,10 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewProtocol {
+    func displayError(error: String) {
+        print(error)
+    }
+    
     func updateProfileInfo(user: UserModel) {
         nameLabel.text = user.userName
         emailLabel.text = user.userEmail

@@ -15,10 +15,12 @@ final class ProfilePresenter: ProfilePresenterProtocol {
     var router: ProfileRouterProtocol?
     
     func getUserInfo() {
-        if let userInfo = interactor?.getUserInfo() {
+        guard let userInfo = interactor?.getUserInfo() else { return }
+        switch userInfo {
+        case .success(let userInfo):
             view?.updateProfileInfo(user: userInfo)
-        } else {
-            print("ошибка получения данных для профиля")
+        case .failure(let error):
+            view?.displayError(error: error.localizedDescription)
         }
     }
     

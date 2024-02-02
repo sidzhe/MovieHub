@@ -17,11 +17,11 @@ final class AuthInteractor: AuthInteractorInputProtocol {
         self.storageService = storageService
     }
     
-    func addNewUser(user: AuthModel) {
+    func addNewUser(user: AuthModel) -> Result<Void, Error> {
         storageService.saveUser(user: user)
     }
     
-    func loginUser(email: String, password: String) -> Result<UserModel, Error> {
+    func loginUser(email: String, password: String) -> Result<Void, Error> {
         storageService.loginUser(email: email, password: password)
     }
 }

@@ -19,8 +19,8 @@ final class ProfileInteractor: ProfileInteractorInputProtocol {
         self.networkService = networkService
         self.storageService = storageService
     }
-    func getUserInfo() -> UserModel? {
-       let user =  storageService.getUserInfo()
-        return user
+    
+    func getUserInfo() -> Result<UserModel, Error> {
+      storageService.getCurrentUser()
     }
 }

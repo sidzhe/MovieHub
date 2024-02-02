@@ -11,6 +11,7 @@ import Foundation
 protocol ProfileViewProtocol: AnyObject {
     var presenter: ProfilePresenterProtocol? { get set }
     func updateProfileInfo(user: UserModel)
+    func displayError(error: String)
 }
 
 /// VIEW -> PRESENTER
@@ -28,7 +29,7 @@ protocol ProfilePresenterProtocol: AnyObject {
 /// PRESENTER -> INTERACTOR
 protocol ProfileInteractorInputProtocol: AnyObject {
     var presenter: ProfileInteractorOutputProtocol? { get set }
-    func getUserInfo() -> UserModel?
+    func getUserInfo() -> Result<UserModel, Error>
 }
 
 /// INTERACTOR -> PRESENTER

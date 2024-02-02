@@ -39,7 +39,7 @@ protocol MainPresenterProtocol: AnyObject {
 /// PRESENTER -> INTERACTOR
 protocol MainInteractorInputProtocol: AnyObject {
     var presenter: MainInteractorOutputProtocol? { get set }
-    func getUserInfo() -> UserModel?
+    
     var collectionData: ColletionModel? { get }
     var cagegoriesData: [CategoryModel] { get }
     var mostPopular: CollectionDetailModel? { get }
@@ -50,6 +50,7 @@ protocol MainInteractorInputProtocol: AnyObject {
     func selectedCategory(_ index: Int)
     func saveCurrentLocation(lat: Double, lon: Double, cityName: String)
     func getUserLocation() -> (lat: Double, lon: Double, currentCity: String)
+    func getUserInfo() -> Result<UserModel, Error>
 }
 
 /// INTERACTOR -> PRESENTER

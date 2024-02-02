@@ -23,7 +23,7 @@ final class AuthPresenter: AuthPresenterProtocol {
     func loginUser(email: String, password: String) {
         guard let model = interactor?.loginUser(email: email, password: password) else { return }
         switch model {
-        case .success(let user):
+        case .success():
             router?.pushToTabBar(from: view)
         case .failure(let error):
             print(error)

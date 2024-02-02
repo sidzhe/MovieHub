@@ -146,6 +146,7 @@ final class AuthViewController: UIViewController {
             return
         }
         presenter?.loginUser(email: inputEmail, password: inputPassword)
+     
     }
     
     private func registerNewUser() {
@@ -165,6 +166,7 @@ final class AuthViewController: UIViewController {
             avatarImage: nil
         )
         presenter?.addNewUser(user: user)
+        isRegistering = false
     }
     
     func createUserWith(name: String, email: String, password: String, avatarImage: UIImage?) -> AuthModel {
@@ -220,6 +222,11 @@ final class AuthViewController: UIViewController {
 }
 
 extension AuthViewController: AuthViewProtocol {
+    func addCurrentUser(with user: UserModel) {
+        emailView.textField.text = user.userEmail
+        passwordView.textField.text = user.password
+    }
+    
     func displayError(error: String) {
         showAlert(error)
     }

@@ -10,6 +10,7 @@ import Foundation
 /// PRESENTER -> VIEW
 protocol AuthViewProtocol: AnyObject {
     var presenter: AuthPresenterProtocol? { get set }
+    func addCurrentUser(with user: UserModel)
     func displayError(error: String)
 }
 
@@ -25,8 +26,8 @@ protocol AuthPresenterProtocol: AnyObject {
 protocol AuthInteractorInputProtocol: AnyObject {
     var presenter: AuthInteractorOutputProtocol? { get set }
     
-    func addNewUser(user: AuthModel)
-    func loginUser(email: String, password: String) -> Result<UserModel, Error> 
+    func addNewUser(user: AuthModel) -> Result<Void, Error>
+    func loginUser(email: String, password: String) -> Result<Void, Error>
 
 }
 

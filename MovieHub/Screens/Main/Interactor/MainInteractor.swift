@@ -20,19 +20,20 @@ final class MainInteractor: MainInteractorInputProtocol {
     var lat: Double?
     var lon: Double?
     var currentCity: String?
-    var user: AuthModel?
+    var guest: UserModel?
     
     //MARK: Init
     init(networkService: NetworkServiceProtool, storageService: StorageService) {
         self.networkService = networkService
         self.storageService = storageService
+        guest?.userName = "Гость"
+        guest?.userEmail = ""
     }
     
     //MARK: Methods
     
-    func getUserInfo() -> UserModel? {
-       let user = storageService.getUserInfo()
-        return user
+    func getUserInfo() -> Result<UserModel, Error> {
+        storageService.getCurrentUser() 
     }
     
     func selectedCategory(_ index: Int) {

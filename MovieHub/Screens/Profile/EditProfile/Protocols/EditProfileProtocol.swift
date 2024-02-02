@@ -12,6 +12,7 @@ protocol EditProfileViewProtocol: AnyObject {
     var presenter: EditProfilePresenterProtocol? { get set }
     func saveButtonTap()
     func updateProfileInfo(user: UserModel)
+    func displayError(error: String)
 }
 
 /// VIEW -> PRESENTER
@@ -28,7 +29,7 @@ protocol EditProfileInteractorInputProtocol: AnyObject {
     var user: UserModel? { get set }
  
     func updateUserInfo(newUserInfo: AuthModel)
-    func getUserInfo() -> UserModel?
+    func getUserInfo() -> Result<UserModel, Error>
 }
 
 /// INTERACTOR -> PRESENTER

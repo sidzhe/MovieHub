@@ -15,6 +15,7 @@ protocol OnboardingViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol OnboardingPresenterProtocol: AnyObject {
     var view: OnboardingViewProtocol? { get set }
+    func routeToHome()
     func safeUserDefaults()
 }
 
@@ -30,5 +31,5 @@ protocol OnboardingInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol OnboardingRouterProtocol: AnyObject {
-    
+    func pushToHome(from view: OnboardingViewProtocol?)
 }

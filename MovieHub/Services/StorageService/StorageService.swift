@@ -19,9 +19,10 @@ protocol StorageServiceProtocol: AnyObject {
     
     func saveUser(user: AuthModel) -> Result<Void, Error>
     func checkUserInfo(email: String) -> Bool
-    func loginUser(email: String, password: String) -> Result<UserModel, Error>
+    func loginUser(email: String, password: String) -> Result<Void, Error>
     func updateUserInfo(_ user: UserModel, newUserInfo: AuthModel)
-    func getUserInfo() -> UserModel?
+    func getCurrentUser() -> Result<UserModel, Error>
+    func exit()
 }
 
 final class StorageService: StorageServiceProtocol {
@@ -112,6 +113,7 @@ final class StorageService: StorageServiceProtocol {
     }
     
     //MARK: Profile Methods
+//сохранение нового пользователя в БД
     func saveUser(user: AuthModel) -> Result<Void, Error> {
         if checkUserInfo(email: user.email) {
             return .failure(NSError(domain: "UserAlreadyExists", code: 1, userInfo: [NSLocalizedDescriptionKey: "Пользователь с таким email уже существует"]))
@@ -122,6 +124,7 @@ final class StorageService: StorageServiceProtocol {
         newUser.userEmail = user.email
         newUser.password = user.password
         newUser.userAvatar = user.avatar
+        newUser.isCurrent = false
 
         do {
             try viewContext.save()
@@ -130,7 +133,7 @@ final class StorageService: StorageServiceProtocol {
             return .failure(error)
         }
     }
-    
+//     проверка наличия пользователя с вводимым мэйлом
     func checkUserInfo(email: String) -> Bool {
         let fetchRequest: NSFetchRequest<UserModel> = UserModel.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "userEmail == %@", email)
@@ -144,40 +147,55 @@ final class StorageService: StorageServiceProtocol {
         }
     }
     
-    func loginUser(email: String, password: String) -> Result<UserModel, Error> {
+//    авторизация пользователя
+    func loginUser(email: String, password: String) -> Result<Void, Error> {
         let fetchRequest: NSFetchRequest<UserModel> = UserModel.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "userEmail == %@ AND password == %@", email, password)
 
         do {
             let result = try viewContext.fetch(fetchRequest)
-            if let user = result.first {
-                return .success(user)
-            } else {
+            if result.isEmpty {
                 return .failure(NSError(domain: "LoginError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Неверный email или пароль"]))
+            } else {
+                if let user = result.first {
+                    user.isCurrent = true
+                    for otherUser in result where otherUser != user {
+                        otherUser.isCurrent = false
+                    }
+                    try viewContext.save()
+                }
+                return .success(())
             }
         } catch {
             return .failure(error)
         }
     }
-    
+//    обновление информации пользователя
     func updateUserInfo(_ user: UserModel, newUserInfo: AuthModel) {
         user.userName = newUserInfo.name
         user.userEmail = newUserInfo.email
         user.userAvatar = newUserInfo.avatar
         saveContext()
     }
-    
-
-    func getUserInfo() -> UserModel? {
-        let currentUserRequest = UserModel.fetchRequest()
+//    получение текущего пользователя
+    func getCurrentUser() -> Result<UserModel, Error> {
+        let fetchRequest: NSFetchRequest<UserModel> = UserModel.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "isCurrent == true")
 
         do {
-            let result = try viewContext.fetch(currentUserRequest)
-            return result.last
+            let result = try viewContext.fetch(fetchRequest)
+            if let user = result.last {
+                return .success(user)
+            } else {
+                return .failure(NSError(domain: "CurrentUserError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Текущий пользователь не найден"]))
+            }
         } catch {
-            print("Current user load error \(error.localizedDescription)")
-            return nil
+            return .failure(error)
         }
+    }
+//    выход из аккаунта
+    func exit() {
+        
     }
     
     //MARK: Wish methods

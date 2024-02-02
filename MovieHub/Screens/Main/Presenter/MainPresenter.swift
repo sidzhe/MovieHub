@@ -30,13 +30,16 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func getUserInfo() {
-        if let userInfo = interactor?.getUserInfo() {
-            view?.updateProfileInfo(user: userInfo)
-        } else {
-            print("ошибка получения данных пользователя на главном экране")
+        guard let userInfo = interactor?.getUserInfo() else { return }
+        
+        switch userInfo {
+        case .success(let currentUser):
+            view?.updateProfileInfo(user: currentUser)
+        case .failure(let error):
+            view?.displayRequestError(error: error.localizedDescription)
         }
     }
-    
+   
     func getCategories() -> [CategoryModel] {
         guard let interactor = interactor else { return [CategoryModel]() }
         return interactor.cagegoriesData

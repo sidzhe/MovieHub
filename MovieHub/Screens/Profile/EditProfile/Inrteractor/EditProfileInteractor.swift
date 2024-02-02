@@ -28,8 +28,7 @@ final class EditProfileInteractor: EditProfileInteractorInputProtocol {
         storageService.updateUserInfo(user, newUserInfo: newUserInfo)
     }
     
-    func getUserInfo() -> UserModel? {
-        user = storageService.getUserInfo()
-        return user
+    func getUserInfo() -> Result<UserModel, Error> {
+        storageService.getCurrentUser()
     }
 }

@@ -56,6 +56,16 @@ final class EditProfileViewController: UIViewController {
         }
     }()
     
+    private lazy var exitButton: UIButton = {
+        return ButtonFactory.makeButton(
+            title: "Выйти из аккаунта",
+            color: .white,
+            backgroundColor: .primaryBlue,
+            cornerRadius: 26) { [weak self] in
+                self?.exitButtonTap()
+            }
+    }()
+    
     private lazy var nameView: CustomTextField = {
         let view = CustomTextField(placeholder: "ваше имя...", labelText: "Ваше имя")
         view.textField.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingDidEnd)
@@ -160,6 +170,10 @@ final class EditProfileViewController: UIViewController {
         alertImageView()
     }
     
+    private func exitButtonTap() {
+        
+    }
+    
     @objc private func nameTextFieldDidChange(_ textField: UITextField) {
         if let text = textField.text {
             isValidName(text) ? nameView.setValid() : nameView.setError()
@@ -197,6 +211,9 @@ final class EditProfileViewController: UIViewController {
 }
 
 extension EditProfileViewController: EditProfileViewProtocol {
+    func displayError(error: String) {
+        print(error)
+    }
     
     func updateProfileInfo(user: UserModel) {
         nameLabel.text = user.userName
@@ -214,6 +231,7 @@ private extension EditProfileViewController {
         view.addSubview(nameLabel)
         view.addSubview(emailLabel)
         view.addSubview(saveButton)
+        view.addSubview(exitButton)
         view.addSubview(avatarEditButton)
         view.addSubview(nameView)
         view.addSubview(nameErrorLabel)
@@ -286,6 +304,14 @@ private extension EditProfileViewController {
         
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(passwordView.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().offset(-24)
+            make.bottom.lessThanOrEqualToSuperview().offset(-150)
+            make.height.equalTo(56)
+        }
+        
+        exitButton.snp.makeConstraints { make in
+            make.top.equalTo(saveButton.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-24)
             make.bottom.lessThanOrEqualToSuperview().offset(-150)
