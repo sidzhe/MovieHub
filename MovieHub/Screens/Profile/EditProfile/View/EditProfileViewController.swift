@@ -88,6 +88,25 @@ final class EditProfileViewController: UIViewController {
         return emailLabel
     }()
     
+    private lazy var passwordView: CustomTextField = {
+        let view = CustomTextField(
+            placeholder: "Введите пароль",
+            labelText: "пароль"
+        )
+        view.textField.isSecureTextEntry = true
+        return view
+    }()
+    
+    private lazy  var passwordErrorLabel: UILabel = {
+        var label = UILabel()
+        label.text = "* неверный пароль"
+        label.font = .montserratMedium(size: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .red
+        label.isHidden = true
+        return emailLabel
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Редактировать профиль"
@@ -105,23 +124,27 @@ final class EditProfileViewController: UIViewController {
     
     @objc func saveButtonTap() {
         guard let inputName = nameView.textField.text, isValidName(inputName),
-              let inputEmail = emailView.textField.text, isValidEmail(inputEmail) else {
+              let inputEmail = emailView.textField.text, isValidEmail(inputEmail),
+              let inputPassword = passwordView.textField.text,
+              isValidPassword(inputPassword)
+        else {
             return
         }
         
         let user = createUserWith(
             name: inputName,
             email: inputEmail,
-            avatarImage: avatarImageView.image
+            password: inputPassword,
+            avatarImage: nil
         )
         
-        presenter?.saveUser(user: user)
+        presenter?.updateUserInfo(user)
         presenter?.getUserInfo()
         dismiss(animated: true)
     }
     
-    func createUserWith(name: String, email: String, avatarImage: UIImage?) -> EditProfileModel {
-        var user = EditProfileModel(name: name, email: email, avatar: nil)
+    func createUserWith(name: String, email: String, password: String, avatarImage: UIImage?) -> AuthModel {
+        var user = AuthModel(name: name, email: email, password: password, avatar: nil)
         
         if let avatarImage = avatarImage, let avatarData = avatarImage.pngData() {
             user.avatar = avatarData
@@ -164,6 +187,13 @@ final class EditProfileViewController: UIViewController {
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: email)
     }
+    
+    private func isValidPassword(_ password: String) -> Bool {
+        guard !password.isEmpty else {
+            return false
+        }
+        return true
+    }
 }
 
 extension EditProfileViewController: EditProfileViewProtocol {
@@ -189,6 +219,8 @@ private extension EditProfileViewController {
         view.addSubview(nameErrorLabel)
         view.addSubview(emailView)
         view.addSubview(emailErrorLabel)
+        view.addSubview(passwordView)
+        view.addSubview(passwordErrorLabel)
     }
     
     func setConstraint() {
@@ -222,7 +254,7 @@ private extension EditProfileViewController {
         }
         
         nameView.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(48)
+            make.top.equalTo(emailLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().offset(-48)
             make.height.equalTo(53)
@@ -234,7 +266,7 @@ private extension EditProfileViewController {
 //        }
         
         emailView.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(158)
+            make.top.equalTo(nameView.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().offset(-48)
             make.height.equalTo(53)
@@ -245,10 +277,18 @@ private extension EditProfileViewController {
         //            make.leading.equalToSuperview().offset(30)
         //        }
         
+        passwordView.snp.makeConstraints { make in
+            make.top.equalTo(emailView.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().offset(-48)
+            make.height.equalTo(53)
+        }
+        
         saveButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-120)
+            make.top.equalTo(passwordView.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-24)
+            make.bottom.lessThanOrEqualToSuperview().offset(-150)
             make.height.equalTo(56)
         }
     }

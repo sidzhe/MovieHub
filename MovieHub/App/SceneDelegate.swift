@@ -17,10 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         if UserDefaults.standard.value(forKey: "state") != nil {
-            window?.rootViewController = Builder.createAuth() 
+            let authVC = Builder.createAuth()
+            let navigationController = UINavigationController(rootViewController: authVC)
+            window?.rootViewController = navigationController
         } else {
             window?.rootViewController = Builder.createOnboarding()
         }
+        
         window?.makeKeyAndVisible()
     }
 }

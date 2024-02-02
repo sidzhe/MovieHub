@@ -20,6 +20,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     var lat: Double?
     var lon: Double?
     var currentCity: String?
+    var user: AuthModel?
     
     //MARK: Init
     init(networkService: NetworkServiceProtool, storageService: StorageService) {

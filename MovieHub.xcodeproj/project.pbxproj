@@ -19,6 +19,7 @@
 		E15E5D672B69928000A7FDC7 /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D662B69928000A7FDC7 /* AuthInteractor.swift */; };
 		E15E5D6D2B69934B00A7FDC7 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D6C2B69934B00A7FDC7 /* AuthRouter.swift */; };
 		E15E5D712B6A69B000A7FDC7 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D702B6A69B000A7FDC7 /* ButtonFactory.swift */; };
+		E15E5D8A2B6CE81500A7FDC7 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D892B6CE81500A7FDC7 /* AuthModel.swift */; };
 		E1DD7E7C2B6232D6006356E8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */; };
 		E1DD7E7E2B623316006356E8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */; };
 		E1DD7E802B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */; };
@@ -224,6 +225,7 @@
 		E15E5D662B69928000A7FDC7 /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
 		E15E5D6C2B69934B00A7FDC7 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		E15E5D702B6A69B000A7FDC7 /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
+		E15E5D892B6CE81500A7FDC7 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileViewController+ImagePickerController.swift"; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 		E15E5D5F2B69920900A7FDC7 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				E15E5D882B6CE7E500A7FDC7 /* Entity */,
 				E15E5D682B6992D100A7FDC7 /* View */,
 				E15E5D6B2B6992F000A7FDC7 /* Interactor */,
 				E15E5D692B6992DC00A7FDC7 /* Protocols */,
@@ -513,6 +516,14 @@
 				E15E5D702B6A69B000A7FDC7 /* ButtonFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		E15E5D882B6CE7E500A7FDC7 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				E15E5D892B6CE81500A7FDC7 /* AuthModel.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		E1DFE5FD2B51D57400358355 /* Search */ = {
@@ -2241,6 +2252,7 @@
 				EB03F5A92B440CAC004BAE47 /* PersonDetailProtocols.swift in Sources */,
 				E1DFE61A2B51D57400358355 /* SearchHeader.swift in Sources */,
 				EBE76C932B3977B40053E522 /* ChristmasRouter.swift in Sources */,
+				E15E5D8A2B6CE81500A7FDC7 /* AuthModel.swift in Sources */,
 				EBBA2B7F2B4D98B800D55EF6 /* MapInteractor.swift in Sources */,
 				0AEB78232B4DD302009637D1 /* WishListCell.swift in Sources */,
 			);

@@ -10,18 +10,23 @@ import Foundation
 /// PRESENTER -> VIEW
 protocol AuthViewProtocol: AnyObject {
     var presenter: AuthPresenterProtocol? { get set }
-
+    func displayError(error: String)
 }
 
 /// VIEW -> PRESENTER
 protocol AuthPresenterProtocol: AnyObject {
     var view: AuthViewProtocol? { get set }
-   
+    func addNewUser(user: AuthModel)
+    func loginUser(email: String, password: String)
+    func routeToTabBar()
 }
 
 /// PRESENTER -> INTERACTOR
 protocol AuthInteractorInputProtocol: AnyObject {
     var presenter: AuthInteractorOutputProtocol? { get set }
+    
+    func addNewUser(user: AuthModel)
+    func loginUser(email: String, password: String) -> Result<UserModel, Error> 
 
 }
 
@@ -33,7 +38,6 @@ protocol AuthInteractorOutputProtocol: AnyObject {
 
 /// PRESENTER -> ROUTER
 protocol AuthRouterProtocol: AnyObject {
-    func pushToMain(from view: AuthViewProtocol?, id: Int)
-
+    func pushToTabBar(from view: AuthViewProtocol?)
 }
 

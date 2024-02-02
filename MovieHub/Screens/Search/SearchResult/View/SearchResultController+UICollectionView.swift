@@ -76,7 +76,7 @@ extension SearchResultsViewController: UICollectionViewDelegate {
         case .person:
             presenter?.routeToPersonDetail(with: indexPath.row)
         case .movie:
-            presenter?.routeToPersonDetail(with: indexPath.row)
+            presenter?.routeToDetail(index: indexPath.row)
         }
     }
 }

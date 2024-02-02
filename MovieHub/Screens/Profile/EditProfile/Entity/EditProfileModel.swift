@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct EditProfileModel {
-    let name: String
-    let email: String
-    var avatar: Data?
-}
+//struct EditProfileModel {
+//    let name: String
+//    let email: String
+//    var avatar: Data?
+//}

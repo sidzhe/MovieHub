@@ -23,11 +23,7 @@ final class EditProfileInteractor: EditProfileInteractorInputProtocol {
         self.storageService = storageService
     }
     
-    func saveUser(user: EditProfileModel) {
-        storageService.saveUser(user: user)
-    }
-    
-    func updateUserInfo(newUserInfo: EditProfileModel) {
+    func updateUserInfo(newUserInfo: AuthModel) {
         guard let user else { return }
         storageService.updateUserInfo(user, newUserInfo: newUserInfo)
     }

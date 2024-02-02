@@ -8,6 +8,7 @@
 import Foundation
 
 final class AuthInteractor: AuthInteractorInputProtocol {
+
     var presenter: AuthInteractorOutputProtocol?
     let storageService: StorageServiceProtocol
     
@@ -16,4 +17,11 @@ final class AuthInteractor: AuthInteractorInputProtocol {
         self.storageService = storageService
     }
     
+    func addNewUser(user: AuthModel) {
+        storageService.saveUser(user: user)
+    }
+    
+    func loginUser(email: String, password: String) -> Result<UserModel, Error> {
+        storageService.loginUser(email: email, password: password)
+    }
 }
