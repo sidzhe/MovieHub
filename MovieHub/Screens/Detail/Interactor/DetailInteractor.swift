@@ -41,8 +41,11 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     
     //MARK: Check favorites from CD
     func checkFavorites(id: Int) {
-        print(id)
-        storageService.checkWish(id: id)
+        if let userId = try? storageService.getCurrentUser().get() {
+            storageService.checkWish(id: id, currentUserID: userId.userID ?? UUID())
+        } else {
+            print("ошибка получение пользователя для детальной иформации")
+        }
     }
     
     //MARK: - Get favorites button state
@@ -54,7 +57,10 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     //MARK: Check favorites from CD
     func addRecentMovie() {
         guard let id = Int(detailID) else { return }
-        print(id)
-        storageService.saveRecentModel(id: id)
+        if let userId = try? storageService.getCurrentUser().get() {
+            storageService.saveRecentModel(id: id, currentUserID: userId.userID ?? UUID())
+        } else {
+            print("ошибка получение пользователя c детального")
+        }
     }
 }

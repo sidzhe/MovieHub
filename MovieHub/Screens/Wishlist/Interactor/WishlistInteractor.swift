@@ -30,7 +30,11 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
     }
     
     func checkWishElement(id: Int) {
-        storageService.checkWish(id: id)
+        if let userId = try? storageService.getCurrentUser().get() {
+            storageService.checkWish(id: id, currentUserID: userId.userID ?? UUID())
+        } else {
+            print("ошибка получение пользователя для закладки")
+        }
     }
     
     //MARK: - Request wish
@@ -47,5 +51,6 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
             }
         }
     }
+    
 }
 

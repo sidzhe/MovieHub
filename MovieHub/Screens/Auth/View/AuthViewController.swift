@@ -142,7 +142,7 @@ final class AuthViewController: UIViewController {
               let inputPassword = passwordView.textField.text,
               isValidPassword(inputPassword)
         else {
-            showAlert("Неверный Ввод. Пожалуйста, проверьте свое имя, адрес электронной почты и пароль.")
+            showAlert("Неверный Ввод. Пожалуйста, проверьте адрес электронной почты и пароль.")
             return
         }
         presenter?.loginUser(email: inputEmail, password: inputPassword)
@@ -180,8 +180,7 @@ final class AuthViewController: UIViewController {
     }
     
     private func showAlert(_ text: String) {
-        let alert = UIAlertController(title: "Error", message: text, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        let alert = AlertFactory.makeErrorAlert(with: text)
         present(alert, animated: true)
     }
     
@@ -222,10 +221,6 @@ final class AuthViewController: UIViewController {
 }
 
 extension AuthViewController: AuthViewProtocol {
-    func addCurrentUser(with user: UserModel) {
-        emailView.textField.text = user.userEmail
-        passwordView.textField.text = user.password
-    }
     
     func displayError(error: String) {
         showAlert(error)

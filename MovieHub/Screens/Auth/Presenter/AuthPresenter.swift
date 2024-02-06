@@ -9,7 +9,6 @@ import Foundation
 
 final class AuthPresenter: AuthPresenterProtocol {
 
-
     //MARK: Properties
     weak var view: AuthViewProtocol?
     var interactor: AuthInteractorInputProtocol?

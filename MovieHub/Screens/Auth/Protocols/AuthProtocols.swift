@@ -10,7 +10,6 @@ import Foundation
 /// PRESENTER -> VIEW
 protocol AuthViewProtocol: AnyObject {
     var presenter: AuthPresenterProtocol? { get set }
-    func addCurrentUser(with user: UserModel)
     func displayError(error: String)
 }
 

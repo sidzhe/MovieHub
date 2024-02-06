@@ -10,8 +10,9 @@ import Foundation
 /// PRESENTER -> VIEW
 protocol EditProfileViewProtocol: AnyObject {
     var presenter: EditProfilePresenterProtocol? { get set }
-    func saveButtonTap()
+
     func updateProfileInfo(user: UserModel)
+    func logOut()
     func displayError(error: String)
 }
 
@@ -21,6 +22,8 @@ protocol EditProfilePresenterProtocol: AnyObject {
 
     func updateUserInfo(_ user: AuthModel)
     func getUserInfo()
+    func logoutUser()
+    func routeToAuth()
 }
 
 /// PRESENTER -> INTERACTOR
@@ -30,6 +33,7 @@ protocol EditProfileInteractorInputProtocol: AnyObject {
  
     func updateUserInfo(newUserInfo: AuthModel)
     func getUserInfo() -> Result<UserModel, Error>
+    func logoutUser()
 }
 
 /// INTERACTOR -> PRESENTER
@@ -38,8 +42,7 @@ protocol EditProfileInteractorOutputProtocol: AnyObject {
 }
 
 ///// PRESENTER -> ROUTER
-//protocol ProfileRouterProtocol: AnyObject {
-//    func pushToPolicies(from view: ProfileViewProtocol)
-//    func pushToAboutUs(from view: ProfileViewProtocol)
-//    
-//}
+protocol EditProfileRouterProtocol: AnyObject {
+    func pushToAuth(from view: EditProfileViewProtocol)
+    
+}

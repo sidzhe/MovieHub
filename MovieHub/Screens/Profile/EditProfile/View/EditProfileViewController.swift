@@ -52,8 +52,8 @@ final class EditProfileViewController: UIViewController {
             color: .white,
             backgroundColor: .primaryBlue,
             cornerRadius: 26) { [weak self] in
-           self?.saveButtonTap()
-        }
+                self?.saveButtonTap()
+            }
     }()
     
     private lazy var exitButton: UIButton = {
@@ -130,9 +130,8 @@ final class EditProfileViewController: UIViewController {
         presenter?.getUserInfo()
     }
     
-    // MARK: - Private Actions
-    
-    @objc func saveButtonTap() {
+    //Button Action
+    func saveButtonTap() {
         guard let inputName = nameView.textField.text, isValidName(inputName),
               let inputEmail = emailView.textField.text, isValidEmail(inputEmail),
               let inputPassword = passwordView.textField.text,
@@ -153,12 +152,18 @@ final class EditProfileViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    func exitButtonTap() {
+        logOut()
+    }
+    
+    // MARK: - Private Actions
+    
     func createUserWith(name: String, email: String, password: String, avatarImage: UIImage?) -> AuthModel {
         var user = AuthModel(name: name, email: email, password: password, avatar: nil)
         
         if let avatarImage = avatarImage, let avatarData = avatarImage.pngData() {
             user.avatar = avatarData
-        } else if let defaultAvatar = UIImage(named: "cinemaIcon"), 
+        } else if let defaultAvatar = UIImage(named: "cinemaIcon"),
                   let avatarData = defaultAvatar.pngData() {
             user.avatar = avatarData
         }
@@ -168,10 +173,6 @@ final class EditProfileViewController: UIViewController {
     
     @objc private func avatarEditButtonTap() {
         alertImageView()
-    }
-    
-    private func exitButtonTap() {
-        
     }
     
     @objc private func nameTextFieldDidChange(_ textField: UITextField) {
@@ -185,7 +186,7 @@ final class EditProfileViewController: UIViewController {
             isValidEmail(text) ? emailView.setValid() : emailView.setError()
         }
     }
-
+    
     private func isValidName(_ name: String) -> Bool {
         guard !name.isEmpty else {
             return false
@@ -208,17 +209,36 @@ final class EditProfileViewController: UIViewController {
         }
         return true
     }
+    
+    private func alertError(_ error: String) {
+        let alert = AlertFactory.makeErrorAlert(with: error)
+        present(alert, animated: true, completion: nil)
+    }
 }
 
+//MARK: - ViewProtocol
 extension EditProfileViewController: EditProfileViewProtocol {
+    
     func displayError(error: String) {
-        print(error)
+        alertError(error)
     }
     
     func updateProfileInfo(user: UserModel) {
         nameLabel.text = user.userName
         emailLabel.text = user.userEmail
         avatarImageView.image = UIImage(data: user.userAvatar ?? Data())
+    }
+    
+    func logOut() {
+        let alert = AlertFactory.makeLogoutConfirmationAlert { shouldLogout in
+            if shouldLogout {
+                self.presenter?.logoutUser()
+                self.dismiss(animated: true)
+            } else {
+              return
+            }
+        }
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -278,10 +298,10 @@ private extension EditProfileViewController {
             make.height.equalTo(53)
         }
         
-//        nameErrorLabel.snp.makeConstraints { make in
-//            make.top.equalTo(nameView.snp.bottom).offset(4)
-//            make.leading.equalToSuperview().offset(30)
-//        }
+        //        nameErrorLabel.snp.makeConstraints { make in
+        //            make.top.equalTo(nameView.snp.bottom).offset(4)
+        //            make.leading.equalToSuperview().offset(30)
+        //        }
         
         emailView.snp.makeConstraints { make in
             make.top.equalTo(nameView.snp.bottom).offset(20)

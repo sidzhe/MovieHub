@@ -2,19 +2,26 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23D56" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="CurrentCity" representedClassName="CurrentCity" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserModel" inverseName="currentCity" inverseEntity="UserModel"/>
     </entity>
     <entity name="RecentModel" representedClassName="RecentModel" syncable="YES" codeGenerationType="class">
         <attribute name="recentId" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserModel" inverseName="recentMovies" inverseEntity="UserModel"/>
     </entity>
     <entity name="UserModel" representedClassName="UserModel" syncable="YES" codeGenerationType="class">
         <attribute name="isCurrent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="password" optional="YES" attributeType="String"/>
         <attribute name="userAvatar" optional="YES" attributeType="Binary"/>
         <attribute name="userEmail" attributeType="String"/>
+        <attribute name="userID" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="userName" attributeType="String"/>
+        <relationship name="currentCity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CurrentCity" inverseName="user" inverseEntity="CurrentCity"/>
+        <relationship name="recentMovies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecentModel" inverseName="user" inverseEntity="RecentModel"/>
+        <relationship name="wishMovies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WishModel" inverseName="user" inverseEntity="WishModel"/>
     </entity>
     <entity name="WishModel" representedClassName="WishModel" syncable="YES" codeGenerationType="class">
         <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="wishId" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserModel" inverseName="wishMovies" inverseEntity="UserModel"/>
     </entity>
 </model>

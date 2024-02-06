@@ -19,6 +19,7 @@ protocol ProfilePresenterProtocol: AnyObject {
     var view: ProfileViewProtocol? { get set }
     func getUserInfo()
     
+    
     func routeToEditProfile()
     func routeToLanguage()
     func routeToNotification()
@@ -30,6 +31,7 @@ protocol ProfilePresenterProtocol: AnyObject {
 protocol ProfileInteractorInputProtocol: AnyObject {
     var presenter: ProfileInteractorOutputProtocol? { get set }
     func getUserInfo() -> Result<UserModel, Error>
+    
 }
 
 /// INTERACTOR -> PRESENTER

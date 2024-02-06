@@ -20,6 +20,8 @@
 		E15E5D6D2B69934B00A7FDC7 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D6C2B69934B00A7FDC7 /* AuthRouter.swift */; };
 		E15E5D712B6A69B000A7FDC7 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D702B6A69B000A7FDC7 /* ButtonFactory.swift */; };
 		E15E5D8A2B6CE81500A7FDC7 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D892B6CE81500A7FDC7 /* AuthModel.swift */; };
+		E15E5D8C2B6EC28900A7FDC7 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D8B2B6EC28900A7FDC7 /* EditProfileRouter.swift */; };
+		E15E5D8F2B6F7B2900A7FDC7 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D8E2B6F7B2900A7FDC7 /* AlertFactory.swift */; };
 		E1DD7E7C2B6232D6006356E8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */; };
 		E1DD7E7E2B623316006356E8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */; };
 		E1DD7E802B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */; };
@@ -226,6 +228,8 @@
 		E15E5D6C2B69934B00A7FDC7 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		E15E5D702B6A69B000A7FDC7 /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		E15E5D892B6CE81500A7FDC7 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		E15E5D8B2B6EC28900A7FDC7 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
+		E15E5D8E2B6F7B2900A7FDC7 /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileViewController+ImagePickerController.swift"; sourceTree = "<group>"; };
@@ -514,6 +518,7 @@
 			children = (
 				E1DFE6612B5345BD00358355 /* CustomTextField.swift */,
 				E15E5D702B6A69B000A7FDC7 /* ButtonFactory.swift */,
+				E15E5D8E2B6F7B2900A7FDC7 /* AlertFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -524,6 +529,14 @@
 				E15E5D892B6CE81500A7FDC7 /* AuthModel.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		E15E5D8D2B6EC29100A7FDC7 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				E15E5D8B2B6EC28900A7FDC7 /* EditProfileRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		E1DFE5FD2B51D57400358355 /* Search */ = {
@@ -680,6 +693,7 @@
 				E1DFE65C2B5345BD00358355 /* Inrteractor */,
 				E1DFE65E2B5345BD00358355 /* View */,
 				E1DFE6622B5345BD00358355 /* Protocols */,
+				E15E5D8D2B6EC29100A7FDC7 /* Router */,
 			);
 			path = EditProfile;
 			sourceTree = "<group>";
@@ -2088,6 +2102,7 @@
 				EB369B202B39D00F00BB4275 /* DetailModel.swift in Sources */,
 				638B362E2B5024A500D01D8E /* TextViewController.swift in Sources */,
 				EBE76C622B3972DB0053E522 /* WishlistPresenter.swift in Sources */,
+				E15E5D8F2B6F7B2900A7FDC7 /* AlertFactory.swift in Sources */,
 				EBBA2B752B4D985B00D55EF6 /* CityListModel.swift in Sources */,
 				EB9973F42B53D97B00D9EFC5 /* TrailerRouter.swift in Sources */,
 				EB9973DC2B529FF000D9EFC5 /* TrailerPresenter.swift in Sources */,
@@ -2140,6 +2155,7 @@
 				E1DFE61D2B51D57400358355 /* SearchProtocols.swift in Sources */,
 				EBBA2B472B4D96C900D55EF6 /* GlobeInteractor.swift in Sources */,
 				EBE76C222B396D550053E522 /* MainProtocols.swift in Sources */,
+				E15E5D8C2B6EC28900A7FDC7 /* EditProfileRouter.swift in Sources */,
 				EBE76C832B3974C30053E522 /* ChristmasProtocols.swift in Sources */,
 				EB82678C2B38B19B0024BAAE /* OnboardingPresenter.swift in Sources */,
 				EB6CB2E72B3C4A0200DC30BC /* CollectionCell.swift in Sources */,

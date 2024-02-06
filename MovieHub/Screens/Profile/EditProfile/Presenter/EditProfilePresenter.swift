@@ -8,10 +8,12 @@
 import Foundation
 
 final class EditProfilePresenter: EditProfilePresenterProtocol {
-
+    
+    
     //MARK: Properties
     weak var view: EditProfileViewProtocol?
     var interactor: EditProfileInteractorInputProtocol?
+    var router: EditProfileRouterProtocol?
     
     func updateUserInfo(_ newUserInfo: AuthModel) {
         interactor?.updateUserInfo(newUserInfo: newUserInfo)
@@ -19,7 +21,7 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
     
     func getSavedUser() -> UserModel {
         guard let savedUser = interactor?.user else { return UserModel() }
-      return savedUser
+        return savedUser
     }
     
     func getUserInfo() {
@@ -31,6 +33,15 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
         case .failure(let error):
             view?.displayError(error: error.localizedDescription)
         }
+    }
+    
+    func logoutUser() {
+        interactor?.logoutUser()
+    }
+    
+    func routeToAuth() {
+        guard let view = view else { return }
+        router?.pushToAuth(from: view)
     }
 }
 
