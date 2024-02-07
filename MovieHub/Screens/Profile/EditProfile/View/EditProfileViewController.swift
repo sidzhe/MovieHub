@@ -3,12 +3,6 @@ import PhotosUI
 
 final class EditProfileViewController: UIViewController {
     
-    enum ImageLoad: String {
-        case camera = "Камера"
-        case photoLibrary = "Фотогаллерея"
-        case cancel = "Отмена"
-    }
-    
     var presenter: EditProfilePresenterProtocol?
     
     lazy var avatarImageView: UIImageView = _avatarImageView

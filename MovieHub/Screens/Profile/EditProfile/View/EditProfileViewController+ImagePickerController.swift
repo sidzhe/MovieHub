@@ -9,6 +9,12 @@ import UIKit
 // MARK: - Protocols for load Image from gallery
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    enum ImageLoad: String {
+        case camera = "Камера"
+        case photoLibrary = "Фотогаллерея"
+        case cancel = "Отмена"
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         avatarImageView.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         avatarImageView.contentMode = .scaleAspectFill
