@@ -21,7 +21,8 @@ final class DetailPresenter: DetailPresenterProtocol {
     }
     
     func addRecentMovie() {
-        interactor?.addRecentMovie()
+        guard let id = getDetailData()?.id else { return }
+        interactor?.addRecentMovie(id: id)
     }
     
     //MARK: Check favorites

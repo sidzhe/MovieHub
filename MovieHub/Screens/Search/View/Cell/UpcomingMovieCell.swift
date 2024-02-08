@@ -173,7 +173,6 @@ private extension UpcomingMovieCell {
         let view = UIImageView()
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
-        view.contentMode = .scaleAspectFill
         return view
     }
     
