@@ -26,6 +26,12 @@ final class CollectionViewController: UIViewController {
         return view
     }()
     
+    private lazy var movieNavigationBar: MovieNavigationBar = {
+        let navigationBar = MovieNavigationBar(title: Constant.movieList)
+        navigationBar.navigationController = self.navigationController
+        return navigationBar
+    }()
+    
     //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +42,19 @@ final class CollectionViewController: UIViewController {
     
     //MARK: SetupViews
     private func setupViews() {
+        view.addSubview(movieNavigationBar)
         view.backgroundColor = .primaryDark
+        view.addSubview(movieNavigationBar)
         view.addSubview(collectionView)
         
+        movieNavigationBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(45)
+        }
+        
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(movieNavigationBar.snp.bottom)
             make.horizontalEdges.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(90)
         }

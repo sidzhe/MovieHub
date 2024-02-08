@@ -39,7 +39,6 @@ final class SearchPresenter: SearchPresenterProtocol {
     
     func getRecentMovie() -> [Doc] {
         guard let model = interactor?.recentMovie?.docs else { return [Doc]() }
-        print(model)
         return model
     }
 
