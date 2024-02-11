@@ -12,6 +12,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     //MARK: - Properties
     weak var presenter: MainInteractorOutputProtocol?
     var networkService: NetworkServiceProtocol
+    var storageService: StorageServiceProtocol
     var collectionData: ColletionModel?
     var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue.localized()) }
     var mostPopular: CollectionDetailModel?
@@ -22,7 +23,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     var guest: UserEntity?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtocol) {
+    init(networkService: NetworkServiceProtocol, storageService: StorageServiceProtocol) {
         self.networkService = networkService
         self.storageService = storageService
         guest?.userName = "Гость"

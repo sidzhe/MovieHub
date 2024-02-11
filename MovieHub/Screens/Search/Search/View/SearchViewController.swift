@@ -41,7 +41,7 @@ final class SearchViewController: UIViewController {
         setConstraints()
         setDelegates()
         registerCollectionsCells()
-        presenter?.fetchUpcomingMovie(with: selectedCategory)
+        
         navigationController?.setupNavigationBar()
         presenter?.fetchUpcomingMovie(with: selectedCategory)
     }
@@ -193,13 +193,20 @@ extension SearchViewController {
         }
     
     private func createUpcomingMoviesSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+        let item = NSCollectionLayoutItem(layoutSize: .init(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        )
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.3)), subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(
+            widthDimension: .fractionalWidth(0.87),
+            heightDimension: .fractionalHeight(0.33)),
+            subitems: [item]
+        )
         
         let section = createLayoutSection(group: group,
-                                          behavior: .groupPagingCentered,
-                                          interGroupSpacing: 10,
+                                          behavior: .paging,
+                                          interGroupSpacing: 8,
                                           supplementaryItems: [supplementaryHeaderItem()],
                                           contentInsets: false)
         section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
@@ -215,8 +222,8 @@ extension SearchViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension:  .fractionalWidth(1),
-                heightDimension: .fractionalHeight(0.35)
+                widthDimension:  .fractionalWidth(0.35),
+                heightDimension: .fractionalHeight(0.38)
             ),
             subitems: [item]
         )
@@ -228,7 +235,7 @@ extension SearchViewController {
             supplementaryItems: [supplementaryHeaderItem()],
             contentInsets: false
         )
-
+        section.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 0)
         return section
     }
     
