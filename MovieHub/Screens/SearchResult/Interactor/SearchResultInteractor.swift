@@ -10,13 +10,13 @@ final class SearchResultInteractor: SearchResultInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: SearchResultInteractorOutputProtocol?
-    var networkService: NetworkServiceProtool
+    var networkService: NetworkServiceProtocol
     
     var searchPerson: PersonModel?
     var searchMovie: SearchModel?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool) {
+    init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }
     

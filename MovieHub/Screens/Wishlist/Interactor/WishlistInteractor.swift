@@ -11,13 +11,13 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: WishlistInteractorOutputProtocol?
-    private var networkService: NetworkServiceProtool
+    private var networkService: NetworkServiceProtocol
     private var storageService: StorageServiceProtool
     private var favoriteMoviesID: [String]?
     var favoriteModel: [Doc]?
     
     //MARK: - Init
-    init(networkService: NetworkServiceProtool, storageService: StorageServiceProtool) {
+    init(networkService: NetworkServiceProtocol, storageService: StorageServiceProtool) {
         self.networkService = networkService
         self.storageService = storageService
     }

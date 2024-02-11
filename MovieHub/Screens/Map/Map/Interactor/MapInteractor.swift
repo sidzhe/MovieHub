@@ -11,13 +11,13 @@ final class MapInteractor: MapInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: MapInteractorOutputProtocol?
-    var networkService: NetworkServiceProtool
+    var networkService: NetworkServiceProtocol
     var cityList: [Datum]?
     var userLocation: Location
     var selectedCityLocation: Location
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool, currentCity: String, userLocation: Location, selectedCityLocation: Location) {
+    init(networkService: NetworkServiceProtocol, currentCity: String, userLocation: Location, selectedCityLocation: Location) {
         self.networkService = networkService
         self.userLocation = userLocation
         self.selectedCityLocation = selectedCityLocation

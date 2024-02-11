@@ -8,7 +8,7 @@
 import UIKit
 
 //MARK: - NetworkServiceProtool
-protocol NetworkServiceProtool: AnyObject {
+protocol NetworkServiceProtocol: AnyObject {
     func searchMovieByTitle(_ title: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func searchPerson(_ person: String, completion: @escaping (Result<PersonModel, RequestError>) -> Void)
     func searchDetailID(_ identifier: String, completion: @escaping (Result<DetailModel, RequestError>) -> Void)
@@ -27,7 +27,7 @@ protocol NetworkServiceProtool: AnyObject {
 
 
 //MARK: - NetworkkService
-final class NetworkService: NetworkServiceProtool {
+final class NetworkService: NetworkServiceProtocol {
     
     //MARK: Properties
     private let movieService = MovieService()
