@@ -11,13 +11,13 @@ final class CollectionInteractor: CollectionInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: CollectionInteractorOutputProtocol?
-    var networkService: NetworkServiceProtool
+    var networkService: NetworkServiceProtocol
     var collectionData: SearchModel?
     private var slug: String
     
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool, slug: String) {
+    init(networkService: NetworkServiceProtocol, slug: String) {
         self.networkService = networkService
         self.slug = slug
         self.getCollection()

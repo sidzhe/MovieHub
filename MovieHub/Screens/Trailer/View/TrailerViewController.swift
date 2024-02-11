@@ -27,6 +27,11 @@ final class TrailerViewController: UIViewController {
         return view
     }()
     
+    private lazy var movieNavigationBar: MovieNavigationBar = {
+        let navigationBar = MovieNavigationBar(title: Constant.movieList, stateHeartButton: true)
+        navigationBar.navigationController = self.navigationController
+        return navigationBar
+    }()
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -104,7 +109,7 @@ final class TrailerViewController: UIViewController {
         createDataSource()
         applySnapshot()
         loadTrailer()
-        navigationController?.setupNavigationBar()
+        
     }
     
     //MARK: Setup UI
@@ -125,10 +130,17 @@ final class TrailerViewController: UIViewController {
         scrollView.addSubview(movieStackView)
         scrollView.addSubview(descriptionStackView)
         
+        view.addSubview(movieNavigationBar)
         view.addSubview(scrollView)
         
+        movieNavigationBar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(45)
+        }
+        
         scrollView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(movieNavigationBar.snp.bottom)
             make.width.equalTo(view.frame.width)
             make.height.equalTo(view.frame.height / 2)
         }

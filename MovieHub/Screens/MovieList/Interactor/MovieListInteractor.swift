@@ -11,12 +11,12 @@ final class MovieListInteractor: MovieListInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: MovieListInteractorOutputProtocol?
-    var networkService: NetworkServiceProtool
+    var networkService: NetworkServiceProtocol
     var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue.localized()) }
     var moviesData: CollectionDetailModel?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool) {
+    init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }
     

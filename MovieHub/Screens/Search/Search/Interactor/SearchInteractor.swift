@@ -11,8 +11,8 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
-    var networkService: NetworkServiceProtool
-    let storageService: StorageServiceProtocol
+    var networkService: NetworkServiceProtocol
+    let storageService: StorageServiceProtool
     var categories = MovieGenre.allCases.map { $0.rawValue }
     
     var upcomingMovie: SearchModel?
@@ -20,7 +20,7 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool, storageService: StorageServiceProtocol) {
+    init(networkService: NetworkServiceProtocol, storageService: StorageServiceProtool) {
         self.networkService = networkService
         self.storageService = storageService
     }

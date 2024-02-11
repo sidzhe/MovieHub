@@ -10,7 +10,7 @@ import UIKit
 extension UINavigationController {
     
     func setupNavigationBar() {
-        navigationBar.barTintColor = .primaryDark
+        navigationBar.barTintColor = .white
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()

@@ -11,12 +11,12 @@ final class TrailerInteractor: TrailerInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: TrailerInteractorOutputProtocol?
-    var networkService: NetworkServiceProtool
+    var networkService: NetworkServiceProtocol
     var detailModel: DetailModel?
     var urlImages: [GaleryDoc]?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtool, detailModel: DetailModel) {
+    init(networkService: NetworkServiceProtocol, detailModel: DetailModel) {
         self.networkService = networkService
         self.detailModel = detailModel
     }
