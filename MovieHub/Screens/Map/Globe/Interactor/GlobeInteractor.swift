@@ -61,7 +61,7 @@ final class GlobeInteractor: GlobeInteractorInputProtocol {
     
     //MARK: Load from CoreData
     func loadCurrentCity() {
-        self.currentCity = storageService.loadCurrnetCity()
+        self.currentCity = storageService.loadCurrentCity()
         cityListRequest()
         getCityCoordinate()
     }

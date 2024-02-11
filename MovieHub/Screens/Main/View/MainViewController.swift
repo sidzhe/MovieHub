@@ -56,6 +56,11 @@ final class MainViewController: UIViewController {
         presenter?.getUserInfo()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
     //MARK: Setup Views
     private func setupView() {
         view.backgroundColor = .primaryDark
@@ -357,7 +362,6 @@ extension MainViewController: UICollectionViewDelegate {
     }
 }
 
-
 //MARK: - Extension MainViewProtocol
 extension MainViewController: MainViewProtocol {
     func updateUI() {
@@ -368,7 +372,7 @@ extension MainViewController: MainViewProtocol {
         Task { alertError(error) }
     }
     
-    func updateProfileInfo(user: UserModel) {
+    func updateProfileInfo(user: UserEntity) {
         accountView.nameLabel.text = "Привет, \(user.userName ?? "гость")"
         accountView.avatar.image = UIImage(data: user.userAvatar ?? Data()) ??  UIImage(systemName: "person.fill")
     }

@@ -20,7 +20,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     var lat: Double?
     var lon: Double?
     var currentCity: String?
-    var guest: UserModel?
+    var guest: UserEntity?
     
     //MARK: Init
     init(networkService: NetworkServiceProtool, storageService: StorageService) {
@@ -32,7 +32,7 @@ final class MainInteractor: MainInteractorInputProtocol {
     
     //MARK: Methods
     
-    func getUserInfo() -> Result<UserModel, Error> {
+    func getUserInfo() -> Result<UserEntity, Error> {
         storageService.getCurrentUser() 
     }
     

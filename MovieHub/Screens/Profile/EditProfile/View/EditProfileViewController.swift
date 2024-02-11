@@ -124,6 +124,11 @@ final class EditProfileViewController: UIViewController {
         presenter?.getUserInfo()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
     //Button Action
     func saveButtonTap() {
         guard let inputName = nameView.textField.text, isValidName(inputName),
@@ -147,7 +152,7 @@ final class EditProfileViewController: UIViewController {
     }
     
     func exitButtonTap() {
-        logOut()
+        presenter?.logoutUser()
     }
     
     // MARK: - Private Actions
@@ -217,22 +222,32 @@ extension EditProfileViewController: EditProfileViewProtocol {
         alertError(error)
     }
     
-    func updateProfileInfo(user: UserModel) {
+    func updateProfileInfo(user: UserEntity) {
         nameLabel.text = user.userName
         emailLabel.text = user.userEmail
         avatarImageView.image = UIImage(data: user.userAvatar ?? Data())
     }
     
     func logOut() {
-        let alert = AlertFactory.makeLogoutConfirmationAlert { shouldLogout in
-            if shouldLogout {
-                self.presenter?.logoutUser()
-                self.dismiss(animated: true)
-            } else {
-              return
-            }
+        let alert = UIAlertController(title: "Вы действительно хотите выйти?", message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        let logoutAction = UIAlertAction(title: "Выйти", style: .destructive) { [weak self] _ in
+            self?.presenter?.logoutUser()
         }
+        alert.addAction(cancelAction)
+        alert.addAction(logoutAction)
+        
         present(alert, animated: true, completion: nil)
+        
+        /*makeLogoutConfirmationAlert {  in*/
+//            if shouldLogout {
+//                self.presenter?.routeToAuth()
+//                self.presenter?.logoutUser()
+//            } else {
+//              return
+//            }
+//        }
+//        present(alert, animated: true, completion: nil)
     }
 }
 

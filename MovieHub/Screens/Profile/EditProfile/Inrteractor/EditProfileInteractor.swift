@@ -15,7 +15,7 @@ final class EditProfileInteractor: EditProfileInteractorInputProtocol {
     private let networkService: NetworkService
     private let storageService: StorageServiceProtocol
     
-    var user: UserModel?
+    var user: UserEntity?
 
     //MARK: Init
     init(networkService: NetworkService, storageService: StorageServiceProtocol) {
@@ -28,11 +28,11 @@ final class EditProfileInteractor: EditProfileInteractorInputProtocol {
         storageService.updateUserInfo(user, newUserInfo: newUserInfo)
     }
     
-    func getUserInfo() -> Result<UserModel, Error> {
+    func getUserInfo() -> Result<UserEntity, Error> {
         storageService.getCurrentUser()
     }
     
-    func logoutUser() {
+    func logoutUser(completion: (() -> Void)?) {
         storageService.logoutCurrentUser()
     }
 }

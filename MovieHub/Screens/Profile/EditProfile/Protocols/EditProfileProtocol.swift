@@ -11,7 +11,7 @@ import Foundation
 protocol EditProfileViewProtocol: AnyObject {
     var presenter: EditProfilePresenterProtocol? { get set }
 
-    func updateProfileInfo(user: UserModel)
+    func updateProfileInfo(user: UserEntity)
     func logOut()
     func displayError(error: String)
 }
@@ -29,11 +29,11 @@ protocol EditProfilePresenterProtocol: AnyObject {
 /// PRESENTER -> INTERACTOR
 protocol EditProfileInteractorInputProtocol: AnyObject {
     var presenter: EditProfileInteractorOutputProtocol? { get set }
-    var user: UserModel? { get set }
+    var user: UserEntity? { get set }
  
     func updateUserInfo(newUserInfo: AuthModel)
-    func getUserInfo() -> Result<UserModel, Error>
-    func logoutUser()
+    func getUserInfo() -> Result<UserEntity, Error>
+    func logoutUser(completion: (() -> Void)?)
 }
 
 /// INTERACTOR -> PRESENTER

@@ -19,8 +19,8 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
         interactor?.updateUserInfo(newUserInfo: newUserInfo)
     }
     
-    func getSavedUser() -> UserModel {
-        guard let savedUser = interactor?.user else { return UserModel() }
+    func getSavedUser() -> UserEntity {
+        guard let savedUser = interactor?.user else { return UserEntity() }
         return savedUser
     }
     
@@ -36,7 +36,9 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
     }
     
     func logoutUser() {
-        interactor?.logoutUser()
+        interactor?.logoutUser { [weak self] in
+            self?.routeToAuth()
+        }
     }
     
     func routeToAuth() {

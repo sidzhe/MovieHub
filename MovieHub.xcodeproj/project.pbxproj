@@ -22,6 +22,7 @@
 		E15E5D8A2B6CE81500A7FDC7 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D892B6CE81500A7FDC7 /* AuthModel.swift */; };
 		E15E5D8C2B6EC28900A7FDC7 /* EditProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D8B2B6EC28900A7FDC7 /* EditProfileRouter.swift */; };
 		E15E5D8F2B6F7B2900A7FDC7 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15E5D8E2B6F7B2900A7FDC7 /* AlertFactory.swift */; };
+		E1846EF22B7956FE00F21CE7 /* MovieHubStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1846EF02B7956FE00F21CE7 /* MovieHubStorage.xcdatamodeld */; };
 		E1DD7E7C2B6232D6006356E8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */; };
 		E1DD7E7E2B623316006356E8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */; };
 		E1DD7E802B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */; };
@@ -134,7 +135,6 @@
 		EBBA2B332B4D8ABC00D55EF6 /* CinemaEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B322B4D8ABC00D55EF6 /* CinemaEndpoints.swift */; };
 		EBBA2B352B4D8ACF00D55EF6 /* CurrentCityEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B342B4D8ACF00D55EF6 /* CurrentCityEndpoints.swift */; };
 		EBBA2B382B4D962800D55EF6 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B372B4D962800D55EF6 /* StorageService.swift */; };
-		EBBA2B3B2B4D963A00D55EF6 /* MovieHubStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B392B4D963A00D55EF6 /* MovieHubStorage.xcdatamodeld */; };
 		EBBA2B452B4D96B300D55EF6 /* GlobeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B442B4D96B300D55EF6 /* GlobeRouter.swift */; };
 		EBBA2B472B4D96C900D55EF6 /* GlobeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B462B4D96C900D55EF6 /* GlobeInteractor.swift */; };
 		EBBA2B492B4D96D800D55EF6 /* GlobePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B482B4D96D800D55EF6 /* GlobePresenter.swift */; };
@@ -230,6 +230,7 @@
 		E15E5D892B6CE81500A7FDC7 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		E15E5D8B2B6EC28900A7FDC7 /* EditProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileRouter.swift; sourceTree = "<group>"; };
 		E15E5D8E2B6F7B2900A7FDC7 /* AlertFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
+		E1846EF12B7956FE00F21CE7 /* MovieHubStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieHubStorage.xcdatamodel; sourceTree = "<group>"; };
 		E1DD7E7B2B6232D6006356E8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7D2B623316006356E8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		E1DD7E7F2B6693B0006356E8 /* EditProfileViewController+ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileViewController+ImagePickerController.swift"; sourceTree = "<group>"; };
@@ -343,7 +344,6 @@
 		EBBA2B322B4D8ABC00D55EF6 /* CinemaEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaEndpoints.swift; sourceTree = "<group>"; };
 		EBBA2B342B4D8ACF00D55EF6 /* CurrentCityEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCityEndpoints.swift; sourceTree = "<group>"; };
 		EBBA2B372B4D962800D55EF6 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
-		EBBA2B3A2B4D963A00D55EF6 /* MovieHubStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieHubStorage.xcdatamodel; sourceTree = "<group>"; };
 		EBBA2B442B4D96B300D55EF6 /* GlobeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeRouter.swift; sourceTree = "<group>"; };
 		EBBA2B462B4D96C900D55EF6 /* GlobeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobeInteractor.swift; sourceTree = "<group>"; };
 		EBBA2B482B4D96D800D55EF6 /* GlobePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobePresenter.swift; sourceTree = "<group>"; };
@@ -1355,7 +1355,7 @@
 			isa = PBXGroup;
 			children = (
 				EBBA2B372B4D962800D55EF6 /* StorageService.swift */,
-				EBBA2B392B4D963A00D55EF6 /* MovieHubStorage.xcdatamodeld */,
+				E1846EF02B7956FE00F21CE7 /* MovieHubStorage.xcdatamodeld */,
 			);
 			path = StorageService;
 			sourceTree = "<group>";
@@ -2167,11 +2167,11 @@
 				EBBA2B852B4D98E800D55EF6 /* MapProtocols.swift in Sources */,
 				E1DFE6172B51D57400358355 /* CategoriesMenuCollectionView.swift in Sources */,
 				E1DFE61F2B51D57400358355 /* SearchRouter.swift in Sources */,
-				EBBA2B3B2B4D963A00D55EF6 /* MovieHubStorage.xcdatamodeld in Sources */,
 				EBA5FE262B4EB6C400E85872 /* CollectionRouter.swift in Sources */,
 				E1DFE6552B53459E00358355 /* Extension + UIView.swift in Sources */,
 				EBBA2B382B4D962800D55EF6 /* StorageService.swift in Sources */,
 				EB6CB2BF2B3C1AFE00DC30BC /* Extension + UIColor.swift in Sources */,
+				E1846EF22B7956FE00F21CE7 /* MovieHubStorage.xcdatamodeld in Sources */,
 				EBBA2B6D2B4D981E00D55EF6 /* CityListInteractor.swift in Sources */,
 				EB20D07F2B42EC9100B5E094 /* BallView.swift in Sources */,
 				EB0945FA2B46DE5C00331EAD /* PersonHeader.swift in Sources */,
@@ -2553,12 +2553,12 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		EBBA2B392B4D963A00D55EF6 /* MovieHubStorage.xcdatamodeld */ = {
+		E1846EF02B7956FE00F21CE7 /* MovieHubStorage.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				EBBA2B3A2B4D963A00D55EF6 /* MovieHubStorage.xcdatamodel */,
+				E1846EF12B7956FE00F21CE7 /* MovieHubStorage.xcdatamodel */,
 			);
-			currentVersion = EBBA2B3A2B4D963A00D55EF6 /* MovieHubStorage.xcdatamodel */;
+			currentVersion = E1846EF12B7956FE00F21CE7 /* MovieHubStorage.xcdatamodel */;
 			path = MovieHubStorage.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -20,7 +20,11 @@ final class ProfileInteractor: ProfileInteractorInputProtocol {
         self.storageService = storageService
     }
     
-    func getUserInfo() -> Result<UserModel, Error> {
+    func getUserInfo() -> Result<UserEntity, Error> {
       storageService.getCurrentUser()
+    }
+    
+    func checkCurrentUser() -> Bool {
+        storageService.checkCurrentUser()
     }
 }

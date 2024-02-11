@@ -8,7 +8,7 @@
 import Foundation
 
 final class DetailInteractor: DetailInteractorInputProtocol {
-
+    
     //MARK: - Properties
     weak var presenter: DetailInteractorOutputProtocol?
     var detailData: DetailModel?
@@ -41,11 +41,7 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     
     //MARK: Check favorites from CD
     func checkFavorites(id: Int) {
-        if let userId = try? storageService.getCurrentUser().get() {
-            storageService.checkWish(id: id, currentUserID: userId.userID ?? UUID())
-        } else {
-            print("ошибка получение пользователя для детальной иформации")
-        }
+        storageService.checkWish(id: id)
     }
     
     //MARK: - Get favorites button state
@@ -57,10 +53,6 @@ final class DetailInteractor: DetailInteractorInputProtocol {
     //MARK: Check favorites from CD
     func addRecentMovie() {
         guard let id = Int(detailID) else { return }
-        if let userId = try? storageService.getCurrentUser().get() {
-            storageService.saveRecentModel(id: id, currentUserID: userId.userID ?? UUID())
-        } else {
-            print("ошибка получение пользователя c детального")
-        }
+        storageService.saveRecentModel(id: id)
     }
 }

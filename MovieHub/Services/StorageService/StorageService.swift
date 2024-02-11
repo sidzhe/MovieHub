@@ -10,28 +10,30 @@ import CoreData
 
 protocol StorageServiceProtocol: AnyObject {
     func saveCurrentCity(name: String)
-    func loadCurrnetCity() -> String
-    func saveRecentModel(id: Int, currentUserID: UUID)
-    func loadRecentModel(currentUserID: UUID) -> [String]
-    func checkWish(id: Int, currentUserID: UUID)
+    func loadCurrentCity() -> String
+    
+    func saveRecentModel(id: Int)
+    func loadRecentModel() -> [String]
+    
+    func checkWish(id: Int)
     func getWishModel() -> [String]
     func wishStateButton(id: Int) -> Bool
     
     func saveUser(user: AuthModel) -> Result<Void, Error>
     func checkUserInfo(email: String) -> Bool
     func loginUser(email: String, password: String) -> Result<Void, Error>
-    func updateUserInfo(_ user: UserModel, newUserInfo: AuthModel)
-    func getCurrentUser() -> Result<UserModel, Error>
+    func updateUserInfo(_ user: UserEntity, newUserInfo: AuthModel)
+    func getCurrentUser() -> Result<UserEntity, Error>
     func checkCurrentUser() -> Bool
     func logoutCurrentUser()
 }
 
 final class StorageService: StorageServiceProtocol {
     
-    //MARK: Properies
+    //MARK: Properties
     private let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: Constant.persistentContainerName)
-        container.loadPersistentStores { _, error in
+        container.loadPersistentStores { description, error in
             if let error = error as? NSError {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
@@ -55,89 +57,36 @@ final class StorageService: StorageServiceProtocol {
         }
     }
     
-    //MARK: Current city methods
-    func saveCurrentCity(name: String) {
-        let currentCity = CurrentCity(context: viewContext)
-        currentCity.name = name
-        saveContext()
-    }
-    
-    func loadCurrnetCity() -> String {
-        let currnetCity = CurrentCity.fetchRequest()
-        
-        do {
-            let result = try viewContext.fetch(currnetCity)
-            let output = result.last?.name
-            return output ?? ""
-        } catch let error {
-            print("CurrnetCity load error \(error.localizedDescription)")
-            return ""
-        }
-    }
-    
-    //MARK: Recent model methods
-    private func deleteRecent(id: RecentModel) {
-        viewContext.delete(id)
-        saveContext()
-    }
-    
-    func saveRecentModel(id: Int, currentUserID: UUID) {
-        let fetchRequest = RecentModel.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "recentId == %@", id.description)
-        
-        do {
-            let existingId = try viewContext.fetch(fetchRequest)
-            if let existingId = existingId.first {
-                deleteRecent(id: existingId)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        let recentElement = RecentModel(context: viewContext)
-        recentElement.recentId = id.description
-        recentElement.user?.userID = currentUserID
-        saveContext()
-    }
-    
-    func loadRecentModel(currentUserID: UUID) -> [String] {
-        let recentModel = RecentModel.fetchRequest()
-        recentModel.predicate = NSPredicate(format: "user.userID == %@", currentUserID.description)
-        do {
-            let result = try viewContext.fetch(recentModel)
-            let output = result.map { $0.recentId ?? "" }
-            return output.reversed()
-        } catch let error {
-            print("CurrnetCity load error \(error.localizedDescription)")
-            return [String]()
-        }
+    private func currentUserFetchRequest() -> NSFetchRequest<UserEntity> {
+        let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "isCurrent == true")
+        return fetchRequest
     }
     
     //MARK: Profile Methods
     //сохранение нового пользователя в БД
     func saveUser(user: AuthModel) -> Result<Void, Error> {
+        
         if checkUserInfo(email: user.email) {
-            return .failure(NSError(domain: "UserAlreadyExists", code: 1, userInfo: [NSLocalizedDescriptionKey: "Пользователь с таким email уже существует"]))
+            return .failure(NSError(domain: "UserAlreadyExists", code: 1,
+                                    userInfo: [NSLocalizedDescriptionKey: "Пользователь с таким email уже существует"])
+            )
         }
         
-        let newUser = UserModel(context: viewContext)
-        newUser.userID = UUID()
+        let newUser = UserEntity(context: viewContext)
         newUser.userName = user.name
         newUser.userEmail = user.email
         newUser.password = user.password
         newUser.userAvatar = user.avatar
         newUser.isCurrent = false
         
-        do {
-            try viewContext.save()
-            return .success(())
-        } catch {
-            return .failure(error)
-        }
+        saveContext()
+        return .success(())
     }
+    
     //     проверка наличия пользователя с вводимым мэйлом
     func checkUserInfo(email: String) -> Bool {
-        let fetchRequest: NSFetchRequest<UserModel> = UserModel.fetchRequest()
+        let fetchRequest = UserEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "userEmail == %@", email)
         
         do {
@@ -151,8 +100,7 @@ final class StorageService: StorageServiceProtocol {
     
     //     проверка наличия авторизованного пользователя
     func checkCurrentUser() -> Bool {
-        let fetchRequest: NSFetchRequest<UserModel> = UserModel.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "isCurrent == true")
+        let fetchRequest = currentUserFetchRequest()
         
         do {
             let result = try viewContext.fetch(fetchRequest)
@@ -165,7 +113,7 @@ final class StorageService: StorageServiceProtocol {
     
     //    авторизация пользователя
     func loginUser(email: String, password: String) -> Result<Void, Error> {
-        let fetchRequest: NSFetchRequest<UserModel> = UserModel.fetchRequest()
+        let fetchRequest = UserEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "userEmail == %@ AND password == %@", email, password)
         
         do {
@@ -178,7 +126,7 @@ final class StorageService: StorageServiceProtocol {
                     for otherUser in result where otherUser != user {
                         otherUser.isCurrent = false
                     }
-                    try viewContext.save()
+                    saveContext()
                 }
                 return .success(())
             }
@@ -187,7 +135,7 @@ final class StorageService: StorageServiceProtocol {
         }
     }
     //    обновление информации пользователя
-    func updateUserInfo(_ user: UserModel, newUserInfo: AuthModel) {
+    func updateUserInfo(_ user: UserEntity, newUserInfo: AuthModel) {
         if let newName = newUserInfo.name {
             user.userName = newName
         }
@@ -203,25 +151,26 @@ final class StorageService: StorageServiceProtocol {
     }
     
     //    получение текущего пользователя
-    func getCurrentUser() -> Result<UserModel, Error> {
-        let fetchRequest: NSFetchRequest<UserModel> = UserModel.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "isCurrent == true")
+    func getCurrentUser() -> Result<UserEntity, Error> {
+        let fetchRequest = currentUserFetchRequest()
         
         do {
             let result = try viewContext.fetch(fetchRequest)
             if let user = result.last {
                 return .success(user)
             } else {
-                return .failure(NSError(domain: "CurrentUserError", code: 1, userInfo: [NSLocalizedDescriptionKey: "Гостевой визит не позволяет использовать все возможности приложения"]))
+                return .failure(NSError(domain: "CurrentUserError", code: 1,
+                                        userInfo: [NSLocalizedDescriptionKey: "Гостевой визит не позволяет использовать все возможности приложения"])
+                )
             }
         } catch {
             return .failure(error)
         }
     }
+    
     //    выход из аккаунта
     func logoutCurrentUser() {
-        let fetchRequest: NSFetchRequest<UserModel> = UserModel.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "isCurrent == true")
+        let fetchRequest = currentUserFetchRequest()
         
         do {
             let result = try viewContext.fetch(fetchRequest)
@@ -234,30 +183,122 @@ final class StorageService: StorageServiceProtocol {
         }
     }
     
+    
+    //MARK: Current city methods
+    func saveCurrentCity(name: String) {
+        let fetchRequest = currentUserFetchRequest()
+        
+        do {
+            if let currentUser = try viewContext.fetch(fetchRequest).first {
+                
+                let currentCity = CurrentCityEntity(context: viewContext)
+                currentCity.name = name
+                currentUser.addToCities(currentCity)
+                
+                saveContext()
+            }
+        } catch {
+            print("Error fetching user: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadCurrentCity() -> String {
+        let fetchRequest = currentUserFetchRequest()
+        
+        do {
+            let result = try viewContext.fetch(fetchRequest)
+            if let currentUser = result.first,
+               let citySet = currentUser.cities as? Set<CurrentCityEntity>,
+               let currentCity = citySet.first {
+                return currentCity.name ?? ""
+            }
+            return ""
+        } catch {
+            print("CurrentCity load error: \(error.localizedDescription)")
+            return ""
+        }
+    }
+    
+    //MARK: Recent model methods
+    
+    func saveRecentModel(id: Int) {
+        
+        let fetchRequest = currentUserFetchRequest()
+        
+        do {
+            let result = try viewContext.fetch(fetchRequest)
+            if let currentUser = result.first,
+               let recentForUserSet = currentUser.recentMovies?.mutableCopy() as? Set<RecentEntity> {
+                
+                
+                if let existingRecentEntity = recentForUserSet.first(where: { $0.recentId == id.description }) {
+                    currentUser.removeFromRecentMovies(existingRecentEntity)
+                }
+                
+                let recentEntity = RecentEntity(context: viewContext)
+                recentEntity.recentId = id.description
+                currentUser.addToRecentMovies(recentEntity)
+                
+                saveContext()
+            }
+        } catch {
+            print("Error saving recent model: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadRecentModel() -> [String] {
+        let fetchRequest = currentUserFetchRequest()
+        do {
+            let result = try viewContext.fetch(fetchRequest).first
+            if let recentForUserSet = result?.recentMovies?.mutableCopy() as? Set<RecentEntity> {
+                
+                let output = recentForUserSet.map { $0.recentId ?? "" }
+                return output
+            }
+            return []
+        } catch let error {
+            print("CurrnetCity load error \(error.localizedDescription)")
+            return [String]()
+        }
+    }
+    
+    
+    
     //MARK: Wish methods
-    private func deleteWish(id: WishModel) {
+    private func deleteWish(id: WishEntity) {
         viewContext.delete(id)
         saveContext()
     }
     
-    private func addWish(id: Int, currentUserID: UUID) {
-        let wishElement = WishModel(context: viewContext)
-        wishElement.wishId = id.description
-        wishElement.user?.userID = currentUserID
-        wishElement.isSelected = true
-        saveContext()
-    }
-    
-    func checkWish(id: Int, currentUserID: UUID) {
-        let fetchRequest = WishModel.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "wishId == %@", id.description)
+    private func addWish(id: Int) {
+        let fetchRequest = currentUserFetchRequest()
         
         do {
-            let existingId = try viewContext.fetch(fetchRequest)
-            if let existingId = existingId.first {
-                deleteWish(id: existingId)
-            } else {
-                addWish(id: id, currentUserID: currentUserID)
+            if let currentUser = try viewContext.fetch(fetchRequest).first {
+                let wishElement = WishEntity(context: viewContext)
+                wishElement.wishId = id.description
+                wishElement.isSelected = true
+                currentUser.addToWishes(wishElement)
+                saveContext()
+            }
+        } catch let error {
+            print("Wish save error \(error.localizedDescription)")
+        }
+    }
+    
+    func checkWish(id: Int) {
+        let fetchRequest = currentUserFetchRequest()
+        
+        do {
+            if let currentUser = try viewContext.fetch(fetchRequest).first {
+                let existingWishRequest = WishEntity.fetchRequest()
+                existingWishRequest.predicate = NSPredicate(format: "wishId == %@", id.description)
+                
+                if let existingWish = try currentUser.managedObjectContext?.fetch(existingWishRequest).first as? WishEntity {
+                    deleteWish(id: existingWish)
+                } else {
+                    addWish(id: id)
+                }
             }
         } catch {
             print(error.localizedDescription)
@@ -265,12 +306,16 @@ final class StorageService: StorageServiceProtocol {
     }
     
     func getWishModel() -> [String] {
-        let currnetModel = WishModel.fetchRequest()
+        let fetchRequest = currentUserFetchRequest()
         
         do {
-            let result = try viewContext.fetch(currnetModel)
-            let output = result.map { $0.wishId ?? Constant.none }
-            return output
+             let result = try viewContext.fetch(fetchRequest).first
+            if let existingWish = result?.wishes as? Set<WishEntity> {
+                let output = existingWish.map { $0.wishId ?? Constant.none }
+               
+                return output
+            }
+            return []
         } catch let error {
             print("Wish load error \(error.localizedDescription)")
             return [String]()
@@ -278,7 +323,7 @@ final class StorageService: StorageServiceProtocol {
     }
     
     func wishStateButton(id: Int) -> Bool {
-        let fetchRequest = WishModel.fetchRequest()
+        let fetchRequest = WishEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "wishId == %@", id.description)
         
         do {

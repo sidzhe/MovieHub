@@ -10,7 +10,7 @@ import UIKit
 final class EditProfileRouter: EditProfileRouterProtocol {
     func pushToAuth(from view: EditProfileViewProtocol) {
         guard let view = view as? UIViewController else { return }
-        let authVC = Builder.createAuth()
-        view.navigationController?.pushViewController(authVC, animated: true)
+
+        view.dismiss(animated: true)
     }
 }

@@ -12,7 +12,7 @@ protocol MainViewProtocol: AnyObject {
     var presenter: MainPresenterProtocol? { get set }
     func updateUI()
     func displayRequestError(error: String)
-    func updateProfileInfo(user: UserModel)
+    func updateProfileInfo(user: UserEntity)
 }
 
 /// VIEW -> PRESENTER
@@ -50,7 +50,7 @@ protocol MainInteractorInputProtocol: AnyObject {
     func selectedCategory(_ index: Int)
     func saveCurrentLocation(lat: Double, lon: Double, cityName: String)
     func getUserLocation() -> (lat: Double, lon: Double, currentCity: String)
-    func getUserInfo() -> Result<UserModel, Error>
+    func getUserInfo() -> Result<UserEntity, Error>
 }
 
 /// INTERACTOR -> PRESENTER

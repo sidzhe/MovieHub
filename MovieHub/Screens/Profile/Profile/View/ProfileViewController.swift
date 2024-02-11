@@ -61,6 +61,16 @@ final class ProfileViewController: UIViewController {
         secondImage: "about"
     )
     
+    private lazy var authButton: UIButton = {
+        return ButtonFactory.makeButton(
+            title: "Авторизация",
+            color: .white,
+            backgroundColor: .primaryBlue,
+            cornerRadius: 26) { [weak self] in
+                self?.authButtonTap()
+            }
+    }()
+    
     //MARK: - Life cycle
     
     override func viewDidLoad() {
@@ -69,13 +79,14 @@ final class ProfileViewController: UIViewController {
         setupView()
         setupConstraints()
         addTargetForButtons()
-        
+        presenter?.hideToggleAuth()
         navigationController?.setupNavigationBar()
         navigationItem.title = "Профиль"
     }
     
     override func viewDidAppear(_ animated: Bool) {
         presenter?.getUserInfo()
+        
     }
     
     func addTargetForButtons() {
@@ -84,6 +95,11 @@ final class ProfileViewController: UIViewController {
 
       moreView.addTargetForFirstButton(target: self, action: #selector(policyButtonTap), for: .touchUpInside)
       moreView.addTargetForSecondButton(target: self, action: #selector(aboutUsButtonTap), for: .touchUpInside)
+    }
+    
+    private func authButtonTap() {
+        presenter?.routeToAuth()
+     
     }
     
     private func setupView() {
@@ -99,6 +115,7 @@ final class ProfileViewController: UIViewController {
         
         view.addSubview(generalView)
         view.addSubview(moreView)
+        view.addSubview(authButton)
     }
     
     private  func setupConstraints() {
@@ -142,15 +159,32 @@ final class ProfileViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(200)
         }
+        
+        authButton.snp.makeConstraints { make in
+            make.top.equalTo(moreView.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().offset(-24)
+            make.bottom.lessThanOrEqualToSuperview().offset(-20)
+            make.height.equalTo(56)
+        }
     }
 }
 
 extension ProfileViewController: ProfileViewProtocol {
+    func hideProfileView(isToggle: Bool) {
+        profileView.isHidden = isToggle
+    }
+    
+    func hideAuthButton(isToggle: Bool) {
+        authButton.isHidden = isToggle
+    }
+    
+    
     func displayError(error: String) {
         print(error)
     }
     
-    func updateProfileInfo(user: UserModel) {
+    func updateProfileInfo(user: UserEntity) {
         nameLabel.text = user.userName
         emailLabel.text = user.userEmail
         avatarImageView.image = UIImage(data: user.userAvatar ?? Data())

@@ -8,6 +8,7 @@
 import Foundation
 
 final class ProfilePresenter: ProfilePresenterProtocol {
+    
 
     //MARK: Properties
     weak var view: ProfileViewProtocol?
@@ -24,6 +25,17 @@ final class ProfilePresenter: ProfilePresenterProtocol {
         }
     }
     
+    func hideToggleAuth() {
+        guard let currentUser = interactor?.checkCurrentUser() else { return }
+        switch currentUser {
+        case true:
+            view?.hideAuthButton(isToggle: true)
+            view?.hideProfileView(isToggle: false)
+        case false:
+            view?.hideAuthButton(isToggle: false)
+            view?.hideProfileView(isToggle: true)
+        }
+    }
     
     //MARK: Route
     func routeToEditProfile() {
@@ -49,6 +61,11 @@ final class ProfilePresenter: ProfilePresenterProtocol {
     func routeToAboutUs() {
         guard let view = view else { return }
         router?.pushToAboutUs(from: view)
+    }
+    
+    func routeToAuth() {
+        guard let view = view else { return }
+        router?.pushToAuth(from: view)
     }
 }
 

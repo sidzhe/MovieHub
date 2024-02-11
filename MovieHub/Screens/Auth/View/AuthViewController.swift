@@ -101,6 +101,10 @@ final class AuthViewController: UIViewController {
         setConstraint()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateUI()
+    }
     //MARK: - private methods
     private func updateUI() {
         if isRegistering {
@@ -217,6 +221,11 @@ final class AuthViewController: UIViewController {
             return false
         }
         return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 
 final class SearchInteractor: SearchInteractorInputProtocol {
-
+    
     //MARK: - Properties
     weak var presenter: SearchInteractorOutputProtocol?
     var networkService: NetworkServiceProtool
@@ -32,10 +32,10 @@ final class SearchInteractor: SearchInteractorInputProtocol {
             guard let self = self else { return }
             switch result {
             case .success(let upcomingMovie):
-               
-                    self.upcomingMovie = upcomingMovie
-                    self.presenter?.updateUI()
-              
+                
+                self.upcomingMovie = upcomingMovie
+                self.presenter?.updateUI()
+                
             case .failure(let error):
                 self.presenter?.getError(error: error)
             }
@@ -59,9 +59,6 @@ final class SearchInteractor: SearchInteractorInputProtocol {
     
     //MARK: Storage
     func getRecentMovieIds() -> [String] {
-        if let userId = try? storageService.getCurrentUser().get() {
-           return storageService.loadRecentModel(currentUserID: userId.userID ?? UUID())
-        }
-        return []
+        storageService.loadRecentModel()
     }
 }
