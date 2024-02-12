@@ -1,0 +1,133 @@
+{
+  "docs": [
+    {
+      "category": "0",
+      "name": "HD",
+      "slug": "hd",
+      "createdAt": "2024-02-11T01:00:00.039Z",
+      "updatedAt": "2024-02-11T01:00:00.039Z",
+      "id": "65c81c1081a6608e447b0e76"
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Волшебные истории",
+      "slug": "magicstories",
+      "moviesCount": 25,
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/10809116/067899f6-a3e6-4a3b-8145-470bf96d6c66/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/10809116/067899f6-a3e6-4a3b-8145-470bf96d6c66/x1000"
+      },
+      "createdAt": "2024-01-07T00:00:00.631Z",
+      "updatedAt": "2024-01-07T00:00:00.631Z",
+      "id": "6599e980803579c41448630a"
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Сейчас самое время",
+      "slug": "nowisthetime",
+      "moviesCount": 26,
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/10812607/9a55a456-963c-4b8c-a0bb-f1af2a630e92/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/10812607/9a55a456-963c-4b8c-a0bb-f1af2a630e92/x1000"
+      },
+      "createdAt": "2024-01-07T00:00:00.631Z",
+      "updatedAt": "2024-01-07T00:00:00.631Z",
+      "id": "6599e980803579c414486309"
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Время приключений",
+      "slug": "adventure_time",
+      "moviesCount": 73,
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/128809/eb0af3584cbb246d790631c91871d545e4cf51d5/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/128809/eb0af3584cbb246d790631c91871d545e4cf51d5/x1000"
+      },
+      "createdAt": "2024-01-07T00:00:00.606Z",
+      "updatedAt": "2024-01-07T00:00:00.606Z",
+      "id": "6599e980803579c4144862fc"
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Семейные комедии",
+      "slug": "family_comedies",
+      "moviesCount": 100,
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/128809/900f24e0a2ac790d2fb7c499836f55c73b016014/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/128809/900f24e0a2ac790d2fb7c499836f55c73b016014/x1000"
+      },
+      "createdAt": "2024-01-07T00:00:00.606Z",
+      "updatedAt": "2024-01-07T00:00:00.606Z",
+      "id": "6599e980803579c4144862fb"
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Лучшее за 2023 год: выбор редакции",
+      "slug": "best2023ed",
+      "moviesCount": 20,
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/10835644/f4131950-d56a-448a-b675-87029d1aee11/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/10835644/f4131950-d56a-448a-b675-87029d1aee11/x1000"
+      },
+      "createdAt": "2024-01-07T00:00:00.605Z",
+      "updatedAt": "2024-01-07T00:00:00.605Z",
+      "id": "6599e980803579c4144862f8"
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Хиты Амедиатеки",
+      "slug": "bestofamediateka",
+      "moviesCount": 37,
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/10893610/5ee5f902-415b-48a6-880f-7f9f6eef8d26/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/10893610/5ee5f902-415b-48a6-880f-7f9f6eef8d26/x1000"
+      },
+      "createdAt": "2024-01-07T00:00:00.604Z",
+      "updatedAt": "2024-01-07T00:00:00.604Z",
+      "id": "6599e980803579c4144862f7"
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Новый год всей семьей",
+      "slug": "ny_family",
+      "moviesCount": 83,
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/10592371/ef575e25-bd07-4dc6-adfb-f2c30622e13c/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/10592371/ef575e25-bd07-4dc6-adfb-f2c30622e13c/x1000"
+      },
+      "createdAt": "2024-01-07T00:00:00.604Z",
+      "updatedAt": "2024-01-07T00:00:00.604Z",
+      "id": "6599e980803579c4144862f6"
+    },
+    {
+      "category": "Онлайн-кинотеатр",
+      "name": "Топ-20 фильмов и сериалов 2023 года",
+      "slug": "top20of2023",
+      "moviesCount": 20,
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/9784475/999bee3b-765e-4298-b8d9-8bd996992252/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/9784475/999bee3b-765e-4298-b8d9-8bd996992252/x1000"
+      },
+      "createdAt": "2024-01-07T00:00:00.604Z",
+      "updatedAt": "2024-01-07T00:00:00.604Z",
+      "id": "6599e980803579c4144862f5"
+    },
+    {
+      "category": "Фильмы",
+      "name": "100 великих фильмов XXI века",
+      "slug": "100_greatest_movies_XXI",
+      "moviesCount": 101,
+      "cover": {
+        "url": "https://avatars.mds.yandex.net/get-bunker/120922/9ef93279153c45ee182cf8c6bc819590af4c1d25/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-bunker/120922/9ef93279153c45ee182cf8c6bc819590af4c1d25/x1000"
+      },
+      "createdAt": "2023-11-19T00:00:00.630Z",
+      "updatedAt": "2023-11-19T00:00:00.630Z",
+      "id": "655950001b317e1a02d3556c"
+    }
+  ],
+  "total": 91,
+  "limit": 10,
+  "page": 1,
+  "pages": 10
+}

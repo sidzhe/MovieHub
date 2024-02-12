@@ -1,0 +1,747 @@
+{
+  "docs": [
+    {
+      "id": 709570,
+      "name": "Тест",
+      "alternativeName": "Test",
+      "enName": "",
+      "type": "movie",
+      "year": 2013,
+      "description": "Сан-Франциско, 1985 год. Молодой танцовщик Фрэнки пытается выделиться среди более опытных членов в своей труппе современного танца. Но есть и еще нечто большее у него на уме — новый тест на ВИЧ, который многие опасаются пройти, так как боятся, что он может быть использован против них, как повод для карантина гомосексуалов. Когда Фрэнки планирует все-таки сдать этот анализ, он получает известие, которое заставляет его действовать...",
+      "shortDescription": "",
+      "movieLength": 90,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 1,
+      "status": null,
+      "names": [
+        {
+          "name": "Тест"
+        },
+        {
+          "name": "Test"
+        },
+        {
+          "name": "愛滋長",
+          "language": "TW",
+          "type": null
+        },
+        {
+          "name": "San Francisco 1985",
+          "language": "FR",
+          "type": null
+        }
+      ],
+      "externalId": {
+        "imdb": "tt2407380",
+        "tmdb": 226979
+      },
+      "logo": {
+        "url": null
+      },
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/d0b1388b-ad7e-4cde-ac5f-6943a03c8982/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/d0b1388b-ad7e-4cde-ac5f-6943a03c8982/x1000"
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/xySCWwZVuU03xOsJfs1Qk8yG2DF.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/xySCWwZVuU03xOsJfs1Qk8yG2DF.jpg"
+      },
+      "rating": {
+        "kp": 6.461,
+        "imdb": 6.5,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": null
+      },
+      "votes": {
+        "kp": 440,
+        "imdb": 1721,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 1
+      },
+      "genres": [
+        {
+          "name": "драма"
+        },
+        {
+          "name": "мелодрама"
+        },
+        {
+          "name": "история"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        }
+      ],
+      "releaseYears": []
+    },
+    {
+      "id": 1073042,
+      "name": "",
+      "alternativeName": "Test",
+      "enName": "",
+      "type": "movie",
+      "year": 2019,
+      "description": "",
+      "shortDescription": "",
+      "movieLength": 106,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 1,
+      "status": null,
+      "names": [
+        {
+          "name": "Test"
+        }
+      ],
+      "externalId": {
+        "kpHD": null,
+        "imdb": "tt6988290",
+        "tmdb": 617120
+      },
+      "logo": {
+        "url": null,
+        "previewUrl": null
+      },
+      "poster": {
+        "url": null,
+        "previewUrl": null
+      },
+      "backdrop": {
+        "url": null,
+        "previewUrl": null
+      },
+      "rating": {
+        "kp": 0,
+        "imdb": 6.3,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "votes": {
+        "kp": 15,
+        "imdb": 16,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "genres": [
+        {
+          "name": "драма"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        }
+      ],
+      "releaseYears": []
+    },
+    {
+      "id": 870905,
+      "name": "",
+      "alternativeName": "Test",
+      "enName": "",
+      "type": "movie",
+      "year": 2014,
+      "description": "",
+      "shortDescription": "",
+      "movieLength": 10,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 1,
+      "status": null,
+      "names": [
+        {
+          "name": "Test"
+        }
+      ],
+      "externalId": {
+        "kpHD": null,
+        "imdb": "tt4094328",
+        "tmdb": 385129
+      },
+      "logo": {
+        "url": null,
+        "previewUrl": null
+      },
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/3dd788f5-89fa-402c-9c67-4bacb3d9cfef/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/3dd788f5-89fa-402c-9c67-4bacb3d9cfef/x1000"
+      },
+      "backdrop": {
+        "url": null,
+        "previewUrl": null
+      },
+      "rating": {
+        "kp": 0,
+        "imdb": 8.3,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "votes": {
+        "kp": 11,
+        "imdb": 15,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "genres": [
+        {
+          "name": "короткометражка"
+        },
+        {
+          "name": "фантастика"
+        },
+        {
+          "name": "драма"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        }
+      ],
+      "releaseYears": []
+    },
+    {
+      "id": 134715,
+      "name": "Тест",
+      "alternativeName": "Test",
+      "enName": "",
+      "type": "movie",
+      "year": 2005,
+      "description": "",
+      "shortDescription": "",
+      "movieLength": 12,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 1,
+      "status": null,
+      "names": [
+        {
+          "name": "Тест"
+        },
+        {
+          "name": "Test"
+        }
+      ],
+      "externalId": {
+        "kpHD": null
+      },
+      "logo": {
+        "url": null
+      },
+      "poster": {
+        "url": null,
+        "previewUrl": null
+      },
+      "backdrop": {
+        "url": null,
+        "previewUrl": null
+      },
+      "rating": {
+        "kp": 0,
+        "imdb": 6.8,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "votes": {
+        "kp": 9,
+        "imdb": 17,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "genres": [
+        {
+          "name": "короткометражка"
+        },
+        {
+          "name": "мелодрама"
+        },
+        {
+          "name": "комедия"
+        }
+      ],
+      "countries": [
+        {
+          "name": "Франция"
+        }
+      ],
+      "releaseYears": []
+    },
+    {
+      "id": 402298,
+      "name": "",
+      "alternativeName": "Test",
+      "enName": "",
+      "type": "movie",
+      "year": 2007,
+      "description": "",
+      "shortDescription": "",
+      "movieLength": 12,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 1,
+      "status": null,
+      "names": [
+        {
+          "name": "Test"
+        },
+        {
+          "name": "Kissa på en sticka",
+          "language": "SE",
+          "type": null
+        }
+      ],
+      "externalId": {
+        "tmdb": 594040,
+        "kpHD": null
+      },
+      "logo": {
+        "url": null
+      },
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/c8eb6602-eba2-4264-aff1-1861374eb8cf/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/c8eb6602-eba2-4264-aff1-1861374eb8cf/x1000"
+      },
+      "backdrop": {
+        "url": null,
+        "previewUrl": null
+      },
+      "rating": {
+        "kp": 0,
+        "imdb": 5.5,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "votes": {
+        "kp": 8,
+        "imdb": 24,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "genres": [
+        {
+          "name": "короткометражка"
+        },
+        {
+          "name": "драма"
+        }
+      ],
+      "countries": [
+        {
+          "name": "Испания"
+        }
+      ],
+      "releaseYears": []
+    },
+    {
+      "id": 1142813,
+      "name": "",
+      "alternativeName": "Test!",
+      "enName": "",
+      "type": "movie",
+      "year": 2017,
+      "description": "",
+      "shortDescription": "",
+      "movieLength": 5,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 1,
+      "status": null,
+      "names": [
+        {
+          "name": "Test!"
+        }
+      ],
+      "externalId": {
+        "imdb": "tt7855794",
+        "kpHD": null
+      },
+      "logo": {
+        "url": null
+      },
+      "poster": {
+        "url": null,
+        "previewUrl": null
+      },
+      "backdrop": {
+        "url": null,
+        "previewUrl": null
+      },
+      "rating": {
+        "kp": 0,
+        "imdb": 0,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "votes": {
+        "kp": 2,
+        "imdb": 0,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "genres": [
+        {
+          "name": "короткометражка"
+        },
+        {
+          "name": "фэнтези"
+        },
+        {
+          "name": "драма"
+        },
+        {
+          "name": "комедия"
+        }
+      ],
+      "countries": [
+        {
+          "name": "Марокко"
+        }
+      ],
+      "releaseYears": []
+    },
+    {
+      "id": 252661,
+      "name": "",
+      "alternativeName": "Test",
+      "enName": "",
+      "type": "cartoon",
+      "year": 2000,
+      "description": "",
+      "shortDescription": "",
+      "movieLength": 7,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 3,
+      "status": null,
+      "names": [
+        {
+          "name": "Test"
+        }
+      ],
+      "externalId": {
+        "imdb": "tt0278090",
+        "tmdb": 887697,
+        "kpHD": null
+      },
+      "logo": {
+        "url": null,
+        "previewUrl": null
+      },
+      "poster": {
+        "url": null,
+        "previewUrl": null
+      },
+      "backdrop": {
+        "url": null,
+        "previewUrl": null
+      },
+      "rating": {
+        "kp": 0,
+        "imdb": 7.5,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "votes": {
+        "kp": 2,
+        "imdb": 36,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "genres": [
+        {
+          "name": "мультфильм"
+        },
+        {
+          "name": "короткометражка"
+        },
+        {
+          "name": "драма"
+        }
+      ],
+      "countries": [
+        {
+          "name": "Чехия"
+        }
+      ],
+      "releaseYears": []
+    },
+    {
+      "id": 1318625,
+      "name": "",
+      "alternativeName": "Test",
+      "enName": "",
+      "type": "movie",
+      "year": 2019,
+      "description": "",
+      "shortDescription": "",
+      "movieLength": 6,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 1,
+      "status": null,
+      "names": [
+        {
+          "name": "Test"
+        }
+      ],
+      "externalId": {},
+      "logo": {
+        "url": null
+      },
+      "poster": {
+        "url": null,
+        "previewUrl": null
+      },
+      "backdrop": {
+        "url": null,
+        "previewUrl": null
+      },
+      "rating": {
+        "kp": 0,
+        "imdb": 0,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "votes": {
+        "kp": 1,
+        "imdb": 0,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "genres": [
+        {
+          "name": "короткометражка"
+        },
+        {
+          "name": "ужасы"
+        },
+        {
+          "name": "триллер"
+        },
+        {
+          "name": "драма"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        }
+      ],
+      "releaseYears": []
+    },
+    {
+      "id": 123635,
+      "name": "",
+      "alternativeName": "Test",
+      "enName": "",
+      "type": "movie",
+      "year": 1976,
+      "description": "",
+      "shortDescription": "",
+      "movieLength": 21,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 1,
+      "status": null,
+      "names": [
+        {
+          "name": "Test"
+        }
+      ],
+      "externalId": {
+        "kpHD": null
+      },
+      "logo": {
+        "url": null
+      },
+      "poster": {
+        "url": null,
+        "previewUrl": null
+      },
+      "backdrop": {
+        "url": null,
+        "previewUrl": null
+      },
+      "rating": {
+        "kp": 0,
+        "imdb": 0,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "votes": {
+        "kp": 1,
+        "imdb": 0,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "genres": [
+        {
+          "name": "документальный"
+        },
+        {
+          "name": "короткометражка"
+        }
+      ],
+      "countries": [
+        {
+          "name": "Югославия"
+        }
+      ],
+      "releaseYears": []
+    },
+    {
+      "id": 4369574,
+      "name": "",
+      "alternativeName": "Test",
+      "enName": "",
+      "type": "movie",
+      "year": 2018,
+      "description": "",
+      "shortDescription": "",
+      "movieLength": 3,
+      "isSeries": false,
+      "ticketsOnSale": false,
+      "totalSeriesLength": null,
+      "seriesLength": null,
+      "ratingMpaa": null,
+      "ageRating": null,
+      "top10": null,
+      "top250": null,
+      "typeNumber": 1,
+      "status": null,
+      "names": [
+        {
+          "name": "Test"
+        }
+      ],
+      "externalId": {
+        "kpHD": null,
+        "imdb": "tt8155734"
+      },
+      "logo": {
+        "url": null
+      },
+      "poster": {
+        "url": null,
+        "previewUrl": null
+      },
+      "backdrop": {
+        "url": null,
+        "previewUrl": null
+      },
+      "rating": {
+        "kp": 0,
+        "imdb": 0,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "votes": {
+        "kp": 0,
+        "imdb": 0,
+        "filmCritics": 0,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "genres": [
+        {
+          "name": "короткометражка"
+        },
+        {
+          "name": "ужасы"
+        },
+        {
+          "name": "фэнтези"
+        },
+        {
+          "name": "детектив"
+        }
+      ],
+      "countries": [
+        {
+          "name": "Великобритания"
+        }
+      ],
+      "releaseYears": []
+    }
+  ],
+  "total": 894,
+  "limit": 10,
+  "page": 1,
+  "pages": 90
+}

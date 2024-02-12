@@ -159,7 +159,8 @@ final class StorageService: StorageServiceProtocol {
             if let user = result.last {
                 return .success(user)
             } else {
-                return .failure(NSError(domain: "CurrentUserError", code: 1,
+                return .failure(NSError(domain: "CurrentUserError", 
+                                        code: 1,
                                         userInfo: [NSLocalizedDescriptionKey: "Гостевой визит не позволяет использовать все возможности приложения"])
                 )
             }

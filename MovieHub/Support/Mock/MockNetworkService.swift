@@ -10,7 +10,8 @@ import Foundation
 final class MockNetworkService: NetworkServiceProtocol, Mockable {
     
     func searchMovieByTitle(_ title: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
-        
+        let data = getJSON(fileName: "SearchByTitle", type: SearchModel.self)
+        completion(.success(data))
     }
     
     func searchPerson(_ person: String, completion: @escaping (Result<PersonModel, RequestError>) -> Void) {
@@ -23,7 +24,8 @@ final class MockNetworkService: NetworkServiceProtocol, Mockable {
     }
     
     func searchColletions(completion: @escaping (Result<ColletionModel, RequestError>) -> Void) {
-        
+        let data = getJSON(fileName: "Collections", type: ColletionModel.self)
+        completion(.success(data))
     }
     
     func getSlugCollection<T>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void) where T : Decodable {
@@ -35,7 +37,8 @@ final class MockNetworkService: NetworkServiceProtocol, Mockable {
     }
     
     func getRateCollection(genre: MovieGenre, completion: @escaping (Result<CollectionDetailModel, RequestError>) -> Void) {
-        
+        let data = getJSON(fileName: "RatedMovies", type: CollectionDetailModel.self)
+        completion(.success(data))
     }
     
     func getDetailPerson(personId: [Int], completion: @escaping (Result<PersonDetalModel, RequestError>) -> Void) {

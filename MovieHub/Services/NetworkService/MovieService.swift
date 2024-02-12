@@ -38,6 +38,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.path = endpoint.path
         let items = [URLQueryItem(name: "query", value: searchTitle), URLQueryItem(name: "limit", value: "10")]
         urlComponents.queryItems = items
+        print(urlComponents.url)
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchTitle, responseModel: T.self)
     }
     
@@ -110,7 +111,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
-        var items = [URLQueryItem(name: "page", value: String(Int.random(in: 1...75))),
+        var items = [URLQueryItem(name: "page", value: "1"),
                      URLQueryItem(name: "limit", value: "10"),
                      URLQueryItem(name: "rating.kp", value: "4.5-10")]
         if genre != "все" {

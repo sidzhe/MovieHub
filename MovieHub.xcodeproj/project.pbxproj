@@ -69,6 +69,11 @@
 		EB0945F62B46CD0200331EAD /* FactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0945F52B46CD0200331EAD /* FactsCell.swift */; };
 		EB0945F82B46D9A200331EAD /* AwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0945F72B46D9A200331EAD /* AwardCell.swift */; };
 		EB0945FA2B46DE5C00331EAD /* PersonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0945F92B46DE5C00331EAD /* PersonHeader.swift */; };
+		EB0E11002B7A157500D65632 /* MainInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0E10FF2B7A157500D65632 /* MainInteractorTest.swift */; };
+		EB0E11022B7A1E0300D65632 /* StubStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0E11012B7A1E0300D65632 /* StubStorageService.swift */; };
+		EB0E11042B7A2B6E00D65632 /* RatedMovies.json in Resources */ = {isa = PBXBuildFile; fileRef = EB0E11032B7A2B6E00D65632 /* RatedMovies.json */; };
+		EB0E11082B7A389700D65632 /* SearchByTitle.json in Resources */ = {isa = PBXBuildFile; fileRef = EB0E11072B7A389700D65632 /* SearchByTitle.json */; };
+		EB0E110C2B7A3BF000D65632 /* Collections.json in Resources */ = {isa = PBXBuildFile; fileRef = EB0E110B2B7A3BF000D65632 /* Collections.json */; };
 		EB20D07F2B42EC9100B5E094 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D07E2B42EC9100B5E094 /* BallView.swift */; };
 		EB20D0812B430C0800B5E094 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D0802B430C0800B5E094 /* MovieView.swift */; };
 		EB290E872B512FED00746565 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB290E862B512FED00746565 /* Constant.swift */; };
@@ -292,6 +297,11 @@
 		EB0945F52B46CD0200331EAD /* FactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsCell.swift; sourceTree = "<group>"; };
 		EB0945F72B46D9A200331EAD /* AwardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardCell.swift; sourceTree = "<group>"; };
 		EB0945F92B46DE5C00331EAD /* PersonHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHeader.swift; sourceTree = "<group>"; };
+		EB0E10FF2B7A157500D65632 /* MainInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractorTest.swift; sourceTree = "<group>"; };
+		EB0E11012B7A1E0300D65632 /* StubStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubStorageService.swift; sourceTree = "<group>"; };
+		EB0E11032B7A2B6E00D65632 /* RatedMovies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RatedMovies.json; sourceTree = "<group>"; };
+		EB0E11072B7A389700D65632 /* SearchByTitle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SearchByTitle.json; sourceTree = "<group>"; };
+		EB0E110B2B7A3BF000D65632 /* Collections.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Collections.json; sourceTree = "<group>"; };
 		EB12B18A2B777E3000FD2017 /* MovieHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB20D07E2B42EC9100B5E094 /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
 		EB20D0802B430C0800B5E094 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
@@ -881,6 +891,7 @@
 			isa = PBXGroup;
 			children = (
 				EBC048292B77B38600336773 /* ChristmasInteractorTest.swift */,
+				EB0E10FF2B7A157500D65632 /* MainInteractorTest.swift */,
 			);
 			path = MovieHubTests;
 			sourceTree = "<group>";
@@ -1636,7 +1647,11 @@
 			children = (
 				EBC048302B78F55900336773 /* Mockable.swift */,
 				EBC0482B2B77B46F00336773 /* MockNetworkService.swift */,
+				EB0E11012B7A1E0300D65632 /* StubStorageService.swift */,
 				EBC0482E2B78F3EB00336773 /* ChrimtmasInteractorJson.json */,
+				EB0E11032B7A2B6E00D65632 /* RatedMovies.json */,
+				EB0E11072B7A389700D65632 /* SearchByTitle.json */,
+				EB0E110B2B7A3BF000D65632 /* Collections.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -2105,6 +2120,7 @@
 				63D273432B507B560092E5E3 /* Assets.xcassets in Resources */,
 				EB6CB2D92B3C250600DC30BC /* Montserrat-Black.ttf in Resources */,
 				EB6CB2D62B3C250600DC30BC /* Montserrat-Bold.ttf in Resources */,
+				EB0E11042B7A2B6E00D65632 /* RatedMovies.json in Resources */,
 				EBF0D15A2B4D9FA70061BEA9 /* animation.png in Resources */,
 				EB82676D2B38A1D50024BAAE /* LaunchScreen.storyboard in Resources */,
 				EB6CB2D52B3C250600DC30BC /* Montserrat-ExtraBold.ttf in Resources */,
@@ -2112,6 +2128,8 @@
 				EB6CB2DD2B3C250600DC30BC /* Montserrat-Thin.ttf in Resources */,
 				EBDDEAB22B502D400075ED3F /* Localizable.strings in Resources */,
 				EBC0482F2B78F3EB00336773 /* ChrimtmasInteractorJson.json in Resources */,
+				EB0E110C2B7A3BF000D65632 /* Collections.json in Resources */,
+				EB0E11082B7A389700D65632 /* SearchByTitle.json in Resources */,
 				EB6CB2D82B3C250600DC30BC /* Montserrat-Medium.ttf in Resources */,
 				EB6CB2DC2B3C250600DC30BC /* Montserrat-ExtraLight.ttf in Resources */,
 			);
@@ -2167,6 +2185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC0482A2B77B38600336773 /* ChristmasInteractorTest.swift in Sources */,
+				EB0E11002B7A157500D65632 /* MainInteractorTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2245,6 +2264,7 @@
 				EBA5FE282B4EB6CD00E85872 /* CollectionInteractor.swift in Sources */,
 				E1DFE61D2B51D57400358355 /* SearchProtocols.swift in Sources */,
 				EBBA2B472B4D96C900D55EF6 /* GlobeInteractor.swift in Sources */,
+				EB0E11022B7A1E0300D65632 /* StubStorageService.swift in Sources */,
 				EBE76C222B396D550053E522 /* MainProtocols.swift in Sources */,
 				E15E5D8C2B6EC28900A7FDC7 /* EditProfileRouter.swift in Sources */,
 				EBE76C832B3974C30053E522 /* ChristmasProtocols.swift in Sources */,
