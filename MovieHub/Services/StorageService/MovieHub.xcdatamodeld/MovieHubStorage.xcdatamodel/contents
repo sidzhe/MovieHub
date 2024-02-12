@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23D56" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CurrentCityEntity" representedClassName="CurrentCityEntity" parentEntity="UserEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="RecentEntity" representedClassName="RecentEntity" parentEntity="UserEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="recentId" optional="YES" attributeType="String"/>
+        <relationship name="userEntity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity"/>
+    </entity>
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
+        <attribute name="isCurrent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="userAvatar" optional="YES" attributeType="Binary"/>
+        <attribute name="userEmail" attributeType="String"/>
+        <attribute name="userName" attributeType="String"/>
+        <relationship name="currentCityEntity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CurrentCityEntity"/>
+        <relationship name="recentEntity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecentEntity"/>
+        <relationship name="wishListEntity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WishEntity"/>
+    </entity>
+    <entity name="WishEntity" representedClassName="WishEntity" parentEntity="UserEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="wishId" optional="YES" attributeType="String"/>
+        <relationship name="userEntity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity"/>
+    </entity>
+</model>

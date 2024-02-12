@@ -31,7 +31,7 @@ final class WishlistViewController: UIViewController {
         super.viewDidLoad()
         
         setViews()
-        
+        navigationController?.setupNavigationBar()
     }
     
     //MARK: ViewWillAppear

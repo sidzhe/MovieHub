@@ -141,10 +141,7 @@ extension OnboardingViewController {
             pageControl.currentPage += 1
             goToNextPage()
         } else {
-            let homeVC = Builder.createTabBar()
-            homeVC.modalPresentationStyle = .fullScreen
-            homeVC.modalTransitionStyle = .crossDissolve
-            present(homeVC, animated: true)
+            presenter?.routeToHome()
         }
     }
     

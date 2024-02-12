@@ -15,12 +15,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
+        let storageService = StorageService()
+        let currentUser = storageService.checkCurrentUser()
         
         if UserDefaults.standard.value(forKey: "state") != nil {
-            window?.rootViewController = Builder.createTabBar()
+            if currentUser {
+                window?.rootViewController = Builder.createTabBar()
+            } else {
+                let authVC = Builder.createAuth()
+                let navigationController = UINavigationController(rootViewController: authVC)
+                window?.rootViewController = navigationController
+            }
         } else {
             window?.rootViewController = Builder.createOnboarding()
         }
+        
         window?.makeKeyAndVisible()
     }
 }

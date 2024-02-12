@@ -8,16 +8,16 @@
 import Foundation
 
 final class DetailInteractor: DetailInteractorInputProtocol {
-
+    
     //MARK: - Properties
     weak var presenter: DetailInteractorOutputProtocol?
     var detailData: DetailModel?
     private var detailID: String
     private let networkService: NetworkService
-    private let storageService: StorageServiceProtool
+    private let storageService: StorageServiceProtocol
     
     //MARK: Init
-    init(networkService: NetworkService, storageService: StorageServiceProtool, detailID: String) {
+    init(networkService: NetworkService, storageService: StorageServiceProtocol, detailID: String) {
         self.networkService = networkService
         self.storageService = storageService
         self.detailID = detailID

@@ -15,6 +15,9 @@ extension UISearchController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.definesPresentationContext = true
         searchController.searchBar.delegate = searchBarDelegate
+        searchController.searchBar.searchTextField.textColor = .white
+        searchController.searchBar.showsScopeBar = false
+        
         
         if let searchTF = searchController.searchBar.value(forKey: "searchField") as? UITextField {
             searchTF.font = UIFont.montserratSemiBold(size: 16)

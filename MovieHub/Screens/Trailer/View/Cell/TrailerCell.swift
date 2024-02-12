@@ -14,6 +14,7 @@ final class TrailerCell: UICollectionViewCell {
     private lazy var personImage: UIImageView = {
         let image = UIImageView()
         image.image = .animation81
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.layer.cornerRadius = 50
         return image

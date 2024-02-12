@@ -42,7 +42,7 @@ final class CityListViewController: UIViewController {
         setupViews()
         configureDataSource()
         applyInitialSnapshots()
-        
+        navigationController?.setupNavigationBar()
     }
     
     //MARK: - City filter

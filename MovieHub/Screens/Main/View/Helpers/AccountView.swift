@@ -15,7 +15,7 @@ final class AccountView: UIView {
     var callBackGlobe: (() -> Void)?
     
     //MARK: UI Elements
-    private lazy var avatar: UIImageView = {
+    lazy var avatar: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "person.fill")
         image.clipsToBounds = true
@@ -23,9 +23,9 @@ final class AccountView: UIView {
         return image
     }()
     
-    private lazy var nameLabel: UILabel = {
+    lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Привет, Смит".localized()
+        label.text = "Привет, Гость".localized()
         label.font = UIFont.montserratSemiBold(size: 16)
         label.textColor = .white
         return label

@@ -8,7 +8,7 @@
 import Foundation
 
 final class MainPresenter: MainPresenterProtocol {
-    
+
     //MARK: Properties
     weak var view: MainViewProtocol?
     var interactor: MainInteractorInputProtocol?
@@ -29,6 +29,17 @@ final class MainPresenter: MainPresenterProtocol {
         return model
     }
     
+    func getUserInfo() {
+        guard let userInfo = interactor?.getUserInfo() else { return }
+        
+        switch userInfo {
+        case .success(let currentUser):
+            view?.updateProfileInfo(user: currentUser)
+        case .failure(let error):
+            view?.displayRequestError(error: error.localizedDescription)
+        }
+    }
+   
     func getCategories() -> [CategoryModel] {
         guard let interactor = interactor else { return [CategoryModel]() }
         return interactor.cagegoriesData

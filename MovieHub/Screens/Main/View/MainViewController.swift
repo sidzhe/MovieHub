@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
     //MARK: UI Elements
     private let accountView = AccountView()
     
-    private lazy var seatchTextField: UISearchTextField = {
+    private lazy var searchTextField: UISearchTextField = {
         let text = UISearchTextField()
         text.backgroundColor = .primarySoft
         text.clipsToBounds = true
@@ -49,14 +49,23 @@ final class MainViewController: UIViewController {
         setCategories()
         accountViewButtonsTarget()
         setLocation()
-        
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        presenter?.getUserInfo()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
     
     //MARK: Setup Views
     private func setupView() {
         view.backgroundColor = .primaryDark
         view.addSubview(accountView)
-        view.addSubview(seatchTextField)
+        view.addSubview(searchTextField)
         
         accountView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -64,7 +73,7 @@ final class MainViewController: UIViewController {
             make.height.equalTo(40)
         }
         
-        seatchTextField.snp.makeConstraints { make in
+        searchTextField.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(25)
             make.top.equalTo(accountView.snp.bottom).offset(15)
             make.height.equalTo(48)
@@ -102,10 +111,10 @@ final class MainViewController: UIViewController {
 }
 
 
-//MARK: - Extension Set CollactionView
+//MARK: - Extension Set CollectionView
 private extension MainViewController {
     
-    //MARK: Create Laouyt
+    //MARK: Create Layout
     func createLayout() -> UICollectionViewLayout {
         let sectionProvider = {(sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
@@ -126,7 +135,7 @@ private extension MainViewController {
                 
             } else if sectionKind == .collection {
                 
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.35))
@@ -191,11 +200,12 @@ private extension MainViewController {
     func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.backgroundColor = .clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         view.addSubview(collectionView)
         
         collectionView?.snp.makeConstraints({ make in
-            make.top.equalTo(seatchTextField.snp.bottom).offset(20)
+            make.top.equalTo(searchTextField.snp.bottom).offset(20)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview().inset(90)
         })
@@ -338,16 +348,19 @@ extension MainViewController: UICollectionViewDelegate {
     }
 }
 
-
 //MARK: - Extension MainViewProtocol
 extension MainViewController: MainViewProtocol {
-    
     func updateUI() {
         Task { applySnapshot() }
     }
     
     func displayRequestError(error: String) {
         Task { alertError(error) }
+    }
+    
+    func updateProfileInfo(user: UserEntity) {
+        accountView.nameLabel.text = "Привет, \(user.userName ?? "гость")"
+        accountView.avatar.image = UIImage(data: user.userAvatar ?? Data()) ??  UIImage(systemName: "person.fill")
     }
 }
 
