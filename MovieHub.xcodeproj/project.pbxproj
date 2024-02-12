@@ -55,7 +55,6 @@
 		EB0945F62B46CD0200331EAD /* FactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0945F52B46CD0200331EAD /* FactsCell.swift */; };
 		EB0945F82B46D9A200331EAD /* AwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0945F72B46D9A200331EAD /* AwardCell.swift */; };
 		EB0945FA2B46DE5C00331EAD /* PersonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0945F92B46DE5C00331EAD /* PersonHeader.swift */; };
-		EB12B18D2B777E3000FD2017 /* TrailerPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB12B18C2B777E3000FD2017 /* TrailerPresenterTest.swift */; };
 		EB20D07F2B42EC9100B5E094 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D07E2B42EC9100B5E094 /* BallView.swift */; };
 		EB20D0812B430C0800B5E094 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB20D0802B430C0800B5E094 /* MovieView.swift */; };
 		EB290E872B512FED00746565 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB290E862B512FED00746565 /* Constant.swift */; };
@@ -267,7 +266,6 @@
 		EB0945F72B46D9A200331EAD /* AwardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardCell.swift; sourceTree = "<group>"; };
 		EB0945F92B46DE5C00331EAD /* PersonHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHeader.swift; sourceTree = "<group>"; };
 		EB12B18A2B777E3000FD2017 /* MovieHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB12B18C2B777E3000FD2017 /* TrailerPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerPresenterTest.swift; sourceTree = "<group>"; };
 		EB20D07E2B42EC9100B5E094 /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
 		EB20D0802B430C0800B5E094 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
 		EB290E842B512F6200746565 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -756,7 +754,6 @@
 		EB12B18B2B777E3000FD2017 /* MovieHubTests */ = {
 			isa = PBXGroup;
 			children = (
-				EB12B18C2B777E3000FD2017 /* TrailerPresenterTest.swift */,
 				EBC048292B77B38600336773 /* ChristmasInteractorTest.swift */,
 			);
 			path = MovieHubTests;
@@ -2042,7 +2039,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB12B18D2B777E3000FD2017 /* TrailerPresenterTest.swift in Sources */,
 				EBC0482A2B77B38600336773 /* ChristmasInteractorTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
