@@ -25,6 +25,7 @@ final class MovieListViewController: UIViewController {
         createDataSource()
         applySnapshot()
         setCategories()
+        navigationController?.setupNavigationBar()
         
     }
     

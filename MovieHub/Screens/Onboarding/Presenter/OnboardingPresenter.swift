@@ -8,6 +8,7 @@
 import Foundation
 
 final class OnboardingPresenter: OnboardingPresenterProtocol {
+
     
     //MARK: Properties
     weak var view: OnboardingViewProtocol?
@@ -19,6 +20,9 @@ final class OnboardingPresenter: OnboardingPresenterProtocol {
         UserDefaults.standard.set(state, forKey: Constant.keyState)
     }
     
+    func routeToHome() {
+        router?.pushToHome(from: view)
+    }
 }
 
 

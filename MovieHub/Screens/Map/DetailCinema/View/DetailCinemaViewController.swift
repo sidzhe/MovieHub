@@ -73,7 +73,7 @@ final class DetailCinemaViewController: UIViewController {
         addImageObjectToStack()
         setLabelsName()
         setupViews()
-        
+        navigationController?.setupNavigationBar()
     }
     
     //MARK: Setup UI

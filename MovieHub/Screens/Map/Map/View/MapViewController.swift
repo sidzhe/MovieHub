@@ -21,7 +21,7 @@ final class MapViewController: UIViewController {
         
         setupMap()
         createAnimatedPlacemark()
-        
+        navigationController?.setupNavigationBar()
     }
     
     //MARK: Setup map

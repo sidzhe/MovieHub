@@ -12,12 +12,12 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
     //MARK: - Properties
     weak var presenter: WishlistInteractorOutputProtocol?
     private var networkService: NetworkServiceProtocol
-    private var storageService: StorageServiceProtool
+    private var storageService: StorageServiceProtocol
     private var favoriteMoviesID: [String]?
     var favoriteModel: [Doc]?
     
     //MARK: - Init
-    init(networkService: NetworkServiceProtocol, storageService: StorageServiceProtool) {
+    init(networkService: NetworkServiceProtocol, storageService: StorageServiceProtocol) {
         self.networkService = networkService
         self.storageService = storageService
     }
@@ -42,10 +42,11 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
             case .success(let movies):
                 self?.favoriteModel = movies.docs
                 self?.presenter?.updateUI()
-            case .failure(let eror):
-                self?.presenter?.showError(error: eror)
+            case .failure(let error):
+                self?.presenter?.showError(error: error)
             }
         }
     }
+    
 }
 

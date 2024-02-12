@@ -12,14 +12,14 @@ final class GlobeInteractor: GlobeInteractorInputProtocol {
     //MARK: Properties
     weak var presenter: GlobeInteractorOutputProtocol?
     private let networkService: NetworkServiceProtocol
-    private let storageService: StorageServiceProtool
+    private let storageService: StorageServiceProtocol
     var currentCity: String
     var currentLocation: Location
     var selectedCityLocation: Location?
     var cinemaData: [Datum]?
     
     //MARK: Init
-    init(networkService: NetworkServiceProtocol, storageService: StorageServiceProtool, lat: Double, lon: Double, city: String) {
+    init(networkService: NetworkServiceProtocol, storageService: StorageServiceProtocol, lat: Double, lon: Double, city: String) {
         self.networkService = networkService
         self.storageService = storageService
         self.currentCity = city
@@ -61,7 +61,7 @@ final class GlobeInteractor: GlobeInteractorInputProtocol {
     
     //MARK: Load from CoreData
     func loadCurrentCity() {
-        self.currentCity = storageService.loadCurrnetCity()
+        self.currentCity = storageService.loadCurrentCity()
         cityListRequest()
         getCityCoordinate()
     }

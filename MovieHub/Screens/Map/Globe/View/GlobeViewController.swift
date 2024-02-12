@@ -51,7 +51,7 @@ final class GlobeViewController: UIViewController {
         
         seatchTextField.text = nil
         presenter?.loadCurrentCity()
-        
+        navigationController?.setupNavigationBar()
     }
     
     //MARK: - Display network error

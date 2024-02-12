@@ -34,12 +34,30 @@ final class Builder {
         return view
     }
     
+    /// AuthVC
+    static func createAuth() -> UIViewController {
+        let view = AuthViewController()
+        let presenter = AuthPresenter()
+        let storageService = StorageService()
+        let interactor = AuthInteractor(
+            storageService: storageService
+        )
+        let router = AuthRouter()
+        view.presenter = presenter
+        presenter.view = view
+        presenter.interactor = interactor
+        presenter.router = router
+        interactor.presenter = presenter
+        return view
+    }
+    
     /// MainVC
     static func createMain() -> UIViewController {
         let view = MainViewController()
         let presenter = MainPresenter()
         let networkService = NetworkService()
-        let interactor = MainInteractor(networkService: networkService)
+        let storageService = StorageService()
+        let interactor = MainInteractor(networkService: networkService, storageService: storageService)
         let router = MainRouter()
         view.presenter = presenter
         presenter.view = view
@@ -148,7 +166,9 @@ final class Builder {
     static func createProfile() -> UIViewController {
         let view = ProfileViewController()
         let presenter = ProfilePresenter()
-        let interactor = ProfileInteractor()
+        let networkService = NetworkService()
+        let storageService = StorageService()
+        let interactor = ProfileInteractor(networkService: networkService, storageService: storageService)
         let router = ProfileRouter()
         view.presenter = presenter
         presenter.view = view
@@ -162,7 +182,9 @@ final class Builder {
     static func createEditProfile() -> UIViewController {
         let view = EditProfileViewController()
         let presenter = EditProfilePresenter()
-        let interactor = EditProfileInteractor()
+        let networkService = NetworkService()
+        let storageService = StorageService()
+        let interactor = EditProfileInteractor(networkService: networkService, storageService: storageService)
         view.presenter = presenter
         presenter.view = view
         presenter.interactor = interactor
