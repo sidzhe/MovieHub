@@ -19,7 +19,7 @@ protocol ProfileViewProtocol: AnyObject {
 protocol ProfilePresenterProtocol: AnyObject {
     var view: ProfileViewProtocol? { get set }
     func getUserInfo()
-    func toggleAuth() -> Bool
+    func checkCurrentUser() -> Bool
     func logoutUser()
     
     func routeToAuth()
@@ -35,7 +35,7 @@ protocol ProfileInteractorInputProtocol: AnyObject {
     var presenter: ProfileInteractorOutputProtocol? { get set }
     func getUserInfo() -> Result<UserEntity, Error>
     func checkCurrentUser() -> Bool
-    func logoutUser(completion: (() -> Void)?)
+    func logoutUser()
 }
 
 /// INTERACTOR -> PRESENTER

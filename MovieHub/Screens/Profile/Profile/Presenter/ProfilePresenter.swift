@@ -26,12 +26,10 @@ final class ProfilePresenter: ProfilePresenterProtocol {
     }
     
     func logoutUser() {
-        interactor?.logoutUser {
-            self.routeToAuth()
-        }
+        interactor?.logoutUser()
     }
     
-    func toggleAuth() -> Bool {
+    func checkCurrentUser() -> Bool {
         guard let currentUser = interactor?.checkCurrentUser() else { return false }
         return currentUser
     }

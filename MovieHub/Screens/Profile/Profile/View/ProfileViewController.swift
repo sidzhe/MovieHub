@@ -168,7 +168,7 @@ final class ProfileViewController: UIViewController {
 
 extension ProfileViewController: ProfileViewProtocol {
     func updateUI() {
-        guard let isRegistering = presenter?.toggleAuth() else { return }
+        guard let isRegistering = presenter?.checkCurrentUser() else { return }
         if isRegistering {
             editProfileButton.isHidden = false
             authButton.setTitle("Выйти из аккаунта", for: .normal)
@@ -189,11 +189,12 @@ extension ProfileViewController: ProfileViewProtocol {
     }
     
     func authButtonTap() {
-        guard let isRegistering = presenter?.toggleAuth() else { return }
+        guard let isRegistering = presenter?.checkCurrentUser() else { return }
         if isRegistering {
-            let alert = AlertFactory.makeLogoutConfirmationAlert { shouldLogout in
+            let alert = AlertFactory.makeLogoutConfirmationAlert { [weak self] shouldLogout in
                 if shouldLogout {
-                    self.presenter?.logoutUser()
+                    self?.presenter?.logoutUser()
+                    self?.presenter?.routeToAuth()
                 } else {
                     return
                 }
