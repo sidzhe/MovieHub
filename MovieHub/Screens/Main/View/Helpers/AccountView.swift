@@ -47,7 +47,7 @@ final class AccountView: UIView {
         return view
     }()
     
-    private lazy var heartButton: UIButton = {
+    lazy var heartButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         button.tintColor = .red

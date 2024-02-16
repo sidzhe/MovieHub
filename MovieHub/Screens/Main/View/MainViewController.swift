@@ -49,11 +49,12 @@ final class MainViewController: UIViewController {
         setCategories()
         accountViewButtonsTarget()
         setLocation()
-
+        updateUIWithCurrentUser()
+        presenter?.getUserInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        presenter?.getUserInfo()
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -99,6 +100,15 @@ final class MainViewController: UIViewController {
     private func accountViewButtonsTarget() {
         accountView.callBackButton = { [weak self] in self?.presenter?.routeToWishList() }
         accountView.callBackGlobe = { [weak self] in self?.presenter?.routeToGlobe() }
+    }
+    
+    func updateUIWithCurrentUser() {
+        guard let isRegistering = presenter?.checkCurrentUser() else { return }
+        if isRegistering {
+            accountView.heartButton.isHidden = false
+        } else {
+            accountView.heartButton.isHidden = true
+        }
     }
     
     //MARK: - Display network error
@@ -323,7 +333,6 @@ private extension MainViewController {
         collectionView.performBatchUpdates {
             dataSource?.apply(snapshot, animatingDifferences: true)
         }
-        
     }
 }
 
