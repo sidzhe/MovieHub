@@ -46,6 +46,8 @@ final class SearchResultsViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(infoImageView)
         collectionView.backgroundColor = .primaryDark
+        parentNavigationController?.setupNavigationBar()
+        
     }
     
     

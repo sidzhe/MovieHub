@@ -79,9 +79,10 @@ final class ProfileViewController: UIViewController {
         setupView()
         setupConstraints()
         addTargetForButtons()
-        presenter?.hideToggleAuth()
+        
         navigationController?.setupNavigationBar()
         navigationItem.title = "Профиль"
+        updateUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,20 +91,15 @@ final class ProfileViewController: UIViewController {
     }
     
     func addTargetForButtons() {
-      generalView.addTargetForFirstButton(target: self, action: #selector(notificationButtonTap), for: .touchUpInside)
-      generalView.addTargetForSecondButton(target: self, action: #selector(languageButtonTap), for: .touchUpInside)
-
-      moreView.addTargetForFirstButton(target: self, action: #selector(policyButtonTap), for: .touchUpInside)
-      moreView.addTargetForSecondButton(target: self, action: #selector(aboutUsButtonTap), for: .touchUpInside)
-    }
-    
-    private func authButtonTap() {
-        presenter?.routeToAuth()
-     
+        generalView.addTargetForFirstButton(target: self, action: #selector(notificationButtonTap), for: .touchUpInside)
+        generalView.addTargetForSecondButton(target: self, action: #selector(languageButtonTap), for: .touchUpInside)
+        
+        moreView.addTargetForFirstButton(target: self, action: #selector(policyButtonTap), for: .touchUpInside)
+        moreView.addTargetForSecondButton(target: self, action: #selector(aboutUsButtonTap), for: .touchUpInside)
     }
     
     private func setupView() {
-       
+        
         view.backgroundColor = .primaryDark
         
         view.addSubview(profileView)
@@ -171,14 +167,16 @@ final class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: ProfileViewProtocol {
-    func hideProfileView(isToggle: Bool) {
-        profileView.isHidden = isToggle
+    func updateUI() {
+        guard let isRegistering = presenter?.toggleAuth() else { return }
+        if isRegistering {
+            editProfileButton.isHidden = false
+            authButton.setTitle("Выйти из аккаунта", for: .normal)
+        } else {
+            editProfileButton.isHidden = true
+            authButton.setTitle("Авторизация", for: .normal)
+        }
     }
-    
-    func hideAuthButton(isToggle: Bool) {
-        authButton.isHidden = isToggle
-    }
-    
     
     func displayError(error: String) {
         print(error)
@@ -190,8 +188,24 @@ extension ProfileViewController: ProfileViewProtocol {
         avatarImageView.image = UIImage(data: user.userAvatar ?? Data())
     }
     
+    func authButtonTap() {
+        guard let isRegistering = presenter?.toggleAuth() else { return }
+        if isRegistering {
+            let alert = AlertFactory.makeLogoutConfirmationAlert { shouldLogout in
+                if shouldLogout {
+                    self.presenter?.logoutUser()
+                } else {
+                    return
+                }
+            }
+            present(alert, animated: true, completion: nil)
+        } else {
+            presenter?.routeToAuth()
+        }
+    }
     
     //MARK: - Objective-C methods
+    
     @objc private func languageButtonTap() {
         presenter?.routeToLanguage()
     }

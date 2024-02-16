@@ -8,9 +8,6 @@
 import UIKit
 
 final class EditProfileRouter: EditProfileRouterProtocol {
-    func pushToAuth(from view: EditProfileViewProtocol) {
-        guard let view = view as? UIViewController else { return }
 
-        view.dismiss(animated: true)
-    }
 }
+

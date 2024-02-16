@@ -205,7 +205,7 @@ extension SearchViewController {
         )
         
         let section = createLayoutSection(group: group,
-                                          behavior: .paging,
+                                          behavior: .groupPaging,
                                           interGroupSpacing: 8,
                                           supplementaryItems: [supplementaryHeaderItem()],
                                           contentInsets: false)

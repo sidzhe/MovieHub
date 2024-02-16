@@ -27,4 +27,8 @@ final class ProfileInteractor: ProfileInteractorInputProtocol {
     func checkCurrentUser() -> Bool {
         storageService.checkCurrentUser()
     }
+    
+    func logoutUser(completion: (() -> Void)?) {
+        storageService.logoutCurrentUser()
+    }
 }

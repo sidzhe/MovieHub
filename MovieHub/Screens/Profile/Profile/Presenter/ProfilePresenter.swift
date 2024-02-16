@@ -25,16 +25,15 @@ final class ProfilePresenter: ProfilePresenterProtocol {
         }
     }
     
-    func hideToggleAuth() {
-        guard let currentUser = interactor?.checkCurrentUser() else { return }
-        switch currentUser {
-        case true:
-            view?.hideAuthButton(isToggle: true)
-            view?.hideProfileView(isToggle: false)
-        case false:
-            view?.hideAuthButton(isToggle: false)
-            view?.hideProfileView(isToggle: true)
+    func logoutUser() {
+        interactor?.logoutUser {
+            self.routeToAuth()
         }
+    }
+    
+    func toggleAuth() -> Bool {
+        guard let currentUser = interactor?.checkCurrentUser() else { return false }
+        return currentUser
     }
     
     //MARK: Route

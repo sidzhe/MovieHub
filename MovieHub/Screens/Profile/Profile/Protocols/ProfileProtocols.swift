@@ -11,8 +11,7 @@ import Foundation
 protocol ProfileViewProtocol: AnyObject {
     var presenter: ProfilePresenterProtocol? { get set }
     func updateProfileInfo(user: UserEntity)
-    func hideAuthButton(isToggle: Bool)
-    func hideProfileView(isToggle: Bool)
+    func updateUI()
     func displayError(error: String)
 }
 
@@ -20,7 +19,8 @@ protocol ProfileViewProtocol: AnyObject {
 protocol ProfilePresenterProtocol: AnyObject {
     var view: ProfileViewProtocol? { get set }
     func getUserInfo()
-    func hideToggleAuth()
+    func toggleAuth() -> Bool
+    func logoutUser()
     
     func routeToAuth()
     func routeToEditProfile()
@@ -35,6 +35,7 @@ protocol ProfileInteractorInputProtocol: AnyObject {
     var presenter: ProfileInteractorOutputProtocol? { get set }
     func getUserInfo() -> Result<UserEntity, Error>
     func checkCurrentUser() -> Bool
+    func logoutUser(completion: (() -> Void)?)
 }
 
 /// INTERACTOR -> PRESENTER

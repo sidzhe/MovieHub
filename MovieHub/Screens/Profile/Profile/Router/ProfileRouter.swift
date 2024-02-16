@@ -26,19 +26,18 @@ final class ProfileRouter: ProfileRouterProtocol {
         view.navigationController?.pushViewController(editProfileVC, animated: true)
     }
     
-    
     func pushToAboutUs(from view: ProfileViewProtocol) {
-           guard let view = view as? UIViewController else { return }
-           let aboutUsVC = AboutUsViewController()
-           view.navigationController?.pushViewController(aboutUsVC, animated: true)
-       }
-       
-       func pushToPolicies(from view: ProfileViewProtocol) {
-           guard let view = view as? UIViewController else { return }
-           let policiesVC = PoliciesViewController()
-           view.navigationController?.pushViewController(policiesVC, animated: true)
-       }
-
+        guard let view = view as? UIViewController else { return }
+        let aboutUsVC = AboutUsViewController()
+        view.navigationController?.pushViewController(aboutUsVC, animated: true)
+    }
+    
+    func pushToPolicies(from view: ProfileViewProtocol) {
+        guard let view = view as? UIViewController else { return }
+        let policiesVC = PoliciesViewController()
+        view.navigationController?.pushViewController(policiesVC, animated: true)
+    }
+    
     func pushToAuth(from view: ProfileViewProtocol) {
         guard let view = view as? UIViewController else { return }
         view.dismiss(animated: true)

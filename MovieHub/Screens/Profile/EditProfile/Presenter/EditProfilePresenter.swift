@@ -34,17 +34,6 @@ final class EditProfilePresenter: EditProfilePresenterProtocol {
             view?.displayError(error: error.localizedDescription)
         }
     }
-    
-    func logoutUser() {
-        interactor?.logoutUser { [weak self] in
-            self?.routeToAuth()
-        }
-    }
-    
-    func routeToAuth() {
-        guard let view = view else { return }
-        router?.pushToAuth(from: view)
-    }
 }
 
 //MARK: - Extension EditProfileInteractorOutputProtocol
