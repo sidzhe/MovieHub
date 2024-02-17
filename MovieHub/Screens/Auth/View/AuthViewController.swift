@@ -48,15 +48,6 @@ final class AuthViewController: UIViewController {
         return view
     }()
     
-    private let stackForViews: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.spacing = 30
-        return stack
-    }()
-    
     private lazy var checkButton: UIButton = {
         return ButtonFactory.makeButton(
             title: "У Вас уже есть аккаунт?",
@@ -241,12 +232,12 @@ extension AuthViewController {
     private func setupViews() {
         view.addSubview(titleLabel)
         view.addSubview(guestButton)
-        view.addSubview(stackForViews)
-        stackForViews.addArrangedSubviews(nameView)
-        stackForViews.addArrangedSubview(emailView)
-        stackForViews.addArrangedSubview(passwordView)
-        stackForViews.addArrangedSubviews(authButton)
-        stackForViews.addArrangedSubview(checkButton)
+        
+        view.addSubview(nameView)
+        view.addSubview(emailView)
+        view.addSubview(passwordView)
+        view.addSubview(authButton)
+        view.addSubview(checkButton)
     }
     
     private func setConstraint() {
@@ -257,43 +248,45 @@ extension AuthViewController {
         }
         
         nameView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(30)
             make.height.equalTo(53)
-            make.width.equalTo(380)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().offset(-30)
         }
         
         emailView.snp.makeConstraints { make in
+            make.top.equalTo(nameView.snp.bottom).offset(30)
             make.height.equalTo(53)
-            make.width.equalTo(380)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().offset(-30)
         }
         
         passwordView.snp.makeConstraints { make in
-            make.top.equalTo(emailView.snp.bottom).offset(20)
+            make.top.equalTo(emailView.snp.bottom).offset(30)
             make.height.equalTo(53)
-            make.width.equalTo(380)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().offset(-30)
         }
         
         authButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordView.snp.bottom).offset(30)
             make.height.equalTo(53)
-            make.width.equalTo(380)
+            make.leading.equalToSuperview().offset(30)
+            make.trailing.equalToSuperview().offset(-30)
         }
         
         checkButton.snp.makeConstraints { make in
+            make.top.equalTo(authButton.snp.bottom).offset(10)
             make.height.equalTo(53)
-            make.width.equalTo(380)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         guestButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.snp.bottom).offset(-30)
             make.centerX.equalToSuperview()
             make.height.equalTo(53)
-            make.width.equalTo(380)
-        }
-        
-        stackForViews.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(53)
-            make.leading.equalToSuperview().offset(40)
-            make.trailing.equalToSuperview().offset(-40)
-            make.height.equalTo(350)
+            
         }
     }
 }

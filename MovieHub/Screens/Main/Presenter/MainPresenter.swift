@@ -98,6 +98,11 @@ final class MainPresenter: MainPresenterProtocol {
     func sendMyLocation(lat: Double, lon: Double, cityName: String) {
         interactor?.saveCurrentLocation(lat: lat, lon: lon, cityName: cityName)
     }
+    
+    func checkCurrentUser() -> Bool {
+        guard let currentUser = interactor?.checkCurrentUser() else { return false }
+        return currentUser
+    }
 }
 
 

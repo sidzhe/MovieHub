@@ -49,11 +49,12 @@ final class MainViewController: UIViewController {
         setCategories()
         accountViewButtonsTarget()
         setLocation()
-
+        updateUIWithCurrentUser()
+        presenter?.getUserInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        presenter?.getUserInfo()
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -101,6 +102,15 @@ final class MainViewController: UIViewController {
         accountView.callBackGlobe = { [weak self] in self?.presenter?.routeToGlobe() }
     }
     
+    func updateUIWithCurrentUser() {
+        guard let isRegistering = presenter?.checkCurrentUser() else { return }
+        if isRegistering {
+            accountView.heartButton.isHidden = false
+        } else {
+            accountView.heartButton.isHidden = true
+        }
+    }
+    
     //MARK: - Display network error
     private func alertError(_ error: String) {
         let alert = UIAlertController(title: Constant.requestError, message: error, preferredStyle: .alert)
@@ -138,12 +148,12 @@ private extension MainViewController {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
                 item.contentInsets = .init(top: 0, leading: 10, bottom: 0, trailing: 0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.35))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .fractionalHeight(0.61))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 
                 section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 15
-                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.orthogonalScrollingBehavior = .groupPagingCentered
                 section.contentInsets = .init(top: 0, leading: 0, bottom: 15, trailing: 0)
                 
             } else if sectionKind == .categories {
@@ -323,7 +333,6 @@ private extension MainViewController {
         collectionView.performBatchUpdates {
             dataSource?.apply(snapshot, animatingDifferences: true)
         }
-        
     }
 }
 

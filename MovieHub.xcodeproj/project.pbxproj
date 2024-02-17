@@ -135,7 +135,6 @@
 		EBA5FE2A2B4EB6D100E85872 /* CollectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE292B4EB6D100E85872 /* CollectionPresenter.swift */; };
 		EBA5FE2C2B4EB6D700E85872 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE2B2B4EB6D700E85872 /* CollectionViewController.swift */; };
 		EBA5FE2E2B4EB6DC00E85872 /* CollectionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA5FE2D2B4EB6DC00E85872 /* CollectionProtocols.swift */; };
-		EBA9D2042B4F13BE00A50944 /* MovieNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA9D2032B4F13BE00A50944 /* MovieNavigationBar.swift */; };
 		EBBA2B2E2B4D8A0800D55EF6 /* CinemaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B2D2B4D8A0800D55EF6 /* CinemaModel.swift */; };
 		EBBA2B302B4D8A2400D55EF6 /* CurrentCityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B2F2B4D8A2400D55EF6 /* CurrentCityModel.swift */; };
 		EBBA2B332B4D8ABC00D55EF6 /* CinemaEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBA2B322B4D8ABC00D55EF6 /* CinemaEndpoints.swift */; };
@@ -365,7 +364,6 @@
 		EBA5FE292B4EB6D100E85872 /* CollectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPresenter.swift; sourceTree = "<group>"; };
 		EBA5FE2B2B4EB6D700E85872 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		EBA5FE2D2B4EB6DC00E85872 /* CollectionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionProtocols.swift; sourceTree = "<group>"; };
-		EBA9D2032B4F13BE00A50944 /* MovieNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieNavigationBar.swift; sourceTree = "<group>"; };
 		EBBA2B2D2B4D8A0800D55EF6 /* CinemaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaModel.swift; sourceTree = "<group>"; };
 		EBBA2B2F2B4D8A2400D55EF6 /* CurrentCityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentCityModel.swift; sourceTree = "<group>"; };
 		EBBA2B322B4D8ABC00D55EF6 /* CinemaEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaEndpoints.swift; sourceTree = "<group>"; };
@@ -944,7 +942,6 @@
 				0A030F762B4DCB2000D40940 /* UIView + Extension.swift */,
 				EB6CB2BE2B3C1AFE00DC30BC /* Extension + UIColor.swift */,
 				EB6CB2C02B3C203A00DC30BC /* Extension + UIFont.swift */,
-				EBA9D2032B4F13BE00A50944 /* MovieNavigationBar.swift */,
 				E1DFE66F2B53475D00358355 /* CustomNavigationBar.swift */,
 			);
 			path = Helpers;
@@ -2228,7 +2225,6 @@
 				EBE76C642B39732C0053E522 /* WishlistInteractor.swift in Sources */,
 				EBDD1FCA2B3D700300C1712A /* CategoryModel.swift in Sources */,
 				EB369B0F2B398BB900BB4275 /* RequestError.swift in Sources */,
-				EBA9D2042B4F13BE00A50944 /* MovieNavigationBar.swift in Sources */,
 				EB0945F22B46CC1200331EAD /* PersonSection.swift in Sources */,
 				E1DD7E7E2B623316006356E8 /* NotificationViewController.swift in Sources */,
 				E1DFE6312B51D5C200358355 /* SearchResultController+UICollectionView.swift in Sources */,

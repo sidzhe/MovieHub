@@ -31,8 +31,4 @@ final class EditProfileInteractor: EditProfileInteractorInputProtocol {
     func getUserInfo() -> Result<UserEntity, Error> {
         storageService.getCurrentUser()
     }
-    
-    func logoutUser(completion: (() -> Void)?) {
-        storageService.logoutCurrentUser()
-    }
 }

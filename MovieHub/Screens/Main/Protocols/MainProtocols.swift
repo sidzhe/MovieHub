@@ -24,6 +24,7 @@ protocol MainPresenterProtocol: AnyObject {
     func getCategories() -> [CategoryModel]
     func getMostPopular() -> [Doc]
     func getSearchData() -> [Doc]
+    func checkCurrentUser() -> Bool
     func selectedCategory(_ index: Int, genre: MovieGenre)
     func fetchSearchRequest(_ title: String)
     func routeToMovieList()
@@ -44,6 +45,7 @@ protocol MainInteractorInputProtocol: AnyObject {
     var cagegoriesData: [CategoryModel] { get }
     var mostPopular: CollectionDetailModel? { get }
     var searchData: SearchModel? { get }
+    func checkCurrentUser() -> Bool
     func requestCollection()
     func requestMostRating(genre: MovieGenre)
     func requestSearch(_ title: String)

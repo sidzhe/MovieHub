@@ -50,16 +50,6 @@ final class EditProfileViewController: UIViewController {
             }
     }()
     
-    private lazy var exitButton: UIButton = {
-        return ButtonFactory.makeButton(
-            title: "Выйти из аккаунта",
-            color: .white,
-            backgroundColor: .primaryBlue,
-            cornerRadius: 26) { [weak self] in
-                self?.exitButtonTap()
-            }
-    }()
-    
     private lazy var nameView: CustomTextField = {
         let view = CustomTextField(placeholder: "ваше имя...", labelText: "Ваше имя")
         view.textField.addTarget(self, action: #selector(nameTextFieldDidChange), for: .editingDidEnd)
@@ -151,9 +141,6 @@ final class EditProfileViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    func exitButtonTap() {
-        presenter?.logoutUser()
-    }
     
     // MARK: - Private Actions
     
@@ -227,28 +214,6 @@ extension EditProfileViewController: EditProfileViewProtocol {
         emailLabel.text = user.userEmail
         avatarImageView.image = UIImage(data: user.userAvatar ?? Data())
     }
-    
-    func logOut() {
-        let alert = UIAlertController(title: "Вы действительно хотите выйти?", message: nil, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
-        let logoutAction = UIAlertAction(title: "Выйти", style: .destructive) { [weak self] _ in
-            self?.presenter?.logoutUser()
-        }
-        alert.addAction(cancelAction)
-        alert.addAction(logoutAction)
-        
-        present(alert, animated: true, completion: nil)
-        
-        /*makeLogoutConfirmationAlert {  in*/
-//            if shouldLogout {
-//                self.presenter?.routeToAuth()
-//                self.presenter?.logoutUser()
-//            } else {
-//              return
-//            }
-//        }
-//        present(alert, animated: true, completion: nil)
-    }
 }
 
 private extension EditProfileViewController {
@@ -260,7 +225,6 @@ private extension EditProfileViewController {
         view.addSubview(nameLabel)
         view.addSubview(emailLabel)
         view.addSubview(saveButton)
-        view.addSubview(exitButton)
         view.addSubview(avatarEditButton)
         view.addSubview(nameView)
         view.addSubview(nameErrorLabel)
@@ -333,14 +297,6 @@ private extension EditProfileViewController {
         
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(passwordView.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(24)
-            make.trailing.equalToSuperview().offset(-24)
-            make.bottom.lessThanOrEqualToSuperview().offset(-150)
-            make.height.equalTo(56)
-        }
-        
-        exitButton.snp.makeConstraints { make in
-            make.top.equalTo(saveButton.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-24)
             make.bottom.lessThanOrEqualToSuperview().offset(-150)

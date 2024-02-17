@@ -8,6 +8,7 @@
 import Foundation
 
 final class MainInteractor: MainInteractorInputProtocol {
+    
 
     //MARK: - Properties
     weak var presenter: MainInteractorOutputProtocol?
@@ -53,6 +54,10 @@ final class MainInteractor: MainInteractorInputProtocol {
     func getUserLocation() -> (lat: Double, lon: Double, currentCity: String) {
         guard let lat = lat, let lon = lon, let currentCity = currentCity else { return (0, 0, "Москва") }
         return (lat, lon, currentCity)
+    }
+    
+    func checkCurrentUser() -> Bool {
+        storageService.checkCurrentUser()
     }
     
     //MARK: Requests
