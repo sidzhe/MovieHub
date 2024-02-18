@@ -42,16 +42,19 @@ final class MockNetworkService: NetworkServiceProtocol, Mockable {
         completion(.success(data))
     }
     
-    func getDetailPerson(personId: [Int], completion: @escaping (Result<PersonDetalModel, RequestError>) -> Void) {
-        
+    func getDetailPerson(personId: [Int], completion: @escaping (Result<PersonDetailModel, RequestError>) -> Void) {
+        let data = getJSON(fileName: "PersonID", type: PersonDetailModel.self)
+        completion(.success(data))
     }
     
     func getMovieWithPerson(personId: Int, completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
-        
+        let data = getJSON(fileName: "SearchMovieByID", type: SearchModel.self)
+        completion(.success(data))
     }
     
     func getAwardsPerson(personId: Int, completion: @escaping (Result<AwardsModel, RequestError>) -> Void) {
-        
+        let data = getJSON(fileName: "AwardsPerson", type: AwardsModel.self)
+        completion(.success(data))
     }
     
     func getMovieUpcomingByGenres(genre: MovieGenre, completion: @escaping (Result<SearchModel, RequestError>) -> Void) {

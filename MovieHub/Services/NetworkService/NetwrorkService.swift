@@ -7,7 +7,7 @@
 
 import UIKit
 
-//MARK: - NetworkServiceProtool
+//MARK: - NetworkServiceProtocol
 protocol NetworkServiceProtocol: AnyObject {
     func searchMovieByTitle(_ title: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func searchPerson(_ person: String, completion: @escaping (Result<PersonModel, RequestError>) -> Void)
@@ -16,7 +16,7 @@ protocol NetworkServiceProtocol: AnyObject {
     func getSlugCollection<T: Decodable>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func getGenreCollection(genre: MovieGenre, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func getRateCollection(genre: MovieGenre, completion: @escaping (Result<CollectionDetailModel, RequestError>) -> Void)
-    func getDetailPerson(personId: [Int], completion: @escaping (Result<PersonDetalModel, RequestError>) -> Void)
+    func getDetailPerson(personId: [Int], completion: @escaping (Result<PersonDetailModel, RequestError>) -> Void)
     func getMovieWithPerson(personId: Int, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func getAwardsPerson(personId: Int, completion: @escaping (Result<AwardsModel, RequestError>) -> Void)
     func getMovieUpcomingByGenres(genre: MovieGenre, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
@@ -26,7 +26,7 @@ protocol NetworkServiceProtocol: AnyObject {
 }
 
 
-//MARK: - NetworkkService
+//MARK: - NetworkService
 final class NetworkService: NetworkServiceProtocol {
     
     //MARK: Properties
@@ -89,9 +89,9 @@ final class NetworkService: NetworkServiceProtocol {
     }
     
     //MARK: Movie related person
-    func getDetailPerson(personId: [Int], completion: @escaping (Result<PersonDetalModel, RequestError>) -> Void) {
+    func getDetailPerson(personId: [Int], completion: @escaping (Result<PersonDetailModel, RequestError>) -> Void) {
         Task {
-            let result: Result<PersonDetalModel, RequestError> = await movieService.movieFilterPerson(actorsId: personId)
+            let result: Result<PersonDetailModel, RequestError> = await movieService.movieFilterPerson(actorsId: personId)
             completion(result)
         }
     }

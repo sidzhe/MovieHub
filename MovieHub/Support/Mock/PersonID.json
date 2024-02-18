@@ -1,0 +1,16 @@
+{
+  "docs": [
+    {
+      "id": 666,
+      "age": null,
+      "enName": "Michael Waxman",
+      "name": "Майкл Ваксман",
+      "photo": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/fd4546a7-afbd-411d-8b6d-2e8c1fba7cc9/orig",
+      "sex": "Мужской"
+    }
+  ],
+  "total": 1,
+  "limit": 10,
+  "page": 1,
+  "pages": 1
+}

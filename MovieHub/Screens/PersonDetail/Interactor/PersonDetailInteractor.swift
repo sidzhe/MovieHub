@@ -11,14 +11,14 @@ final class PersonDetailInteractor: PersonDetailInteractorInputProtocol {
     
     //MARK: - Properties
     weak var presenter: PersonDetailInteractorOutputProtocol?
-    private let networkService: NetworkService
+    private let networkService: NetworkServiceProtocol
     private var personId: Int
     var searchData: SearchModel?
-    var personDetailData: PersonDetalModel?
+    var personDetailData: PersonDetailModel?
     var awardsData: AwardsModel?
     
     //MARK: Init
-    init(networkService: NetworkService, personId: Int) {
+    init(networkService: NetworkServiceProtocol, personId: Int) {
         self.networkService = networkService
         self.personId = personId
         personRequest()
@@ -28,9 +28,9 @@ final class PersonDetailInteractor: PersonDetailInteractorInputProtocol {
     
     //MARK: Person request
     func personRequest() {
-        networkService.getDetailPerson(personId: [personId]) { [weak self] (result: (Result<PersonDetalModel, RequestError>)) in
+        networkService.getDetailPerson(personId: [personId]) { [weak self] (result: (Result<PersonDetailModel, RequestError>)) in
+            
             switch result {
-                
             case .success(let person):
                 self?.personDetailData = person
                 self?.presenter?.updateUI()

@@ -118,9 +118,9 @@ final class PersonDetailViewController: UIViewController {
         nameLabel.text = model.name
         
         let birdDayLabelText = "\(Constant.birdDay)\n\(birthDay)\n • \(age)\n • \(model.birthPlace?.last?.value ?? Constant.none)"
-        let attributedDirdDay = NSMutableAttributedString(string: birdDayLabelText)
-        attributedDirdDay.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 13))
-        birdDayLabel.attributedText = attributedDirdDay
+        let attributedBirdDay = NSMutableAttributedString(string: birdDayLabelText)
+        attributedBirdDay.addAttribute(.foregroundColor, value: UIColor.primaryBlue, range: NSRange(location: 0, length: 13))
+        birdDayLabel.attributedText = attributedBirdDay
         
         let growthLabelLabelText = "\(Constant.height)\n\(growth) \(Constant.sm)"
         let attributedGrowthLabel = NSMutableAttributedString(string: growthLabelLabelText)

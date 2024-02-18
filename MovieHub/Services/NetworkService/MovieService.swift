@@ -146,7 +146,6 @@ struct MovieService: MovieServiceProtocol, MovieClient {
         let anotherItems = actorsId.map { URLQueryItem(name: "id", value: String($0))}
         items.append(contentsOf: anotherItems)
         urlComponents.queryItems = items
-        
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.personFilter, responseModel: T.self)
     }
     
@@ -161,7 +160,6 @@ struct MovieService: MovieServiceProtocol, MovieClient {
                      URLQueryItem(name: "limit", value: "10"),
                      URLQueryItem(name: "persons.id", value: actorsId.description)]
         urlComponents.queryItems = items
-        
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.movieWithPerson, responseModel: T.self)
     }
     
@@ -177,7 +175,6 @@ struct MovieService: MovieServiceProtocol, MovieClient {
                      URLQueryItem(name: "personId", value: actorsId.description),
                      URLQueryItem(name: "winning", value: "true")]
         urlComponents.queryItems = items
-        
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.awards, responseModel: T.self)
     }
     

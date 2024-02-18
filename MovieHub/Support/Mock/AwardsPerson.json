@@ -1,0 +1,141 @@
+{
+  "docs": [
+    {
+      "personId": 25584,
+      "nomination": {
+        "award": {
+          "title": "Оскар",
+          "year": 1996
+        },
+        "title": "Лучшая мужская роль второго плана"
+      },
+      "movie": {
+        "id": 502,
+        "name": "12 обезьян",
+        "rating": 7.8
+      },
+      "winning": false,
+      "createdAt": "2023-03-11T20:38:18.875Z",
+      "updatedAt": "2023-03-11T20:38:18.875Z",
+      "id": "640ce6ba263fc849d44cd5bd"
+    },
+    {
+      "personId": 25584,
+      "nomination": {
+        "award": {
+          "title": "Оскар",
+          "year": 2009
+        },
+        "title": "Лучшая мужская роль"
+      },
+      "movie": {
+        "id": 81555,
+        "name": "Загадочная история Бенджамина Баттона",
+        "rating": 8.1
+      },
+      "winning": false,
+      "createdAt": "2023-03-11T20:38:18.803Z",
+      "updatedAt": "2023-03-11T20:38:18.803Z",
+      "id": "640ce6ba263fc849d44cd5b8"
+    },
+    {
+      "personId": 25584,
+      "nomination": {
+        "award": {
+          "title": "Оскар",
+          "year": 2012
+        },
+        "title": "Лучшая мужская роль"
+      },
+      "movie": {
+        "id": 432791,
+        "name": "Человек, который изменил всё",
+        "rating": 7.7
+      },
+      "winning": false,
+      "createdAt": "2023-03-11T20:38:18.731Z",
+      "updatedAt": "2023-03-11T20:38:18.731Z",
+      "id": "640ce6ba263fc849d44cd5b3"
+    },
+    {
+      "personId": 25584,
+      "nomination": {
+        "award": {
+          "title": "Оскар",
+          "year": 2012
+        },
+        "title": "Лучший фильм"
+      },
+      "movie": {
+        "id": 432791,
+        "name": "Человек, который изменил всё",
+        "rating": 7.7
+      },
+      "winning": false,
+      "createdAt": "2023-03-11T20:38:18.657Z",
+      "updatedAt": "2023-03-11T20:38:18.657Z",
+      "id": "640ce6ba263fc849d44cd5a8"
+    },
+    {
+      "personId": 25584,
+      "nomination": {
+        "award": {
+          "title": "Оскар",
+          "year": 2016
+        },
+        "title": "Лучший фильм"
+      },
+      "movie": {
+        "id": 501333,
+        "name": "Игра на понижение",
+        "rating": 7.4
+      },
+      "winning": false,
+      "createdAt": "2023-03-11T20:38:18.583Z",
+      "updatedAt": "2023-03-11T20:38:18.583Z",
+      "id": "640ce6ba263fc849d44cd57b"
+    },
+    {
+      "personId": 25584,
+      "nomination": {
+        "award": {
+          "title": "Оскар",
+          "year": 2014
+        },
+        "title": "Лучший фильм"
+      },
+      "movie": {
+        "id": 606646,
+        "name": "12 лет рабства",
+        "rating": 7.8
+      },
+      "winning": true,
+      "createdAt": "2023-03-11T20:38:18.476Z",
+      "updatedAt": "2023-03-11T20:38:18.476Z",
+      "id": "640ce6ba263fc849d44cd555"
+    },
+    {
+      "personId": 25584,
+      "nomination": {
+        "award": {
+          "title": "Оскар",
+          "year": 2020
+        },
+        "title": "Лучшая мужская роль второго плана"
+      },
+      "movie": {
+        "id": 1047883,
+        "name": "Однажды в… Голливуде",
+        "rating": 7.6
+      },
+      "winning": true,
+      "createdAt": "2023-03-11T20:38:18.403Z",
+      "updatedAt": "2023-03-11T20:38:18.403Z",
+      "id": "640ce6ba263fc849d44cd546"
+    }
+  ],
+  "total": 7,
+  "limit": 10,
+  "page": 1,
+  "pages": 1
+}

@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: - PersonDetalModel
-struct PersonDetalModel: Hashable, Decodable {
+struct PersonDetailModel: Hashable, Decodable {
     let docs: [PersonDoc]?
 }
 

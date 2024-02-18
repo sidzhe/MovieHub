@@ -15,7 +15,7 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
     var router: PersonDetailRouterProtocol?
     
     //MARK: Get data
-    func getPersonDetailData() -> PersonDetalModel? {
+    func getPersonDetailData() -> PersonDetailModel? {
         guard let model = interactor?.personDetailData else { return nil }
         return model
     }

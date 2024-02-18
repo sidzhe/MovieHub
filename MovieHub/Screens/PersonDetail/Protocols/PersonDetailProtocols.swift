@@ -17,7 +17,7 @@ protocol PersonDetailViewProtocol: AnyObject {
 /// VIEW -> PRESENTER
 protocol PersonDetailPresenterProtocol: AnyObject {
     var view: PersonDetailViewProtocol? { get set }
-    func getPersonDetailData() -> PersonDetalModel?
+    func getPersonDetailData() -> PersonDetailModel?
     func getSearchData() -> [Doc]
     func getAwardsData() -> [DocAwards]
     func getFacts() -> [String]
@@ -32,7 +32,7 @@ protocol PersonDetailPresenterProtocol: AnyObject {
 protocol PersonDetailInteractorInputProtocol: AnyObject {
     var presenter: PersonDetailInteractorOutputProtocol? { get set }
     var searchData: SearchModel? { get }
-    var personDetailData: PersonDetalModel? { get }
+    var personDetailData: PersonDetailModel? { get }
     var awardsData: AwardsModel? { get }
 }
 

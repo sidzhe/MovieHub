@@ -17,7 +17,10 @@ final class MapInteractor: MapInteractorInputProtocol {
     var selectedCityLocation: Location
     
     //MARK: Init
-    init(networkService: NetworkServiceProtocol, currentCity: String, userLocation: Location, selectedCityLocation: Location) {
+    init(networkService: NetworkServiceProtocol, 
+         currentCity: String,
+         userLocation: Location,
+         selectedCityLocation: Location) {
         self.networkService = networkService
         self.userLocation = userLocation
         self.selectedCityLocation = selectedCityLocation

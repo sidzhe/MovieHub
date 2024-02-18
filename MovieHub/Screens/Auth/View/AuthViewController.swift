@@ -11,7 +11,6 @@ import SnapKit
 final class AuthViewController: UIViewController {
     //MARK: Properties
     var presenter: AuthPresenterProtocol?
-    
     let user = "Guest"
     
     let titleLabel: UILabel = {
@@ -141,7 +140,7 @@ final class AuthViewController: UIViewController {
             return
         }
         presenter?.loginUser(email: inputEmail, password: inputPassword)
-     
+        
     }
     
     private func registerNewUser() {
@@ -156,7 +155,7 @@ final class AuthViewController: UIViewController {
         
         let user = createUserWith(
             name: inputName,
-            email: inputEmail, 
+            email: inputEmail,
             password: inputPassword,
             avatarImage: nil
         )
@@ -167,7 +166,7 @@ final class AuthViewController: UIViewController {
     func createUserWith(name: String, email: String, password: String, avatarImage: UIImage?) -> AuthModel {
         let user = AuthModel(
             name: name,
-            email: email, 
+            email: email,
             password: password,
             avatar: nil
         )

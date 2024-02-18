@@ -75,12 +75,21 @@ final class MapPresenter: MapPresenterProtocol {
         
         ctx.setFillColor(UIColor.white.cgColor)
         ctx.fillEllipse(in: CGRect(
-            origin: CGPoint(x: externalRadius - internalRadius, y: externalRadius - internalRadius),
-            size: CGSize(width: 2 * internalRadius, height: 2 * internalRadius)));
+            origin: CGPoint(
+                x: externalRadius - internalRadius,
+                y: externalRadius - internalRadius
+            ),
+            size: CGSize(
+                width: 2 * internalRadius,
+                height: 2 * internalRadius))
+        );
         
         (text as NSString).draw(
             in: CGRect(
-                origin: CGPoint(x: externalRadius - size.width / 2, y: externalRadius - size.height / 2),
+                origin: CGPoint(
+                    x: externalRadius - size.width / 2,
+                    y: externalRadius - size.height / 2
+                ),
                 size: size),
             withAttributes: [
                 NSAttributedString.Key.font: font,
