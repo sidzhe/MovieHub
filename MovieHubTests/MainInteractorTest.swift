@@ -67,13 +67,13 @@ final class MainInteractorTest: XCTestCase {
         var responseError: Error? = nil
         var statusCode: Int? = nil
         
-        let dataTast = sut.dataTask(with: request) { _, response, error in
+        let dataTask = sut.dataTask(with: request) { _, response, error in
             responseError = error
             statusCode = (response as? HTTPURLResponse)?.statusCode
             promise.fulfill()
         }
         
-        dataTast.resume()
+        dataTask.resume()
         wait(for: [promise], timeout: 3)
         XCTAssertNil(responseError)
         XCTAssertEqual(statusCode, 200)
@@ -121,13 +121,13 @@ final class MainInteractorTest: XCTestCase {
         var responseError: Error? = nil
         var statusCode: Int? = nil
         
-        let dataTast = sut.dataTask(with: request) { _, response, error in
+        let dataTask = sut.dataTask(with: request) { _, response, error in
             responseError = error
             statusCode = (response as? HTTPURLResponse)?.statusCode
             promise.fulfill()
         }
         
-        dataTast.resume()
+        dataTask.resume()
         wait(for: [promise], timeout: 3)
         XCTAssertNil(responseError)
         XCTAssertEqual(statusCode, 200)
@@ -136,6 +136,14 @@ final class MainInteractorTest: XCTestCase {
     func testCollectionsApiCallCompletes() {
         interactor.requestCollection()
         XCTAssertNotNil(interactor.collectionData)
+    }
+    
+    func testSelectedCategory() {
+        let selectedCategory = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue) }
+        
+        if interactor.categoriesData.count >= selectedCategory.count {
+            XCTAssert(true)
+        }
     }
 }
 

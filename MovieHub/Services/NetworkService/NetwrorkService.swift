@@ -12,7 +12,7 @@ protocol NetworkServiceProtocol: AnyObject {
     func searchMovieByTitle(_ title: String, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func searchPerson(_ person: String, completion: @escaping (Result<PersonModel, RequestError>) -> Void)
     func searchDetailID(_ identifier: String, completion: @escaping (Result<DetailModel, RequestError>) -> Void)
-    func searchColletions(completion: @escaping (Result<ColletionModel, RequestError>) -> Void)
+    func searchCollections(completion: @escaping (Result<CollectionModel, RequestError>) -> Void)
     func getSlugCollection<T: Decodable>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void)
     func getGenreCollection(genre: MovieGenre, completion: @escaping (Result<SearchModel, RequestError>) -> Void)
     func getRateCollection(genre: MovieGenre, completion: @escaping (Result<CollectionDetailModel, RequestError>) -> Void)
@@ -57,9 +57,9 @@ final class NetworkService: NetworkServiceProtocol {
     }
     
     //MARK: Get collections
-    func searchColletions(completion: @escaping (Result<ColletionModel, RequestError>) -> Void) {
+    func searchCollections(completion: @escaping (Result<CollectionModel, RequestError>) -> Void) {
         Task {
-            let result: Result<ColletionModel, RequestError> = await movieService.searchCollection()
+            let result: Result<CollectionModel, RequestError> = await movieService.searchCollection()
             completion(result)
         }
     }
@@ -99,7 +99,7 @@ final class NetworkService: NetworkServiceProtocol {
     //MARK: Movie with person
     func getMovieWithPerson(personId: Int, completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
         Task {
-            let result: Result<SearchModel, RequestError> = await movieService.movieWirhPerosn(actorsId: personId)
+            let result: Result<SearchModel, RequestError> = await movieService.movieWithPerson(actorsId: personId)
             completion(result)
         }
     }
@@ -123,7 +123,7 @@ final class NetworkService: NetworkServiceProtocol {
     //MARK: City list
     func getCityList(city: String, completion: @escaping (Result<CinemaModel, RequestError>) -> Void) {
         Task {
-            let result: Result<CinemaModel, RequestError> = await movieService.getCinimaList(city: city)
+            let result: Result<CinemaModel, RequestError> = await movieService.getCinemaList(city: city)
             completion(result)
         }
     }

@@ -14,7 +14,6 @@ final class AuthPresenter: AuthPresenterProtocol {
     var interactor: AuthInteractorInputProtocol?
     var router: AuthRouterProtocol?
     
-    
     func addNewUser(user: AuthModel) {
         interactor?.addNewUser(user: user)
     }

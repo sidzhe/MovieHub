@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - ColletionModel
-struct ColletionModel: Hashable, Decodable {
+struct CollectionModel: Hashable, Decodable {
     let docs: [DocCollect]
     let total, limit, page, pages: Int
 }

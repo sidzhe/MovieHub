@@ -301,8 +301,7 @@ final class Builder {
     static func createTrailer(detailModel: DetailModel) -> UIViewController {
         let view = TrailerViewController()
         let presenter = TrailerPresenter()
-        let networkService = NetworkService()
-        let interactor = TrailerInteractor(networkService: networkService, detailModel: detailModel)
+        let interactor = TrailerInteractor(detailModel: detailModel)
         let router = TrailerRouter()
         view.presenter = presenter
         presenter.view = view

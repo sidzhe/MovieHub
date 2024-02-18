@@ -34,14 +34,14 @@ final class TrailerPresenter: TrailerPresenterProtocol {
     }
     
     //MARK: Route to detail
-    func rotueToDetail(at indexPath: IndexPath) {
+    func routeToDetail(at indexPath: IndexPath) {
         guard let id = getPerson()?[indexPath.row].id else { return }
         router?.pushToDetail(from: view, detailId: id)
     }
 }
 
 
-//MARK: - Extension TrailerInteractorOutputProtocolw
+//MARK: - Extension TrailerInteractorOutputProtocol
 extension TrailerPresenter: TrailerInteractorOutputProtocol {
     func getError(_ error: String) {
         view?.displayError(error)

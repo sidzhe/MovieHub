@@ -316,7 +316,7 @@ private extension MainViewController {
         if presenter.getSearchData().isEmpty {
             snapshot.appendSections([.search, .collection, .categories, .popular])
             let itemSearch = presenter.getSearchData().map { ItemMain(search: $0)}
-            let itemCollection = presenter.getColletionModel().map { ItemMain(collection: $0)}
+            let itemCollection = presenter.getCollectionModel().map { ItemMain(collection: $0)}
             let itemCategory = presenter.getCategories().map { ItemMain(categories: $0)}
             let itemPopular = presenter.getMostPopular().map { ItemMain(popular: $0)}
             

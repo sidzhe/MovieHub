@@ -33,7 +33,7 @@ final class TrailerViewController: UIViewController {
         return scrollView
     }()
     
-    private lazy var trailerView: YTPlayerView = {
+    private let trailerView: YTPlayerView = {
         let view = YTPlayerView()
         view.clipsToBounds = true
         view.layer.cornerRadius = 16
@@ -86,7 +86,7 @@ final class TrailerViewController: UIViewController {
         return label
     }()
     
-    private lazy var descriprionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = UIFont.montserratRegular(size: 14)
@@ -103,10 +103,10 @@ final class TrailerViewController: UIViewController {
         configureCollectionView()
         createDataSource()
         applySnapshot()
-        loadTrailer()
+//        loadTrailer()
         navigationController?.setupNavigationBar()
     }
-    
+        
     //MARK: Setup UI
     private func setupViews() {
         view.backgroundColor = .primaryDark
@@ -118,7 +118,7 @@ final class TrailerViewController: UIViewController {
         movieStackView.addArrangedSubview(genreLabel)
         
         descriptionStackView.addArrangedSubview(synopsisLabel)
-        descriptionStackView.addArrangedSubview(descriprionLabel)
+        descriptionStackView.addArrangedSubview(descriptionLabel)
         
         scrollView.addSubview(trailerView)
         scrollView.addSubview(nameMovie)
@@ -132,7 +132,7 @@ final class TrailerViewController: UIViewController {
             make.width.equalTo(view.frame.width)
             make.height.equalTo(view.frame.height / 2)
         }
-
+        
         trailerView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(24)
             make.horizontalEdges.equalTo(view.snp.horizontalEdges).inset(24)
@@ -143,7 +143,7 @@ final class TrailerViewController: UIViewController {
             make.top.equalTo(trailerView.snp.bottom).inset(-12)
             make.horizontalEdges.equalToSuperview().inset(24)
         }
-            
+        
         movieStackView.snp.makeConstraints { make in
             make.top.equalTo(nameMovie.snp.bottom).offset(8)
             make.left.equalToSuperview().inset(24)
@@ -172,7 +172,7 @@ final class TrailerViewController: UIViewController {
 }
 
 
-//MARK: - Extension Set CollactionView
+//MARK: - Extension Set CollectionView
 extension TrailerViewController {
     
     //MARK: Create Laouyt
@@ -231,7 +231,7 @@ extension TrailerViewController {
             cell.configure(person: person)
         }
     }
-
+    
     func registrationHeader() -> UICollectionView.SupplementaryRegistration<TrailerHeader> {
         return UICollectionView.SupplementaryRegistration<TrailerHeader> (elementKind: UICollectionView.elementKindSectionHeader) { header, _, _ in
             header.configure(Constant.castAndCrew)
@@ -251,7 +251,7 @@ extension TrailerViewController {
             switch sectionKind {
             case .person:
                 return collectionView.dequeueConfiguredReusableCell(using: registrationPerson, for: indexPath, item: item.person)
-
+                
             }
         }
         
@@ -272,19 +272,19 @@ extension TrailerViewController {
     func applySnapshot() {
         var snapshot = NSDiffableDataSourceSnapshot<SectionTrailer, ItemTrailer>()
         guard let presenter = presenter else { return }
-  
+        
         snapshot.appendSections([.person])
         let itemPerson = presenter.getPerson()?.compactMap { ItemTrailer(person: $0) }
         guard let itemPerson = itemPerson else { return }
         snapshot.appendItems(itemPerson, toSection: .person)
-            dataSource?.apply(snapshot, animatingDifferences: true)
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }
 
 //MARK: - UICollectionViewDelegate
 extension TrailerViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.rotueToDetail(at: indexPath)
+        presenter?.routeToDetail(at: indexPath)
     }
 }
 

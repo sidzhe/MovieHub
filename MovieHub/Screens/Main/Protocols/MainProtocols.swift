@@ -20,7 +20,7 @@ protocol MainPresenterProtocol: AnyObject {
     var view: MainViewProtocol? { get set }
     func getUserInfo()
     func fetch()
-    func getColletionModel() -> [DocCollect]
+    func getCollectionModel() -> [DocCollect]
     func getCategories() -> [CategoryModel]
     func getMostPopular() -> [Doc]
     func getSearchData() -> [Doc]
@@ -41,8 +41,8 @@ protocol MainPresenterProtocol: AnyObject {
 protocol MainInteractorInputProtocol: AnyObject {
     var presenter: MainInteractorOutputProtocol? { get set }
     
-    var collectionData: ColletionModel? { get }
-    var cagegoriesData: [CategoryModel] { get }
+    var collectionData: CollectionModel? { get }
+    var categoriesData: [CategoryModel] { get }
     var mostPopular: CollectionDetailModel? { get }
     var searchData: SearchModel? { get }
     func checkCurrentUser() -> Bool

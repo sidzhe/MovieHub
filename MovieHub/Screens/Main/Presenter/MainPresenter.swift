@@ -24,7 +24,7 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     //MARK: - Get models
-    func getColletionModel() -> [DocCollect] {
+    func getCollectionModel() -> [DocCollect] {
         guard let model = interactor?.collectionData?.docs else { return [DocCollect]() }
         return model
     }
@@ -42,7 +42,7 @@ final class MainPresenter: MainPresenterProtocol {
    
     func getCategories() -> [CategoryModel] {
         guard let interactor = interactor else { return [CategoryModel]() }
-        return interactor.cagegoriesData
+        return interactor.categoriesData
     }
     
     func getMostPopular() -> [Doc] {
@@ -90,7 +90,7 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func routeToCollection(_ index: Int) {
-        let slug = getColletionModel()[index].slug
+        let slug = getCollectionModel()[index].slug
         router?.pushToCollection(from: view, slug: slug)
     }
     

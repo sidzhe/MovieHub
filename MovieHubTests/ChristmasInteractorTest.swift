@@ -37,13 +37,13 @@ final class ChristmasInteractorTest: XCTestCase {
         var responseError: Error? = nil
         var statusCode: Int? = nil
         
-        let dataTast = sut.dataTask(with: request) { _, response, error in
+        let dataTask = sut.dataTask(with: request) { _, response, error in
             responseError = error
             statusCode = (response as? HTTPURLResponse)?.statusCode
             promise.fulfill()
         }
         
-        dataTast.resume()
+        dataTask.resume()
         wait(for: [promise], timeout: 3)
         XCTAssertNil(responseError)
         XCTAssertEqual(statusCode, 200)

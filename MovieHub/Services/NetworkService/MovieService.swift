@@ -7,8 +7,8 @@
 
 import UIKit
 
-//MARK: - MovieServiceProtool
-protocol MovieServiceProtool {
+//MARK: - MovieServiceProtocol
+protocol MovieServiceProtocol {
     func searchMovie<T: Decodable>(searchTitle: String) async -> Result<T, RequestError>
     func searchPerson<T: Decodable>(person: String) async -> Result<T, RequestError>
     func searchWithId<T: Decodable>(identifier: String) async -> Result<T, RequestError>
@@ -17,17 +17,17 @@ protocol MovieServiceProtool {
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError>
     func movieFilterPerson<T: Decodable>(actorsId: [Int]) async -> Result<T, RequestError>
-    func movieWirhPerosn<T: Decodable>(actorsId: Int) async -> Result<T, RequestError>
+    func movieWithPerson<T: Decodable>(actorsId: Int) async -> Result<T, RequestError>
     func awardsPerson<T: Decodable>(actorsId: Int) async -> Result<T, RequestError>
     func movieUpcomingGenres<T: Decodable>(genre: String) async -> Result<T, RequestError>
-    func getCinimaList<T: Decodable>(city: String) async -> Result<T, RequestError>
+    func getCinemaList<T: Decodable>(city: String) async -> Result<T, RequestError>
     func getCurrentCity<T: Decodable>(cityName: String) async -> Result<T, RequestError>
     func searchMovieById<T: Decodable>(identifiers: [String]) async -> Result<T, RequestError>
 }
 
 
 //MARK: - MovieService
-struct MovieService: MovieServiceProtool, MovieClient {
+struct MovieService: MovieServiceProtocol, MovieClient {
     
     //MARK: Search movie with title
     func searchMovie<T: Decodable>(searchTitle: String) async -> Result<T, RequestError> {
@@ -38,7 +38,6 @@ struct MovieService: MovieServiceProtool, MovieClient {
         urlComponents.path = endpoint.path
         let items = [URLQueryItem(name: "query", value: searchTitle), URLQueryItem(name: "limit", value: "10")]
         urlComponents.queryItems = items
-        print(urlComponents.url)
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchTitle, responseModel: T.self)
     }
     
@@ -90,7 +89,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.movieFilter, responseModel: T.self)
     }
     
-    //MARK: Gesre's collection
+    //MARK: Gensre's collection
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError> {
         let endpoint = MovieEndpoints.movieFilter
         var urlComponents = URLComponents()
@@ -104,7 +103,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.movieFilter, responseModel: T.self)
     }
     
-    //MARK: Rated moveies
+    //MARK: Rated movies
     func movieFilterRate<T: Decodable>(genre: String) async -> Result<T, RequestError> {
         let endpoint = MovieEndpoints.movieFilter
         var urlComponents = URLComponents()
@@ -151,7 +150,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
     }
     
     //MARK: Movie with person
-    func movieWirhPerosn<T: Decodable>(actorsId: Int) async -> Result<T, RequestError> {
+    func movieWithPerson<T: Decodable>(actorsId: Int) async -> Result<T, RequestError> {
         let endpoint = MovieEndpoints.movieWithPerson
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme
@@ -181,7 +180,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.awards, responseModel: T.self)
     }
     
-    //MARK: upcoming with gesres
+    //MARK: upcoming with genres
     func movieUpcomingGenres<T: Decodable>(genre: String) async -> Result<T, RequestError> {
         let endpoint = MovieEndpoints.upcoming
         var urlComponents = URLComponents()
@@ -206,7 +205,7 @@ struct MovieService: MovieServiceProtool, MovieClient {
     }
     
     //MARK: Get cinema list
-    func getCinimaList<T: Decodable>(city: String) async -> Result<T, RequestError> {
+    func getCinemaList<T: Decodable>(city: String) async -> Result<T, RequestError> {
         let endpoint = CinemaEndpoints.getMovieList
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme

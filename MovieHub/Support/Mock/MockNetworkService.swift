@@ -23,8 +23,8 @@ final class MockNetworkService: NetworkServiceProtocol, Mockable {
         completion(.success(data))
     }
     
-    func searchColletions(completion: @escaping (Result<ColletionModel, RequestError>) -> Void) {
-        let data = getJSON(fileName: "Collections", type: ColletionModel.self)
+    func searchCollections(completion: @escaping (Result<CollectionModel, RequestError>) -> Void) {
+        let data = getJSON(fileName: "Collections", type: CollectionModel.self)
         completion(.success(data))
     }
     
