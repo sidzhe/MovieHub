@@ -136,7 +136,7 @@ final class NetworkService: NetworkServiceProtocol {
         }
     }
     
-    //MARK: Search movie by identificator
+    //MARK: Search movie by identifiers
     func searchMovieById(identifiers: [String], completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
         Task {
             let result: Result<SearchModel, RequestError> = await movieService.searchMovieById(identifiers: identifiers)

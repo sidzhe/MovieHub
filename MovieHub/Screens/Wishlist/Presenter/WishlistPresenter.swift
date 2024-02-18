@@ -20,7 +20,7 @@ final class WishlistPresenter: WishlistPresenterProtocol {
         return model
     }
     
-    //MARK: Udate and request model
+    //MARK: Update and request model
     func updateModel() {
         interactor?.updateWishModel()
     }

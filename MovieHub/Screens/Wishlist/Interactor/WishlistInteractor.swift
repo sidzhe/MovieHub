@@ -38,7 +38,6 @@ final class WishlistInteractor: WishlistInteractorInputProtocol {
         networkService.searchMovieById(identifiers: ids) { [weak self] (result: (Result<SearchModel, RequestError>)) in
             
             switch result {
-                
             case .success(let movies):
                 self?.favoriteModel = movies.docs
                 self?.presenter?.updateUI()

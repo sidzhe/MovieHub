@@ -1,0 +1,191 @@
+{
+  "docs": [
+    {
+      "id": 666,
+      "name": "Форсаж",
+      "alternativeName": "The Fast and the Furious",
+      "enName": null,
+      "names": [
+        {
+          "name": "Форсаж",
+          "language": "RU",
+          "type": "Russian title on kinopoisk"
+        },
+        {
+          "name": "The Fast and the Furious",
+          "language": null,
+          "type": "Original title on kinopoisk"
+        },
+        {
+          "name": "Wild Speed",
+          "language": "JP",
+          "type": "English title"
+        },
+        {
+          "name": "The Fast and the Furious (A todo gas)",
+          "language": "ES",
+          "type": null
+        },
+        {
+          "name": "Forsazh",
+          "language": "UA",
+          "type": null
+        },
+        {
+          "name": "Oi Machités ton Drómon",
+          "language": "GR",
+          "type": null
+        },
+        {
+          "name": "Paklene ulice",
+          "language": "RS",
+          "type": null
+        },
+        {
+          "name": "Bŭrzi i yarostni",
+          "language": "BG",
+          "type": null
+        },
+        {
+          "name": "玩命關頭",
+          "language": "TW",
+          "type": null
+        },
+        {
+          "name": "速度与激情",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Fast & furious",
+          "language": "FR",
+          "type": null
+        },
+        {
+          "name": "Fast & Furious",
+          "language": "US",
+          "type": null
+        },
+        {
+          "name": "01 - Fast & Furious",
+          "language": "FR",
+          "type": null
+        },
+        {
+          "name": "F&F1 - The Fast and the Furious",
+          "language": "GB",
+          "type": "Sortable"
+        },
+        {
+          "name": "Quá Nhanh Quá Nguy Hiểm",
+          "language": "VN",
+          "type": null
+        },
+        {
+          "name": "ワイルド・スピード：2001",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "狂野時速1",
+          "language": "TW",
+          "type": null
+        },
+        {
+          "name": "狂野時速1",
+          "language": "HK",
+          "type": null
+        },
+        {
+          "name": "The Fast and the Furious I",
+          "language": "US",
+          "type": "My personal playlist"
+        },
+        {
+          "name": "Fast and Furious",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "Forsaj",
+          "language": "AZ",
+          "type": null
+        },
+        {
+          "name": "A todo gas 01",
+          "language": "ES",
+          "type": null
+        },
+        {
+          "name": "A todo gas: 1",
+          "language": "ES",
+          "type": null
+        }
+      ],
+      "type": "movie",
+      "typeNumber": 1,
+      "year": 2001,
+      "description": "Его зовут Брайан, и он — фанат турбин и нитроускорителей. Он пытается попасть в автобанду легендарного Доминика Торетто, чемпиона опасных и незаконных уличных гонок. Брайан также полицейский, и его задание — втереться в доверие к Торетто, подозреваемому в причастности к дерзким грабежам грузовиков, совершаемым прямо на ходу.",
+      "shortDescription": "Коп под прикрытием внедряется в банду стритрейсеров и становится одним из них. Первая часть гоночной франшизы",
+      "status": null,
+      "rating": {
+        "kp": 7.772,
+        "imdb": 6.8,
+        "filmCritics": 5.4,
+        "russianFilmCritics": 0,
+        "await": null
+      },
+      "votes": {
+        "kp": 309704,
+        "imdb": 415801,
+        "filmCritics": 157,
+        "russianFilmCritics": 0,
+        "await": 0
+      },
+      "movieLength": 106,
+      "ratingMpaa": "pg13",
+      "ageRating": 18,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/8277905e-aa09-465d-b0de-7c389a42f215/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/8277905e-aa09-465d-b0de-7c389a42f215/x1000"
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/jY9ef5nqY4xIIMu3yzW3qamUCoi.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/jY9ef5nqY4xIIMu3yzW3qamUCoi.jpg"
+      },
+      "genres": [
+        {
+          "name": "боевик"
+        },
+        {
+          "name": "триллер"
+        },
+        {
+          "name": "криминал"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        },
+        {
+          "name": "Германия"
+        }
+      ],
+      "top10": null,
+      "top250": null,
+      "releaseYears": [],
+      "ticketsOnSale": false,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null,
+      "logo": {
+        "url": "https://imagetmdb.com/t/p/original/uPzO7DHR1Z3zZQExKp5X4ABUu79.png"
+      }
+    }
+  ],
+  "total": 1,
+  "limit": 10,
+  "page": 1,
+  "pages": 1
+}

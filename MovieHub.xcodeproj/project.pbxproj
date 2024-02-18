@@ -92,6 +92,8 @@
 		EB369B282B3B15D300BB4275 /* MovieGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B272B3B15D300BB4275 /* MovieGenre.swift */; };
 		EB369B2A2B3B20F100BB4275 /* PersonDetalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB369B292B3B20F100BB4275 /* PersonDetalModel.swift */; };
 		EB4F1A682B80B41200E45D11 /* TestPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F1A672B80B41200E45D11 /* TestPresenterTest.swift */; };
+		EB4F1A6A2B81F77600E45D11 /* WishlistInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4F1A692B81F77600E45D11 /* WishlistInteractorTest.swift */; };
+		EB4F1A6C2B81F8A100E45D11 /* SearchMovieByID.json in Resources */ = {isa = PBXBuildFile; fileRef = EB4F1A6B2B81F8A100E45D11 /* SearchMovieByID.json */; };
 		EB6CB2BF2B3C1AFE00DC30BC /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB2BE2B3C1AFE00DC30BC /* Extension + UIColor.swift */; };
 		EB6CB2C12B3C203A00DC30BC /* Extension + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6CB2C02B3C203A00DC30BC /* Extension + UIFont.swift */; };
 		EB6CB2D52B3C250600DC30BC /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB6CB2CC2B3C250600DC30BC /* Montserrat-ExtraBold.ttf */; };
@@ -321,6 +323,8 @@
 		EB369B272B3B15D300BB4275 /* MovieGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenre.swift; sourceTree = "<group>"; };
 		EB369B292B3B20F100BB4275 /* PersonDetalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetalModel.swift; sourceTree = "<group>"; };
 		EB4F1A672B80B41200E45D11 /* TestPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPresenterTest.swift; sourceTree = "<group>"; };
+		EB4F1A692B81F77600E45D11 /* WishlistInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistInteractorTest.swift; sourceTree = "<group>"; };
+		EB4F1A6B2B81F8A100E45D11 /* SearchMovieByID.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SearchMovieByID.json; sourceTree = "<group>"; };
 		EB6CB2BE2B3C1AFE00DC30BC /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
 		EB6CB2C02B3C203A00DC30BC /* Extension + UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIFont.swift"; sourceTree = "<group>"; };
 		EB6CB2CC2B3C250600DC30BC /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -893,6 +897,7 @@
 				EBC048292B77B38600336773 /* ChristmasInteractorTest.swift */,
 				EB0E10FF2B7A157500D65632 /* MainInteractorTest.swift */,
 				EB4F1A672B80B41200E45D11 /* TestPresenterTest.swift */,
+				EB4F1A692B81F77600E45D11 /* WishlistInteractorTest.swift */,
 			);
 			path = MovieHubTests;
 			sourceTree = "<group>";
@@ -1652,6 +1657,7 @@
 				EB0E11032B7A2B6E00D65632 /* RatedMovies.json */,
 				EB0E11072B7A389700D65632 /* SearchByTitle.json */,
 				EB0E110B2B7A3BF000D65632 /* Collections.json */,
+				EB4F1A6B2B81F8A100E45D11 /* SearchMovieByID.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -2117,6 +2123,7 @@
 			files = (
 				EB6CB2DA2B3C250600DC30BC /* Montserrat-Regular.ttf in Resources */,
 				EB6CB2D72B3C250600DC30BC /* Montserrat-Light.ttf in Resources */,
+				EB4F1A6C2B81F8A100E45D11 /* SearchMovieByID.json in Resources */,
 				63D273432B507B560092E5E3 /* Assets.xcassets in Resources */,
 				EB6CB2D92B3C250600DC30BC /* Montserrat-Black.ttf in Resources */,
 				EB6CB2D62B3C250600DC30BC /* Montserrat-Bold.ttf in Resources */,
@@ -2185,6 +2192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC0482A2B77B38600336773 /* ChristmasInteractorTest.swift in Sources */,
+				EB4F1A6A2B81F77600E45D11 /* WishlistInteractorTest.swift in Sources */,
 				EB0E11002B7A157500D65632 /* MainInteractorTest.swift in Sources */,
 				EB4F1A682B80B41200E45D11 /* TestPresenterTest.swift in Sources */,
 			);

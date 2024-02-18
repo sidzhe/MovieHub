@@ -66,6 +66,7 @@ final class MockNetworkService: NetworkServiceProtocol, Mockable {
     }
     
     func searchMovieById(identifiers: [String], completion: @escaping (Result<SearchModel, RequestError>) -> Void) {
-        
+        let data = getJSON(fileName: "SearchMovieByID", type: SearchModel.self)
+        completion(.success(data))
     }
 }
