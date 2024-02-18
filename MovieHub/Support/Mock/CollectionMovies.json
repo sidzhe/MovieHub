@@ -1,0 +1,1714 @@
+{
+  "docs": [
+    {
+      "status": null,
+      "rating": {
+        "kp": 8.821,
+        "imdb": 8.5,
+        "filmCritics": 6.8,
+        "russianFilmCritics": 100,
+        "await": null
+      },
+      "votes": {
+        "kp": 1966185,
+        "imdb": 918789,
+        "filmCritics": 129,
+        "russianFilmCritics": 12,
+        "await": 15
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/bGksau9GGu0uJ8DJQ8DYc9JW5LM.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/bGksau9GGu0uJ8DJQ8DYc9JW5LM.jpg"
+      },
+      "movieLength": 112,
+      "id": 535341,
+      "type": "movie",
+      "name": "1+1",
+      "description": "Пострадав в результате несчастного случая, богатый аристократ Филипп нанимает в помощники человека, который менее всего подходит для этой работы, – молодого жителя предместья Дрисса, только что освободившегося из тюрьмы. Несмотря на то, что Филипп прикован к инвалидному креслу, Дриссу удается привнести в размеренную жизнь аристократа дух приключений.",
+      "year": 2011,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/bf93b465-1189-4155-9dd1-cb9fb5cb1bb5/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/bf93b465-1189-4155-9dd1-cb9fb5cb1bb5/x1000"
+      },
+      "genres": [
+        {
+          "name": "драма"
+        },
+        {
+          "name": "комедия"
+        },
+        {
+          "name": "биография"
+        }
+      ],
+      "countries": [
+        {
+          "name": "Франция"
+        }
+      ],
+      "typeNumber": 1,
+      "alternativeName": "Intouchables",
+      "enName": null,
+      "names": [
+        {
+          "name": "1+1"
+        },
+        {
+          "name": "Intouchables"
+        },
+        {
+          "name": "不可触碰",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "最佳拍档",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "无法触碰",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Untouchable",
+          "language": "GB",
+          "type": null
+        },
+        {
+          "name": "不可触摸",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Неприкасаемые",
+          "language": "RU",
+          "type": "Literal"
+        },
+        {
+          "name": "1+1 [Intouchables]",
+          "language": "RU",
+          "type": null
+        },
+        {
+          "name": "Saikyô no futari",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "Amigos",
+          "language": "CL",
+          "type": null
+        },
+        {
+          "name": "Mehubarim la'hayim",
+          "language": "IL",
+          "type": "Hebrew title"
+        },
+        {
+          "name": "Amigos para siempre",
+          "language": "VE",
+          "type": null
+        },
+        {
+          "name": "Prijatelja",
+          "language": "SI",
+          "type": null
+        },
+        {
+          "name": "En oväntad vänskap",
+          "language": "SE",
+          "type": null
+        },
+        {
+          "name": "Intocáveis",
+          "language": "BR",
+          "type": null
+        },
+        {
+          "name": "Intouchables – Ziemlich beste Freunde",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "언터처블 1%의 우정",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "De Uroerlige",
+          "language": "DK",
+          "type": null
+        },
+        {
+          "name": "Intocable",
+          "language": "ES",
+          "type": null
+        },
+        {
+          "name": "Недоторканні",
+          "language": "UA",
+          "type": "Unofficial Title"
+        }
+      ],
+      "ratingMpaa": "r",
+      "shortDescription": "Аристократ на коляске нанимает в сиделки бывшего заключенного. Искрометная французская комедия с Омаром Си",
+      "ticketsOnSale": false,
+      "ageRating": 18,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/1531675/2a0000017f0262661cde61dc260cb86f7830/orig"
+      },
+      "top10": null,
+      "top250": 2,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    },
+    {
+      "status": null,
+      "rating": {
+        "kp": 8.003,
+        "imdb": 8.2,
+        "filmCritics": 7.8,
+        "russianFilmCritics": 77.4194,
+        "await": null
+      },
+      "votes": {
+        "kp": 1251248,
+        "imdb": 1545452,
+        "filmCritics": 289,
+        "russianFilmCritics": 31,
+        "await": 43022
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/2P0toWq3feNvFAzf28j7vNc1IuZ.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/2P0toWq3feNvFAzf28j7vNc1IuZ.jpg"
+      },
+      "movieLength": 180,
+      "id": 462682,
+      "type": "movie",
+      "name": "Волк с Уолл-стрит",
+      "description": "1987 год. Джордан Белфорт становится брокером в успешном инвестиционном банке. Вскоре банк закрывается после внезапного обвала индекса Доу-Джонса. По совету жены Терезы Джордан устраивается в небольшое заведение, занимающееся мелкими акциями. Его настойчивый стиль общения с клиентами и врождённая харизма быстро даёт свои плоды. Он знакомится с соседом по дому Донни, торговцем, который сразу находит общий язык с Джорданом и решает открыть с ним собственную фирму. В качестве сотрудников они нанимают нескольких друзей Белфорта, его отца Макса и называют компанию «Стрэттон Оукмонт». В свободное от работы время Джордан прожигает жизнь: лавирует от одной вечеринки к другой, вступает в сексуальные отношения с проститутками, употребляет множество наркотических препаратов, в том числе кокаин и кваалюд. Однажды наступает момент, когда быстрым обогащением Белфорта начинает интересоваться агент ФБР...",
+      "year": 2013,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/5c758ac0-7a5c-4f00-a94f-1be680a312fb/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/5c758ac0-7a5c-4f00-a94f-1be680a312fb/x1000"
+      },
+      "genres": [
+        {
+          "name": "драма"
+        },
+        {
+          "name": "криминал"
+        },
+        {
+          "name": "биография"
+        },
+        {
+          "name": "комедия"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        }
+      ],
+      "typeNumber": 1,
+      "alternativeName": "The Wolf of Wall Street",
+      "enName": null,
+      "names": [
+        {
+          "name": "Волк с Уолл-стрит"
+        },
+        {
+          "name": "The Wolf of Wall Street"
+        },
+        {
+          "name": "Para Avcisi",
+          "language": "TR",
+          "type": null
+        },
+        {
+          "name": "华尔街狼人",
+          "language": "HK",
+          "type": null
+        },
+        {
+          "name": "华尔街之狼",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Wilk z Wall Street",
+          "language": "PL",
+          "type": null
+        },
+        {
+          "name": "더 울프 오브 월 스트리트",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "คนจะรวย ช่วยไม่ได้",
+          "language": "TH",
+          "type": null
+        },
+        {
+          "name": "El lobo de Wall Street",
+          "language": "ES",
+          "type": null
+        },
+        {
+          "name": "Wall Streeti hunt",
+          "language": "EE",
+          "type": null
+        }
+      ],
+      "shortDescription": "Восхождение циника-гедониста на бизнес-олимп 1980-х. Блистательный тандем Леонардо ДиКаприо и Мартина Скорсезе",
+      "ageRating": 18,
+      "ratingMpaa": "r",
+      "ticketsOnSale": false,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/1534341/2a00000178c64fe43f3b567acaaa73e861f0/orig"
+      },
+      "top10": null,
+      "top250": 67,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    },
+    {
+      "status": null,
+      "rating": {
+        "kp": 7.975,
+        "imdb": 7.9,
+        "filmCritics": 7.5,
+        "russianFilmCritics": 75,
+        "await": null
+      },
+      "votes": {
+        "kp": 1069252,
+        "imdb": 1375743,
+        "filmCritics": 337,
+        "russianFilmCritics": 12,
+        "await": 38688
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/vL5LR6WdxWPjLPFRLe133jXWsh5.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/vL5LR6WdxWPjLPFRLe133jXWsh5.jpg"
+      },
+      "movieLength": 162,
+      "id": 251733,
+      "type": "movie",
+      "name": "Аватар",
+      "description": "Бывший морпех Джейк Салли прикован к инвалидному креслу. Несмотря на немощное тело, Джейк в душе по-прежнему остается воином. Он получает задание совершить путешествие в несколько световых лет к базе землян на планете Пандора, где корпорации добывают редкий минерал, имеющий огромное значение для выхода Земли из энергетического кризиса.",
+      "year": 2009,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4adf61aa-3cb7-4381-9245-523971e5b4c8/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4adf61aa-3cb7-4381-9245-523971e5b4c8/x1000"
+      },
+      "genres": [
+        {
+          "name": "фантастика"
+        },
+        {
+          "name": "боевик"
+        },
+        {
+          "name": "драма"
+        },
+        {
+          "name": "приключения"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        }
+      ],
+      "typeNumber": 1,
+      "alternativeName": "Avatar",
+      "enName": null,
+      "names": [
+        {
+          "name": "Аватар"
+        },
+        {
+          "name": "Avatar"
+        },
+        {
+          "name": "Project 880465wtgsdtg",
+          "language": "US",
+          "type": "working title"
+        },
+        {
+          "name": "Avatar Edicion Coleccionista",
+          "language": "ES",
+          "type": null
+        },
+        {
+          "name": "Avatar: Extended Version",
+          "language": "US",
+          "type": "extended version"
+        },
+        {
+          "name": "Avatar - Collector's Extended Edition",
+          "language": "GB",
+          "type": null
+        },
+        {
+          "name": "Avatar - Edição Estendida de Colecionador",
+          "language": "BR",
+          "type": null
+        },
+        {
+          "name": "Avatar 3D",
+          "language": "US",
+          "type": "3D version"
+        },
+        {
+          "name": "Avatar: An IMAX 3D Experience",
+          "language": "US",
+          "type": "IMAX version"
+        },
+        {
+          "name": "James Cameron's Avatar",
+          "language": "US",
+          "type": "promotional title"
+        },
+        {
+          "name": "Avatar: Special Edition",
+          "language": "US",
+          "type": "longer version"
+        },
+        {
+          "name": "아바타",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "Аватар 3D",
+          "language": "RU",
+          "type": null
+        },
+        {
+          "name": "Avatar - Wersja Specjalna",
+          "language": "PL",
+          "type": null
+        },
+        {
+          "name": "Avatar - Wersja Rozszerzona",
+          "language": "PL",
+          "type": null
+        },
+        {
+          "name": "Avatar - Collector's Edition",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "Avatar - Extended Collector's Edition",
+          "language": "US",
+          "type": "box set"
+        },
+        {
+          "name": "અવતાર",
+          "language": "IN",
+          "type": "Gujarati"
+        },
+        {
+          "name": "अवतार",
+          "language": "IN",
+          "type": "Hindi"
+        },
+        {
+          "name": "অবতার",
+          "language": "IN",
+          "type": "Bengali"
+        },
+        {
+          "name": "Avatar 1 - Aufbruch nach Pandora",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "Ավատար",
+          "language": "AM",
+          "type": null
+        },
+        {
+          "name": "Avatar 1",
+          "language": "US",
+          "type": "Series Title"
+        },
+        {
+          "name": "アバター",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "アバター：2009",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "アバター（Avatar 1）",
+          "language": "JP",
+          "type": null
+        }
+      ],
+      "ageRating": 12,
+      "ratingMpaa": "pg13",
+      "shortDescription": "Парализованный морпех становится мессией для жителей Пандоры. Самый кассовый фильм в истории кино",
+      "ticketsOnSale": false,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/2385704/2a00000176f1bb64212c9df414a8909c8f44/orig"
+      },
+      "top10": null,
+      "top250": 230,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    },
+    {
+      "status": null,
+      "rating": {
+        "kp": 8.274,
+        "imdb": 7.6,
+        "filmCritics": 7.1,
+        "russianFilmCritics": 0,
+        "await": null
+      },
+      "votes": {
+        "kp": 975126,
+        "imdb": 848266,
+        "filmCritics": 201,
+        "russianFilmCritics": 2,
+        "await": 0
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/hziiv14OpD73u9gAak4XDDfBKa2.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/hziiv14OpD73u9gAak4XDDfBKa2.jpg"
+      },
+      "movieLength": 152,
+      "id": 689,
+      "type": "movie",
+      "name": "Гарри Поттер и философский камень",
+      "description": "Жизнь десятилетнего Гарри Поттера нельзя назвать сладкой: родители умерли, едва ему исполнился год, а от дяди и тёти, взявших сироту на воспитание, достаются лишь тычки да подзатыльники. Но в одиннадцатый день рождения Гарри всё меняется. Странный гость, неожиданно появившийся на пороге, приносит письмо, из которого мальчик узнаёт, что на самом деле он - волшебник и зачислен в школу магии под названием Хогвартс. А уже через пару недель Гарри будет мчаться в поезде Хогвартс-экспресс навстречу новой жизни, где его ждут невероятные приключения, верные друзья и самое главное — ключ к разгадке тайны смерти его родителей.",
+      "year": 2001,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/27ed5c19-a045-49dd-8624-5f629c5d96e0/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/27ed5c19-a045-49dd-8624-5f629c5d96e0/x1000"
+      },
+      "genres": [
+        {
+          "name": "фэнтези"
+        },
+        {
+          "name": "приключения"
+        },
+        {
+          "name": "семейный"
+        }
+      ],
+      "countries": [
+        {
+          "name": "Великобритания"
+        },
+        {
+          "name": "США"
+        }
+      ],
+      "typeNumber": 1,
+      "alternativeName": "Harry Potter and the Sorcerer's Stone",
+      "enName": null,
+      "names": [
+        {
+          "name": "Гарри Поттер и философский камень"
+        },
+        {
+          "name": "Harry Potter and the Sorcerer's Stone"
+        },
+        {
+          "name": "Khari Potŭr i Filosofskiyat kamŭk",
+          "language": "BG",
+          "type": null
+        },
+        {
+          "name": "Hari Poter i Kamen mudrosti",
+          "language": "RS",
+          "type": null
+        },
+        {
+          "name": "Garri Potter i filosofskiy kamen'",
+          "language": "RU",
+          "type": null
+        },
+        {
+          "name": "ہیری پوٹر اور فلسفی کا پتھر",
+          "language": "PK",
+          "type": null
+        },
+        {
+          "name": "O Chári Póter kai i Filosofikí Líthos",
+          "language": "GR",
+          "type": null
+        },
+        {
+          "name": "Hari Poter i Kamenot na mudrosta",
+          "language": "MK",
+          "type": null
+        },
+        {
+          "name": "Harri Potter i filosofsʹkyy kaminʹ",
+          "language": "UA",
+          "type": null
+        },
+        {
+          "name": "Harry Potter y la piedra filosofal",
+          "language": "AR",
+          "type": null
+        },
+        {
+          "name": "Harry Potter à l'école des sorciers",
+          "language": "FR",
+          "type": null
+        },
+        {
+          "name": "哈利·波特1：哈利·波特与魔法石",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "哈利波特1与魔法石",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "哈利波特1：神秘的魔法石",
+          "language": "HK",
+          "type": null
+        },
+        {
+          "name": "Harijs Poters un filozofu akmens",
+          "language": "LV",
+          "type": null
+        },
+        {
+          "name": "哈利波特与魔法石",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Harry Potter e a pedra filosofal",
+          "language": "PT",
+          "type": null
+        },
+        {
+          "name": "哈利波特1：魔法石",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "해리 포터와 마법사의 돌",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "Harry Potter e a Pedra Filosofal",
+          "language": "BR",
+          "type": null
+        },
+        {
+          "name": "해리포터와 마법사의 돌",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "Harry Potter en de Steen der Wijzen",
+          "language": "NL",
+          "type": null
+        },
+        {
+          "name": "Harry Potter I: Harry Potter and the Philosopher's Stone",
+          "language": "US",
+          "type": "Alternative Title"
+        },
+        {
+          "name": "Harry Potter und der Stein der Weisen",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "ハリー・ポッターと賢者の石",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "ハリーポッターと賢者の石",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "Harry Potter (1) à l'école des sorciers",
+          "language": "FR",
+          "type": null
+        },
+        {
+          "name": "הרי פותר ואבן החכמים",
+          "language": "IL",
+          "type": null
+        },
+        {
+          "name": "ארי פוטר 1: אבן החכמים (2001)",
+          "language": "IL",
+          "type": null
+        },
+        {
+          "name": "ハリー・ポッターと賢者の石：2001",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "Harry Potter dhe Guri Filozofal",
+          "language": "AL",
+          "type": null
+        },
+        {
+          "name": "Harry Potter 1 - und der Stein der Weisen (2001)",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "Harry Potter and the Philosopher's Stone",
+          "language": "GB",
+          "type": null
+        },
+        {
+          "name": "Harry Potter ja tarkade kivi",
+          "language": "EE",
+          "type": null
+        },
+        {
+          "name": "哈利·波特与魔法石",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Harry Potter 1 - A l'école des Sorciers",
+          "language": "FR",
+          "type": null
+        },
+        {
+          "name": "Harry Potter 1: Harry Potter and the Philosopher's Stone",
+          "language": "US",
+          "type": "series title"
+        }
+      ],
+      "ratingMpaa": "pg",
+      "shortDescription": "Гарри поступает в школу магии Хогвартс и заводит друзей. Первая часть большой франшизы о маленьком волшебнике",
+      "ticketsOnSale": false,
+      "ageRating": 12,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/223007/2a0000017e127a46aa2122ff48cb306de98b/orig"
+      },
+      "top10": null,
+      "top250": 57,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    },
+    {
+      "status": null,
+      "rating": {
+        "kp": 8.665,
+        "imdb": 8.8,
+        "filmCritics": 8.2,
+        "russianFilmCritics": 80.9524,
+        "await": null
+      },
+      "votes": {
+        "kp": 968125,
+        "imdb": 2521445,
+        "filmCritics": 372,
+        "russianFilmCritics": 21,
+        "await": 42543
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg"
+      },
+      "movieLength": 148,
+      "id": 447301,
+      "type": "movie",
+      "name": "Начало",
+      "description": "Кобб – талантливый вор, лучший из лучших в опасном искусстве извлечения: он крадет ценные секреты из глубин подсознания во время сна, когда человеческий разум наиболее уязвим. Редкие способности Кобба сделали его ценным игроком в привычном к предательству мире промышленного шпионажа, но они же превратили его в извечного беглеца и лишили всего, что он когда-либо любил. \n\nИ вот у Кобба появляется шанс исправить ошибки. Его последнее дело может вернуть все назад, но для этого ему нужно совершить невозможное – инициацию. Вместо идеальной кражи Кобб и его команда спецов должны будут провернуть обратное. Теперь их задача – не украсть идею, а внедрить ее. Если у них получится, это и станет идеальным преступлением. \n\nНо никакое планирование или мастерство не могут подготовить команду к встрече с опасным противником, который, кажется, предугадывает каждый их ход. Врагом, увидеть которого мог бы лишь Кобб.",
+      "year": 2010,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/8ab9a119-dd74-44f0-baec-0629797483d7/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/8ab9a119-dd74-44f0-baec-0629797483d7/x1000"
+      },
+      "genres": [
+        {
+          "name": "фантастика"
+        },
+        {
+          "name": "боевик"
+        },
+        {
+          "name": "триллер"
+        },
+        {
+          "name": "драма"
+        },
+        {
+          "name": "детектив"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        },
+        {
+          "name": "Великобритания"
+        }
+      ],
+      "typeNumber": 1,
+      "alternativeName": "Inception",
+      "enName": null,
+      "names": [
+        {
+          "name": "Начало"
+        },
+        {
+          "name": "Inception"
+        },
+        {
+          "name": "El Origen",
+          "language": "ES",
+          "type": null
+        },
+        {
+          "name": "인셉션",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "El origen",
+          "language": "MX",
+          "type": null
+        },
+        {
+          "name": "A Origem",
+          "language": "BR",
+          "type": null
+        },
+        {
+          "name": "Başlangıç",
+          "language": "TR",
+          "type": null
+        },
+        {
+          "name": "潛行凶間",
+          "language": "HK",
+          "type": null
+        },
+        {
+          "name": "盗梦空间",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Eredet",
+          "language": "HU",
+          "type": null
+        },
+        {
+          "name": "Pirmsākums",
+          "language": "LV",
+          "type": null
+        },
+        {
+          "name": "จิตพิฆาตโลก",
+          "language": "TH",
+          "type": null
+        },
+        {
+          "name": "全面啟動",
+          "language": "TW",
+          "type": null
+        },
+        {
+          "name": "奠基",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "心灵犯案",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "记忆迷阵",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "记忆魔方",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "インセプション：2010",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "Kẻ Trộm Giấc Mơ",
+          "language": "VN",
+          "type": null
+        }
+      ],
+      "shortDescription": "Профессиональные воры внедряются в сон наследника огромной империи. Фантастический боевик Кристофера Нолана",
+      "ageRating": 12,
+      "ratingMpaa": "pg13",
+      "ticketsOnSale": false,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/200035/2a00000178c5fc5e63481655114331b766a3/orig"
+      },
+      "top10": null,
+      "top250": 24,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    },
+    {
+      "status": null,
+      "rating": {
+        "kp": 8.376,
+        "imdb": 8.1,
+        "filmCritics": 7.1,
+        "russianFilmCritics": 0,
+        "await": null
+      },
+      "votes": {
+        "kp": 955787,
+        "imdb": 1197913,
+        "filmCritics": 220,
+        "russianFilmCritics": 2,
+        "await": 0
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/wW7Wt5bXzPy4VOEE4LTIUDyDgBo.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/wW7Wt5bXzPy4VOEE4LTIUDyDgBo.jpg"
+      },
+      "movieLength": 143,
+      "id": 4374,
+      "type": "movie",
+      "name": "Пираты Карибского моря: Проклятие Черной жемчужины",
+      "description": "Жизнь харизматичного авантюриста, капитана Джека Воробья, полная увлекательных приключений, резко меняется, когда его заклятый враг капитан Барбосса похищает корабль Джека Черную Жемчужину, а затем нападает на Порт Ройал и крадет прекрасную дочь губернатора Элизабет Свонн.\n\nДруг детства Элизабет Уилл Тернер вместе с Джеком возглавляет спасательную экспедицию на самом быстром корабле Британии, чтобы вызволить девушку и заодно отобрать у злодея Черную Жемчужину. Вслед за этой парочкой отправляется амбициозный коммодор Норрингтон, который к тому же числится женихом Элизабет.\n\nОднако Уилл не знает, что над Барбоссой висит вечное проклятие, при лунном свете превращающее его с командой в живых скелетов. Проклятье будет снято лишь тогда, когда украденное золото Ацтеков будет возвращено пиратами на старое место.",
+      "year": 2003,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/d7e3dbd6-e4a9-4485-b751-d02f49825166/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/d7e3dbd6-e4a9-4485-b751-d02f49825166/x1000"
+      },
+      "genres": [
+        {
+          "name": "фэнтези"
+        },
+        {
+          "name": "боевик"
+        },
+        {
+          "name": "приключения"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        }
+      ],
+      "typeNumber": 1,
+      "alternativeName": "Pirates of the Caribbean: The Curse of the Black Pearl",
+      "enName": null,
+      "names": [
+        {
+          "name": "Пираты Карибского моря: Проклятие Черной жемчужины"
+        },
+        {
+          "name": "Pirates of the Caribbean: The Curse of the Black Pearl"
+        },
+        {
+          "name": "La maldición del Perla Negra",
+          "language": "AR",
+          "type": null
+        },
+        {
+          "name": "Pirates des Caraïbes 1",
+          "language": "FR",
+          "type": null
+        },
+        {
+          "name": "Sjóræningjar á Karíbahafi: Bölvun svörtu perlunnar",
+          "language": "IS",
+          "type": null
+        },
+        {
+          "name": "加勒比海盗：黑珍珠号的诅咒",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Pirati sa Kariba: prokletstvo Crnog bisera",
+          "language": "RS",
+          "type": null
+        },
+        {
+          "name": "캐리비안의 해적-블랙 펄의 저주",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "Pirates des Caraïbes : La Malédiction de la Perle noire",
+          "language": "CA",
+          "type": null
+        },
+        {
+          "name": "Pirati dei Caraibi - La maledizione della prima luna",
+          "language": "IT",
+          "type": null
+        },
+        {
+          "name": "Piratas del Caribe La Maldición del Perla Negra",
+          "language": "SV",
+          "type": null
+        },
+        {
+          "name": "Shodeday Ha-Caribim: Klalat Ha-Pnina Ha-Sh'hora",
+          "language": "IL",
+          "type": null
+        },
+        {
+          "name": "Pirates Of The Caribbean ‐ The Curse of the Black Pearl",
+          "language": "US",
+          "type": null
+        },
+        {
+          "name": "Piratas del Caribe: La maldición del Perla Negra",
+          "language": "MX",
+          "type": null
+        },
+        {
+          "name": "Piraty Karibskogo morya: Proklyatiye Chornoy zhemchuzhiny",
+          "language": "RU",
+          "type": null
+        },
+        {
+          "name": "Pirates of the Caribbean deel 1",
+          "language": "NL",
+          "type": null
+        },
+        {
+          "name": "Pirates of the Caribbean - Fluch der Karibik",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "Pirates of the Caribbean 1 - The Curse Of The Black Pearl",
+          "language": "BE",
+          "type": null
+        },
+        {
+          "name": "Karibski pirati: Proklyatieto na Chernata perla",
+          "language": "BG",
+          "type": null
+        },
+        {
+          "name": "Piraty Karybsʹkoho morya: Proklyattya Chornoyi perlyny",
+          "language": "UA",
+          "type": null
+        },
+        {
+          "name": "Oi Peiratés tis Karaïvikís: I Katára tou Mávrou Margaritarioú",
+          "language": "GR",
+          "type": null
+        },
+        {
+          "name": "Piratas del Caribe: La maldición de la Perla Negra",
+          "language": "ES",
+          "type": null
+        },
+        {
+          "name": "Piratas del Caribe - La maldición del Perla Negra",
+          "language": "CO",
+          "type": null
+        },
+        {
+          "name": "Pirates of the Caribbean ։ The Curse of the Black Pearl",
+          "language": "US",
+          "type": null
+        },
+        {
+          "name": "Fluch der Karibik - The Curse of the Black Pearl",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "Der Fluch der Karibik",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "Piratas Del Caribe 1 La maldicion de la perla negra",
+          "language": "ES",
+          "type": null
+        },
+        {
+          "name": "Fluch der Karibik: Der Fluch der Black Pearl",
+          "language": "DE",
+          "type": null
+        },
+        {
+          "name": "Pirates Of The Caribbean 1 ‐ The Curse of the Black Pearl",
+          "language": "US",
+          "type": null
+        },
+        {
+          "name": "Pirates des Caraïbes 1 - La Malédiction du Black Pearl",
+          "language": "FR",
+          "type": null
+        },
+        {
+          "name": "Pirati dei caraibi -  La maledizione della prima luna (2003)",
+          "language": "IT",
+          "type": null
+        },
+        {
+          "name": "Piraci z Karaibów: Klątwa Czarnej Perły",
+          "language": "PL",
+          "type": null
+        },
+        {
+          "name": "加勒比海盜：魔盜王決戰鬼盗船",
+          "language": "HK",
+          "type": null
+        },
+        {
+          "name": "加勒比海盗1：魔盗王决战鬼盗船",
+          "language": "HK",
+          "type": null
+        },
+        {
+          "name": "Cướp Biển Vùng Caribe: Lời Nguyền Của Tàu Ngọc Trai Đen",
+          "language": "VN",
+          "type": null
+        },
+        {
+          "name": "Pirates Of The Caribbean：The Curse Of The Black Pearl",
+          "language": "US",
+          "type": "Full Title with Alt Char  '：' for windows file names"
+        },
+        {
+          "name": "Pirates of the Caribbean 1: The Curse of the Black Pearl",
+          "language": "US",
+          "type": "series title"
+        }
+      ],
+      "ratingMpaa": "pg13",
+      "shortDescription": "Пират нападает на армию мертвецов, чтобы вернуть свой корабль. Начало приключений Джека Воробья",
+      "ticketsOnSale": false,
+      "ageRating": 12,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/236744/2a0000017a3448f7a52257d6b256bfc339e3/orig"
+      },
+      "top10": null,
+      "top250": 60,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    },
+    {
+      "status": null,
+      "rating": {
+        "kp": 8.633,
+        "imdb": 8.7,
+        "filmCritics": 7.1,
+        "russianFilmCritics": 80.6452,
+        "await": null
+      },
+      "votes": {
+        "kp": 947924,
+        "imdb": 2057607,
+        "filmCritics": 379,
+        "russianFilmCritics": 31,
+        "await": 78048
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/xJHokMbljvjADYdit5fK5VQsXEG.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/xJHokMbljvjADYdit5fK5VQsXEG.jpg"
+      },
+      "movieLength": 169,
+      "id": 258687,
+      "type": "movie",
+      "name": "Интерстеллар",
+      "description": "Когда засуха, пыльные бури и вымирание растений приводят человечество к продовольственному кризису, коллектив исследователей и учёных отправляется сквозь червоточину (которая предположительно соединяет области пространства-времени через большое расстояние) в путешествие, чтобы превзойти прежние ограничения для космических путешествий человека и найти планету с подходящими для человечества условиями.",
+      "year": 2014,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/430042eb-ee69-4818-aed0-a312400a26bf/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/430042eb-ee69-4818-aed0-a312400a26bf/x1000"
+      },
+      "genres": [
+        {
+          "name": "фантастика"
+        },
+        {
+          "name": "драма"
+        },
+        {
+          "name": "приключения"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        },
+        {
+          "name": "Великобритания"
+        },
+        {
+          "name": "Канада"
+        }
+      ],
+      "typeNumber": 1,
+      "alternativeName": "Interstellar",
+      "enName": null,
+      "names": [
+        {
+          "name": "Интерстеллар"
+        },
+        {
+          "name": "Interstellar"
+        },
+        {
+          "name": "星际穿越",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Xing Ji Chuan Yue",
+          "language": "CN",
+          "type": "romanization"
+        },
+        {
+          "name": "Bein kokhavim",
+          "language": "IL",
+          "type": "romanization"
+        },
+        {
+          "name": "ইন্টারস্টেলার",
+          "language": "BD",
+          "type": "Bengali"
+        },
+        {
+          "name": "星際啟示錄",
+          "language": "HK",
+          "type": null
+        },
+        {
+          "name": "Interestelar",
+          "language": "BR",
+          "type": "Modern title"
+        },
+        {
+          "name": "Starp zvaigznēm",
+          "language": "LV",
+          "type": null
+        },
+        {
+          "name": "Csillagok Között",
+          "language": "HU",
+          "type": null
+        },
+        {
+          "name": "インターステラー",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "ინტერსტელარი",
+          "language": "GE",
+          "type": null
+        },
+        {
+          "name": "インターステラー：2014",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "Hố Đen Tử Thần",
+          "language": "VN",
+          "type": null
+        },
+        {
+          "name": "Ulduzlararası",
+          "language": "AZ",
+          "type": null
+        }
+      ],
+      "ratingMpaa": "pg13",
+      "shortDescription": "Фантастический эпос про задыхающуюся Землю, космические полеты и парадоксы времени. «Оскар» за спецэффекты",
+      "ticketsOnSale": false,
+      "ageRating": 18,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/2439731/2a0000016fae962c6bf6cc87fd2098ed9035/orig"
+      },
+      "top10": null,
+      "top250": 5,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    },
+    {
+      "status": null,
+      "rating": {
+        "kp": 8.169,
+        "imdb": 7.9,
+        "filmCritics": 7.8,
+        "russianFilmCritics": 0,
+        "await": null
+      },
+      "votes": {
+        "kp": 813178,
+        "imdb": 726509,
+        "filmCritics": 211,
+        "russianFilmCritics": 2,
+        "await": 0
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/sRvXNDItGlWCqtO3j6wks52FmbD.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/sRvXNDItGlWCqtO3j6wks52FmbD.jpg"
+      },
+      "movieLength": 90,
+      "id": 430,
+      "type": "cartoon",
+      "name": "Шрэк",
+      "description": "Жил да был в сказочном государстве большой зеленый великан по имени Шрэк. Жил он в гордом одиночестве в лесу, на болоте, которое считал своим. Но однажды злобный коротышка — лорд Фаркуад, правитель волшебного королевства, безжалостно согнал на Шрэково болото всех сказочных обитателей.\n\nИ беспечной жизни зеленого великана пришел конец. Но лорд Фаркуад пообещал вернуть Шрэку болото, если великан добудет ему прекрасную принцессу Фиону, которая томится в неприступной башне, охраняемой огнедышащим драконом.",
+      "year": 2001,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/7ade06a8-4178-4386-9ee2-87fec5a172eb/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/7ade06a8-4178-4386-9ee2-87fec5a172eb/x1000"
+      },
+      "genres": [
+        {
+          "name": "мультфильм"
+        },
+        {
+          "name": "фэнтези"
+        },
+        {
+          "name": "мелодрама"
+        },
+        {
+          "name": "комедия"
+        },
+        {
+          "name": "приключения"
+        },
+        {
+          "name": "семейный"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        },
+        {
+          "name": "Канада"
+        },
+        {
+          "name": "Швеция"
+        }
+      ],
+      "typeNumber": 3,
+      "alternativeName": "Shrek",
+      "enName": null,
+      "names": [
+        {
+          "name": "Шрэк"
+        },
+        {
+          "name": "Shrek"
+        },
+        {
+          "name": "Шрэк 1",
+          "language": "RU",
+          "type": null
+        },
+        {
+          "name": "Sreka",
+          "language": "IN",
+          "type": null
+        },
+        {
+          "name": "Šrek",
+          "language": "RS",
+          "type": null
+        },
+        {
+          "name": "슈렉 1",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "Srek",
+          "language": "GR",
+          "type": null
+        },
+        {
+          "name": "Схрек",
+          "language": "UA",
+          "type": null
+        },
+        {
+          "name": "怪物史瑞克",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "怪物史瑞克1",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "シェレック",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "Gã Chằn Tinh Tốt Bụng",
+          "language": "VN",
+          "type": null
+        },
+        {
+          "name": "怪物史莱克",
+          "language": "CN",
+          "type": null
+        }
+      ],
+      "ageRating": 18,
+      "ratingMpaa": "pg",
+      "shortDescription": "Огр-мизантроп спасает принцессу, чтобы вернуть свое болото. Революционная анимация о том, что красота — внутри",
+      "ticketsOnSale": false,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/1672343/2a000001706322b7aab311a80769a58e93d4/orig"
+      },
+      "top10": null,
+      "top250": 10,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    },
+    {
+      "status": null,
+      "rating": {
+        "kp": 7.85,
+        "imdb": 8,
+        "filmCritics": 7.8,
+        "russianFilmCritics": 83.3333,
+        "await": null
+      },
+      "votes": {
+        "kp": 736576,
+        "imdb": 1263172,
+        "filmCritics": 340,
+        "russianFilmCritics": 18,
+        "await": 46210
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/i34ijHY5hr52uYcKZ48wq7K6yUs.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/i34ijHY5hr52uYcKZ48wq7K6yUs.jpg"
+      },
+      "movieLength": 121,
+      "id": 689066,
+      "type": "movie",
+      "name": "Стражи Галактики",
+      "description": "Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной. Питер оказывается в центре межгалактической охоты, где жертва — он сам.\n\nЕдинственный способ спасти свою жизнь — объединиться с четверкой нелюдимых изгоев: воинственным енотом по кличке Ракета, человекоподобным деревом Грутом, смертельно опасной Гаморой и одержимым жаждой мести Драксом, также известным как Разрушитель. Когда Квилл понимает, какой силой обладает украденный артефакт и какую опасность он представляет для вселенной, одиночка пойдет на все, чтобы сплотить случайных союзников для решающей битвы за судьбу галактики.",
+      "year": 2014,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/2e6ab20b-7cf1-49e7-b465-bd5a71c13fa3/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/2e6ab20b-7cf1-49e7-b465-bd5a71c13fa3/x1000"
+      },
+      "genres": [
+        {
+          "name": "фантастика"
+        },
+        {
+          "name": "боевик"
+        },
+        {
+          "name": "приключения"
+        },
+        {
+          "name": "комедия"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        }
+      ],
+      "typeNumber": 1,
+      "alternativeName": "Guardians of the Galaxy",
+      "enName": null,
+      "names": [
+        {
+          "name": "Стражи Галактики"
+        },
+        {
+          "name": "Guardians of the Galaxy"
+        },
+        {
+          "name": "G.O.T.G.",
+          "language": "US",
+          "type": "promotional abbreviation"
+        },
+        {
+          "name": "Marvel's Guardians of the Galaxy",
+          "language": "US",
+          "type": null
+        },
+        {
+          "name": "마블 가디언즈 오브 갤럭시",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "Стражи галактики",
+          "language": "RU",
+          "type": null
+        },
+        {
+          "name": "Marvel Studios' Guardians of the Galaxy",
+          "language": "US",
+          "type": null
+        },
+        {
+          "name": "银河护卫队",
+          "language": "CN",
+          "type": null
+        },
+        {
+          "name": "Guardians Of The Galaxy: Vệ Binh Dải Ngân Hà",
+          "language": "VN",
+          "type": null
+        },
+        {
+          "name": "Guardians of the Galaxy Vol. 1",
+          "language": "US",
+          "type": null
+        },
+        {
+          "name": "Les Gardiens De La Galaxie",
+          "language": "FR",
+          "type": null
+        },
+        {
+          "name": "Guardiões da Galáxia da Marvel Studios",
+          "language": "BR",
+          "type": null
+        },
+        {
+          "name": "שומרי הגלאקסיה: חלק 1",
+          "language": "IL",
+          "type": null
+        },
+        {
+          "name": "การ์เดี้ยนส์ ออฟ เดอะ กาแล็กซี่",
+          "language": "TH",
+          "type": "transliterate"
+        },
+        {
+          "name": "รวมพันธุ์นักสู้พิทักษ์จักรวาล",
+          "language": "TH",
+          "type": null
+        },
+        {
+          "name": "Գալակտիկայի պահապանները",
+          "language": "AM",
+          "type": null
+        },
+        {
+          "name": "Галактика сақшылары",
+          "language": "KZ",
+          "type": null
+        },
+        {
+          "name": "Guardianes de la Galaxia",
+          "language": "ES",
+          "type": null
+        },
+        {
+          "name": "星際異攻隊",
+          "language": "TW",
+          "type": null
+        },
+        {
+          "name": "ガーディアンズ・オブ・ギャラクシー",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "ガーディアンズ・オブ・ギャラクシー：2014",
+          "language": "JP",
+          "type": null
+        }
+      ],
+      "ratingMpaa": "pg13",
+      "shortDescription": "Питер Квилл и горстка неземных лузеров спасают артефакт. Крис Пратт в фильме Джеймса Ганна по комиксу Marvel",
+      "ticketsOnSale": false,
+      "ageRating": 12,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/2385704/2a0000016e11e92154e4c2189debbfb0af18/orig"
+      },
+      "top10": null,
+      "top250": null,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    },
+    {
+      "status": null,
+      "rating": {
+        "kp": 7.671,
+        "imdb": 8,
+        "filmCritics": 7.6,
+        "russianFilmCritics": 72,
+        "await": null
+      },
+      "votes": {
+        "kp": 721701,
+        "imdb": 741540,
+        "filmCritics": 509,
+        "russianFilmCritics": 25,
+        "await": 89705
+      },
+      "backdrop": {
+        "url": "https://imagetmdb.com/t/p/original/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg",
+        "previewUrl": "https://imagetmdb.com/t/p/w500/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg"
+      },
+      "movieLength": 155,
+      "id": 409424,
+      "type": "movie",
+      "name": "Дюна",
+      "description": "Наследник знаменитого дома Атрейдесов Пол отправляется вместе с семьей на одну из самых опасных планет во Вселенной — Арракис. Здесь нет ничего, кроме песка, палящего солнца, гигантских чудовищ и основной причины межгалактических конфликтов — невероятно ценного ресурса, который называется меланж. В результате захвата власти Пол вынужден бежать и скрываться, и это становится началом его эпического путешествия. Враждебный мир Арракиса приготовил для него множество тяжелых испытаний, но только тот, кто готов взглянуть в глаза своему страху, достоин стать избранным.",
+      "year": 2021,
+      "poster": {
+        "url": "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/9eb762d6-4cdd-464f-9937-aebf30067acc/orig",
+        "previewUrl": "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/9eb762d6-4cdd-464f-9937-aebf30067acc/x1000"
+      },
+      "genres": [
+        {
+          "name": "фантастика"
+        },
+        {
+          "name": "боевик"
+        },
+        {
+          "name": "драма"
+        },
+        {
+          "name": "приключения"
+        }
+      ],
+      "countries": [
+        {
+          "name": "США"
+        },
+        {
+          "name": "Канада"
+        },
+        {
+          "name": "Венгрия"
+        }
+      ],
+      "typeNumber": 1,
+      "alternativeName": "Dune: Part One",
+      "enName": "Dune: Part One",
+      "names": [
+        {
+          "name": "Дюна"
+        },
+        {
+          "name": "Dune: Part One"
+        },
+        {
+          "name": "デューン",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "듄",
+          "language": "KR",
+          "type": null
+        },
+        {
+          "name": "Duna",
+          "language": "BR",
+          "type": null
+        },
+        {
+          "name": "Dune։ Part One",
+          "language": "US",
+          "type": null
+        },
+        {
+          "name": "Dune։ Part One 3D",
+          "language": "US",
+          "type": "3D version"
+        },
+        {
+          "name": "חולית: חלק ראשון",
+          "language": "IL",
+          "type": null
+        },
+        {
+          "name": "デューン 砂の惑星",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "DUNE デューン 砂の惑星",
+          "language": "JP",
+          "type": null
+        },
+        {
+          "name": "ดูน",
+          "language": "TH",
+          "type": null
+        },
+        {
+          "name": "Hành Tinh Cát",
+          "language": "VN",
+          "type": null
+        }
+      ],
+      "ageRating": 12,
+      "ratingMpaa": "pg13",
+      "shortDescription": "Атрейдесы прибывают на планету, где им никто не рад. Фантастический эпос Дени Вильнёва с шестью «Оскарами»",
+      "ticketsOnSale": false,
+      "logo": {
+        "url": "https://avatars.mds.yandex.net/get-ott/1534341/2a0000017ede1a0d9f8bae88b8f757431b94/orig"
+      },
+      "top10": null,
+      "top250": null,
+      "isSeries": false,
+      "seriesLength": null,
+      "totalSeriesLength": null
+    }
+  ],
+  "total": 101,
+  "limit": 10,
+  "page": 1,
+  "pages": 11
+}

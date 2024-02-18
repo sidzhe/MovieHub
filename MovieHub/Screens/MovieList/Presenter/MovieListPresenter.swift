@@ -21,7 +21,7 @@ final class MovieListPresenter: MovieListPresenterProtocol {
     }
     
     func getCategories() -> [CategoryModel] {
-        guard let model = interactor?.cagegoriesData else { return [CategoryModel]() }
+        guard let model = interactor?.categoriesData else { return [CategoryModel]() }
         return model
     }
     

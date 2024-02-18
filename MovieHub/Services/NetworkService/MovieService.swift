@@ -86,10 +86,11 @@ struct MovieService: MovieServiceProtocol, MovieClient {
                      URLQueryItem(name: "limit", value: "10"),
                      URLQueryItem(name: "lists", value: slugTag)]
         urlComponents.queryItems = items
+        print(urlComponents.url)
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.movieFilter, responseModel: T.self)
     }
     
-    //MARK: Gensre's collection
+    //MARK: Genre's collection
     func movieFilterGenres<T: Decodable>(genre: String) async -> Result<T, RequestError> {
         let endpoint = MovieEndpoints.movieFilter
         var urlComponents = URLComponents()
@@ -188,14 +189,14 @@ struct MovieService: MovieServiceProtocol, MovieClient {
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
         var items = [URLQueryItem(name: "page", value: "1"),
-                              URLQueryItem(name: "limit", value: "10"),
-                              URLQueryItem(name: "notNullFields", value: "name"),
-                              URLQueryItem(name: "notNullFields", value: "year"),
-                              URLQueryItem(name: "notNullFields", value: "poster.url"),
-                              URLQueryItem(name: "status", value: "announced"),
-                              URLQueryItem(name: "status", value: "filming"),
-                              URLQueryItem(name: "status", value: "post-production"),
-                              URLQueryItem(name: "status", value: "pre-production")]
+                     URLQueryItem(name: "limit", value: "10"),
+                     URLQueryItem(name: "notNullFields", value: "name"),
+                     URLQueryItem(name: "notNullFields", value: "year"),
+                     URLQueryItem(name: "notNullFields", value: "poster.url"),
+                     URLQueryItem(name: "status", value: "announced"),
+                     URLQueryItem(name: "status", value: "filming"),
+                     URLQueryItem(name: "status", value: "post-production"),
+                     URLQueryItem(name: "status", value: "pre-production")]
         if genre != "все" {
             let item = URLQueryItem(name: "genres.name", value: genre)
             items.append(item)

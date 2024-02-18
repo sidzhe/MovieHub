@@ -29,7 +29,8 @@ final class MockNetworkService: NetworkServiceProtocol, Mockable {
     }
     
     func getSlugCollection<T>(slugTag: String, completion: @escaping (Result<T, RequestError>) -> Void) where T : Decodable {
-        
+        let data = getJSON(fileName: "CollectionMovies", type: T.self)
+        completion(.success(data))
     }
     
     func getGenreCollection(genre: MovieGenre, completion: @escaping (Result<SearchModel, RequestError>) -> Void) {

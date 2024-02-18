@@ -26,7 +26,7 @@ protocol MovieListPresenterProtocol: AnyObject {
 /// PRESENTER -> INTERACTOR
 protocol MovieListInteractorInputProtocol: AnyObject {
     var presenter: MovieListInteractorOutputProtocol? { get set }
-    var cagegoriesData: [CategoryModel] { get }
+    var categoriesData: [CategoryModel] { get }
     var moviesData: CollectionDetailModel? { get }
     func selectedCategory(_ index: Int)
     func requestMovies(genre: MovieGenre)

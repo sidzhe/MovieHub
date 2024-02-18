@@ -12,7 +12,7 @@ final class MovieListInteractor: MovieListInteractorInputProtocol {
     //MARK: - Properties
     weak var presenter: MovieListInteractorOutputProtocol?
     var networkService: NetworkServiceProtocol
-    var cagegoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue.localized()) }
+    var categoriesData = MovieGenre.allCases.map { CategoryModel(category: $0.rawValue.localized()) }
     var moviesData: CollectionDetailModel?
     
     //MARK: Init
@@ -22,8 +22,8 @@ final class MovieListInteractor: MovieListInteractorInputProtocol {
     
     //MARK: Select category
     func selectedCategory(_ index: Int) {
-        cagegoriesData.enumerated().forEach { cagegoriesData[$0.offset].isSelected = false }
-        cagegoriesData[index].isSelected = !cagegoriesData[index].isSelected
+        categoriesData.enumerated().forEach { categoriesData[$0.offset].isSelected = false }
+        categoriesData[index].isSelected = !categoriesData[index].isSelected
         presenter?.updateUI()
     }
     

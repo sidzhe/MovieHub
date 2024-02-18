@@ -1,5 +1,5 @@
 //
-//  TestPresenterTest.swift
+//  TrailerPresenterTest.swift
 //  MovieHubTests
 //
 //  Created by sidzhe on 17.02.2024.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import MovieHub
 
-final class TestPresenterTest: XCTestCase {
+final class TrailerPresenterTest: XCTestCase {
     
     var interactor: TrailerInteractor!
     var presenter: TrailerPresenter!
