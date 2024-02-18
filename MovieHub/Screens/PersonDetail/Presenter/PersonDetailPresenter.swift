@@ -69,7 +69,7 @@ final class PersonDetailPresenter: PersonDetailPresenterProtocol {
         }
     }
     
-    private func removingHTMLEscapes(text: String?) -> String? {
+    func removingHTMLEscapes(text: String?) -> String? {
         guard let text = text else { return nil }
         
         do {

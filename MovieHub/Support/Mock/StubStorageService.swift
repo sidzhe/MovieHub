@@ -36,7 +36,7 @@ final class StubStorageService: StorageServiceProtocol {
     }
     
     func getWishModel() -> [String] {
-        return [""]
+        return ["666"]
     }
     
     func wishStateButton(id: Int) -> Bool {

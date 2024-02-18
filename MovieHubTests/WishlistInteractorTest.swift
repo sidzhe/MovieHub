@@ -57,4 +57,17 @@ final class WishlistInteractorTest: XCTestCase {
         XCTAssertNil(responseError)
         XCTAssertEqual(statusCode, 200)
     }
+    
+    func testUpdateFavoriteModelSuccese() {
+        let movieID = 666
+        interactor.updateWishModel()
+        XCTAssertEqual(interactor.favoriteModel?.first?.id, movieID)
+    }
+    
+    func testUpdateFavoriteModelFailure() {
+        let movieID: Int? = nil
+        interactor.updateWishModel()
+        interactor.favoriteModel = nil
+        XCTAssertEqual(interactor.favoriteModel?.first?.id, movieID)
+    }
 }
