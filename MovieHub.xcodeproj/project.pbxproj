@@ -230,6 +230,8 @@
 		EBED14362B51AEF70076D79B /* Extension + UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED14352B51AEF70076D79B /* Extension + UILabel.swift */; };
 		EBED14382B51AF230076D79B /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED14372B51AF230076D79B /* Extension + UIStackView.swift */; };
 		EBF0D15A2B4D9FA70061BEA9 /* animation.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF0D1592B4D9FA70061BEA9 /* animation.png */; };
+		EBF938D62B834A2400A13D7E /* SearchResultInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF938D52B834A2400A13D7E /* SearchResultInteractorTest.swift */; };
+		EBF938D82B834ACA00A13D7E /* SearchPerson.json in Resources */ = {isa = PBXBuildFile; fileRef = EBF938D72B834ACA00A13D7E /* SearchPerson.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -469,6 +471,8 @@
 		EBED14352B51AEF70076D79B /* Extension + UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UILabel.swift"; sourceTree = "<group>"; };
 		EBED14372B51AF230076D79B /* Extension + UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
 		EBF0D1592B4D9FA70061BEA9 /* animation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = animation.png; sourceTree = "<group>"; };
+		EBF938D52B834A2400A13D7E /* SearchResultInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultInteractorTest.swift; sourceTree = "<group>"; };
+		EBF938D72B834ACA00A13D7E /* SearchPerson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SearchPerson.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -919,6 +923,7 @@
 				EB4F1A7A2B82566E00E45D11 /* PersonDetailInteractorTest.swift */,
 				EB4F1A742B823B3400E45D11 /* CollectionInteractorTest.swift */,
 				EB4F1A782B82519F00E45D11 /* DetailInteractorTest.swift */,
+				EBF938D52B834A2400A13D7E /* SearchResultInteractorTest.swift */,
 			);
 			path = MovieHubTests;
 			sourceTree = "<group>";
@@ -1682,6 +1687,7 @@
 				EB4F1A762B823C9500E45D11 /* CollectionMovies.json */,
 				EB4F1A7E2B82603000E45D11 /* PersonID.json */,
 				EB4F1A802B82661500E45D11 /* AwardsPerson.json */,
+				EBF938D72B834ACA00A13D7E /* SearchPerson.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -2155,6 +2161,7 @@
 				EB6CB2D92B3C250600DC30BC /* Montserrat-Black.ttf in Resources */,
 				EB6CB2D62B3C250600DC30BC /* Montserrat-Bold.ttf in Resources */,
 				EB0E11042B7A2B6E00D65632 /* RatedMovies.json in Resources */,
+				EBF938D82B834ACA00A13D7E /* SearchPerson.json in Resources */,
 				EBF0D15A2B4D9FA70061BEA9 /* animation.png in Resources */,
 				EB82676D2B38A1D50024BAAE /* LaunchScreen.storyboard in Resources */,
 				EB6CB2D52B3C250600DC30BC /* Montserrat-ExtraBold.ttf in Resources */,
@@ -2218,6 +2225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBF938D62B834A2400A13D7E /* SearchResultInteractorTest.swift in Sources */,
 				EB4F1A752B823B3400E45D11 /* CollectionInteractorTest.swift in Sources */,
 				EBC0482A2B77B38600336773 /* ChristmasInteractorTest.swift in Sources */,
 				EB4F1A712B82383A00E45D11 /* MovieListInteractorTest.swift in Sources */,

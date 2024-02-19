@@ -38,6 +38,7 @@ struct MovieService: MovieServiceProtocol, MovieClient {
         urlComponents.path = endpoint.path
         let items = [URLQueryItem(name: "query", value: searchTitle), URLQueryItem(name: "limit", value: "10")]
         urlComponents.queryItems = items
+        print(urlComponents.url)
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchTitle, responseModel: T.self)
     }
     
@@ -61,7 +62,6 @@ struct MovieService: MovieServiceProtocol, MovieClient {
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path + identifier
         urlComponents.queryItems = endpoint.item
-        print(urlComponents.url)
         return await sendRequest(urlComponents: urlComponents, endpoint: MovieEndpoints.searchDetailById, responseModel: T.self)
     }
     

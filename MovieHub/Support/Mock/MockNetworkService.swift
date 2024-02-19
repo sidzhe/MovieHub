@@ -15,7 +15,8 @@ final class MockNetworkService: NetworkServiceProtocol, Mockable {
     }
     
     func searchPerson(_ person: String, completion: @escaping (Result<PersonModel, RequestError>) -> Void) {
-        
+        let data = getJSON(fileName: "SearchPerson", type: PersonModel.self)
+        completion(.success(data))
     }
     
     func searchDetailID(_ identifier: String, completion: @escaping (Result<DetailModel, RequestError>) -> Void) {

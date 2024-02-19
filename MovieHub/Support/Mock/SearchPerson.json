@@ -1,0 +1,118 @@
+{
+  "docs": [
+    {
+      "id": 25584,
+      "name": "Брэд Питт",
+      "enName": "Brad Pitt",
+      "photo": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/7d4eb861-1f80-44da-b75e-7f365d0fc3da/orig",
+      "sex": "Мужской",
+      "growth": 180,
+      "birthday": "1963-12-18T00:00:00.000Z",
+      "death": "",
+      "age": 60
+    },
+    {
+      "id": 6178591,
+      "name": "",
+      "enName": "Brad Pittman",
+      "photo": "",
+      "sex": "Мужской",
+      "growth": 0,
+      "birthday": "",
+      "death": "",
+      "age": 0
+    },
+    {
+      "id": 3516843,
+      "name": "",
+      "enName": "Brad Pittance",
+      "photo": "",
+      "sex": "Мужской",
+      "growth": 0,
+      "birthday": "",
+      "death": "",
+      "age": 0
+    },
+    {
+      "id": 5950785,
+      "name": "",
+      "enName": "Brad Pitts",
+      "photo": "",
+      "sex": "",
+      "growth": 0,
+      "birthday": "",
+      "death": "",
+      "age": 0
+    },
+    {
+      "id": 2688249,
+      "name": "",
+      "enName": "Brad",
+      "photo": "",
+      "sex": "Мужской",
+      "growth": 0,
+      "birthday": "",
+      "death": "",
+      "age": 0
+    },
+    {
+      "id": 7094680,
+      "name": "",
+      "enName": "Brad",
+      "photo": "",
+      "sex": "",
+      "growth": 0,
+      "birthday": "",
+      "death": "",
+      "age": 0
+    },
+    {
+      "id": 4051136,
+      "name": "",
+      "enName": "Brad",
+      "photo": "",
+      "sex": "",
+      "growth": 0,
+      "birthday": "",
+      "death": "",
+      "age": 0
+    },
+    {
+      "id": 6887995,
+      "name": "",
+      "enName": "Brad",
+      "photo": "",
+      "sex": "",
+      "growth": 0,
+      "birthday": "",
+      "death": "",
+      "age": 0
+    },
+    {
+      "id": 6442001,
+      "name": "",
+      "enName": "Brad",
+      "photo": "",
+      "sex": "Мужской",
+      "growth": 0,
+      "birthday": "",
+      "death": "",
+      "age": 0
+    },
+    {
+      "id": 7054017,
+      "name": "",
+      "enName": "Brad",
+      "photo": "",
+      "sex": "",
+      "growth": 0,
+      "birthday": "",
+      "death": "",
+      "age": 0
+    }
+  ],
+  "total": 1000,
+  "limit": 10,
+  "page": 1,
+  "pages": 100
+}
